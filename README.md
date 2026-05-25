@@ -153,7 +153,7 @@ from sklearn.metrics import mean_squared_error
 X = np.random.rand(100, 5)
 y = 3 * X[:, 0] + 1.5 * X[:, 1] + np.random.randn(100) * 0.1
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_test_split=0.2, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 # Fit Ordinary Least Squares Linear Regression
 ols = LinearRegression()
