@@ -488,7 +488,7 @@ def create_deck():
             "Embedding Concept: Maps raw strings to dense, low-dimensional continuous vectors where geometric closeness represents semantic meaning.",
             "Word2Vec Skip-gram: Neural network trained to predict context words given a target input word.",
             "Negative Sampling Loss: Avoids expensive full softmax by training a binary classifier on positive context pairs vs. random negative pairs.",
-            "Optimization: Adjusts embedding weights using SGD, forcing related terms (e.g. models/networks) to cluster together.",
+            "Optimization: Trained using the Adam optimizer implemented from scratch. Uses adaptive learning rates for faster, more stable coordinate updates.",
             "Visual: Trained 2D Word2Vec scatter plot showing semantic clusters."
         ],
         img_path="plots/llm_2_word2vec.png",
@@ -596,6 +596,7 @@ def create_deck():
         bullets=[
             "Gradient: Vector of partial derivatives pointing in the direction of steepest rate of function increase: [df/dw_1, ..., df/dw_D].",
             "Gradient Descent: Updates weights along negative gradient: w = w - eta * grad.",
+            "Adam Optimizer: Computes adaptive learning rates using first moment (momentum) and second moment (gradient variance). Scales updates per coordinate.",
             "Inductive Bias: Mathematical assumptions a model makes to generalize to unseen inputs (e.g., linear vs. locality bias).",
             "Lazy Learning: Defers generalization until query time (e.g. KNN). Features zero training time but slow prediction.",
             "Visual: Gradient 3D valley, linear/locality boundaries, KNN distance query."

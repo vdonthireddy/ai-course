@@ -6,14 +6,14 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
-"""
-Word2Vec Skip-gram with Negative Sampling from Scratch
-======================================================
+r"""
+Word2Vec Skip-gram with Negative Sampling and Adam Optimizer from Scratch
+========================================================================
 
 Introduction:
 -------------
 Word2Vec learns continuous, low-dimensional vector representations of words such 
-that words sharing semantic contexts are mapped to close coordinates in space. 
+-that words sharing semantic contexts are mapped to close coordinates in space. 
 In the Skip-gram architecture, we use a target word to predict surrounding 
 context words. To do this efficiently, Negative Sampling transforms the multi-class 
 softmax prediction into multiple binary classification tasks: predicting whether 
@@ -25,15 +25,17 @@ Mathematical Logic:
    $$P(\text{context}=1 | w, c) = \sigma(v_c'^T v_w) = \frac{1}{1 + \exp(-v_c'^T v_w)}$$
 2. **Objective/Loss (Negative Sampling)**:
    $$\mathcal{L} = -\log \sigma(v_{c_{pos}}'^T v_w) - \sum_{i=1}^k \log \sigma(-v_{c_{neg_i}}'^T v_w)$$
-3. **Parameter Updates**:
-   Using Gradient Descent, we update the input vector $v_w$ and candidate output vectors $v_c'$:
-   $$v_w \leftarrow v_w - \eta \cdot (\sigma(v_c'^T v_w) - t) v_c'$$
-   $$v_c' \leftarrow v_c' - \eta \cdot (\sigma(v_c'^T v_w) - t) v_w$$
-   where $t=1$ for positive samples and $t=0$ for negative samples.
+3. **Adam Optimizer Updates**:
+   Rather than standard Gradient Descent, we use the Adam optimizer to compute adaptive step sizes:
+   $$g_t = \text{gradient of parameters at step } t$$
+   $$m_t = \beta_1 m_{t-1} + (1 - \beta_1) g_t$$
+   $$v_t = \beta_2 v_{t-1} + (1 - \beta_2) g_t^2$$
+   $$\hat{m}_t = \frac{m_t}{1 - \beta_1^t}, \quad \hat{v}_t = \frac{v_t}{1 - \beta_2^t}$$
+   $$\theta_t = \theta_{t-1} - \frac{\eta}{\sqrt{\hat{v}_t} + \epsilon} \hat{m}_t$$
 """
 
 print("====================================================")
-print("Word2Vec Skip-gram with Negative Sampling from Scratch")
+print("Word2Vec Skip-gram with Negative Sampling (Adam) from Scratch")
 
 # Set random seed for reproducibility
 random.seed(42)
@@ -89,10 +91,20 @@ W_out = [[random.uniform(-0.5, 0.5) for _ in range(embedding_dim)] for _ in rang
 import copy
 W_in_initial = copy.deepcopy(W_in)
 
-# Hyperparameters
-learning_rate = 0.2
+# Adam Optimizer Parameters
+beta1 = 0.9
+beta2 = 0.999
+adam_eps = 1e-8
+learning_rate = 0.02  # Tuned for faster/stable Adam convergence in 2D
 epochs = 500
 num_neg_samples = 4
+
+# Initialize Adam moment tables (first and second moments)
+m_in = [[0.0] * embedding_dim for _ in range(vocab_size)]
+v_in = [[0.0] * embedding_dim for _ in range(vocab_size)]
+m_out = [[0.0] * embedding_dim for _ in range(vocab_size)]
+v_out = [[0.0] * embedding_dim for _ in range(vocab_size)]
+t = 0  # Time step counter
 
 # Sigmoid activation helper
 def sigmoid(x):
@@ -108,7 +120,7 @@ def dot_product(v1, v2):
 
 # 4. Training Loop
 loss_history = []
-print(f"\nTraining Word2Vec model ({epochs} epochs)...")
+print(f"\nTraining Word2Vec model with Adam ({epochs} epochs)...")
 
 for epoch in range(epochs):
     epoch_loss = 0.0
@@ -119,8 +131,8 @@ for epoch in range(epochs):
         # Target word vector v_w
         v_w = W_in[target_idx]
         
-        # We collect all updates to add at the end of negative samples loop
-        v_w_update = [0.0] * embedding_dim
+        # Collect updates to target input vector's gradients
+        grad_in = [0.0] * embedding_dim
         
         # --- Positive Sample (target context word, label = 1) ---
         v_pos = W_out[pos_context_idx]
@@ -128,15 +140,26 @@ for epoch in range(epochs):
         prob_pos = sigmoid(score_pos)
         
         # positive loss: -log(sigmoid(score))
-        eps = 1e-15
-        epoch_loss += -math.log(max(eps, prob_pos))
+        eps_loss = 1e-15
+        epoch_loss += -math.log(max(eps_loss, prob_pos))
         
         error_pos = prob_pos - 1.0
-        # Accumulate updates for W_in[target_idx]
+        
+        # Update W_out[pos_context_idx] using Adam from scratch
+        t += 1
         for d in range(embedding_dim):
-            v_w_update[d] += error_pos * v_pos[d]
-            # Update W_out[pos_context_idx] directly
-            W_out[pos_context_idx][d] -= learning_rate * error_pos * v_w[d]
+            # Accumulate gradient for input vector
+            grad_in[d] += error_pos * v_pos[d]
+            
+            # Gradient for output vector
+            g_out = error_pos * v_w[d]
+            m_out[pos_context_idx][d] = beta1 * m_out[pos_context_idx][d] + (1 - beta1) * g_out
+            v_out[pos_context_idx][d] = beta2 * v_out[pos_context_idx][d] + (1 - beta2) * (g_out ** 2)
+            
+            m_hat = m_out[pos_context_idx][d] / (1 - beta1 ** t)
+            v_hat = v_out[pos_context_idx][d] / (1 - beta2 ** t)
+            
+            W_out[pos_context_idx][d] -= learning_rate * m_hat / (math.sqrt(v_hat) + adam_eps)
             
         # --- Negative Samples (random words, label = 0) ---
         neg_samples = []
@@ -152,17 +175,37 @@ for epoch in range(epochs):
             prob_neg = sigmoid(score_neg)
             
             # negative loss: -log(1 - sigmoid(score))
-            epoch_loss += -math.log(max(eps, 1.0 - prob_neg))
+            epoch_loss += -math.log(max(eps_loss, 1.0 - prob_neg))
             
             error_neg = prob_neg - 0.0
+            
+            # Update W_out[neg_idx] using Adam from scratch
+            t += 1
             for d in range(embedding_dim):
-                v_w_update[d] += error_neg * v_neg[d]
-                # Update W_out[neg_idx] directly
-                W_out[neg_idx][d] -= learning_rate * error_neg * v_w[d]
+                # Accumulate gradient for input vector
+                grad_in[d] += error_neg * v_neg[d]
                 
-        # --- Update Target Input Vector W_in[target_idx] ---
+                # Gradient for output vector
+                g_out = error_neg * v_w[d]
+                m_out[neg_idx][d] = beta1 * m_out[neg_idx][d] + (1 - beta1) * g_out
+                v_out[neg_idx][d] = beta2 * v_out[neg_idx][d] + (1 - beta2) * (g_out ** 2)
+                
+                m_hat = m_out[neg_idx][d] / (1 - beta1 ** t)
+                v_hat = v_out[neg_idx][d] / (1 - beta2 ** t)
+                
+                W_out[neg_idx][d] -= learning_rate * m_hat / (math.sqrt(v_hat) + adam_eps)
+                
+        # --- Update Target Input Vector W_in[target_idx] using Adam ---
+        t += 1
         for d in range(embedding_dim):
-            W_in[target_idx][d] -= learning_rate * v_w_update[d]
+            g_in_d = grad_in[d]
+            m_in[target_idx][d] = beta1 * m_in[target_idx][d] + (1 - beta1) * g_in_d
+            v_in[target_idx][d] = beta2 * v_in[target_idx][d] + (1 - beta2) * (g_in_d ** 2)
+            
+            m_hat = m_in[target_idx][d] / (1 - beta1 ** t)
+            v_hat = v_in[target_idx][d] / (1 - beta2 ** t)
+            
+            W_in[target_idx][d] -= learning_rate * m_hat / (math.sqrt(v_hat) + adam_eps)
             
     avg_loss = epoch_loss / len(training_pairs)
     loss_history.append(avg_loss)
@@ -220,11 +263,11 @@ ax2.grid(True, linestyle="--", alpha=0.3)
 ax3.plot(range(1, epochs + 1), loss_history, color="#EF4444", linewidth=2.5, label="Skip-gram Loss")
 ax3.set_xlabel("Epochs", fontsize=11, labelpad=8)
 ax3.set_ylabel("Binary Cross-Entropy Loss", fontsize=11, labelpad=8)
-ax3.set_title("Training Loss Convergence", fontsize=12, fontweight="bold")
+ax3.set_title("Training Loss Convergence (Adam)", fontsize=12, fontweight="bold")
 ax3.grid(True, linestyle="--", alpha=0.5)
 ax3.legend(loc="upper right")
 
-plt.suptitle("Word2Vec Skip-gram Embeddings: Before vs. After Training from Scratch", fontsize=14, fontweight="bold", y=0.98)
+plt.suptitle("Word2Vec Skip-gram Embeddings: Before vs. After Training with Adam from Scratch", fontsize=14, fontweight="bold", y=0.98)
 plt.tight_layout()
 
 # Save the plot

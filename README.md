@@ -130,7 +130,7 @@ python3 llm/<script_name>.py
 | Lesson / Topic | Concept | Python Script Link | Output Plot Link |
 | :--- | :--- | :--- | :--- |
 | **Module 9.1: Tokenizer** | Byte Pair Encoding (BPE) from scratch | [1_bpe_tokenizer.py](llm/1_bpe_tokenizer.py) | [llm_1_bpe_vocab.png](plots/llm_1_bpe_vocab.png) |
-| **Module 9.2: Embeddings** | Skip-gram Word2Vec with Negative Sampling | [2_word2vec.py](llm/2_word2vec.py) | [llm_2_word2vec.png](plots/llm_2_word2vec.png) |
+| **Module 9.2: Embeddings** | Skip-gram Word2Vec (Adam Optimizer) | [2_word2vec.py](llm/2_word2vec.py) | [llm_2_word2vec.png](plots/llm_2_word2vec.png) |
 | **Module 9.3: Encoder** | Multi-Head Self-Attention & Positional Encoding | [3_encoder.py](llm/3_encoder.py) | [llm_3_positional_encoding.png](plots/llm_3_positional_encoding.png) |
 | **Module 9.4: Decoder** | Causal Masked Self-Attention & Cross-Attention | [4_decoder.py](llm/4_decoder.py) | [llm_4_causal_mask.png](plots/llm_4_causal_mask.png) |
 | **Module 9.5: Transformer** | End-to-End Translator (Seq2Seq Model) | [5_transformer_llm.py](llm/5_transformer_llm.py) | [llm_5_attention_alignment.png](plots/llm_5_attention_alignment.png) |
@@ -1026,6 +1026,25 @@ Where:
 
 During training, gradient updates adjust the word vectors directly, causing semantically related words to group together in the vector space.
 
+#### Optimization: The Adam Optimizer from Scratch
+Rather than standard Gradient Descent, we train the embeddings using the **Adaptive Moment Estimation (Adam)** optimizer implemented from scratch. Adam calculates adaptive learning rates for each parameter by maintaining exponential moving averages of both the gradients ($m_t$) and the squared gradients ($v_t$):
+
+$$m_t = \beta_1 m_{t-1} + (1 - \beta_1) g_t$$
+$$v_t = \beta_2 v_{t-1} + (1 - \beta_2) g_t^2$$
+
+Where $g_t$ is the parameter gradient at time step $t$. Because $m_t$ and $v_t$ are initialized as zeros, they are biased toward zero, particularly during early time steps and when the decay rates are close to 1 (i.e. $\beta_1 \approx 0.9$ and $\beta_2 \approx 0.999$). To counteract this, we apply bias-correction to obtain:
+
+$$\hat{m}_t = \frac{m_t}{1 - \beta_1^t}, \quad \hat{v}_t = \frac{v_t}{1 - \beta_2^t}$$
+
+The embedding parameter weights $\theta_t$ are updated using these bias-corrected moments:
+
+$$\theta_t = \theta_{t-1} - \frac{\eta}{\sqrt{\hat{v}_t} + \epsilon} \hat{m}_t$$
+
+Where:
+- $\eta$ is the learning rate (step size).
+- $\beta_1$ and $\beta_2$ are decay hyperparameters.
+- $\epsilon$ is a small constant (e.g. $10^{-8}$) to prevent division by zero.
+
 #### Concrete Example of Skip-gram with Negative Sampling:
 Suppose our training sentence is: `"the quick brown fox jumps over the lazy dog"`.
 We choose a context window size of 1, a target word **"fox"**, and set $k = 2$ negative samples.
@@ -1141,7 +1160,7 @@ This mathematically restricts the model from looking ahead during training, forc
 We have created five pure Python scripts inside the `llm/` directory showing how these pieces operate together step-by-step:
 
 1. **[llm/1_bpe_tokenizer.py](llm/1_bpe_tokenizer.py)**: Trains BPE merge rules on a corpus, segments out-of-vocabulary words, and saves [llm_1_bpe_vocab.png](plots/llm_1_bpe_vocab.png).
-2. **[llm/2_word2vec.py](llm/2_word2vec.py)**: Performs gradient descent on context pairs, trains semantic 2D embeddings, and saves [llm_2_word2vec.png](plots/llm_2_word2vec.png) (showing semantic word clusters).
+2. **[llm/2_word2vec.py](llm/2_word2vec.py)**: Trains semantic 2D embeddings on context pairs using the Adam optimizer implemented from scratch, and saves [llm_2_word2vec.png](plots/llm_2_word2vec.png) (showing semantic word clusters).
 3. **[llm/3_encoder.py](llm/3_encoder.py)**: Implements positional encoding math, Q/K/V projections, Multi-Head self-attention, LayerNorm, and FFN, saving the wave positional encoding heatmap to [llm_3_positional_encoding.png](plots/llm_3_positional_encoding.png).
 4. **[llm/4_decoder.py](llm/4_decoder.py)**: Implements causal masking, cross-attention alignment, and saves the causal mask visual boundary heatmap to [llm_4_causal_mask.png](plots/llm_4_causal_mask.png).
 5. **[llm/5_transformer_llm.py](llm/5_transformer_llm.py)**: Assembles the tokenizer, embeddings, encoder, and decoder layers. Translates English inputs to Spanish step-by-step using greedy autoregressive decoding, saving the cross-attention alignment map to [llm_5_attention_alignment.png](plots/llm_5_attention_alignment.png).
@@ -1608,6 +1627,37 @@ $$
   
     The probability is distributed more evenly, giving lower-scoring words a higher chance of selection.
 * **Visual Demonstration**: Refer to the bottom-right panel of `plots/glossary_llm_concepts.png` showing probability curves flattening as $T$ increases.
+
+---
+
+### 16. Adam Optimizer
+* **Mathematical Definition**: A popular first-order gradient-based optimization algorithm that computes adaptive learning rates for individual parameters. By tracking both the first moment $m_t$ (exponential moving average of gradients, tracking momentum) and the second moment $v_t$ (exponential moving average of squared gradients, tracking gradient variance), it scales updates on a per-parameter basis:
+
+  $$m_t = \beta_1 m_{t-1} + (1 - \beta_1) g_t$$
+  $$v_t = \beta_2 v_{t-1} + (1 - \beta_2) g_t^2$$
+
+  To correct for early-stage initialization bias towards zero:
+
+  $$\hat{m}_t = \frac{m_t}{1 - \beta_1^t}, \quad \hat{v}_t = \frac{v_t}{1 - \beta_2^t}$$
+
+  The parameter update is then:
+
+  $$\theta_t = \theta_{t-1} - \frac{\eta}{\sqrt{\hat{v}_t} + \epsilon} \hat{m}_t$$
+
+* **Step-by-Step Example**:
+  Suppose a parameter $\theta$ has current value $\theta_{t-1} = 0.50$ and we compute gradient $g_t = 0.10$. Let's assume prior moments are $m_{t-1} = 0.0$ and $v_{t-1} = 0.0$, at step $t=1$.
+  We use hyperparameters: $\beta_1 = 0.9$, $\beta_2 = 0.999$, learning rate $\eta = 0.01$, and $\epsilon = 10^{-8}$.
+  1. **Compute moments**:
+     * $m_1 = 0.9 \cdot 0.0 + (1 - 0.9) \cdot 0.10 = 0.01$
+     * $v_1 = 0.999 \cdot 0.0 + (1 - 0.999) \cdot (0.10)^2 = 0.001 \cdot 0.01 = 0.00001$
+  2. **Apply bias correction**:
+     * $\hat{m}_1 = \frac{0.01}{1 - 0.9^1} = \frac{0.01}{0.1} = 0.10$
+     * $\hat{v}_1 = \frac{0.00001}{1 - 0.999^1} = \frac{0.00001}{0.001} = 0.01$
+  3. **Update parameter**:
+     * $\theta_1 = 0.50 - \frac{0.01}{\sqrt{0.01} + 10^{-8}} \cdot 0.10$
+     * Since $\sqrt{0.01} = 0.1$, the update term is: $\frac{0.01}{0.1} \cdot 0.10 = 0.01$
+     * $\theta_1 = 0.50 - 0.01 = 0.49$
+* **Visual Demonstration**: Refer to `plots/llm_2_word2vec.png` (Right panel) to see the BCE loss convergence curve of Skip-gram training powered by the Adam optimizer.
 
 
 
