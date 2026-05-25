@@ -578,10 +578,10 @@ graph TD
 Suppose we want to predict a house's value ($y$). Our training set has 100 houses.
 * **Bootstrapping**: We draw 10 random samples of size 100 with replacement.
 * **Training**: We train 10 separate deep decision trees.
-  * Tree 1 is trained on Sample 1 and predicts the house value is $\$450\text{k}$.
-  * Tree 2 is trained on Sample 2 and predicts the house value is $\$420\text{k}$.
+  * Tree 1 is trained on Sample 1 and predicts the house value is $450k.
+  * Tree 2 is trained on Sample 2 and predicts the house value is $420k.
   * ...
-  * Tree 10 is trained on Sample 10 and predicts the house value is $\$440\text{k}$.
+  * Tree 10 is trained on Sample 10 and predicts the house value is $440k.
 * **Aggregation**: We average the 10 predictions: $\frac{450 + 420 + \dots + 440}{10} = \$438\text{k}$. 
 * **Why it works**: If one tree overfits to a specific outlier house in the training set, its extreme prediction is washed out by the other 9 trees that did not see that outlier.
 
@@ -610,14 +610,14 @@ graph LR
 6. After $T$ steps, the final prediction is a weighted sum: $\hat{y} = \sum_{t=1}^T \eta \cdot f_t(x)$ (where $\eta$ is the learning rate).
 
 #### Concrete Example of Boosting:
-Suppose a house actually sells for **$\$400\text{k}$**.
-* **Step 1 (Tree 1)**: Trains on the raw data. It makes a simple prediction of **$\$350\text{k}$**.
-  * Residual (Error): $\$400\text{k} - \$350\text{k} = \mathbf{+\$50\text{k}}$. (The model underpredicted).
-* **Step 2 (Tree 2)**: Is trained to predict the residual ($\mathbf{+\$50\text{k}}$). It predicts the error is **$+\$40\text{k}$**.
-  * Combine predictions: $\$350\text{k} + \$40\text{k} = \$390\text{k}$.
-  * Remaining Residual: $\$400\text{k} - \$390\text{k} = \mathbf{+\$10\text{k}}$.
-* **Step 3 (Tree 3)**: Is trained to predict the remaining residual ($\mathbf{+\$10\text{k}}$). It predicts **$+\$8\text{k}$**.
-  * Final Combined Prediction: $\$350\text{k} + \$40\text{k} + \$8\text{k} = \mathbf{\$398\text{k}}$.
+Suppose a house actually sells for **$400k**.
+* **Step 1 (Tree 1)**: Trains on the raw data. It makes a simple prediction of **$350k**.
+  * Residual (Error): $400k - $350k = **+$50k**. (The model underpredicted).
+* **Step 2 (Tree 2)**: Is trained to predict the residual (**+$50k**). It predicts the error is **+$40k**.
+  * Combine predictions: $350k + $40k = $390k.
+  * Remaining Residual: $400k - $390k = **+$10k**.
+* **Step 3 (Tree 3)**: Is trained to predict the remaining residual (**+$10k**). It predicts **+$8k**.
+  * Final Combined Prediction: $350k + $40k + $8k = **$398k**.
 By focusing sequentially on errors, the boosting model gets closer and closer to the actual target.
 
 ---
