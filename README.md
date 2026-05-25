@@ -1274,9 +1274,53 @@ To help students quickly grasp machine learning jargon, here is a consolidated l
   
     It creates spherical constraints that shrink all weights close to zero but keeps all features active.
 * **Step-by-Step Example**:
-  Suppose a linear regression model has learned two parameters $\mathbf{w} = [w\_1, w\_2]$. An unregularized loss optimizer converges at $\mathbf{w} = [10.0, 0.05]$.
-  * **Lasso ($L\_1$) Penalty**: If we set $\lambda = 5.0$, the penalty cost for keeping the tiny weight $w\_2$ active outweighs its minor contribution to reducing training loss. The optimizer sets $w\_2 = 0.0$ and shrinks $w\_1$ to $8.5$. The resulting model weight vector $[8.5, 0.0]$ is sparse.
-  * **Ridge ($L\_2$) Penalty**: If we set $\lambda = 5.0$, the penalty shrinks the weights based on their squares. The large weight $w\_1$ is shrunk aggressively (e.g., to $3.5$), while $w\_2$ is shrunk to a tiny non-zero value (e.g., $0.01$), yielding $[3.5, 0.01]$.
+  To see exactly how regularized weights are calculated, suppose our baseline training loss $L(\mathbf{w})$ is defined as:
+
+  $$L(\mathbf{w}) = \frac{1}{2}(w\_1 - 10.0)^2 + \frac{1}{2}(w\_2 - 0.05)^2$$
+
+  If there is no regularization ($\lambda = 0$), the optimizer minimizes $L(\mathbf{w})$ by setting its partial derivatives to zero:
+
+  $$\frac{\partial L}{\partial w\_1} = w\_1 - 10.0 = 0 \implies w\_1^* = 10.0$$
+
+  $$\frac{\partial L}{\partial w\_2} = w\_2 - 0.05 = 0 \implies w\_2^* = 0.05$$
+
+  This yields the unregularized optimal weights $\mathbf{w}^* = [10.0, 0.05]^T$. Now we introduce regularization with strength $\lambda = 1.5$:
+
+  * **Lasso ($L\_1$) Penalty**:
+    The regularized objective to minimize is:
+
+    $$J(\mathbf{w}) = \left[ \frac{1}{2}(w\_1 - 10.0)^2 + \frac{1}{2}(w\_2 - 0.05)^2 \right] + 1.5(|w\_1| + |w\_2|)$$
+
+    Since the parameters are decoupled, we solve for each weight $w\_j$ independently using the analytical **Soft-Thresholding Operator**:
+
+    $$w\_j^* = S\_{\lambda}(w\_{j,\text{unreg}}) = \text{sign}(w\_{j,\text{unreg}}) \cdot \max(|w\_{j,\text{unreg}}| - \lambda, 0)$$
+
+    Applying this operator:
+    * For $w\_1$:
+      
+      $$w\_1^* = S\_{1.5}(10.0) = \text{sign}(10.0) \cdot \max(|10.0| - 1.5, 0) = 1 \cdot 8.5 = 8.5$$
+
+    * For $w\_2$:
+      
+      $$w\_2^* = S\_{1.5}(0.05) = \text{sign}(0.05) \cdot \max(|0.05| - 1.5, 0) = 1 \cdot \max(-1.45, 0) = 0.0$$
+
+    The resulting optimal Lasso weight vector is $\mathbf{w}^* = [8.5, 0.0]^T$, which is sparse since $w\_2$ was driven to exactly zero.
+
+  * **Ridge ($L\_2$) Penalty**:
+    The regularized objective to minimize (using the standard quadratic penalty) is:
+
+    $$J(\mathbf{w}) = \left[ \frac{1}{2}(w\_1 - 10.0)^2 + \frac{1}{2}(w\_2 - 0.05)^2 \right] + \frac{1.5}{2}(w\_1^2 + w\_2^2)$$
+
+    We take the partial derivative of $J(\mathbf{w})$ with respect to each parameter and set them to zero:
+    * For $w\_1$:
+      
+      $$\frac{\partial J}{\partial w\_1} = (w\_1 - 10.0) + 1.5w\_1 = 2.5w\_1 - 10.0 = 0 \implies w\_1^* = \frac{10.0}{2.5} = 4.0$$
+
+    * For $w\_2$:
+      
+      $$\frac{\partial J}{\partial w\_2} = (w\_2 - 0.05) + 1.5w\_2 = 2.5w\_2 - 0.05 = 0 \implies w\_2^* = \frac{0.05}{2.5} = 0.02$$
+
+    The resulting optimal Ridge weight vector is $\mathbf{w}^* = [4.0, 0.02]^T$. Note that both weights are shrunk toward zero, but $w\_2$ remains active (non-zero), illustrating how $L\_2$ preserves all features.
 * **Visual Demonstration**: Refer to the right panel of `plots/glossary_normalization_regularization.png` to examine the geometry of L1 (diamond) and L2 (circle) constraint boundaries.
 
   ![Normalization and Regularization](plots/glossary_normalization_regularization.png)
