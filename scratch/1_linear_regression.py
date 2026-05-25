@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+import os
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+
 """
 Simple Linear Regression from Scratch (No Frameworks)
 =====================================================
@@ -46,6 +51,9 @@ epochs = 1000
 
 print(f"\nTraining model using Gradient Descent (alpha={learning_rate}, epochs={epochs})...")
 
+# Track MSE Loss history for plotting
+loss_history = []
+
 # 3. Gradient Descent Loop
 for epoch in range(epochs):
     sum_error_weight = 0.0
@@ -72,9 +80,12 @@ for epoch in range(epochs):
     weight -= learning_rate * grad_weight
     bias -= learning_rate * grad_bias
     
+    # Average MSE loss
+    mse = total_squared_error / (2 * m)
+    loss_history.append(mse)
+    
     # Print status every 200 epochs
     if (epoch + 1) % 200 == 0 or epoch == 0:
-        mse = total_squared_error / (2 * m)
         print(f" - Epoch {epoch+1:4d} | MSE Loss: {mse:10.4f} | Weight: {weight:.4f} | Bias: {bias:.4f}")
 
 # 4. Predictions on new data
@@ -88,25 +99,53 @@ print(f" - Model Equation: Price = {final_weight_unscaled:.4f} * Size + {bias:.2
 # Test predictions
 test_sizes = [1200, 2200, 3500]
 print("\nPredictions for new houses:")
+test_predictions = []
 for size in test_sizes:
     # Scale input first
     scaled_size = size / 1000.0
     predicted_price = weight * scaled_size + bias
+    test_predictions.append(predicted_price)
     print(f" - A {size} sq ft house is predicted to cost: ${predicted_price:.2f}k")
 
-# Output ASCII plot representing the linear regression line vs data points
-print("\nVisual Plot of Fitted Regression Line:")
-print("Price ($k)")
-print("  ^")
-print("800|                                   # (Actual 3.0k, 600)")
-print("   |                                 /")
-print("600|                       # (Actual 2.5k, 500)")
-print("   |                     /")
-print("400|             # (Actual 2.0k, 400)")
-print("   |           /")
-print("200|   # (Actual 1.0k, 200)")
-print("   | /")
-print("  0+-----------------------------------> Size (x1000 sq ft)")
-print("    1.0   1.5   2.0   2.5   3.0   3.5   4.0")
-print("   Legend: '#' = Actual Data Points, '/' = Fitted Regression Line")
+# 5. Generate and save visualization plot (Subplots: Left = Fit Line, Right = Loss Curve)
+os.makedirs("plots", exist_ok=True)
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6))
+
+# Helper to generate numbers from-scratch
+def linspace(start, stop, num):
+    return [start + (stop - start) * i / (num - 1) for i in range(num)]
+
+# Subplot 1: Fitted Regression Line vs Actual Data
+ax1.scatter(sizes, prices, color="#4F46E5", s=100, label="Actual Data Points", zorder=3)
+# Draw prediction line
+sizes_line = linspace(800, 3200, 100)
+# Wait, sizes_line scaled is sizes_line / 1000.0
+prices_line = [ (s / 1000.0) * weight + bias for s in sizes_line ]
+ax1.plot(sizes_line, prices_line, color="#10B981", linewidth=3, label=f"Fitted Line (Price = {final_weight_unscaled:.4f}*Size + {bias:.2f})")
+
+# Highlight test prediction points
+ax1.scatter(test_sizes, test_predictions, color="#F59E0B", marker="*", s=250, edgecolor="black", label="Predictions for New Houses", zorder=5)
+
+ax1.set_xlabel("House Size (sq ft)", fontsize=11, labelpad=10)
+ax1.set_ylabel("Price ($ thousands)", fontsize=11, labelpad=10)
+ax1.set_title("Fitted Linear Regression Line (From Scratch)", fontsize=12, fontweight="bold")
+ax1.grid(True, linestyle="--", alpha=0.5)
+ax1.legend(loc="upper left", frameon=True, facecolor="white", edgecolor="#E5E7EB")
+
+# Subplot 2: MSE Loss Decay Curve
+ax2.plot(range(1, epochs + 1), loss_history, color="#EF4444", linewidth=2.5, label="MSE Loss Decay")
+ax2.set_xlabel("Epochs", fontsize=11, labelpad=10)
+ax2.set_ylabel("Mean Squared Error (MSE) Loss", fontsize=11, labelpad=10)
+ax2.set_title("Gradient Descent Optimization Convergence", fontsize=12, fontweight="bold")
+ax2.grid(True, linestyle="--", alpha=0.5)
+ax2.legend(loc="upper right", frameon=True, facecolor="white", edgecolor="#E5E7EB")
+
+plt.suptitle("Simple Linear Regression & Gradient Descent from Scratch", fontsize=14, fontweight="bold", y=0.98)
+plt.tight_layout()
+
+# Save the plot
+plot_path = "plots/scratch_1_regression.png"
+plt.savefig(plot_path, dpi=150)
+plt.close()
+print(f"\nVisual plot successfully saved to: {plot_path}")
 print("====================================================")

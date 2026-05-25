@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+import os
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+
 """
 Decision Tree Split (Decision Stump) from Scratch (No Frameworks)
 ================================================================
@@ -132,11 +137,47 @@ prediction = predict(test_customer)
 predicted_status = "Churned" if prediction == 1 else "Loyal"
 print(f"\nPrediction for new customer (Age: 24, Support Calls: 6): {predicted_status}")
 
-# Output ASCII Decision Tree structure
-print("\nVisual Decision Tree Diagram:")
-print("                 [ Is Customer Age <= 29.0? ]")
-print("                       /              \\")
-print("                     Yes              No")
-print("                     /                  \\")
-print("             [ Predict: Churned ]   [ Predict: Loyal ]")
+# 7. Generate and save visualization plot (Decision Boundary representation)
+os.makedirs("plots", exist_ok=True)
+plt.figure(figsize=(9, 6))
+
+# Extract feature values
+ages = [row[0] for row in X]
+calls = [row[1] for row in X]
+
+# Plot training points colored by class
+loyal_x = [X[i][0] for i in range(len(X)) if y[i] == 0]
+loyal_y = [X[i][1] for i in range(len(X)) if y[i] == 0]
+churned_x = [X[i][0] for i in range(len(X)) if y[i] == 1]
+churned_y = [X[i][1] for i in range(len(X)) if y[i] == 1]
+
+plt.scatter(loyal_x, loyal_y, color="#3B82F6", s=100, marker="o", edgecolor="black", label="Actual Loyal (0)", zorder=3)
+plt.scatter(churned_x, churned_y, color="#EF4444", s=100, marker="o", edgecolor="black", label="Actual Churned (1)", zorder=3)
+
+# Highlight test prediction customer (Age: 24, Support Calls: 6)
+plt.scatter([test_customer[0]], [test_customer[1]], color="#F59E0B", s=250, marker="*", edgecolor="black", label=f"New Customer (Predict: {predicted_status})", zorder=5)
+
+# Draw decision boundary (vertical line at best_threshold)
+plt.axvline(x=best_threshold, color="#6B7280", linestyle="--", linewidth=2.5, label=f"Boundary (Age = {best_threshold:.1f})", zorder=4)
+
+# Shade decision regions
+# Left region (Age <= 29.0) -> Predict Churned (light red)
+plt.axvspan(15, best_threshold, color="#FEE2E2", alpha=0.5, label="Decision Region: Churned", zorder=1)
+# Right region (Age > 29.0) -> Predict Loyal (light blue)
+plt.axvspan(best_threshold, 60, color="#DBEAFE", alpha=0.5, label="Decision Region: Loyal", zorder=1)
+
+plt.title("Decision Stump Split & Boundary (Age vs. Support Calls)", fontsize=13, fontweight="bold", pad=15)
+plt.xlabel("Age", fontsize=11, labelpad=10)
+plt.ylabel("Support Calls", fontsize=11, labelpad=10)
+plt.xlim(18, 58)
+plt.ylim(-0.5, 10.5)
+plt.grid(True, linestyle="--", alpha=0.3)
+plt.legend(loc="upper right", frameon=True, facecolor="white", edgecolor="#E5E7EB")
+plt.tight_layout()
+
+# Save the plot
+plot_path = "plots/scratch_4_decision_tree.png"
+plt.savefig(plot_path, dpi=150)
+plt.close()
+print(f"\nVisual plot successfully saved to: {plot_path}")
 print("====================================================")

@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 import numpy as np
-from sklearn.tree import DecisionTreeClassifier, export_text
+import os
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+from sklearn.tree import DecisionTreeClassifier, export_text, plot_tree
 from sklearn.ensemble import RandomForestClassifier
 
 print("====================================================")
@@ -30,7 +34,8 @@ rf.fit(X, y)
 
 # 4. Print Decision Tree rules
 print("Trained Decision Tree Rules Structure:")
-tree_rules = export_text(dt, feature_names=["Age", "Tenure", "Support_Calls"])
+features = ["Age", "Tenure", "Support_Calls"]
+tree_rules = export_text(dt, feature_names=features)
 print(tree_rules)
 
 # 5. Check prediction for a risky customer: Age 24, 2 months tenure, 6 calls
@@ -48,7 +53,33 @@ print(f" - Random Forest Prediction : {rf_status}")
 # 6. Feature importances in Random Forest
 print("\nRandom Forest Feature Importances:")
 importances = rf.feature_importances_
-features = ["Age", "Tenure", "Support_Calls"]
 for feat, imp in zip(features, importances):
     print(f" - Feature '{feat}' Importance: {imp * 100:.2f}%")
+
+# 7. Generate and save visualization plot
+os.makedirs("plots", exist_ok=True)
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6))
+
+# Subplot 1: Decision Tree Structure Visual Plot
+plot_tree(dt, feature_names=features, class_names=["Loyal", "Churn"], filled=True, rounded=True, ax=ax1, fontsize=9)
+ax1.set_title("Decision Tree Split Structure (max_depth=3)", fontsize=12, fontweight="bold")
+
+# Subplot 2: Random Forest Feature Importances Horizontal Bar Chart
+y_pos = np.arange(len(features))
+sorted_indices = np.argsort(importances)
+ax2.barh(y_pos, importances[sorted_indices] * 100, color="#4F46E5", edgecolor="#3730A3", height=0.5)
+ax2.set_yticks(y_pos)
+ax2.set_yticklabels([features[i] for i in sorted_indices], fontsize=10)
+ax2.set_xlabel("Relative Importance (%)", fontsize=11, labelpad=10)
+ax2.set_title("Random Forest Feature Importances", fontsize=12, fontweight="bold")
+ax2.grid(True, axis="x", linestyle="--", alpha=0.5)
+
+plt.suptitle("Tree-Based Models: Decision Tree Structure vs. Random Forest Feature Importances", fontsize=14, fontweight="bold", y=0.98)
+plt.tight_layout()
+
+# Save the plot
+plot_path = "plots/examples_4_decision_tree.png"
+plt.savefig(plot_path, dpi=150)
+plt.close()
+print(f"\nVisual plot successfully saved to: {plot_path}")
 print("====================================================")

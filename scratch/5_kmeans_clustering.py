@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 import math
+import os
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
 
 """
 K-Means Clustering from Scratch (No Frameworks)
@@ -128,13 +132,34 @@ for c_idx in range(K):
 print(f"\nNew Customer Profile (Income: $80k, Spending: 55):")
 print(f" - Predicted Segment Classification: Segment {best_cluster}")
 
-# Output ASCII cluster segments plot
-print("\nVisual Plot of Clusters (Income vs Spending Score):")
-print("Spending Score")
-print(" ^")
-print("90|          [Segment 2] (High Income, High Spending)")
-print("60|                   [Segment 1] (Mid Income, Mid Spending) <-- New Customer Segment")
-print("30|   [Segment 0] (Low Income, Low/High Spending)")
-print("  +---------------------------------------------> Annual Income")
-print("     $15k     $45k     $75k     $105k")
+# 6. Generate and save visualization plot
+os.makedirs("plots", exist_ok=True)
+plt.figure(figsize=(9, 6))
+
+colors = ["#4F46E5", "#10B981", "#EC4899"]
+for k in range(K):
+    cluster_x = [X[i][0] for i in range(n_points) if assignments[i] == k]
+    cluster_y = [X[i][1] for i in range(n_points) if assignments[i] == k]
+    plt.scatter(cluster_x, cluster_y, color=colors[k], s=100, marker="o", edgecolor="black", label=f"Segment {k}", zorder=3)
+
+# Plot centroids
+cent_x = [c[0] for c in centroids]
+cent_y = [c[1] for c in centroids]
+plt.scatter(cent_x, cent_y, color="#F59E0B", s=250, marker="X", edgecolor="black", linewidths=1.5, label="Centroids", zorder=4)
+
+# Plot new customer query point
+plt.scatter([new_customer[0]], [new_customer[1]], color="#EF4444", s=250, marker="*", edgecolor="black", label=f"New Customer (Segment {best_cluster})", zorder=5)
+
+plt.title("K-Means Customer Segmentation from Scratch (K=3)", fontsize=13, fontweight="bold", pad=15)
+plt.xlabel("Annual Income ($k)", fontsize=11, labelpad=10)
+plt.ylabel("Spending Score (1-100)", fontsize=11, labelpad=10)
+plt.grid(True, linestyle="--", alpha=0.5)
+plt.legend(loc="upper left", frameon=True, facecolor="white", edgecolor="#E5E7EB")
+plt.tight_layout()
+
+# Save the plot
+plot_path = "plots/scratch_5_kmeans.png"
+plt.savefig(plot_path, dpi=150)
+plt.close()
+print(f"\nVisual plot successfully saved to: {plot_path}")
 print("====================================================")

@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 import numpy as np
+import os
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import (
@@ -54,4 +58,61 @@ print(f"\nCalculated Regression Metrics:")
 print(f" - MSE (Mean Squared Error) : {mse:.2f}")
 print(f" - RMSE (Root Mean Sq Error): ${rmse:.2f}k  (average error deviation)")
 print(f" - R² (Variance Explained)  : {r2 * 100:.1f}%")
+
+# 4. Generate and save visualization plots (Subplots: Left = Conf Matrix Heatmap, Right = Price Predictions Residuals)
+os.makedirs("plots", exist_ok=True)
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6))
+
+# Subplot 1: Confusion Matrix Heatmap
+cm = confusion_matrix(y_true, y_pred)
+im = ax1.imshow(cm, cmap="Blues", interpolation="nearest")
+ax1.set_title("Classification Confusion Matrix", fontsize=12, fontweight="bold", pad=10)
+fig.colorbar(im, ax=ax1, shrink=0.7)
+
+classes = ["Healthy (0)", "Disease (1)"]
+tick_marks = np.arange(len(classes))
+ax1.set_xticks(tick_marks)
+ax1.set_xticklabels(classes)
+ax1.set_yticks(tick_marks)
+ax1.set_yticklabels(classes)
+
+# Annotate cell counts
+thresh = cm.max() / 2.0
+for i in range(cm.shape[0]):
+    for j in range(cm.shape[1]):
+        ax1.text(j, i, f"Count: {cm[i, j]}\n" + ("(TP)" if i==1 and j==1 else "(TN)" if i==0 and j==0 else "(FP)" if i==0 and j==1 else "(FN)"),
+                 horizontalalignment="center",
+                 color="white" if cm[i, j] > thresh else "black",
+                 fontsize=11, fontweight="bold")
+
+ax1.set_ylabel("Actual Label", fontsize=11)
+ax1.set_xlabel("Predicted Label", fontsize=11)
+
+# Subplot 2: Actual vs Predicted Prices Grouped Bar Chart
+x_indices = np.arange(len(prices_true))
+bar_width = 0.35
+
+ax2.bar(x_indices - bar_width/2, prices_true, bar_width, color="#4F46E5", label="Actual Price")
+ax2.bar(x_indices + bar_width/2, prices_pred, bar_width, color="#10B981", label="Predicted Price")
+
+# Draw error line segments connecting them (residuals)
+for i in range(len(prices_true)):
+    ax2.plot([i, i], [prices_true[i], prices_pred[i]], color="#EF4444", linestyle="--", linewidth=1.5)
+
+ax2.set_xlabel("House Sample Index", fontsize=11)
+ax2.set_ylabel("Price ($ thousands)", fontsize=11)
+ax2.set_title("Actual vs. Predicted House Prices (Residuals)", fontsize=12, fontweight="bold", pad=10)
+ax2.set_xticks(x_indices)
+ax2.set_xticklabels([f"House {i+1}" for i in range(len(prices_true))])
+ax2.grid(True, axis="y", linestyle="--", alpha=0.5)
+ax2.legend(loc="upper right", frameon=True, facecolor="white", edgecolor="#E5E7EB")
+
+plt.suptitle("Model Evaluation: Classification & Regression Comparison", fontsize=14, fontweight="bold", y=0.98)
+plt.tight_layout()
+
+# Save the plot
+plot_path = "plots/examples_8_evaluation.png"
+plt.savefig(plot_path, dpi=150)
+plt.close()
+print(f"\nVisual plot successfully saved to: {plot_path}")
 print("====================================================")

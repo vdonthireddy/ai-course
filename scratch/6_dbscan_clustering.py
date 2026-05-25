@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 import math
+import os
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
 
 """
 DBSCAN Density Clustering from Scratch (No Frameworks)
@@ -116,15 +120,43 @@ for i in range(n_points):
     core_lbl = "Core" if is_core[i] else ("Border" if labels[i] != -1 else "Noise")
     print(f" - Point {i+1:2d} ({X[i][0]:4.1f}, {X[i][1]:4.1f}) -> Assigned to: {status:12s} | Type: {core_lbl}")
 
-# Output ASCII spatial density coordinate space plot
-print("\nVisual Density Space Layout:")
-print("  Y-coordinate")
-print("  ^")
-print(" 10|                                  Noise (Point 8: 10, 10)")
-print("   |")
-print("  5|          Cluster 1 (Points 5-7: ~5, 5)")
-print("   |")
-print("  1|  Cluster 0 (Points 1-4: ~1, 1)")
-print("  0+-----------------------------------> X-coordinate")
-print("     1   2   3   4   5   6   7   8   9   10")
+# 5. Generate and save visualization plot
+os.makedirs("plots", exist_ok=True)
+plt.figure(figsize=(9, 6))
+
+colors = ["#4F46E5", "#10B981"]
+legend_labels = {}
+
+for idx in range(n_points):
+    label = labels[idx]
+    pt = X[idx]
+    if label == -1:
+        lbl = "Noise (Outlier)"
+        h = plt.scatter(pt[0], pt[1], color="#EF4444", s=150, marker="x", linewidths=2.5, zorder=4)
+        legend_labels[lbl] = h
+    else:
+        pt_color = colors[label % len(colors)]
+        if is_core[idx]:
+            lbl = f"Cluster {label} (Core Point)"
+            h = plt.scatter(pt[0], pt[1], color=pt_color, s=150, marker="o", edgecolor="black", linewidths=1.5, zorder=3)
+            legend_labels[lbl] = h
+        else:
+            lbl = f"Cluster {label} (Border Point)"
+            h = plt.scatter(pt[0], pt[1], color=pt_color, s=100, marker="^", edgecolor="black", linewidths=1.5, zorder=3)
+            legend_labels[lbl] = h
+
+plt.title("DBSCAN Density Clustering from Scratch (eps=0.5, min_samples=3)", fontsize=13, fontweight="bold", pad=15)
+plt.xlabel("X Coordinate", fontsize=11, labelpad=10)
+plt.ylabel("Y Coordinate", fontsize=11, labelpad=10)
+plt.grid(True, linestyle="--", alpha=0.5)
+
+sorted_keys = sorted(legend_labels.keys())
+plt.legend([legend_labels[k] for k in sorted_keys], sorted_keys, loc="center left", frameon=True, facecolor="white", edgecolor="#E5E7EB")
+plt.tight_layout()
+
+# Save the plot
+plot_path = "plots/scratch_6_dbscan.png"
+plt.savefig(plot_path, dpi=150)
+plt.close()
+print(f"\nVisual plot successfully saved to: {plot_path}")
 print("====================================================")

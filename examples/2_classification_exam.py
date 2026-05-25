@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 import numpy as np
+import os
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
 from sklearn.linear_model import LogisticRegression
 
 print("====================================================")
@@ -36,4 +40,41 @@ for h in [3.0, 8.0]:
     p_prob = clf.predict_proba([[h]])[0][1]
     res = "Pass" if p_class == 1 else "Fail"
     print(f" - Studied {h} hours: Predicted {res} (Confidence: {p_prob*100:.1f}%)")
+
+# 5. Generate and save visualization plot
+os.makedirs("plots", exist_ok=True)
+plt.figure(figsize=(9, 6))
+
+# Plot training data points
+plt.scatter(X[y == 0], y[y == 0], color="#EF4444", s=80, marker="o", edgecolor="black", label="Actual Fail (0)", zorder=3)
+plt.scatter(X[y == 1], y[y == 1], color="#10B981", s=80, marker="o", edgecolor="black", label="Actual Pass (1)", zorder=3)
+
+# Plot sigmoid probability curve
+X_range = np.linspace(0.5, 10.5, 200).reshape(-1, 1)
+y_prob = clf.predict_proba(X_range)[:, 1]
+plt.plot(X_range, y_prob, color="#4F46E5", linewidth=3, label="Logistic Probability Curve", zorder=2)
+
+# Highlight prediction for 5.5 hours
+plt.scatter([5.5], [pred_prob[1]], color="#F59E0B", marker="*", s=250, edgecolor="black", label="Prediction at 5.5 hours", zorder=5)
+
+# Draw decision boundary (50% probability threshold)
+w = clf.coef_[0][0]
+b = clf.intercept_[0]
+db_hours = -b / w
+plt.axvline(x=db_hours, color="#6B7280", linestyle="--", alpha=0.8, label=f"Decision Boundary ({db_hours:.2f} hrs)")
+
+plt.title("Logistic Regression: Exam Pass Probability vs. Study Hours", fontsize=13, fontweight="bold", pad=15)
+plt.xlabel("Hours Studied", fontsize=11, labelpad=10)
+plt.ylabel("Probability of Passing", fontsize=11, labelpad=10)
+plt.ylim(-0.05, 1.05)
+plt.xlim(0.5, 10.5)
+plt.grid(True, linestyle="--", alpha=0.5)
+plt.legend(loc="center left", frameon=True, facecolor="white", edgecolor="#E5E7EB")
+plt.tight_layout()
+
+# Save the plot
+plot_path = "plots/examples_2_classification.png"
+plt.savefig(plot_path, dpi=150)
+plt.close()
+print(f"\nVisual plot successfully saved to: {plot_path}")
 print("====================================================")

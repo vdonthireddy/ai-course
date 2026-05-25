@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 import math
+import os
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
 
 """
 K-Nearest Neighbors (KNN) from Scratch (No Frameworks)
@@ -118,16 +122,50 @@ final_outcome = "Accepted" if pred == 1 else "Declined"
 print(f"\nFinal Prediction for Customer (Age: 35, Income: $95k):")
 print(f" - Decision: {final_outcome} (Votes Accepted: {v_acc}, Votes Declined: {v_dec})")
 
-# Output ASCII scatter plot representing Age vs Income classification boundaries
-print("\nVisual Plot of Feature Space (Age vs Income):")
-print("Income")
-print("  ^")
-print("150|                     x (Age 50, Income $150k)")
-print("120|               x (Age 45, Income $120k)")
-print(" 90|             ? (Age 35, Income $95k) [Query Point]")
-print(" 60|         o (Age 30, Income $60k)")
-print(" 30|   o (Age 22, Income $35k)")
-print("  0+----------------------------------------> Age")
-print("    20    30    40    50    60")
-print("   Legend: 'o' = Declined Offer, 'x' = Accepted Offer, '?' = Query point")
+# 5. Generate and save visualization plot
+os.makedirs("plots", exist_ok=True)
+plt.figure(figsize=(9, 6))
+
+# Extract scaled coordinates
+X_scaled_arr = X_scaled
+query_scaled = scale_features(query)
+
+# Separate classes
+declined_x = [X_scaled_arr[i][0] for i in range(len(X)) if y[i] == 0]
+declined_y = [X_scaled_arr[i][1] for i in range(len(X)) if y[i] == 0]
+accepted_x = [X_scaled_arr[i][0] for i in range(len(X)) if y[i] == 1]
+accepted_y = [X_scaled_arr[i][1] for i in range(len(X)) if y[i] == 1]
+
+# Plot training points
+plt.scatter(declined_x, declined_y, color="#EF4444", s=100, marker="o", edgecolor="black", label="Declined Offer (0)", zorder=3)
+plt.scatter(accepted_x, accepted_y, color="#10B981", s=100, marker="o", edgecolor="black", label="Accepted Offer (1)", zorder=3)
+
+# Plot new customer query point
+plt.scatter(query_scaled[0], query_scaled[1], color="#F59E0B", s=250, marker="*", edgecolor="black", label="New Customer (Age 35, $95k)", zorder=5)
+
+# Recompute neighbors locally for plotting connection lines
+distances = []
+for idx, train_pt in enumerate(X_scaled):
+    dist = math.sqrt((query_scaled[0] - train_pt[0])**2 + (query_scaled[1] - train_pt[1])**2)
+    distances.append((dist, idx))
+distances.sort(key=lambda x: x[0])
+
+# Connect query point to 3 nearest neighbors
+for dist, idx in distances[:3]:
+    neighbor_scaled = X_scaled[idx]
+    plt.plot([query_scaled[0], neighbor_scaled[0]], [query_scaled[1], neighbor_scaled[1]], color="#6B7280", linestyle=":", linewidth=1.5, zorder=2)
+    plt.scatter(neighbor_scaled[0], neighbor_scaled[1], s=200, facecolors='none', edgecolors='#4F46E5', linewidths=2, zorder=4)
+
+plt.title("KNN Classification (Standardized Feature Space from Scratch, K=3)", fontsize=13, fontweight="bold", pad=15)
+plt.xlabel("Age (Standardized)", fontsize=11, labelpad=10)
+plt.ylabel("Income (Standardized)", fontsize=11, labelpad=10)
+plt.grid(True, linestyle="--", alpha=0.5)
+plt.legend(loc="upper left", frameon=True, facecolor="white", edgecolor="#E5E7EB")
+plt.tight_layout()
+
+# Save the plot
+plot_path = "plots/scratch_3_knn.png"
+plt.savefig(plot_path, dpi=150)
+plt.close()
+print(f"\nVisual plot successfully saved to: {plot_path}")
 print("====================================================")

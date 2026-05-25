@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 import numpy as np
+import os
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
 from sklearn.cluster import DBSCAN
 
 print("====================================================")
@@ -32,4 +36,44 @@ for idx, label in enumerate(labels):
         else:
             pt_type = "Border Point"
     print(f" - Point {idx+1} ({X[idx][0]}, {X[idx][1]}): Label = {label} | Classification: {pt_type}")
+
+# 4. Generate and save visualization plot
+os.makedirs("plots", exist_ok=True)
+plt.figure(figsize=(9, 6))
+
+core_indices = set(dbscan.core_sample_indices_)
+colors = ["#4F46E5", "#10B981"]
+legend_labels = {}
+
+for idx, label in enumerate(labels):
+    if label == -1:
+        lbl = "Noise (Outlier)"
+        h = plt.scatter(X[idx, 0], X[idx, 1], color="#EF4444", s=150, marker="x", linewidths=2.5, zorder=4)
+        legend_labels[lbl] = h
+    else:
+        pt_color = colors[label % len(colors)]
+        if idx in core_indices:
+            lbl = f"Cluster {label} (Core Point)"
+            h = plt.scatter(X[idx, 0], X[idx, 1], color=pt_color, s=150, marker="o", edgecolor="black", linewidths=1.5, zorder=3)
+            legend_labels[lbl] = h
+        else:
+            lbl = f"Cluster {label} (Border Point)"
+            h = plt.scatter(X[idx, 0], X[idx, 1], color=pt_color, s=100, marker="^", edgecolor="black", linewidths=1.5, zorder=3)
+            legend_labels[lbl] = h
+
+# Set grid, labels, title and unique legend
+plt.title("DBSCAN Spatial Density Clustering (eps=0.5, min_samples=3)", fontsize=13, fontweight="bold", pad=15)
+plt.xlabel("X Coordinate Space", fontsize=11, labelpad=10)
+plt.ylabel("Y Coordinate Space", fontsize=11, labelpad=10)
+plt.grid(True, linestyle="--", alpha=0.5)
+
+sorted_keys = sorted(legend_labels.keys())
+plt.legend([legend_labels[k] for k in sorted_keys], sorted_keys, loc="center left", frameon=True, facecolor="white", edgecolor="#E5E7EB")
+plt.tight_layout()
+
+# Save the plot
+plot_path = "plots/examples_7_dbscan.png"
+plt.savefig(plot_path, dpi=150)
+plt.close()
+print(f"\nVisual plot successfully saved to: {plot_path}")
 print("====================================================")
