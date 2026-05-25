@@ -1,36 +1,31 @@
-# Walkthrough: Pure Python Adam Optimizer from Scratch
+# Walkthrough: Comprehensive Deep Learning Guide & Diagram Integration
 
-This walkthrough documents the integration of the **Adaptive Moment Estimation (Adam)** optimization algorithm implemented from scratch into the LLM Word2Vec embedding script, project documentation, and slide deck.
-
----
-
-## Technical Details
-
-### 1. From-Scratch Adam Optimizer Implementation
-In `llm/2_word2vec.py`, we replaced the Stochastic Gradient Descent (SGD) update logic with a pure Python implementation of the Adam optimizer.
-- **State Initialization**: Declared first moment tables (`m_in`, `m_out`) and second moment tables (`v_in`, `v_out`) as lists of zeros matching the shape of the embeddings `(vocab_size, embedding_dim)`.
-- **Step Tracking**: Maintained a time step counter $t$ that increments with each parameter update.
-- **Decay & Correction**: Implemented standard exponential moving averages for the gradients (first moment $m_t$) and squared gradients (second moment $v_t$), followed by bias-correction computations:
-  
-  $$\hat{m}_t = \frac{m_t}{1 - \beta_1^t}, \quad \hat{v}_t = \frac{v_t}{1 - \beta_2^t}$$
-
-- **Parameter Updates**: Applied updates to the embedding parameters coordinate-by-coordinate:
-
-  $$\theta_t = \theta_{t-1} - \frac{\eta}{\sqrt{\hat{v}_t} + \epsilon} \hat{m}_t$$
-
-### 2. Documentation Updates in `README.md`
-- **Module 9.2 Section**: Added a mathematical explanation of the Adam optimizer, outlining the formulas for moving averages, bias-correction, and the parameters update step.
-- **Appendix Glossary**: Added **16. Adam Optimizer** to the glossary of key terminologies. Provided a mathematical definition, a complete step-by-step example calculating values for $t=1$, and visual references to the generated training plots.
-- **Summary Tables**: Updated descriptions to mention the Word2Vec script uses the Adam optimizer.
-
-### 3. Presentation Slides Compilation
-- **Slide 13 (Word2Vec)**: Updated the bullet points to show optimization is powered by the from-scratch Adam optimizer.
-- **Slide 19 (Optimization & Bias)**: Added a bullet point defining the Adam optimizer and its formula, contrasting it with traditional Gradient Descent.
+This walkthrough documents the creation of the Deep Learning foundations guide and the integration of five high-resolution, custom-generated, dark-themed technical diagrams.
 
 ---
 
-## Validation Results
+## Technical Outcomes
 
-- **Word2Vec Convergence**: Re-running `python3 llm/2_word2vec.py` runs successfully, prints declining losses over 500 epochs, and outputs the updated semantic word cluster plot [plots/llm_2_word2vec.png](file:///Users/donthireddy/code/ai-course/plots/llm_2_word2vec.png) with no syntax or runtime warnings.
-- **Slide Deck Generation**: Re-running `python3 generate_pptx.py` generates the presentation [machine_learning_fundamentals.pptx](file:///Users/donthireddy/code/ai-course/machine_learning_fundamentals.pptx) successfully.
-- **Git Sync**: Code modifications, updated slide deck, and training plot have been committed and pushed to git remote (Commit: `8dd252c`).
+### 1. Mathematical and Architectural Guide
+Created a comprehensive educational guide [deep_learning_guide.md](file:///Users/donthireddy/code/ai-course/deep_learning_guide.md) that covers:
+- **Artificial Neuron (Perceptron)**
+- **Activation Functions** (Sigmoid, Tanh, ReLU, Leaky ReLU, Softmax comparative equations, ranges, derivatives, and trade-offs)
+- **Deep Neural Networks (ANN/DNN)**
+- **Backpropagation** (Chain rule math and a step-by-step numerical trace example)
+- **Convolutional Neural Networks (CNN)** (Convolution math, pooling, FC outputs)
+- **Transformer Architecture** (Self-attention, Multi-head attention, Positional encoding, Causal masking)
+
+### 2. High-Quality Technical Diagrams
+Generated 5 clean, developer-style dark mode diagrams and saved them under the `plots/` directory, replacing original text/ASCII placeholders:
+- 🖼️ **[perceptron_diagram.png](file:///Users/donthireddy/code/ai-course/plots/perceptron_diagram.png)**: Shows inputs, weight lines, summation node, bias, activation, and outputs.
+- 🖼️ **[dnn_architecture.png](file:///Users/donthireddy/code/ai-course/plots/dnn_architecture.png)**: Visualizes a fully connected feedforward MLP network layer structure.
+- 🖼️ **[backpropagation_diagram.png](file:///Users/donthireddy/code/ai-course/plots/backpropagation_diagram.png)**: Highlights the forward pass (flowing right) vs. the backward pass (flowing left).
+- 🖼️ **[cnn_architecture.png](file:///Users/donthireddy/code/ai-course/plots/cnn_architecture.png)**: Flows from input RGB image, through convolution filter blocks, max pooling, flattening, to fully connected classification outputs.
+- 🖼️ **[transformer_architecture.png](file:///Users/donthireddy/code/ai-course/plots/transformer_architecture.png)**: Maps the complete Encoder-Decoder architecture block inputs, self-attention keys/queries/values, and causal masking.
+
+---
+
+## Verification & Synchronization
+
+- **Execution Check**: All diagrams successfully loaded and tested inside markdown previews.
+- **Git Sync**: All new image assets, modified markdown guides, and walkthrough updates are committed and pushed to git remote (Commit: `ccae560` and subsequent updates).
