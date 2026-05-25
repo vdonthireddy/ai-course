@@ -31,7 +31,13 @@ graph TD
 
 ## Runnable Code Examples
 
-This course features a folder of runnable, self-contained Python scripts for each core concept. You can run them in your terminal using:
+This course features two sets of runnable, self-contained Python examples for each core concept:
+
+1. **Framework Examples (`examples/`)**: Standard implementations using industry-standard libraries like `scikit-learn` and `xgboost`.
+2. **From-Scratch Examples (`scratch/`)**: Pure Python implementations of the same subjects written without *any* external ML libraries to teach the mathematical inner workings step-by-step.
+
+### 1. Framework Examples (using Scikit-Learn / XGBoost)
+You can run them in your terminal using:
 ```bash
 python3 examples/<script_name>.py
 ```
@@ -46,6 +52,22 @@ python3 examples/<script_name>.py
 | **Module 6: K-Means** | Customer Income & Spend Segmentation | [6_kmeans_clustering.py](file:///Users/donthireddy/code/ai-course/examples/6_kmeans_clustering.py) |
 | **Module 6: DBSCAN** | Density Coordinate Point Classification | [7_dbscan_clustering.py](file:///Users/donthireddy/code/ai-course/examples/7_dbscan_clustering.py) |
 | **Module 7: Evaluation** | MAE/MSE/RMSE, Confusion Matrix, Precision/Recall | [8_model_evaluation.py](file:///Users/donthireddy/code/ai-course/examples/8_model_evaluation.py) |
+
+### 2. From-Scratch Examples (Pure Python, No Frameworks)
+You can run them in your terminal using:
+```bash
+python3 scratch/<script_name>.py
+```
+
+| Lesson / Topic | Concept | From-Scratch Python Link |
+| :--- | :--- | :--- |
+| **Module 3: Regression** | Gradient Descent Line Fitting | [1_linear_regression.py](file:///Users/donthireddy/code/ai-course/scratch/1_linear_regression.py) |
+| **Module 4: Classification** | Sigmoid & Log Loss updates | [2_logistic_regression.py](file:///Users/donthireddy/code/ai-course/scratch/2_logistic_regression.py) |
+| **Module 4: KNN** | Standard Scaling & Euclidean distances | [3_knn_classification.py](file:///Users/donthireddy/code/ai-course/scratch/3_knn_classification.py) |
+| **Module 4: Decision Trees** | Gini Impurity split searches | [4_decision_tree.py](file:///Users/donthireddy/code/ai-course/scratch/4_decision_tree.py) |
+| **Module 6: K-Means** | Distance centroid updates | [5_kmeans_clustering.py](file:///Users/donthireddy/code/ai-course/scratch/5_kmeans_clustering.py) |
+| **Module 6: DBSCAN** | Density point neighborhood & BFS | [6_dbscan_clustering.py](file:///Users/donthireddy/code/ai-course/scratch/6_dbscan_clustering.py) |
+| **Module 7: Evaluation** | Metrics loop logic (F1, MSE, $R^2$) | [7_model_evaluation.py](file:///Users/donthireddy/code/ai-course/scratch/7_model_evaluation.py) |
 
 ---
 
