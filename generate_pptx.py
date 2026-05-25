@@ -457,11 +457,151 @@ def create_deck():
     )
 
     # =============================================================
-    # Slide 12: Module 9.1: Tokenization (BPE)
+    # Slide 12: The Artificial Neuron (Perceptron)
+    # =============================================================
+    create_standard_slide(
+        title="The Artificial Neuron (Perceptron)",
+        category="MODULE 9: DEEP LEARNING FOUNDATIONS",
+        panel_title="Single Neuron Computation",
+        bullets=[
+            "Perceptron Concept: Mimics a biological neuron by summing weighted inputs and passing the result to an activation function.",
+            "Mathematical Formulation:",
+            "  - Pre-activation sum: z = Σ (w_i * x_i) + b = w^T * x + b",
+            "  - Activation output: y = φ(z) = φ(w^T * x + b)",
+            "  - Where w represents connection weights, and b is the bias.",
+            "AND Logic Gate Example (Linear Decision Boundary):",
+            "  - Parameters: w_1 = 1.0, w_2 = 1.0, b = -1.5",
+            "  - Activation φ(z): Step function (1 if z >= 0, else 0)",
+            "  - Query [0, 0] -> z = -1.5 -> y = 0",
+            "  - Query [1, 0] -> z = -0.5 -> y = 0",
+            "  - Query [1, 1] -> z = +0.5 -> y = 1 (AND logic holds)"
+        ],
+        img_path="plots/perceptron_diagram.png",
+        border_color=ACCENT_INDIGO
+    )
+
+    # =============================================================
+    # Slide 13: Activation Functions & Non-Linearity
+    # =============================================================
+    slide = prs.slides.add_slide(prs.slide_layouts[6])
+    apply_bg(slide)
+    add_slide_header(slide, "Activation Functions & Non-Linearity", "MODULE 9: DEEP LEARNING FOUNDATIONS")
+    
+    # 5 Activation Column Panels
+    activations = [
+        ("Sigmoid", "φ(z) = 1 / (1 + e^-z)", "Range: (0, 1)\n\nφ'(z) = φ(z)(1 - φ(z))\n\nOutputs represent probabilities.\n\nCons: Vanishing gradients.", ACCENT_INDIGO, Inches(0.8)),
+        ("Tanh", "φ(z) = tanh(z)", "Range: (-1, 1)\n\nφ'(z) = 1 - φ(z)^2\n\nZero-centered outputs help stabilize deep networks.\n\nCons: Vanishing gradients.", ACCENT_TEAL, Inches(3.2)),
+        ("ReLU", "φ(z) = max(0, z)", "Range: [0, ∞)\n\nφ'(z) = 1 (z > 0), else 0\n\nComputationally cheap; resolves vanishing gradient.\n\nCons: Dying ReLU problem.", ACCENT_ORANGE, Inches(5.6)),
+        ("Leaky ReLU", "φ(z) = max(αz, z)", "Range: (-∞, ∞)\n\nφ'(z) = 1 (z > 0), else α\n\nPrevents dead neurons by keeping a small gradient.\n\nCons: Extra parameter α.", ACCENT_PURPLE, Inches(8.0)),
+        ("Softmax", "P_i = e^z_i / Σ e^z_j", "Range: (0, 1) (sums to 1)\n\nDerivative: P_i(δ_ij - P_j)\n\nOutputs normalized probabilities for classification.\n\nUsage: Final output layer.", ACCENT_TEAL, Inches(10.4))
+    ]
+    
+    for title, formula, details, color, left in activations:
+        draw_panel(slide, left, Inches(1.8), Inches(2.13), Inches(4.8), border_color=color)
+        
+        box = slide.shapes.add_textbox(left + Inches(0.1), Inches(2.0), Inches(1.93), Inches(4.4))
+        tf = box.text_frame
+        tf.word_wrap = True
+        
+        p = tf.paragraphs[0]
+        p.text = title
+        p.font.name = "Arial"
+        p.font.size = Pt(18)
+        p.font.bold = True
+        p.font.color.rgb = color
+        p.space_after = Pt(10)
+        
+        p = tf.add_paragraph()
+        p.text = formula
+        p.font.name = "Courier New"
+        p.font.size = Pt(12)
+        p.font.bold = True
+        p.font.color.rgb = TEXT_TITLE
+        p.space_after = Pt(14)
+        
+        for line in details.split("\n\n"):
+            p = tf.add_paragraph()
+            p.text = "• " + line
+            p.font.name = "Arial"
+            p.font.size = Pt(11)
+            p.font.color.rgb = TEXT_BODY
+            p.space_after = Pt(8)
+
+    # =============================================================
+    # Slide 14: Deep Neural Networks (ANN / DNN)
+    # =============================================================
+    create_standard_slide(
+        title="Deep Neural Networks (ANN / DNN)",
+        category="MODULE 9: DEEP LEARNING FOUNDATIONS",
+        panel_title="Layered Feedforward Architecture",
+        bullets=[
+            "Multi-Layer Perceptron (MLP): Stacks layers of neurons together. Information flows forward from input, through hidden layers, to output.",
+            "Forward Propagation Equations (Layer l):",
+            "  - Pre-activation: z^[l] = W^[l] * a^[l-1] + b^[l]",
+            "  - Activation: a^[l] = g^[l](z^[l])",
+            "  - Where a^[0] = x (the raw input features).",
+            "  - W^[l] is the weight matrix of shape (n^[l] x n^[l-1]).",
+            "  - b^[l] is the bias vector of shape (n^[l] x 1).",
+            "  - g^[l] is the layer's activation function.",
+            "Universal Approximation Theorem: A feedforward network with a single hidden layer and non-linear activations can approximate any continuous function."
+        ],
+        img_path="plots/dnn_architecture.png",
+        border_color=ACCENT_TEAL
+    )
+
+    # =============================================================
+    # Slide 15: Backpropagation (Chain Rule)
+    # =============================================================
+    create_standard_slide(
+        title="Backpropagation: Gradient Flow via Chain Rule",
+        category="MODULE 9: DEEP LEARNING FOUNDATIONS",
+        panel_title="Backward Error Propagation",
+        bullets=[
+            "Training Objective: Find weights and biases that minimize a loss function L(y, y_hat).",
+            "The Chain Rule: Calculates the sensitivity of loss to a specific weight:",
+            "  - ∂L / ∂w_ij^[l] = (∂L / ∂a_i^[l]) * (∂a_i^[l] / ∂z_i^[l]) * (∂z_i^[l] / ∂w_ij^[l])",
+            "Error Term definition: δ_i^[l] = ∂L / ∂z_i^[l]",
+            "1. Output Layer Error (Layer L):",
+            "  - δ_i^[L] = (∂L / ∂a_i^[L]) * g'^[L](z_i^[L])",
+            "2. Hidden Layer Error (Layer l) propagated backward:",
+            "  - δ_j^[l] = (Σ (δ_k^[l+1] * w_kj^[l+1])) * g'^[l](z_j^[l])",
+            "3. Gradients calculation:",
+            "  - ∂L / ∂w_ji^[l] = δ_j^[l] * a_i^[l-1]",
+            "  - ∂L / ∂b_j^[l] = δ_j^[l]"
+        ],
+        img_path="plots/backpropagation_diagram.png",
+        border_color=ACCENT_PURPLE
+    )
+
+    # =============================================================
+    # Slide 16: Convolutional Neural Networks (CNN)
+    # =============================================================
+    create_standard_slide(
+        title="Convolutional Neural Networks (CNN)",
+        category="MODULE 9: DEEP LEARNING FOUNDATIONS",
+        panel_title="Spatial Features & Translation Invariance",
+        bullets=[
+            "Overfitting Challenge: Fully connected networks do not scale well to images. A 1000x1000 RGB image requires 3M inputs per neuron.",
+            "CNN Architectural Solutions:",
+            "  1. Local Connectivity: Neurons connect only to small local patches.",
+            "  2. Shared Weights: Kernels scan the entire input, sharing parameters.",
+            "Output Size Formula for Convolutional Layer:",
+            "  - O = floor((W - K + 2P) / S) + 1",
+            "  - W = input size, K = kernel size, P = padding, S = stride.",
+            "Pooling Layer: Reduces representation size and introduces invariance.",
+            "  - Max Pooling: Extracts the maximum value in a window.",
+            "  - Average Pooling: Computes the mean of the window."
+        ],
+        img_path="plots/cnn_architecture.png",
+        border_color=ACCENT_ORANGE
+    )
+
+    # =============================================================
+    # Slide 17: Module 10.1: Tokenization (BPE)
     # =============================================================
     create_standard_slide(
         title="Tokenization: Byte Pair Encoding (BPE)",
-        category="MODULE 9: LLMS & TRANSFORMERS",
+        category="MODULE 10: LLMS & TRANSFORMERS",
         panel_title="Subword Text Segmentation",
         bullets=[
             "Flaws of Word/Char Tokenizers: Massive vocabulary sizes (memory heavy) or inability to handle unseen out-of-vocabulary (OOV) words.",
@@ -478,11 +618,11 @@ def create_deck():
     )
 
     # =============================================================
-    # Slide 13: Module 9.2: Vector Semantics (Word2Vec)
+    # Slide 18: Module 10.2: Vector Semantics (Word2Vec)
     # =============================================================
     create_standard_slide(
         title="Vector Semantics: Word Embeddings",
-        category="MODULE 9: LLMS & TRANSFORMERS",
+        category="MODULE 10: LLMS & TRANSFORMERS",
         panel_title="Continuous Word Semantics",
         bullets=[
             "Embedding Concept: Maps raw strings to dense, low-dimensional continuous vectors where geometric closeness represents semantic meaning.",
@@ -496,11 +636,32 @@ def create_deck():
     )
 
     # =============================================================
-    # Slide 14: Module 9.3: Transformer Encoder
+    # Slide 19: Module 10.3: Transformer Network Architecture
+    # =============================================================
+    create_standard_slide(
+        title="The Transformer Network Architecture",
+        category="MODULE 10: LLMS & TRANSFORMERS",
+        panel_title="Attention-Based Sequence Processing",
+        bullets=[
+            "Parallelization Breakthrough: Eliminates recurrence loops of RNNs/LSTMs. Processes all tokens simultaneously.",
+            "Core Encoder-Decoder Structure:",
+            "  - Encoder: Learns bidirectional contextual representations of the input sequence.",
+            "  - Decoder: Autoregressively generates output tokens, querying encoder keys and values.",
+            "Key Mechanisms:",
+            "  - Multi-Head Attention (MHA): Integrates multiple parallel self-attention views to capture complex context relations.",
+            "  - Residual Connections & LayerNorm: Stabilize gradient flow in deep stacks.",
+            "  - Feed-Forward Networks (FFN): Applied pointwise to each token position."
+        ],
+        img_path="plots/transformer_architecture.png",
+        border_color=ACCENT_PURPLE
+    )
+
+    # =============================================================
+    # Slide 20: Module 10.4: Transformer Encoder
     # =============================================================
     create_standard_slide(
         title="The Encoder: Self-Attention & Positional Encoding",
-        category="MODULE 9: LLMS & TRANSFORMERS",
+        category="MODULE 10: LLMS & TRANSFORMERS",
         panel_title="Parallel Contextual Encoding",
         bullets=[
             "Positional Encoding: Adds sine/cosine wave patterns to input embeddings to preserve token sequence order.",
@@ -514,11 +675,11 @@ def create_deck():
     )
 
     # =============================================================
-    # Slide 15: Module 9.4: Transformer Decoder
+    # Slide 21: Module 10.5: Transformer Decoder
     # =============================================================
     create_standard_slide(
         title="The Decoder: Causal Masking & Cross-Attention",
-        category="MODULE 9: LLMS & TRANSFORMERS",
+        category="MODULE 10: LLMS & TRANSFORMERS",
         panel_title="Autoregressive Target Generation",
         bullets=[
             "Autoregressive Generation: Predicts tokens sequentially, appending prior outputs as inputs for successive steps.",
@@ -532,11 +693,11 @@ def create_deck():
     )
 
     # =============================================================
-    # Slide 16: Module 9.5: End-to-End LLMSeq2Seq
+    # Slide 22: Module 10.6: End-to-End LLMSeq2Seq
     # =============================================================
     create_standard_slide(
         title="End-to-End Seq2Seq Transformer Model",
-        category="MODULE 9: LLMS & TRANSFORMERS",
+        category="MODULE 10: LLMS & TRANSFORMERS",
         panel_title="Bilingual Machine Translation Model",
         bullets=[
             "Seq2Seq Architecture: Couples an Encoder (source comprehension) with a Decoder (target autoregressive generation).",
@@ -550,7 +711,148 @@ def create_deck():
     )
 
     # =============================================================
-    # Slide 17: Appendix: Math Glossary
+    # Slide 23: Module 11.1: Agentic AI Core Architecture & Concepts
+    # =============================================================
+    create_standard_slide(
+        title="Agentic AI: Core Concepts & Architecture",
+        category="MODULE 11: AGENTIC AI SYSTEMS",
+        panel_title="Autonomous Reasoning Loops",
+        bullets=[
+            "Paradigm Shift: Moves from static text responses to dynamic reasoning agents acting as computer systems operators.",
+            "Core Components:",
+            "  - AI Agent: The controller managing history (memory) and execution loops.",
+            "  - Thought-Action-Observation Loop: The reasoning cycle (e.g. ReAct).",
+            "  - Atomic Tool: Low-level executable Python function or command.",
+            "  - Composite Skill: Orchestrated multi-step workflow in code.",
+            "  - Model Context Protocol (MCP): Open-standard communication layer.",
+            "Function Calling: Structured JSON exchange between Agent and LLM."
+        ],
+        img_path="plots/agentic_concepts_diagram.png",
+        border_color=ACCENT_TEAL
+    )
+
+    # =============================================================
+    # Slide 24: Module 11.2: Runtime Introspection & Tool Schemas
+    # =============================================================
+    slide = prs.slides.add_slide(slide_layout)
+    apply_bg(slide)
+    add_slide_header(slide, "Runtime Introspection & Tool Schemas", "MODULE 11: AGENTIC AI SYSTEMS")
+    
+    # Left Panel: Explanation
+    draw_panel(slide, Inches(0.8), Inches(1.8), Inches(5.6), Inches(4.8), border_color=ACCENT_INDIGO)
+    box_left = slide.shapes.add_textbox(Inches(1.0), Inches(2.0), Inches(5.2), Inches(4.4))
+    tf_left = box_left.text_frame
+    tf_left.word_wrap = True
+    
+    p = tf_left.paragraphs[0]
+    p.text = "Automated Schema Registration"
+    p.font.name = "Arial"
+    p.font.size = Pt(22)
+    p.font.bold = True
+    p.font.color.rgb = ACCENT_TEAL
+    p.space_after = Pt(14)
+    
+    bullets_intro = [
+        "Introspection Concept: Instead of manually writing error-prone JSON declarations, agent registries inspect code at runtime.",
+        "Docstring Parsing: Scans descriptions using regular expressions to extract functional details and argument documentation.",
+        "Signature Analysis: inspect.signature() inspects type annotations (e.g. str -> STRING, int -> INTEGER).",
+        "Required vs Optional: Detects arguments lacking defaults to mark them as 'required' in the schema definition."
+    ]
+    for b in bullets_intro:
+        p = tf_left.add_paragraph()
+        p.text = "• " + b
+        p.font.size = Pt(14)
+        p.font.color.rgb = TEXT_BODY
+        p.space_after = Pt(10)
+        
+    # Right Panel: Code vs Schema
+    draw_panel(slide, Inches(6.8), Inches(1.8), Inches(5.7), Inches(4.8), border_color=ACCENT_ORANGE)
+    box_right = slide.shapes.add_textbox(Inches(7.0), Inches(2.0), Inches(5.3), Inches(4.4))
+    tf_right = box_right.text_frame
+    tf_right.word_wrap = True
+    
+    p = tf_right.paragraphs[0]
+    p.text = "Decorated Code to Schema Output"
+    p.font.name = "Arial"
+    p.font.size = Pt(22)
+    p.font.bold = True
+    p.font.color.rgb = ACCENT_ORANGE
+    p.space_after = Pt(14)
+    
+    code_text = (
+        "# Python Function Definition:\n"
+        "@tool\n"
+        "def get_weather(city: str) -> str:\n"
+        "    \"\"\"Fetches weather. Args: city: Target city\"\"\"\n"
+        "    return f\"Weather in {city}: 18°C\"\n\n"
+        "# Generated JSON Tool Schema:\n"
+        "{\n"
+        "  \"name\": \"get_weather\",\n"
+        "  \"description\": \"Fetches weather...\",\n"
+        "  \"parameters\": {\n"
+        "    \"type\": \"OBJECT\",\n"
+        "    \"properties\": {\n"
+        "      \"city\": {\"type\": \"STRING\", \"description\": \"Target city\"}\n"
+        "    },\n"
+        "    \"required\": [\"city\"]\n"
+        "  }\n"
+        "}"
+    )
+    p_code = tf_right.add_paragraph()
+    p_code.text = code_text
+    p_code.font.name = "Courier New"
+    p_code.font.size = Pt(11)
+    p_code.font.bold = True
+    p_code.font.color.rgb = TEXT_TITLE
+    p_code.space_after = Pt(4)
+
+    # =============================================================
+    # Slide 25: Module 11.3: Composite Skills & Dynamic Code Execution
+    # =============================================================
+    create_standard_slide(
+        title="Composite Skills & Dynamic Execution",
+        category="MODULE 11: AGENTIC AI SYSTEMS",
+        panel_title="Encapsulating Local Workflows",
+        bullets=[
+            "Composite Skill Concept: Packages complex multi-step tasks to run locally, avoiding multiple remote network API roundtrips.",
+            "Skill Package Directory Layout:",
+            "  - Directory name maps to skill (e.g. skills/research_city/).",
+            "  - SKILL.md: YAML metadata defining schema parameters + instructions.",
+            "  - script.py: Local Python execution orchestrating underlying tools.",
+            "Dynamic Execution via exec():",
+            "  - Load script.py contents at runtime.",
+            "  - Inject local tools and kwargs into exec_globals/locals namespaces.",
+            "  - exec(script_code, globals, locals) runs code dynamically.",
+            "  - Capture and return the resulting value via result variable."
+        ],
+        img_path="plots/agentic_loop_sequence.png",
+        border_color=ACCENT_PURPLE
+    )
+
+    # =============================================================
+    # Slide 26: Module 11.4: Model Context Protocol (MCP)
+    # =============================================================
+    create_standard_slide(
+        title="Model Context Protocol (MCP) Architecture",
+        category="MODULE 11: AGENTIC AI SYSTEMS",
+        panel_title="Standardizing Tool Integration Interfaces",
+        bullets=[
+            "MCP Architecture: Open standard that decouples tools providers (servers) from AI applications (clients).",
+            "Three Core Actors in the Protocol:",
+            "  1. MCP Client: Protocol consumer (e.g. IDE, AI agent host).",
+            "  2. MCP Host: Runs the client session and orchestrates context.",
+            "  3. MCP Server: Provides tools, resources, and prompt templates.",
+            "Standardized Transport Mechanisms:",
+            "  - Stdio Transport: JSON-RPC over stdin/stdout (same-machine).",
+            "  - SSE Transport: Server-Sent Events stream + POST requests (network).",
+            "Benefits: Single protocol connects any agent to files, DBs, and APIs."
+        ],
+        img_path="plots/mcp_architecture_diagram.png",
+        border_color=ACCENT_ORANGE
+    )
+
+    # =============================================================
+    # Slide 27: Appendix: Math Glossary
     # =============================================================
     create_standard_slide(
         title="Appendix: Centroid, Hyperplane & Residuals",
@@ -568,7 +870,7 @@ def create_deck():
     )
 
     # =============================================================
-    # Slide 18: Appendix: Normalization & Regularization
+    # Slide 28: Appendix: Normalization & Regularization
     # =============================================================
     create_standard_slide(
         title="Appendix: Normalization & Regularization",
@@ -587,7 +889,7 @@ def create_deck():
     )
 
     # =============================================================
-    # Slide 19: Appendix: Optimization & Bias Glossary
+    # Slide 29: Appendix: Optimization & Bias Glossary
     # =============================================================
     create_standard_slide(
         title="Appendix: Optimization & Bias",
@@ -606,7 +908,7 @@ def create_deck():
     )
 
     # =============================================================
-    # Slide 20: Appendix: LLM Concepts Glossary
+    # Slide 30: Appendix: LLM Concepts Glossary
     # =============================================================
     create_standard_slide(
         title="Appendix: LLM Core Terminology",
@@ -627,7 +929,7 @@ def create_deck():
     )
 
     # =============================================================
-    # Slide 21: Course Summary & Teaching Strategy
+    # Slide 31: Course Summary & Teaching Strategy
     # =============================================================
     slide = prs.slides.add_slide(slide_layout)
     apply_bg(slide)
@@ -653,7 +955,8 @@ def create_deck():
         "3. Mathematics to Code: Show the formulas (Lasso, Logistic) side-by-side with scikit-learn models.",
         "4. Emphasize Evaluation: A model scoring 99% accuracy on training data is almost always overfit.",
         "5. Hands-on labs: Have students tune K-Means centroids or Random Forest depths on standard datasets (Iris/Titanic).",
-        "6. Introduce Generative AI: Transition from embeddings (Word2Vec) to sequential comprehension (Transformers)."
+        "6. Introduce Generative AI: Transition from embeddings (Word2Vec) to sequential comprehension (Transformers).",
+        "7. Explain Autonomous systems: Focus on reasoning loops (thought/action/observation) and standardized tooling interfaces (MCP)."
     ]
     for pt in sum_pts:
         p = tf_sum.add_paragraph()
