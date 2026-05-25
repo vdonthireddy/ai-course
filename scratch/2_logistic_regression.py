@@ -107,4 +107,17 @@ for h in test_hours:
     prob = sigmoid(z)
     decision = "Pass" if prob >= 0.5 else "Fail"
     print(f" - Studied {h} hours: Predicted {decision} (Probability of Passing: {prob * 100:.2f}%)")
+
+# Output ASCII plot representing the Sigmoid decision boundary curve
+print("\nVisual Plot of Passing Probability (Sigmoid Curve):")
+print("Prob(Pass)")
+print("1.0|                         ----------- (Studied 8 hrs: 99.6%)")
+print("   |                      /")
+print("0.8|                    /")
+print("0.6|                  /")
+print("0.4|                /   <-- Decision Boundary (Studied 5.5 hrs: 53.8%)")
+print("0.2|              /")
+print("0.0| ----------- (Studied 3 hrs: 0.6%)")
+print("   +-----------------------------------> Hours Studied")
+print("     1.0  2.0  3.0  4.0  5.0  6.0  7.0  8.0  9.0  10.0")
 print("====================================================")

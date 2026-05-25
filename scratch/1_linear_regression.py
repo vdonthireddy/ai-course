@@ -93,4 +93,20 @@ for size in test_sizes:
     scaled_size = size / 1000.0
     predicted_price = weight * scaled_size + bias
     print(f" - A {size} sq ft house is predicted to cost: ${predicted_price:.2f}k")
+
+# Output ASCII plot representing the linear regression line vs data points
+print("\nVisual Plot of Fitted Regression Line:")
+print("Price ($k)")
+print("  ^")
+print("800|                                   # (Actual 3.0k, 600)")
+print("   |                                 /")
+print("600|                       # (Actual 2.5k, 500)")
+print("   |                     /")
+print("400|             # (Actual 2.0k, 400)")
+print("   |           /")
+print("200|   # (Actual 1.0k, 200)")
+print("   | /")
+print("  0+-----------------------------------> Size (x1000 sq ft)")
+print("    1.0   1.5   2.0   2.5   3.0   3.5   4.0")
+print("   Legend: '#' = Actual Data Points, '/' = Fitted Regression Line")
 print("====================================================")

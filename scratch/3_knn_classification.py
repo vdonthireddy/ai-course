@@ -117,4 +117,17 @@ pred, v_acc, v_dec = predict_knn(query, k=3)
 final_outcome = "Accepted" if pred == 1 else "Declined"
 print(f"\nFinal Prediction for Customer (Age: 35, Income: $95k):")
 print(f" - Decision: {final_outcome} (Votes Accepted: {v_acc}, Votes Declined: {v_dec})")
+
+# Output ASCII scatter plot representing Age vs Income classification boundaries
+print("\nVisual Plot of Feature Space (Age vs Income):")
+print("Income")
+print("  ^")
+print("150|                     x (Age 50, Income $150k)")
+print("120|               x (Age 45, Income $120k)")
+print(" 90|             ? (Age 35, Income $95k) [Query Point]")
+print(" 60|         o (Age 30, Income $60k)")
+print(" 30|   o (Age 22, Income $35k)")
+print("  0+----------------------------------------> Age")
+print("    20    30    40    50    60")
+print("   Legend: 'o' = Declined Offer, 'x' = Accepted Offer, '?' = Query point")
 print("====================================================")

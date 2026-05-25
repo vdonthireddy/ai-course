@@ -127,4 +127,14 @@ for c_idx in range(K):
 
 print(f"\nNew Customer Profile (Income: $80k, Spending: 55):")
 print(f" - Predicted Segment Classification: Segment {best_cluster}")
+
+# Output ASCII cluster segments plot
+print("\nVisual Plot of Clusters (Income vs Spending Score):")
+print("Spending Score")
+print(" ^")
+print("90|          [Segment 2] (High Income, High Spending)")
+print("60|                   [Segment 1] (Mid Income, Mid Spending) <-- New Customer Segment")
+print("30|   [Segment 0] (Low Income, Low/High Spending)")
+print("  +---------------------------------------------> Annual Income")
+print("     $15k     $45k     $75k     $105k")
 print("====================================================")

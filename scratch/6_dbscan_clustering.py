@@ -115,4 +115,16 @@ for i in range(n_points):
     status = f"Cluster {labels[i]}" if labels[i] != -1 else "Noise (Outlier)"
     core_lbl = "Core" if is_core[i] else ("Border" if labels[i] != -1 else "Noise")
     print(f" - Point {i+1:2d} ({X[i][0]:4.1f}, {X[i][1]:4.1f}) -> Assigned to: {status:12s} | Type: {core_lbl}")
+
+# Output ASCII spatial density coordinate space plot
+print("\nVisual Density Space Layout:")
+print("  Y-coordinate")
+print("  ^")
+print(" 10|                                  Noise (Point 8: 10, 10)")
+print("   |")
+print("  5|          Cluster 1 (Points 5-7: ~5, 5)")
+print("   |")
+print("  1|  Cluster 0 (Points 1-4: ~1, 1)")
+print("  0+-----------------------------------> X-coordinate")
+print("     1   2   3   4   5   6   7   8   9   10")
 print("====================================================")

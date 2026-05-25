@@ -131,4 +131,12 @@ test_customer = [24, 6]
 prediction = predict(test_customer)
 predicted_status = "Churned" if prediction == 1 else "Loyal"
 print(f"\nPrediction for new customer (Age: 24, Support Calls: 6): {predicted_status}")
+
+# Output ASCII Decision Tree structure
+print("\nVisual Decision Tree Diagram:")
+print("                 [ Is Customer Age <= 29.0? ]")
+print("                       /              \\")
+print("                     Yes              No")
+print("                     /                  \\")
+print("             [ Predict: Churned ]   [ Predict: Loyal ]")
 print("====================================================")

@@ -78,6 +78,12 @@ print(f" - Precision: {precision * 100:.2f}%")
 print(f" - Recall   : {recall * 100:.2f}%")
 print(f" - F1-Score : {f1 * 100:.2f}%")
 
+# Output ASCII confusion matrix grid layout
+print("\nVisual Confusion Matrix Grid:")
+print("                   Predicted Healthy   Predicted Disease")
+print(f"  Actual Healthy:    [ TN = {tn} ]          [ FP = {fp} ]")
+print(f"  Actual Disease:    [ FN = {fn} ]          [ TP = {tp} ]")
+
 
 # -----------------------------------------------------------
 # PART 2: Regression Metrics Evaluation
