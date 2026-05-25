@@ -45,6 +45,12 @@ Welcome to the **Fundamentals of Machine Learning** course materials. This docum
   - [8.6 K-Means Clustering (Customer Segments)](#86-kmeans-clustering-customer-segments)
   - [8.7 DBSCAN Density Clustering (Outlier Detection)](#87-dbscan-density-clustering-outlier-detection)
   - [8.8 Model Evaluation & Performance Metrics](#88-model-evaluation--performance-metrics)
+- [Module 9: Introduction to Large Language Models (LLMs) & Transformers](#module-9-introduction-to-large-language-models-llms--transformers)
+  - [9.1 Tokenization: Byte Pair Encoding (BPE)](#91-tokenization-byte-pair-encoding-bpe)
+  - [9.2 Vector Semantics: Word Embeddings (Word2Vec)](#92-vector-semantics-word-embeddings-word2vec)
+  - [9.3 The Encoder: Self-Attention & Positional Encoding](#93-the-encoder-self-attention--positional-encoding)
+  - [9.4 The Decoder: Causal Masking & Cross-Attention](#94-the-decoder-causal-masking--cross-attention)
+  - [9.5 End-to-End LLM Python Implementation](#95-end-to-end-llm-python-implementation)
 - [Appendix: Glossary of Key Terminologies](#appendix-glossary-of-key-terminologies)
 
 ---
@@ -113,6 +119,20 @@ python3 scratch/<script_name>.py
 | **Module 6: K-Means** | Distance centroid updates | [5_kmeans_clustering.py](file:///Users/donthireddy/code/ai-course/scratch/5_kmeans_clustering.py) | [scratch_5_kmeans.png](file:///Users/donthireddy/code/ai-course/plots/scratch_5_kmeans.png) |
 | **Module 6: DBSCAN** | Density point neighborhood & BFS | [6_dbscan_clustering.py](file:///Users/donthireddy/code/ai-course/scratch/6_dbscan_clustering.py) | [scratch_6_dbscan.png](file:///Users/donthireddy/code/ai-course/plots/scratch_6_dbscan.png) |
 | **Module 7: Evaluation** | Metrics loop logic (F1, MSE, $R^2$) | [7_model_evaluation.py](file:///Users/donthireddy/code/ai-course/scratch/7_model_evaluation.py) | [scratch_7_evaluation.png](file:///Users/donthireddy/code/ai-course/plots/scratch_7_evaluation.png) |
+
+### 3. Large Language Model (LLM) Examples
+You can run them in your terminal using:
+```bash
+python3 llm/<script_name>.py
+```
+
+| Lesson / Topic | Concept | Python Script Link | Output Plot Link |
+| :--- | :--- | :--- | :--- |
+| **Module 9.1: Tokenizer** | Byte Pair Encoding (BPE) from scratch | [1_bpe_tokenizer.py](file:///Users/donthireddy/code/ai-course/llm/1_bpe_tokenizer.py) | [llm_1_bpe_vocab.png](file:///Users/donthireddy/code/ai-course/plots/llm_1_bpe_vocab.png) |
+| **Module 9.2: Embeddings** | Skip-gram Word2Vec with Negative Sampling | [2_word2vec.py](file:///Users/donthireddy/code/ai-course/llm/2_word2vec.py) | [llm_2_word2vec.png](file:///Users/donthireddy/code/ai-course/plots/llm_2_word2vec.png) |
+| **Module 9.3: Encoder** | Multi-Head Self-Attention & Positional Encoding | [3_encoder.py](file:///Users/donthireddy/code/ai-course/llm/3_encoder.py) | [llm_3_positional_encoding.png](file:///Users/donthireddy/code/ai-course/plots/llm_3_positional_encoding.png) |
+| **Module 9.4: Decoder** | Causal Masked Self-Attention & Cross-Attention | [4_decoder.py](file:///Users/donthireddy/code/ai-course/llm/4_decoder.py) | [llm_4_causal_mask.png](file:///Users/donthireddy/code/ai-course/plots/llm_4_causal_mask.png) |
+| **Module 9.5: Transformer** | End-to-End Translator (Seq2Seq Model) | [5_transformer_llm.py](file:///Users/donthireddy/code/ai-course/llm/5_transformer_llm.py) | [llm_5_attention_alignment.png](file:///Users/donthireddy/code/ai-course/plots/llm_5_attention_alignment.png) |
 
 ---
 
@@ -733,7 +753,85 @@ This module breaks down the code structure, execution steps, and logic for both 
 2. **Regression Metrics**:
    * *From-Scratch*: Loops through actual and predicted prices. Aggregates absolute differences (`abs(act - pred)`) and squared differences (`(act - pred)**2`).
    * *Ratios*: Compute MAE: `sum_abs/n`, MSE: `sum_sq/n`, RMSE: `sqrt(MSE)`.
-   * *R-squared ($R^2$)*: Computes the mean price, calculates total variance sum (`(act - mean)**2`), and returns `1.0 - (sum_squared_error / sum_total_variance)`.
+   * **R-squared ($R^2$)*: Computes the mean price, calculates total variance sum (`(act - mean)**2`), and returns `1.0 - (sum_squared_error / sum_total_variance)`.
+
+---
+
+## Module 9: Introduction to Large Language Models (LLMs) & Transformers
+
+This module covers the core components of modern generative AI and Large Language Models (LLMs), moving from subword tokenization to continuous word semantics, and finally to the complete Sequence-to-Sequence (Seq2Seq) Transformer architecture.
+
+### 9.1 Tokenization: Byte Pair Encoding (BPE)
+Traditional tokenizers split text by whitespace or punctuation, leading to two major flaws: massive vocabulary sizes (which demand huge embedding memory) and an inability to handle unseen or misspelled words (out-of-vocabulary). 
+
+**Byte Pair Encoding (BPE)** solves this by breaking words down into dynamic subwords. It is trained as follows:
+1. Initialize the vocabulary ($V$) with all individual characters present in the training corpus, plus a special end-of-word marker `</w>`.
+2. Segment the training corpus into space-separated characters.
+3. Count frequencies of all adjacent token pairs (bigrams).
+4. Identify the most frequent bigram $(s_1, s_2)$ and merge it into a single new subword token $s_{1\_2}$. Add $s_{1\_2}$ to $V$.
+5. Repeat steps 3 and 4 for a pre-determined number of merge iterations.
+
+When tokenizing new text, the learned merge rules are applied in the exact order they were trained, slicing words into the largest possible subwords found in the vocabulary.
+
+---
+
+### 9.2 Vector Semantics: Word Embeddings (Word2Vec)
+Computers cannot process raw strings; words must be represented as continuous, dense numerical vectors where semantic similarity translates to geometric closeness (e.g. cosine similarity).
+
+The **Word2Vec Skip-gram** model learns these embeddings by training a simple neural network to predict surrounding context words given a target input word:
+$$\mathcal{L} = -\log \sigma({v'_{c_{pos}}}^T v_w) - \sum_{i=1}^k \log \sigma(-{v'_{c_{neg_i}}}^T v_w)$$
+Where:
+- $v_w \in \mathbb{R}^d$ is the input representation vector of the target word $w$.
+- $v'_c \in \mathbb{R}^d$ is the output context representation vector of a candidate word $c$.
+- $\sigma(z) = \frac{1}{1 + e^{-z}}$ is the sigmoid activation function representing probability.
+- $k$ is the number of randomly selected "negative samples" (words that are not in the target context) used to transform the expensive softmax calculation into efficient binary classifications.
+
+During training, gradient updates adjust the word vectors directly, causing semantically related words to group together in the vector space.
+
+---
+
+### 9.3 The Encoder: Self-Attention & Positional Encoding
+The Transformer Encoder processes all token embeddings in parallel. To preserve sequence order, we add a wave-like **Positional Encoding (PE)** vector to each token embedding before the self-attention layer:
+$$PE_{(pos, 2i)} = \sin\left(\frac{pos}{10000^{2i/d_{model}}}\right), \quad PE_{(pos, 2i+1)} = \cos\left(\frac{pos}{10000^{2i/d_{model}}}\right)$$
+Where $pos$ is the token position in the sequence, and $i$ represents the dimension index.
+
+#### Scaled Dot-Product Self-Attention
+For a sequence of input vectors $X \in \mathbb{R}^{T \times d_{model}}$, we project it into Queries ($Q$), Keys ($K$), and Values ($V$) using weight matrices $W^Q, W^K, W^V$:
+$$Q = X W^Q, \quad K = X W^K, \quad V = X W^V$$
+We compute attention alignment weights by taking the dot product of queries and keys, scaling by the dimension size $\sqrt{d_k}$ to prevent gradient vanishing, and applying softmax:
+$$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V$$
+Where $d_k$ is the dimension of keys per attention head.
+
+#### Multi-Head Attention (MHA)
+Rather than computing attention once, we split $Q, K, V$ into $H$ heads, compute attention on each head in parallel, concatenate the outputs, and project back using an output matrix $W^O$. This allows the model to attend to information from different representation subspaces simultaneously.
+
+The encoder layer output is finalized using residual connections and Layer Normalization:
+$$X_{attn} = \text{LayerNorm}(X + \text{MultiHeadAttention}(X))$$
+$$X_{output} = \text{LayerNorm}(X_{attn} + \text{FeedForward}(X_{attn}))$$
+Where the Feed-Forward Network is a simple two-layer MLP with ReLU activation:
+$$\text{FeedForward}(x) = \max(0, x W_1 + b_1) W_2 + b_2$$
+
+---
+
+### 9.4 The Decoder: Causal Masking & Cross-Attention
+The Transformer Decoder generates target tokens autoregressively. It features two special attention layers:
+
+1. **Causal Masked Self-Attention**: To prevent the model from looking at future target tokens during training, we add a causal mask matrix $M$ to the dot-product attention scores before softmax:
+   $$M_{i, j} = \begin{cases} 0 & \text{if } j \le i \\ -\infty & \text{if } j > i \end{cases}$$
+   $$\text{Attention}_{masked}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}} + M\right)V$$
+   When softmax is applied, the $-\infty$ values become exactly 0, preventing attention to future positions.
+2. **Encoder-Decoder Cross-Attention**: The Queries ($Q$) come from the decoder's masked self-attention representation, whereas the Keys ($K$) and Values ($V$) come from the encoder's final output representations. This maps target words directly back to the source words.
+
+---
+
+### 9.5 End-to-End LLM Python Implementation
+We have created five pure Python scripts inside the `llm/` directory showing how these pieces operate together step-by-step:
+
+1. **[llm/1_bpe_tokenizer.py](file:///Users/donthireddy/code/ai-course/llm/1_bpe_tokenizer.py)**: Trains BPE merge rules on a corpus, segments out-of-vocabulary words, and saves [llm_1_bpe_vocab.png](file:///Users/donthireddy/code/ai-course/plots/llm_1_bpe_vocab.png).
+2. **[llm/2_word2vec.py](file:///Users/donthireddy/code/ai-course/llm/2_word2vec.py)**: Performs gradient descent on context pairs, trains semantic 2D embeddings, and saves [llm_2_word2vec.png](file:///Users/donthireddy/code/ai-course/plots/llm_2_word2vec.png) (showing semantic word clusters).
+3. **[llm/3_encoder.py](file:///Users/donthireddy/code/ai-course/llm/3_encoder.py)**: Implements positional encoding math, Q/K/V projections, Multi-Head self-attention, LayerNorm, and FFN, saving the wave positional encoding heatmap to [llm_3_positional_encoding.png](file:///Users/donthireddy/code/ai-course/plots/llm_3_positional_encoding.png).
+4. **[llm/4_decoder.py](file:///Users/donthireddy/code/ai-course/llm/4_decoder.py)**: Implements causal masking, cross-attention alignment, and saves the causal mask visual boundary heatmap to [llm_4_causal_mask.png](file:///Users/donthireddy/code/ai-course/plots/llm_4_causal_mask.png).
+5. **[llm/5_transformer_llm.py](file:///Users/donthireddy/code/ai-course/llm/5_transformer_llm.py)**: Assembles the tokenizer, embeddings, encoder, and decoder layers. Translates English inputs to Spanish step-by-step using greedy autoregressive decoding, saving the cross-attention alignment map to [llm_5_attention_alignment.png](file:///Users/donthireddy/code/ai-course/plots/llm_5_attention_alignment.png).
 
 ---
 
@@ -838,5 +936,36 @@ flowchart TD
 ### 9. Gradient
 * **Definition**: The vector of partial derivatives representing the direction of steepest ascent of a function. In optimization, we move in the opposite direction (gradient descent) to minimize the loss.
 * **Analogy**: Imagine being blindfolded on a foggy hill. To find the valley (minimum loss), you feel the slope of the ground with your foot and take a step in the direction that slopes downward (negative gradient).
+
+---
+
+### 10. Token
+* **Definition**: The basic atomic unit of text that a language model processes. Depending on the tokenizer, a token can represent a single character, a subword (like BPE), or a full word.
+* **Example**: Under a BPE tokenizer, the word "learning" might be split into two tokens: `["learn", "ing"]`.
+
+---
+
+### 11. Self-Attention
+* **Definition**: A mechanism that allows an algorithm to weigh the importance of different tokens in the same sequence when constructing a representation for any given token.
+* **Example**: In the sentence "The animal didn't cross the street because **it** was too tired", a self-attention layer learns to connect the query token "**it**" with high attention weights to "**animal**" rather than "street".
+
+---
+
+### 12. Causal Mask
+* **Definition**: A lower-triangular binary matrix used in Decoder Self-Attention layers that forces the model to attend only to current and past tokens, zeroing out attention scores for future positions.
+* **Example**: When predicting the 3rd word in a sentence, the causal mask ensures the attention mechanism has mathematically zero access to the 4th, 5th, or subsequent tokens.
+
+---
+
+### 13. Autoregressive Decoding
+* **Definition**: A text generation strategy where the model generates output sequences word-by-word (or token-by-token). The token output from the previous step is appended to the input sequence and fed back into the model to predict the next token.
+* **Example**: Generating "the", then feeding "the" to get "machine", then feeding "the machine" to get "learning".
+
+---
+
+### 14. Temperature
+* **Definition**: A scaling hyperparameter applied to the model's output logit values before the softmax function to control the randomness of the predictions.
+* **Effect**: A lower temperature (< 0.5) makes predictions more deterministic and repetitive (concentrates probability on the argmax token), whereas a higher temperature (> 1.0) makes predictions more creative, random, and diverse (spreads out probability).
+
 
 
