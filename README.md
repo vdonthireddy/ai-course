@@ -796,6 +796,39 @@ Traditional tokenizers split text by whitespace or punctuation, leading to two m
 
 When tokenizing new text, the learned merge rules are applied in the exact order they were trained, slicing words into the largest possible subwords found in the vocabulary.
 
+#### Concrete Example of BPE Merging:
+Suppose we train BPE on a simple corpus containing only four words with their respective frequencies:
+* `"low"` (freq: 5)
+* `"lower"` (freq: 2)
+* `"newest"` (freq: 6)
+* `"widest"` (freq: 3)
+
+1. **Vocabulary Initialization**:
+   $$V = \{\text{'l'}, \text{'o'}, \text{'w'}, \text{'e'}, \text{'r'}, \text{'n'}, \text{'s'}, \text{'t'}, \text{'i'}, \text{'d'}, \text{'</w>'}\}$$
+
+2. **Corpus Segmentation**:
+   * `"l o w </w>"` (5 times)
+   * `"l o w e r </w>"` (2 times)
+   * `"n e w e s t </w>"` (6 times)
+   * `"w i d e s t </w>"` (3 times)
+
+3. **Counting Adjacent Pairs**:
+   * The bigram `('e', 's')` occurs $6 \text{ (newest)} + 3 \text{ (widest)} = 9$ times.
+   * The bigram `('s', 't')` occurs $6 \text{ (newest)} + 3 \text{ (widest)} = 9$ times.
+   * The bigram `('l', 'o')` occurs $5 \text{ (low)} + 2 \text{ (lower)} = 7$ times.
+   * The bigram `('o', 'w')` occurs $5 \text{ (low)} + 2 \text{ (lower)} = 7$ times.
+
+4. **Iterative Merge**:
+   * **Merge 1**: We select the most frequent pair `('e', 's')` (frequency 9) and merge it into a new token `'es'`.
+     * Vocabulary expands: $V = V \cup \{\text{'es'}\}$.
+     * Corpus segments update: `"newest"` becomes `"n e w es t </w>"`, `"widest"` becomes `"w i d es t </w>"`.
+   * **Merge 2**: Now, the pair `('es', 't')` has the highest remaining frequency ($6 + 3 = 9$). We merge it to form `'est'`.
+     * Vocabulary expands: $V = V \cup \{\text{'est'}\}$.
+     * Corpus segments update: `"newest"` becomes `"n e w est </w>"`, `"widest"` becomes `"w i d est </w>"`.
+
+5. **Tokenization Result**:
+   If we encounter a new unseen word `"lowest"`, the learned rules will look for `'low'` (after subsequent merges) and `'est'`, tokenizing it as `["low", "est"]` instead of treating it as an Out-of-Vocabulary error.
+
 ---
 
 ### 9.2 Vector Semantics: Word Embeddings (Word2Vec)
@@ -812,6 +845,24 @@ Where:
 - $k$ is the number of randomly selected "negative samples" (words that are not in the target context) used to transform the expensive softmax calculation into efficient binary classifications.
 
 During training, gradient updates adjust the word vectors directly, causing semantically related words to group together in the vector space.
+
+#### Concrete Example of Skip-gram with Negative Sampling:
+Suppose our training sentence is: `"the quick brown fox jumps over the lazy dog"`.
+We choose a context window size of 1, a target word **"fox"**, and set $k = 2$ negative samples.
+
+1. **Context Pair Generation (Positive Samples)**:
+   Looking at one token left and right of `"fox"`, the actual context words are `"brown"` and `"jumps"`.
+   * Positive Training Pairs: `("fox", "brown")` and `("fox", "jumps")`.
+
+2. **Negative Pair Selection (Negative Samples)**:
+   We randomly select $k=2$ words from the vocabulary that are *not* in the target word's context window.
+   * Selected Negative Words: `"lazy"` and `"the"`.
+   * Negative Training Pairs: `("fox", "lazy")` and `("fox", "the")`.
+
+3. **Loss Function Objective**:
+   The objective is to maximize the probability of actual context words while minimizing the probability of random negative words:
+   * **Maximize Similarity**: Drive the dot product $v_{\text{fox}}^T v'_{\text{brown}}$ and $v_{\text{fox}}^T v'_{\text{jumps}}$ to be highly positive (making the word vectors point in the same direction in vector space).
+   * **Minimize Similarity**: Drive the dot product $v_{\text{fox}}^T v'_{\text{lazy}}$ and $v_{\text{fox}}^T v'_{\text{the}}$ to be highly negative or zero (pushing their word vectors far apart).
 
 ---
 
@@ -832,6 +883,22 @@ We compute attention alignment weights by taking the dot product of queries and 
 $$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V$$
 
 Where $d_k$ is the dimension of keys per attention head.
+
+#### Concrete Example of Self-Attention Alignment:
+Consider how self-attention resolves the contextual meaning of the homonym word **"bank"** in two different sentences:
+* **Sentence 1**: *"The bank of the river was muddy."*
+* **Sentence 2**: *"I deposited money in the bank."*
+
+1. **Input Projections**:
+   When processing the token `"bank"`, the model projects its input embedding into a query vector $Q_{\text{bank}}$. Every other word in the sequence is projected into key vectors $K_{\text{river}}$, $K_{\text{deposited}}$, $K_{\text{money}}$, etc.
+
+2. **Computing Attention Scores**:
+   * In **Sentence 1**, taking the dot products $Q_{\text{bank}} K_{\text{river}}^T$ and $Q_{\text{bank}} K_{\text{muddy}}^T$ yields high values because the model has learned that "bank" frequently associates with "river" and "muddy" in geographic contexts.
+   * In **Sentence 2**, the dot products $Q_{\text{bank}} K_{\text{money}}^T$ and $Q_{\text{bank}} K_{\text{deposited}}^T$ yield high values due to their financial co-occurrences.
+
+3. **Softmax Output & Weighted Representation**:
+   * After applying softmax, the attention weights in **Sentence 1** will be high for `"river"` and `"muddy"`. The resulting representation for `"bank"` is calculated as a weighted sum of value vectors, heavily incorporating $V_{\text{river}}$ and $V_{\text{muddy}}$. This mathematically shifts the embedding of `"bank"` toward a geographic context.
+   * In **Sentence 2**, the representation for `"bank"` incorporates $V_{\text{money}}$ and $V_{\text{deposited}}$, shifting the context of the token toward a financial institution.
 
 #### Multi-Head Attention (MHA)
 Rather than computing attention once, we split $Q, K, V$ into $H$ heads, compute attention on each head in parallel, concatenate the outputs, and project back using an output matrix $W^O$. This allows the model to attend to information from different representation subspaces simultaneously.
@@ -858,6 +925,26 @@ The Transformer Decoder generates target tokens autoregressively. It features tw
    $$\text{Attention}_{masked}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}} + M\right)V$$
 
    When softmax is applied, the $-\infty$ values become exactly 0, preventing attention to future positions.
+
+#### Concrete Example of Causal Masking:
+Suppose we are training a decoder on a 3-token target sequence: `["I", "love", "AI"]`.
+
+1. **Compute raw attention scores**:
+   Calculating the dot product scores $\frac{QK^T}{\sqrt{d_k}}$ yields a $3 \times 3$ logit matrix representing matching strengths between all tokens:
+   $$\text{Logits} = \begin{pmatrix} S_{1,1} & S_{1,2} & S_{1,3} \\ S_{2,1} & S_{2,2} & S_{2,3} \\ S_{3,1} & S_{3,2} & S_{3,3} \end{pmatrix}$$
+
+2. **Apply the causal mask**:
+   We add the causal mask matrix $M$ to the logit matrix:
+   $$\text{Logits} + M = \begin{pmatrix} S_{1,1} & S_{1,2} & S_{1,3} \\ S_{2,1} & S_{2,2} & S_{2,3} \\ S_{3,1} & S_{3,2} & S_{3,3} \end{pmatrix} + \begin{pmatrix} 0 & -\infty & -\infty \\ 0 & 0 & -\infty \\ 0 & 0 & 0 \end{pmatrix} = \begin{pmatrix} S_{1,1} & -\infty & -\infty \\ S_{2,1} & S_{2,2} & -\infty \\ S_{3,1} & S_{3,2} & S_{3,3} \end{pmatrix}$$
+
+3. **Softmax Output**:
+   When softmax is applied row-wise:
+   * **Row 1 ("I")**: The values at column 2 and 3 become exactly $0$. The token `"I"` can *only* attend to itself.
+   * **Row 2 ("love")**: The value at column 3 becomes $0$. The token `"love"` can attend to `"I"` and `"love"`.
+   * **Row 3 ("AI")**: No masking is applied. `"AI"` can attend to all three tokens.
+
+This mathematically restricts the model from looking ahead during training, forcing it to learn to predict the next token based only on past context.
+
 2. **Encoder-Decoder Cross-Attention**: The Queries ($Q$) come from the decoder's masked self-attention representation, whereas the Keys ($K$) and Values ($V$) come from the encoder's final output representations. This maps target words directly back to the source words.
 
 ---
