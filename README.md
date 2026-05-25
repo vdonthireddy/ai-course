@@ -95,6 +95,33 @@ flowchart TD
     style D fill:#F59E0B,stroke:#B45309,stroke-width:1px,color:#FFF
 ```
 
+### 2.2 Case Study: Where do Large Language Models (LLMs) fit?
+Modern LLMs (like GPT, Claude, Llama, and Gemini) do not fit neatly into a single learning paradigm. Instead, they are trained using a **multi-paradigm pipeline** that combines self-supervised learning, supervised learning, and reinforcement learning:
+
+```mermaid
+flowchart TD
+    A[(Raw Unlabeled Web Text)] --> B[Stage 1: Pre-training<br/>Self-Supervised Learning]
+    B --> C[(Instruction-Response Pairs)]
+    C --> D[Stage 2: Supervised Fine-Tuning SFT]
+    D --> E[(Human Preference Comparisons)]
+    E --> F[Stage 3: Alignment<br/>Reinforcement Learning RLHF]
+    F --> G[Production LLM]
+    
+    style B fill:#4F46E5,stroke:#312E81,color:#FFF
+    style D fill:#10B981,stroke:#047857,color:#FFF
+    style F fill:#F59E0B,stroke:#B45309,color:#FFF
+```
+
+1. **Pre-Training (Self-Supervised / Unsupervised)**:
+   * **Process**: The model reads billions of words of raw, unlabeled text and learns to predict the next word.
+   * **Connection**: While the dataset is unlabeled (unsupervised), the training creates target labels ($y$) automatically from the next word in the text (self-supervised).
+2. **Supervised Fine-Tuning (SFT)**:
+   * **Process**: The model is trained on human-curated datasets of instruction-answer pairs.
+   * **Connection**: This is a direct application of **supervised learning**, training the model to align its outputs with high-quality labeled examples.
+3. **Reinforcement Learning from Human Feedback (RLHF)**:
+   * **Process**: The model generates responses, and a reward model scores them based on human preferences. The LLM updates its weights to maximize this reward.
+   * **Connection**: This is **reinforcement learning**, where the LLM acts as the agent, the reward model acts as the environment, and the human preference criteria act as the reward signal.
+
 ---
 
 ## Module 3: Supervised Learning - Regression
