@@ -113,8 +113,6 @@ Our goal is to compute the rate of change of a nested composite function:
 
 $$\frac{d}{dx}f(g(x)) = ?$$
 
-![Chain rule question](plots/derivatives/IMG_3129.PNG)
-
 ![Chain rule question detail](plots/derivatives/IMG_3130.PNG)
 
 ### 4.1 Chained Computer Screens (Function Machines)
