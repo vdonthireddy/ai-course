@@ -378,6 +378,8 @@ graph TD
 
   $$d(p, q) = \sum_{i=1}^{n} |p_i - q_i|$$
 
+![Distance Metrics Comparison](file:///Users/donthireddy/code/ai-course/plots/distance_metrics.png)
+
 ### 4.3 Support Vector Machines (SVM)
 SVM finds the optimal hyperplane that separates classes with the maximum **margin**.
 
