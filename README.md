@@ -546,35 +546,109 @@ for name, clf in classifiers.items():
 
 ## Module 5: Ensemble Learning & XGBoost
 
-Ensemble methods combine predictions from multiple base models to produce a more robust generalizer.
+Ensemble methods combine predictions from multiple base models (often weak learners like decision trees) to produce a single, highly robust predictive model. This approach is based on the **"Wisdom of the Crowd"**: while individual models may make errors, their collective average or majority vote is much less likely to be wrong.
+
+![Bagging vs. Boosting Comparison](plots/bagging_vs_boosting.png)
+
+---
+
+### 5.1 Bagging (Bootstrap Aggregating)
+
+Bagging aims to reduce **Variance** (overfitting). It builds multiple independent models in **parallel** and averages their predictions. 
 
 ```mermaid
 graph TD
-    A[Ensemble Learning] --> B[Bagging: Bootstrap Aggregating]
-    A --> C[Boosting: Sequential Learning]
-    
-    B --> B1[Models trained in parallel on random data subsets. e.g., Random Forest]
-    C --> C1[Models trained sequentially; errors of prior model are weighted higher. e.g., AdaBoost, Gradient Boosting, XGBoost]
+    Data[Original Dataset] --> S1[Bootstrap Sample 1]
+    Data --> S2[Bootstrap Sample 2]
+    Data --> S3[Bootstrap Sample 3]
+    S1 --> T1[Decision Tree 1]
+    S2 --> T2[Decision Tree 2]
+    S3 --> T3[Decision Tree 3]
+    T1 & T2 & T3 --> Agg[Aggregate predictions: Vote/Average]
+    Agg --> Final[Final Prediction]
 ```
 
-### 5.1 Bagging vs. Boosting
-* **Bagging**: Trains independent base learners in parallel. Reduces **Variance** (reduces overfitting).
-* **Boosting**: Trains base learners sequentially. Each new model corrects the residual errors of its predecessor. Reduces **Bias** (improves fit).
+1. **Bootstrapping**: We create $N$ new datasets of the same size as the original by randomly sampling rows with replacement (meaning the same row can be picked multiple times).
+2. **Parallel Training**: We train a separate decision tree on each bootstrap sample. Because each tree sees a slightly different subset of data, their errors are uncorrelated.
+3. **Aggregating**: 
+   * **For Classification**: Take a majority vote across all trees.
+   * **For Regression**: Average the outputs of all trees.
+   
+#### Concrete Example of Bagging (Random Forest):
+Suppose we want to predict a house's value ($y$). Our training set has 100 houses.
+* **Bootstrapping**: We draw 10 random samples of size 100 with replacement.
+* **Training**: We train 10 separate deep decision trees.
+  * Tree 1 is trained on Sample 1 and predicts the house value is $\$450\text{k}$.
+  * Tree 2 is trained on Sample 2 and predicts the house value is $\$420\text{k}$.
+  * ...
+  * Tree 10 is trained on Sample 10 and predicts the house value is $\$440\text{k}$.
+* **Aggregation**: We average the 10 predictions: $\frac{450 + 420 + \dots + 440}{10} = \$438\text{k}$. 
+* **Why it works**: If one tree overfits to a specific outlier house in the training set, its extreme prediction is washed out by the other 9 trees that did not see that outlier.
 
-### 5.2 XGBoost (Extreme Gradient Boosting)
-XGBoost is an optimized, highly efficient implementation of gradient boosted decision trees.
+---
 
-* **Key Strengths**:
-  * **Regularization**: Includes L1 ($L_1$) and L2 ($L_2$) regularization inside the objective function to control overfitting.
-  * **Parallel/Distributed Computing**: Highly optimized node splitting.
-  * **Handling Sparsity**: Automatic direction routing for missing values.
+### 5.2 Boosting
+
+Boosting aims to reduce **Bias** (underfitting). Instead of training models in parallel, it trains them **sequentially** (one after another). Each new model is specifically trained to correct the mistakes (errors or **residuals**) made by the cumulative ensemble of previous models.
+
+```mermaid
+graph LR
+    Input[Input Data] --> T1[Tree 1]
+    T1 --> R1[Compute Residuals]
+    R1 --> T2[Tree 2 trains on Residuals]
+    T2 --> R2[Compute remaining Residuals]
+    R2 --> T3[Tree 3 trains on Residuals]
+    T1 & T2 & T3 --> Sum[Final Weighted Sum]
+```
+
+#### Step-by-Step Mathematical Intuition of Boosting:
+1. Train a base model $f_1(x)$ on the target values $y$.
+2. Compute the prediction error (residual) for each sample: $r_1 = y - f_1(x)$.
+3. Train a second model $f_2(x)$ to predict the *residual* $r_1$ (not the original target $y$).
+4. The ensemble's combined prediction is now $\hat{y} = f_1(x) + f_2(x)$.
+5. Repeat this process: train $f_3(x)$ to predict the remaining residual $r_2 = y - (f_1(x) + f_2(x))$.
+6. After $T$ steps, the final prediction is a weighted sum: $\hat{y} = \sum_{t=1}^T \eta \cdot f_t(x)$ (where $\eta$ is the learning rate).
+
+#### Concrete Example of Boosting:
+Suppose a house actually sells for **$\$400\text{k}$**.
+* **Step 1 (Tree 1)**: Trains on the raw data. It makes a simple prediction of **$\$350\text{k}$**.
+  * Residual (Error): $\$400\text{k} - \$350\text{k} = \mathbf{+\$50\text{k}}$. (The model underpredicted).
+* **Step 2 (Tree 2)**: Is trained to predict the residual ($\mathbf{+\$50\text{k}}$). It predicts the error is **$+\$40\text{k}$**.
+  * Combine predictions: $\$350\text{k} + \$40\text{k} = \$390\text{k}$.
+  * Remaining Residual: $\$400\text{k} - \$390\text{k} = \mathbf{+\$10\text{k}}$.
+* **Step 3 (Tree 3)**: Is trained to predict the remaining residual ($\mathbf{+\$10\text{k}}$). It predicts **$+\$8\text{k}$**.
+  * Final Combined Prediction: $\$350\text{k} + \$40\text{k} + \$8\text{k} = \mathbf{\$398\text{k}}$.
+By focusing sequentially on errors, the boosting model gets closer and closer to the actual target.
+
+---
+
+### 5.3 XGBoost (Extreme Gradient Boosting)
+
+XGBoost is a highly optimized, state-of-the-art implementation of Gradient Boosting. It is widely considered the most powerful algorithm for tabular structured datasets.
+
+#### What makes it "Extreme"?
+1. **Regularization**: Unlike standard gradient boosting, XGBoost penalizes complex trees directly in the loss function, preventing overfitting.
+2. **Second-Order Derivatives (Taylor Expansion)**: Standard gradient boosting only uses the first derivative (gradient) of the loss function. XGBoost uses both the first derivative (gradient, $g_i$) and the second derivative (Hessian, $h_i$). This allows it to optimize the objective function much faster and more accurately.
+3. **Sparsity-Aware Splitting**: It automatically learns how to handle missing values by determining a default direction (left or right branch) for missing data points at each split.
+4. **Weighted Quantile Sketch**: An advanced algorithm that finds optimal split points on huge datasets by creating histograms of feature values.
 
 #### Mathematical Formulation
-The objective function at step $t$:
+The regularized objective function to minimize at step $t$ is:
 
 $$\mathcal{L}^{(t)} = \sum_{i=1}^{m} l\left(y_i, \hat{y}_i^{(t-1)} + f_t(x_i)\right) + \Omega(f_t)$$
 
-Where $\Omega(f_t) = \gamma T + \frac{1}{2}\lambda \sum_{j=1}^{T} w_j^2$ is the tree complexity regularization.
+##### Formula Breakdown:
+* **$\mathcal{L}^{(t)}$**: The total objective function value we want to minimize in step $t$.
+* **$\sum_{i=1}^{m}$**: Summation over all $m$ training samples.
+* **$l\left(y_i, \hat{y}_i^{(t-1)} + f_t(x_i)\right)$**: The loss function (e.g., Mean Squared Error) evaluating the difference between the true label $y_i$ and the new prediction.
+  * **$\hat{y}_i^{(t-1)}$**: The ensemble's accumulated prediction from the *previous* step $t-1$. This term is constant at step $t$.
+  * **$f_t(x_i)$**: The output of the new decision tree $f_t$ we are currently training.
+* **$\Omega(f_t)$**: The **Regularization penalty** controlling the complexity of the new tree:
+
+  $$\Omega(f_t) = \gamma T + \frac{1}{2}\lambda \sum_{j=1}^{T} w_j^2$$
+
+  * **$T$**: The number of terminal nodes (leaves) in the tree. $\gamma$ (gamma) penalizes adding more leaves.
+  * **$w_j$**: The leaf weights (output values). $\lambda$ (lambda) penalizes large leaf weights, shrinking them toward zero (similar to Ridge L2 regularization).
 
 ### 5.3 Python Implementation
 ```python
