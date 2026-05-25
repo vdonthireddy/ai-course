@@ -301,7 +301,7 @@ Suppose we are training a model to predict the probability that an email is spam
 * **How Ridge ($L_2$) Solves It**:
   Ridge penalizes squared weights. A weight of $+15.0$ contributes a massive penalty ($15^2 = 225.0$). Ridge forces this weight to shrink drastically (e.g., to $\theta_{\text{win}} = +1.2$). "Win" remains a positive spam indicator but is no longer large enough to override standard vocabulary.
 * **How Lasso ($L_1$) Solves It**:
-  Lasso penalizes absolute weights. It identifies that common words like "hello" ($\theta_{\text{hello}} = +0.1$) add noise but have almost zero actual predictive capability. Lasso drives their weights to **exactly zero** ($\theta_{\text{hello}} = 0$), performing feature selection and removing noise features completely from the equation.
+  Lasso penalizes absolute weights. It identifies that common words like "hello" ($\theta\_{\text{hello}} = +0.1$) add noise but have almost zero actual predictive capability. Lasso drives their weights to **exactly zero** ($\theta\_{\text{hello}} = 0$), performing feature selection and removing noise features completely from the equation.
 
 ### 3.3 Python Implementation
 ```python
@@ -963,8 +963,8 @@ We choose a context window size of 1, a target word **"fox"**, and set $k = 2$ n
 
 3. **Loss Function Objective**:
    The objective is to maximize the probability of actual context words while minimizing the probability of random negative words:
-   * **Maximize Similarity**: Drive the dot product $v_{\text{fox}}^T v'_{\text{brown}}$ and $v_{\text{fox}}^T v'_{\text{jumps}}$ to be highly positive (making the word vectors point in the same direction in vector space).
-   * **Minimize Similarity**: Drive the dot product $v_{\text{fox}}^T v'_{\text{lazy}}$ and $v_{\text{fox}}^T v'_{\text{the}}$ to be highly negative or zero (pushing their word vectors far apart).
+   * **Maximize Similarity**: Drive the dot product $v\_{\text{fox}}^T v'\_{\text{brown}}$ and $v\_{\text{fox}}^T v'\_{\text{jumps}}$ to be highly positive (making the word vectors point in the same direction in vector space).
+   * **Minimize Similarity**: Drive the dot product $v\_{\text{fox}}^T v'\_{\text{lazy}}$ and $v\_{\text{fox}}^T v'\_{\text{the}}$ to be highly negative or zero (pushing their word vectors far apart).
 
 ---
 
@@ -995,12 +995,12 @@ Consider how self-attention resolves the contextual meaning of the homonym word 
    When processing the token `"bank"`, the model projects its input embedding into a query vector $Q_{\text{bank}}$. Every other word in the sequence is projected into key vectors $K_{\text{river}}$, $K_{\text{deposited}}$, $K_{\text{money}}$, etc.
 
 2. **Computing Attention Scores**:
-   * In **Sentence 1**, taking the dot products $Q_{\text{bank}} K_{\text{river}}^T$ and $Q_{\text{bank}} K_{\text{muddy}}^T$ yields high values because the model has learned that "bank" frequently associates with "river" and "muddy" in geographic contexts.
-   * In **Sentence 2**, the dot products $Q_{\text{bank}} K_{\text{money}}^T$ and $Q_{\text{bank}} K_{\text{deposited}}^T$ yield high values due to their financial co-occurrences.
+   * In **Sentence 1**, taking the dot products $Q\_{\text{bank}} K\_{\text{river}}^T$ and $Q\_{\text{bank}} K\_{\text{muddy}}^T$ yields high values because the model has learned that "bank" frequently associates with "river" and "muddy" in geographic contexts.
+   * In **Sentence 2**, the dot products $Q\_{\text{bank}} K\_{\text{money}}^T$ and $Q\_{\text{bank}} K\_{\text{deposited}}^T$ yield high values due to their financial co-occurrences.
 
 3. **Softmax Output & Weighted Representation**:
-   * After applying softmax, the attention weights in **Sentence 1** will be high for `"river"` and `"muddy"`. The resulting representation for `"bank"` is calculated as a weighted sum of value vectors, heavily incorporating $V_{\text{river}}$ and $V_{\text{muddy}}$. This mathematically shifts the embedding of `"bank"` toward a geographic context.
-   * In **Sentence 2**, the representation for `"bank"` incorporates $V_{\text{money}}$ and $V_{\text{deposited}}$, shifting the context of the token toward a financial institution.
+   * After applying softmax, the attention weights in **Sentence 1** will be high for `"river"` and `"muddy"`. The resulting representation for `"bank"` is calculated as a weighted sum of value vectors, heavily incorporating $V\_{\text{river}}$ and $V\_{\text{muddy}}$. This mathematically shifts the embedding of `"bank"` toward a geographic context.
+   * In **Sentence 2**, the representation for `"bank"` incorporates $V\_{\text{money}}$ and $V\_{\text{deposited}}$, shifting the context of the token toward a financial institution.
 
 #### Multi-Head Attention (MHA)
 Rather than computing attention once, we split $Q, K, V$ into $H$ heads, compute attention on each head in parallel, concatenate the outputs, and project back using an output matrix $W^O$. This allows the model to attend to information from different representation subspaces simultaneously.
