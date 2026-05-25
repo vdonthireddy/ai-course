@@ -1020,13 +1020,17 @@ $$\text{FeedForward}(x) = \max(0, x W_1 + b_1) W_2 + b_2$$
 ### 9.4 The Decoder: Causal Masking & Cross-Attention
 The Transformer Decoder generates target tokens autoregressively. It features two special attention layers:
 
-1. **Causal Masked Self-Attention**: To prevent the model from looking at future target tokens during training, we add a causal mask matrix $M$ to the dot-product attention scores before softmax:
+**1. Causal Masked Self-Attention**
+To prevent the model from looking at future target tokens during training, we add a causal mask matrix $M$ to the dot-product attention scores before softmax:
 
-   $$M_{i, j} = \begin{cases} 0 & \text{if } j \le i \\ -\infty & \text{if } j > i \end{cases}$$
+$$M_{i, j} = \begin{cases} 0 & \text{if } j \le i \\ -\infty & \text{if } j > i \end{cases}$$
 
-   $$\text{Attention}_{masked}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}} + M\right)V$$
+$$\text{Attention}_{masked}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}} + M\right)V$$
 
-   When softmax is applied, the $-\infty$ values become exactly 0, preventing attention to future positions.
+When softmax is applied, the $-\infty$ values become exactly 0, preventing attention to future positions.
+
+**2. Encoder-Decoder Cross-Attention**
+The Queries ($Q$) come from the decoder's masked self-attention representation, whereas the Keys ($K$) and Values ($V$) come from the encoder's final output representations. This maps target words directly back to the source words.
 
 #### Concrete Example of Causal Masking:
 Suppose we are training a decoder on a 3-token target sequence: `["I", "love", "AI"]`.
