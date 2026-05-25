@@ -189,17 +189,16 @@ Machine learning is broadly categorized into four paradigms based on the presenc
 
 ```mermaid
 flowchart TD
-    subgraph Paradigms [Learning Paradigms]
-        direction LR
-        A["Supervised Learning<br/>(Labeled instances guide model)<br/>e.g., Spam Filtering"]
-        B["Unsupervised Learning<br/>(Discovers structure automatically)<br/>e.g., Customer Clustering"]
-        C["Semi-Supervised Learning<br/>(Blends labeled & unlabeled data)<br/>e.g., Medical Image Labeling"]
-        D["Reinforcement Learning<br/>(Policy optimization via rewards)<br/>e.g., Autonomous Driving / Chess AI"]
-    end
-    style A fill:#4F46E5,stroke:#312E81,stroke-width:1px,color:#FFF
-    style B fill:#0EA5E9,stroke:#0369A1,stroke-width:1px,color:#FFF
-    style C fill:#10B981,stroke:#047857,stroke-width:1px,color:#FFF
-    style D fill:#F59E0B,stroke:#B45309,stroke-width:1px,color:#FFF
+    P[Learning Paradigms] --> A["Supervised Learning<br/>(Labeled instances guide model)<br/>e.g., Spam Filtering"]
+    P --> B["Unsupervised Learning<br/>(Discovers structure automatically)<br/>e.g., Customer Clustering"]
+    P --> C["Semi-Supervised Learning<br/>(Blends labeled & unlabeled data)<br/>e.g., Medical Image Labeling"]
+    P --> D["Reinforcement Learning<br/>(Policy optimization via rewards)<br/>e.g., Autonomous Driving / Chess AI"]
+
+    style P fill:#4F46E5,stroke:#312E81,stroke-width:2px,color:#FFF
+    style A fill:#0EA5E9,stroke:#0369A1,stroke-width:1px,color:#FFF
+    style B fill:#10B981,stroke:#047857,stroke-width:1px,color:#FFF
+    style C fill:#F59E0B,stroke:#B45309,stroke-width:1px,color:#FFF
+    style D fill:#EF4444,stroke:#B91C1C,stroke-width:1px,color:#FFF
 ```
 
 ### 2.2 Case Study: Where do Large Language Models (LLMs) fit?
