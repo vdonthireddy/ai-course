@@ -29,6 +29,26 @@ graph TD
 
 ---
 
+## Runnable Code Examples
+
+This course features a folder of runnable, self-contained Python scripts for each core concept. You can run them in your terminal using:
+```bash
+python3 examples/<script_name>.py
+```
+
+| Lesson / Topic | Concept | Python Example Link |
+| :--- | :--- | :--- |
+| **Module 3: Regression** | House Value per Sq Ft | [1_regression_housing.py](file:///Users/donthireddy/code/ai-course/examples/1_regression_housing.py) |
+| **Module 4: Classification** | Student Exam Pass/Fail | [2_classification_exam.py](file:///Users/donthireddy/code/ai-course/examples/2_classification_exam.py) |
+| **Module 4: KNN** | Credit Card Offer Acceptance | [3_knn_classification.py](file:///Users/donthireddy/code/ai-course/examples/3_knn_classification.py) |
+| **Module 4: Decision Trees** | Customer Churn tree rules & Random Forest | [4_decision_tree_rf.py](file:///Users/donthireddy/code/ai-course/examples/4_decision_tree_rf.py) |
+| **Module 5: Ensemble** | Loan Default risk forecasting with XGBoost | [5_xgboost_ensemble.py](file:///Users/donthireddy/code/ai-course/examples/5_xgboost_ensemble.py) |
+| **Module 6: K-Means** | Customer Income & Spend Segmentation | [6_kmeans_clustering.py](file:///Users/donthireddy/code/ai-course/examples/6_kmeans_clustering.py) |
+| **Module 6: DBSCAN** | Density Coordinate Point Classification | [7_dbscan_clustering.py](file:///Users/donthireddy/code/ai-course/examples/7_dbscan_clustering.py) |
+| **Module 7: Evaluation** | MAE/MSE/RMSE, Confusion Matrix, Precision/Recall | [8_model_evaluation.py](file:///Users/donthireddy/code/ai-course/examples/8_model_evaluation.py) |
+
+---
+
 ## Module 1: Introduction to Machine Learning
 
 ### 1.1 What is Machine Learning?
