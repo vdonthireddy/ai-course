@@ -180,6 +180,16 @@ Adds the sum of absolute weights as a penalty:
 $$J_{\text{Lasso}}(\theta) = J(\theta) + \lambda \sum_{j=1}^{n} |\theta_j|$$
 * **Effect**: Drives less important feature weights to exactly zero. Useful for **feature selection**.
 
+#### Conceptual Example: The "Biased Word" in Spam Detection
+Suppose we are training a model to predict the probability that an email is spam, using features $x_j$ representing the frequency of specific words (e.g., $x_1 = \text{"win"}$, $x_2 = \text{"free"}$, $x_3 = \text{"hello"}$).
+
+* **The Problem (Overfitting & High Variance)**:
+  In a small training dataset of 20 emails, the word **"win"** only appears in spam messages. An unregularized model (OLS) will assign an excessively high, biased positive weight to "win" (e.g., $\theta_{\text{win}} = +15.0$). Later, if a user receives a legitimate email like *"Did our team win the game?"*, the model will incorrectly flag it as spam because of this massive weight.
+* **How Ridge ($L_2$) Solves It**:
+  Ridge penalizes squared weights. A weight of $+15.0$ contributes a massive penalty ($15^2 = 225.0$). Ridge forces this weight to shrink drastically (e.g., to $\theta_{\text{win}} = +1.2$). "Win" remains a positive spam indicator but is no longer large enough to override standard vocabulary.
+* **How Lasso ($L_1$) Solves It**:
+  Lasso penalizes absolute weights. It identifies that common words like "hello" ($\theta_{\text{hello}} = +0.1$) add noise but have almost zero actual predictive capability. Lasso drives their weights to **exactly zero** ($\theta_{\text{hello}} = 0$), performing feature selection and removing noise features completely from the equation.
+
 ### 3.3 Python Implementation
 ```python
 import numpy as np
