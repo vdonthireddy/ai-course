@@ -1,31 +1,27 @@
-# Walkthrough: Comprehensive Deep Learning Guide & Diagram Integration
+# Walkthrough: Developer Guides & Diagram Integrations
 
-This walkthrough documents the creation of the Deep Learning foundations guide and the integration of five high-resolution, custom-generated, dark-themed technical diagrams.
-
----
-
-## Technical Outcomes
-
-### 1. Mathematical and Architectural Guide
-Created a comprehensive educational guide [deep_learning_guide.md](file:///Users/donthireddy/code/ai-course/deep_learning_guide.md) that covers:
-- **Artificial Neuron (Perceptron)**
-- **Activation Functions** (Sigmoid, Tanh, ReLU, Leaky ReLU, Softmax comparative equations, ranges, derivatives, and trade-offs)
-- **Deep Neural Networks (ANN/DNN)**
-- **Backpropagation** (Chain rule math and a step-by-step numerical trace example)
-- **Convolutional Neural Networks (CNN)** (Convolution math, pooling, FC outputs)
-- **Transformer Architecture** (Self-attention, Multi-head attention, Positional encoding, Causal masking)
-
-### 2. High-Quality Technical Diagrams
-Generated 5 clean, developer-style dark mode diagrams and saved them under the `plots/` directory, replacing original text/ASCII placeholders:
-- 🖼️ **[perceptron_diagram.png](file:///Users/donthireddy/code/ai-course/plots/perceptron_diagram.png)**: Shows inputs, weight lines, summation node, bias, activation, and outputs.
-- 🖼️ **[dnn_architecture.png](file:///Users/donthireddy/code/ai-course/plots/dnn_architecture.png)**: Visualizes a fully connected feedforward MLP network layer structure.
-- 🖼️ **[backpropagation_diagram.png](file:///Users/donthireddy/code/ai-course/plots/backpropagation_diagram.png)**: Highlights the forward pass (flowing right) vs. the backward pass (flowing left).
-- 🖼️ **[cnn_architecture.png](file:///Users/donthireddy/code/ai-course/plots/cnn_architecture.png)**: Flows from input RGB image, through convolution filter blocks, max pooling, flattening, to fully connected classification outputs.
-- 🖼️ **[transformer_architecture.png](file:///Users/donthireddy/code/ai-course/plots/transformer_architecture.png)**: Maps the complete Encoder-Decoder architecture block inputs, self-attention keys/queries/values, and causal masking.
+This walkthrough documents the creation and integration of two comprehensive developer guides along with high-resolution, dark-themed technical diagrams.
 
 ---
 
-## Verification & Synchronization
+## Guide 1: Deep Learning Foundations
+Created **[deep_learning_guide.md](file:///Users/donthireddy/code/ai-course/deep_learning_guide.md)** detailing the math, parameters, and layout steps of neural network architectures, with five custom-generated dark-themed diagrams:
+- **Artificial Neuron**: [plots/perceptron_diagram.png](file:///Users/donthireddy/code/ai-course/plots/perceptron_diagram.png)
+- **Deep Neural Network**: [plots/dnn_architecture.png](file:///Users/donthireddy/code/ai-course/plots/dnn_architecture.png)
+- **Backpropagation Flow**: [plots/backpropagation_diagram.png](file:///Users/donthireddy/code/ai-course/plots/backpropagation_diagram.png)
+- **CNN Architecture**: [plots/cnn_architecture.png](file:///Users/donthireddy/code/ai-course/plots/cnn_architecture.png)
+- **Transformer Network**: [plots/transformer_architecture.png](file:///Users/donthireddy/code/ai-course/plots/transformer_architecture.png)
 
-- **Execution Check**: All diagrams successfully loaded and tested inside markdown previews.
-- **Git Sync**: All new image assets, modified markdown guides, and walkthrough updates are committed and pushed to git remote (Commit: `ccae560` and subsequent updates).
+---
+
+## Guide 2: Agentic AI Developer Guide
+Created **[agentic_ai_developer_guide.md](file:///Users/donthireddy/code/ai-course/agentic_ai_developer_guide.md)** based on the Python sandbox codebase in `/Users/donthireddy/code/agentic/`. It explains agents, skills, tools, function calling handshakes, schemas, and the Model Context Protocol (MCP), with three custom-generated dark-themed diagrams:
+- **Core Architecture Concepts**: [plots/agentic_concepts_diagram.png](file:///Users/donthireddy/code/ai-course/plots/agentic_concepts_diagram.png)
+- **Function Calling Reasoning Loop**: [plots/agentic_loop_sequence.png](file:///Users/donthireddy/code/ai-course/plots/agentic_loop_sequence.png)
+- **Model Context Protocol (MCP)**: [plots/mcp_architecture_diagram.png](file:///Users/donthireddy/code/ai-course/plots/mcp_architecture_diagram.png)
+
+---
+
+## Synchronization
+
+All generated plots, updated guide files, task lists, and walkthrough logs are pushed to `main` branch.
