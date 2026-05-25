@@ -1144,139 +1144,400 @@ We have created five pure Python scripts inside the `llm/` directory showing how
 
 ## Appendix: Glossary of Key Terminologies
 
-To help students quickly grasp machine learning jargon, here is a consolidated list of key terms with examples and illustrative diagrams:
+To help students quickly grasp machine learning jargon, here is a consolidated list of key terms with comprehensive mathematical foundations, step-by-step examples, and high-resolution dark-mode diagrams:
+
+---
 
 ### 1. Centroid
-* **Definition**: The geometric center of a cluster, calculated as the arithmetic mean (average) of all coordinate vectors of the data points in that cluster. Used heavily in K-Means.
-* **Example**: For three 2D points in a cluster: $P_1(1, 5)$, $P_2(2, 4)$, and $P_3(3, 1)$.
+* **Mathematical Definition**: The geometric center of a cluster of data points. For a cluster $S = \{\mathbf{x}^{(1)}, \mathbf{x}^{(2)}, \dots, \mathbf{x}^{(N)}\}$ containing $N$ samples in $D$-dimensional space (where each $\mathbf{x}^{(i)} \in \mathbb{R}^D$), the centroid vector $\mathbf{\mu}$ is the arithmetic mean of all point vectors:
 
-  $$\text{Centroid } C = \left( \frac{1+2+3}{3}, \frac{5+4+1}{3} \right) = (2, 3.33)$$
+  $$\mathbf{\mu} = \frac{1}{N} \sum_{i=1}^N \mathbf{x}^{(i)}$$
 
-* **Diagram**:
-```
-     y-axis
-     ^   * P1(1, 5)
-     |          * P2(2, 4)
-     |       C (2, 3.33)  <-- Centroid (mean coordinate)
-     |   * P3(3, 1)
-     +---------------------------> x-axis
-```
+* **Step-by-Step Example**:
+  Consider a cluster $S$ containing four 3D data points:
+  1. $\mathbf{x}^{(1)} = [2.0, 3.0, 5.0]$
+  2. $\mathbf{x}^{(2)} = [4.0, 6.0, 8.0]$
+  3. $\mathbf{x}^{(3)} = [1.0, 2.0, 3.0]$
+  4. $\mathbf{x}^{(4)} = [5.0, 9.0, 12.0]$
+  
+  We calculate the arithmetic mean independently along each of the three dimensions:
+  * **Dimension 1 ($x$)**: $\frac{2.0 + 4.0 + 1.0 + 5.0}{4} = \frac{12.0}{4} = 3.0$
+  * **Dimension 2 ($y$)**: $\frac{3.0 + 6.0 + 2.0 + 9.0}{4} = \frac{20.0}{4} = 5.0$
+  * **Dimension 3 ($z$)**: $\frac{5.0 + 8.0 + 3.0 + 12.0}{4} = \frac{28.0}{4} = 7.0$
+  
+  The calculated Centroid is:
+  
+  $$\mathbf{\mu} = [3.0, 5.0, 7.0]$$
+
+* **Visual Demonstration**: Refer to the top-left panel of `plots/glossary_math_concepts.png` to see how the centroid acts as the geometric gravity center of clustered coordinates.
+
+  ![Centroid, SVM Hyperplane & Residuals](plots/glossary_math_concepts.png)
 
 ---
 
 ### 2. Hyperplane, Margin, & Support Vectors (SVM Concepts)
-* **Definitions**:
-  * **Hyperplane**: A decision boundary that splits space into regions representing different classes (e.g., a line in 2D space, a flat plane in 3D, and a high-dimensional surface in 4D or higher).
-  * **Margin**: The distance between the decision boundary (hyperplane) and the closest training points from either class. Maximizing this margin is the core objective of SVMs.
-  * **Support Vectors**: The critical data points that lie closest to the decision boundary. Changing or removing these points would alter the position of the boundary.
-* **Diagram**:
-```
-      Class A (Stars)                   Class B (Crosses)
-        *      *           |         |       x      x
-            *   [SV *] --->|         |<--- [SV x]     x
-                           |         |
-      - - - - - - - - - - -+---------+ - - - - - - - - - - - <-- Margin Boundary
-                           | Hyperplane (Optimal separating line)
-               <---------->|         |<---------->
-                  Margin                 Margin
-```
+* **Mathematical Definitions**:
+  * **Hyperplane**: An affine decision boundary of dimension $D - 1$ that separates a $D$-dimensional space into two half-spaces representing different classes. It is defined by the linear equation:
+  
+    $$\mathbf{w}^T \mathbf{x} + b = 0$$
+  
+    where $\mathbf{w}$ is a weight vector perpendicular to the hyperplane, and $b$ is the bias offset.
+  * **Margin**: The perpendicular distance between the separating hyperplane and the closest training points from either class. The geometric margin is formulated as:
+  
+    $$\text{Margin} = \frac{2}{\|\mathbf{w}\|}$$
+  
+    SVM algorithms aim to maximize this margin to reduce generalization error.
+  * **Support Vectors**: The critical training instances $\mathbf{x}^{(i)}$ that lie exactly on the boundary of the margin. They satisfy the active constraint equation:
+  
+    $$y\_i(\mathbf{w}^T \mathbf{x}^{(i)} + b) = 1$$
+  
+    where $y\_i \in \{-1, 1\}$ is the class label. Changing or removing non-support vectors does not affect the decision boundary, whereas modifying a support vector changes the hyperplane.
+* **Step-by-Step Example**:
+  Consider a 2D space where the optimal separating hyperplane is $x\_1 - x\_2 + 1 = 0$ (so $\mathbf{w} = [1, -1]^T$ and $b = 1$). We have two support vectors:
+  1. Positive class support vector ($y\_1 = +1$): $\mathbf{x}^{(1)} = [2.0, 2.0]^T$. Checking the constraint:
+  
+     $$(+1) \cdot (1(2.0) - 1(2.0) + 1) = 1 \quad \text{(Active Constraint)}$$
+  
+  2. Negative class support vector ($y\_2 = -1$): $\mathbf{x}^{(2)} = [0.0, 2.0]^T$. Checking the constraint:
+  
+     $$(-1) \cdot (1(0.0) - 1(2.0) + 1) = (-1)(-1) = 1 \quad \text{(Active Constraint)}$$
+  
+  The width of the margin is:
+  
+  $$\text{Margin} = \frac{2}{\sqrt{1^2 + (-1)^2}} = \frac{2}{\sqrt{2}} = \sqrt{2} \approx 1.414$$
+
+* **Visual Demonstration**: Refer to the top-right panel of `plots/glossary_math_concepts.png` to inspect the hyperplane, parallel margins, and highlighted support vectors.
 
 ---
 
 ### 3. Weak Learner
-* **Definition**: A simple classifier or regressor that performs only slightly better than random guessing. Boosting algorithms sequentially combine weak learners to construct a strong model.
-* **Example**: A **Decision Stump** is a decision tree with a depth of exactly 1 (it makes a decision based on only a single feature threshold split).
-* **Diagram**:
-```mermaid
-flowchart TD
-    Start[New Lead] --> Split{"Salary > $80k?"}
-    Split -- Yes --> High[Predict: Buy Product]
-    Split -- No --> Low[Predict: Do Not Buy]
-```
+* **Conceptual Definition**: A simple machine learning model that performs only slightly better than random guessing (i.e., has an error rate strictly less than $0.5$ on a binary classification task). Ensembles (like Boosting) sequentially combine many weak learners to build a strong predictive model.
+* **Mathematical Concept**:
+  In AdaBoost, a weak classifier $h\_t(\mathbf{x})$ is trained on a distribution of weights $D\_t(i)$ over the dataset. The weighted error $\epsilon\_t$ of the weak learner must satisfy:
+  
+  $$\epsilon\_t = \sum_{i=1}^N D\_t(i) \mathbb{I}(y\_i \neq h\_t(\mathbf{x}^{(i)})) < 0.5$$
+
+* **Step-by-Step Example**:
+  A **Decision Stump** (a tree of depth 1) splits a dataset on a single feature threshold.
+  Suppose we have 5 data points with labels $y = [1, 1, -1, -1, 1]$ and feature $x\_1 = [5.0, 6.0, 3.0, 2.0, 4.0]$.
+  We train a decision stump with the rule:
+  * Predict $+1$ if $x\_1 > 4.5$
+  * Predict $-1$ if $x\_1 \le 4.5$
+  
+  Applying this rule gives predictions $\hat{y} = [1, 1, -1, -1, -1]$. 
+  Comparing with true labels, the model misclassifies only the last sample (true label is $1$, predicted is $-1$).
+  With uniform sample weights $D(i) = 0.2$, the error rate is:
+  
+  $$\epsilon = 1 \cdot 0.2 = 0.2$$
+  
+  Since $0.2 < 0.5$, this decision stump is a valid weak learner.
+* **Visual Demonstration**: Refer to `plots/bagging_vs_boosting.png` to see how weak learners are chained sequentially (boosting) or trained in parallel (bagging).
+
+  ![Bagging vs Boosting](plots/bagging_vs_boosting.png)
 
 ---
 
 ### 4. Residual
-* **Definition**: The difference between the actual observed value and the value predicted by the model ($y - \hat{y}$). Boosting models focus on training subsequent trees to predict these residuals.
-* **Example**: If a house sells for $400k ($y = 400$) and a linear model predicts it will sell for $380k ($\hat{y} = 380$):
+* **Mathematical Definition**: The difference between the actual observed value $y\_i$ and the model's predicted value $\hat{y}\_i$ for a given training sample $i$:
+  
+  $$e\_i = y\_i - \hat{y}\_i$$
+  
+  In Gradient Boosting, fitting a model to residuals is mathematically equivalent to taking a step along the negative gradient of the Mean Squared Error (MSE) loss function:
+  
+  $$L = \frac{1}{2}(y\_i - \hat{y}\_i)^2 \implies -\frac{\partial L}{\partial \hat{y}\_i} = y\_i - \hat{y}\_i = e\_i$$
 
-  $$\text{Residual} = y - \hat{y} = 400 - 380 = 20$$
-
-* **Diagram**:
-```
-      y-axis (Price)
-      ^            * Actual Value (y = 400)
-      |           /|
-      |          / |  <-- Residual (Error = +20)
-      |         /  |
-      |--------/---v--- <-- Predicted Line (y_hat = 380)
-      |       /
-      |      /
-      +------------------------------> x-axis (Size)
-```
-
----
-
-### 5. Regularization ($L_1$ / $L_2$)
-* **Definition**: A technique that prevents overfitting by adding a mathematical penalty to the cost function to constrain the size of model parameters ($\theta$).
-* **Comparison**:
-  * **$L_1$ (Lasso)**: Adds $\lambda \sum |\theta_j|$ penalty. Drives coefficients to exactly zero, eliminating features (performs feature selection).
-  * **$L_2$ (Ridge)**: Adds $\lambda \sum \theta_j^2$ penalty. Shrinks coefficients close to zero but keeps them active.
+* **Step-by-Step Example**:
+  Suppose we train a baseline regression model to predict electricity bill amounts:
+  * **Sample 1**: Actual bill $y\_1 = \$150$, predicted $\hat{y}\_1 = \$135 \implies e\_1 = 150 - 135 = \$15$ (Under-prediction)
+  * **Sample 2**: Actual bill $y\_2 = \$90$, predicted $\hat{y}\_2 = \$105 \implies e\_2 = 90 - 105 = -\$15$ (Over-prediction)
+  * **Sample 3**: Actual bill $y\_3 = \$210$, predicted $\hat{y}\_3 = \$200 \implies e\_3 = 210 - 200 = \$10$ (Under-prediction)
+  
+  The residual vector is $[15, -15, 10]^T$. The next weak learner in the boosting chain is trained specifically to predict these residuals, refining the master model's sum-of-predictions.
+* **Visual Demonstration**: Refer to the bottom panel of `plots/glossary_math_concepts.png` showing the residual distances between actual points and the regression line.
 
 ---
 
-### 6. Inductive Bias
-* **Definition**: The underlying assumptions an algorithm makes about the target function to generalize from training data to unseen data.
-* **Example**: Linear Regression's inductive bias is that the relationship between features and target is strictly linear ($y = \theta X$). KNN's inductive bias is that nearby points are highly likely to share the same label.
+### 5. Regularization ($L\_1$ / $L\_2$)
+* **Mathematical Definition**: A technique used to prevent overfitting by adding a penalty term to the loss function that constrains the magnitude of the model parameters (weights $\mathbf{w}$):
+  
+  $$J(\mathbf{w}) = L(\mathbf{w}) + \lambda \Omega(\mathbf{w})$$
+  
+  where $L(\mathbf{w})$ is the standard training loss, $\lambda \ge 0$ is the regularization strength hyperparameter, and $\Omega(\mathbf{w})$ is the penalty term:
+  * **$L\_1$ Regularization (Lasso)**: Adds the sum of absolute values of weights:
+  
+    $$\Omega(\mathbf{w}) = \|\mathbf{w}\|\_1 = \sum_{j=1}^D |w\_j|$$
+  
+    It creates diamond-shaped constraints that drive non-essential feature weights to exactly zero, performing feature selection.
+  * **$L\_2$ Regularization (Ridge)**: Adds the sum of squared values of weights:
+  
+    $$\Omega(\mathbf{w}) = \frac{1}{2}\|\mathbf{w}\|\_2^2 = \frac{1}{2}\sum_{j=1}^D w\_j^2$$
+  
+    It creates spherical constraints that shrink all weights close to zero but keeps all features active.
+* **Step-by-Step Example**:
+  Suppose a linear regression model has learned two parameters $\mathbf{w} = [w\_1, w\_2]$. An unregularized loss optimizer converges at $\mathbf{w} = [10.0, 0.05]$.
+  * **Lasso ($L\_1$) Penalty**: If we set $\lambda = 5.0$, the penalty cost for keeping the tiny weight $w\_2$ active outweighs its minor contribution to reducing training loss. The optimizer sets $w\_2 = 0.0$ and shrinks $w\_1$ to $8.5$. The resulting model weight vector $[8.5, 0.0]$ is sparse.
+  * **Ridge ($L\_2$) Penalty**: If we set $\lambda = 5.0$, the penalty shrinks the weights based on their squares. The large weight $w\_1$ is shrunk aggressively (e.g., to $3.5$), while $w\_2$ is shrunk to a tiny non-zero value (e.g., $0.01$), yielding $[3.5, 0.01]$.
+* **Visual Demonstration**: Refer to the right panel of `plots/glossary_normalization_regularization.png` to examine the geometry of L1 (diamond) and L2 (circle) constraint boundaries.
+
+  ![Normalization and Regularization](plots/glossary_normalization_regularization.png)
 
 ---
 
-### 7. Lazy Learning
-* **Definition**: Algorithms that do not construct a generalized model during the training phase (which is fast), but instead defer computations until a query is made (which is slow).
-* **Example**: **K-Nearest Neighbors (KNN)** is a lazy learner. Training simply stores the raw points. Prediction computes distances to all stored points, making prediction computationally expensive for large datasets.
+### 6. Normalization
+* **Mathematical Definition**: The process of scaling numerical feature vectors to a standard scale. This prevents features with large magnitudes (e.g., salary) from dominating features with small magnitudes (e.g., age) in distance-based calculations or gradient steps.
+  * **Min-Max Scaling**: Rescales the values to a fixed range, typically $[0, 1]$:
+  
+    $$x\_{\text{norm}} = \frac{x - x\_{\text{min}}}{x\_{\text{max}} - x\_{\text{min}}}$$
+  
+  * **Standardization (Z-Score Normalization)**: Centers the feature distribution around a mean ($\mu$) of $0$ with a standard deviation ($\sigma$) of $1$:
+  
+    $$x\_{\text{std}} = \frac{x - \mu}{\sigma}$$
+
+* **Step-by-Step Example**:
+  Suppose we have a feature representing house sizes (in sq ft): $X = [1000, 1500, 2000, 2500]$.
+  * **Min-Max Scaling**:
+    * $x\_{\text{min}} = 1000$, $x\_{\text{max}} = 2500$
+    * For $x = 1000$: $x\_{\text{norm}} = \frac{1000 - 1000}{2500 - 1000} = 0.0$
+    * For $x = 1500$: $x\_{\text{norm}} = \frac{1500 - 1000}{1500} = 0.333$
+    * For $x = 2000$: $x\_{\text{norm}} = \frac{2000 - 1000}{1500} = 0.667$
+    * For $x = 2500$: $x\_{\text{norm}} = \frac{2500 - 1000}{1500} = 1.0$
+    
+    The normalized feature values are $[0.0, 0.333, 0.667, 1.0]$.
+  * **Standardization**:
+    * Mean $\mu = \frac{1000 + 1500 + 2000 + 2500}{4} = 1750$
+    * Variance $\sigma^2 = \frac{(1000-1750)^2 + (1500-1750)^2 + (2000-1750)^2 + (2500-1750)^2}{4} = 312500 \implies \sigma \approx 559.02$
+    * For $x = 1000$: $x\_{\text{std}} = \frac{1000 - 1750}{559.02} = -1.34$
+    * For $x = 2500$: $x\_{\text{std}} = \frac{2500 - 1750}{559.02} = 1.34$
+    
+    The standardized feature values are $[-1.34, -0.45, 0.45, 1.34]$.
+* **Visual Demonstration**: Refer to the left panel of `plots/glossary_normalization_regularization.png` to view the original raw distribution vs. the scaled Min-Max and Standardized outputs.
 
 ---
 
-### 8. Bootstrapping & Feature Subspacing (Ensemble Concepts)
-* **Definitions**:
-  * **Bootstrapping**: A statistical sampling technique that generates new datasets by drawing samples from the original dataset with replacement. Used in Bagging (e.g., Random Forests).
-  * **Feature Subspacing**: A technique where only a random subset of features is considered at each split in a decision tree. This helps decorrelate individual trees in a Random Forest.
+### 7. Inductive Bias
+* **Conceptual Definition**: The set of assumptions an algorithm makes to predict outputs for unseen query inputs. Without inductive bias, a model could only memorize training facts and would fail to generalize.
+* **Examples of Algorithmic Bias**:
+  * **Linear Regression**: Assumes the true target relationship is a linear combination of features ($y = \mathbf{w}^T \mathbf{x} + b$).
+  * **K-Nearest Neighbors**: Assumes locality—data points close to each other in feature space are highly likely to share the same target value.
+  * **Convolutional Neural Networks (CNNs)**: Assume translation invariance (an object is the same regardless of its position in the image) and spatial locality.
+* **Step-by-Step Example**:
+  Imagine we are given three training points: $(1.0, 2.0)$, $(2.0, 4.0)$, $(3.0, 6.0)$. We query the prediction for a new input $x = 4.0$.
+  * **Eager Linear Model**: Due to its linear inductive bias, it infers the underlying target function is $y = 2x$, and outputs $y = 8.0$.
+  * **Nearest Neighbor Model**: Due to its locality bias, it finds the nearest coordinate $x = 3.0$ (associated with $y=6.0$) and outputs $y = 6.0$.
+  * **A Model with Zero Inductive Bias** (e.g. a literal database lookup table): Simply fails to predict anything or outputs an error because $x=4.0$ was not present in the training set.
+* **Visual Demonstration**: Refer to the top-right panel of `plots/glossary_gradient_bias_lazy.png` to see how linear and local inductive bias assumptions shape decision boundaries.
+
+  ![Gradient, Inductive Bias & Lazy Learning](plots/glossary_gradient_bias_lazy.png)
 
 ---
 
-### 9. Gradient
-* **Definition**: The vector of partial derivatives representing the direction of steepest ascent of a function. In optimization, we move in the opposite direction (gradient descent) to minimize the loss.
-* **Analogy**: Imagine being blindfolded on a foggy hill. To find the valley (minimum loss), you feel the slope of the ground with your foot and take a step in the direction that slopes downward (negative gradient).
+### 8. Lazy Learning
+* **Conceptual Definition**: A class of learning algorithms that defer the training/generalization phase until a prediction query is made. Eager learners (like Neural Networks or Decision Trees) train offline to build an input-independent formula and discard raw data. Lazy learners perform zero offline generalization, instead storing the entire dataset in memory.
+  * **Training Time Complexity**: $O(1)$ (raw data ingestion).
+  * **Prediction Time Complexity**: $O(N \cdot D)$ where $N$ is the number of samples and $D$ is the dimension. This makes inference computationally expensive for large datasets.
+* **Step-by-Step Example**:
+  Consider a 1-Nearest Neighbor classifier with a stored training set of 3 points:
+  * $A = (1.0, 1.0)$ [Class: Red]
+  * $B = (2.0, 2.0)$ [Class: Blue]
+  * $C = (5.0, 5.0)$ [Class: Red]
+  
+  When a query point $Q = (1.5, 1.2)$ is input:
+  1. **Lazy Step 1**: Compute Euclidean distances from $Q$ to all points:
+     * $d(Q, A) = \sqrt{(1.5-1)^2 + (1.2-1)^2} = \sqrt{0.25 + 0.04} \approx 0.54$
+     * $d(Q, B) = \sqrt{(1.5-2)^2 + (1.2-2)^2} = \sqrt{0.25 + 0.64} \approx 0.94$
+     * $d(Q, C) = \sqrt{(1.5-5)^2 + (1.2-5)^2} = \sqrt{12.25 + 14.44} \approx 5.17$
+  2. **Lazy Step 2**: Identify the shortest distance: point $A$ ($0.54$).
+  3. **Lazy Step 3**: Output class of $A$: Red.
+* **Visual Demonstration**: Refer to the bottom panel of `plots/glossary_gradient_bias_lazy.png` showing how query coordinates evaluate distances against stored data coordinates on the fly.
 
 ---
 
-### 10. Token
-* **Definition**: The basic atomic unit of text that a language model processes. Depending on the tokenizer, a token can represent a single character, a subword (like BPE), or a full word.
-* **Example**: Under a BPE tokenizer, the word "learning" might be split into two tokens: `["learn", "ing"]`.
+### 9. Bootstrapping & Feature Subspacing (Ensemble Concepts)
+* **Conceptual Definitions**:
+  * **Bootstrapping**: A sampling method that generates $B$ new datasets from an original dataset of size $N$ by drawing $N$ samples uniformly *with replacement*. 
+    Mathematically, the probability of a specific sample *not* being chosen in a bootstrap sample of size $N$ is:
+  
+    $$\lim_{N \to \infty} \left(1 - \frac{1}{N}\right)^N = \frac{1}{e} \approx 0.368$$
+  
+    This means each bootstrap sample contains roughly $63.2\%$ of the original unique samples, while the remaining $36.8\%$ form the Out-of-Bag (OOB) validation set.
+  * **Feature Subspacing**: A method where only a random subset of $m$ features (typically $m = \sqrt{D}$ for classification, where $D$ is the total features) is made available at each node split in a decision tree. This forces individual trees to split on different variables, decorrelating their errors and reducing the ensemble's overall variance.
+* **Step-by-Step Example**:
+  Let our training set be $D = [A, B, C, D]$ with features $F = [f\_1, f\_2, f\_3, f\_4]$.
+  * **Bootstrap Sampling**: We draw a sample 4 times with replacement:
+    1. Draw 1: $B$
+    2. Draw 2: $D$
+    3. Draw 3: $B$ (duplicate)
+    4. Draw 4: $A$
+    
+    The resulting bootstrap dataset is $D^* = [B, D, B, A]$. Point $C$ was never chosen and is designated as an Out-of-Bag sample.
+  * **Feature Subspace Selection**: At the root node of tree $T\_1$, we randomly select $\sqrt{4} = 2$ features: e.g., $F_{\text{sub}} = [f\_2, f\_4]$. The node can only evaluate splitting criteria on $f\_2$ and $f\_4$. At the root node of tree $T\_2$, the subset might be $F_{\text{sub}} = [f\_1, f\_3]$.
+* **Visual Demonstration**: Refer to `plots/bagging_vs_boosting.png` which shows how independent parallel models use bootstrap samples and randomized feature splits.
 
 ---
 
-### 11. Self-Attention
-* **Definition**: A mechanism that allows an algorithm to weigh the importance of different tokens in the same sequence when constructing a representation for any given token.
-* **Example**: In the sentence "The animal didn't cross the street because **it** was too tired", a self-attention layer learns to connect the query token "**it**" with high attention weights to "**animal**" rather than "street".
+### 10. Gradient
+* **Mathematical Definition**: The vector of partial derivatives of a scalar function $f(\mathbf{w})$ with respect to its input weight variables $\mathbf{w} = [w\_1, w\_2, \dots, w\_D]^T$:
+  
+  $$\nabla f(\mathbf{w}) = \left[ \frac{\partial f}{\partial w\_1}, \frac{\partial f}{\partial w\_2}, \dots, \frac{\partial f}{\partial w\_D} \right]^T$$
+  
+  The gradient points in the direction of the steepest rate of increase of the function. In optimization, we update weights in the opposite direction (gradient descent) to find the local minimum of a loss function:
+  
+  $$\mathbf{w}\_{t+1} = \mathbf{w}\_t - \eta \nabla f(\mathbf{w}\_t)$$
+  
+  where $\eta > 0$ is the learning rate.
+* **Step-by-Step Example**:
+  Let our objective loss function be $f(w\_1, w\_2) = w\_1^2 + 3w\_2^2$.
+  1. The gradient vector formula is:
+  
+     $$\nabla f(w\_1, w\_2) = [2w\_1, 6w\_2]^T$$
+  
+  2. Suppose our current weights are $\mathbf{w}\_t = [4.0, 1.0]^T$, and the learning rate is $\eta = 0.1$.
+  3. Evaluate the gradient at $\mathbf{w}\_t$:
+  
+     $$\nabla f(4.0, 1.0) = [2(4.0), 6(1.0)]^T = [8.0, 6.0]^T$$
+  
+  4. Perform the update:
+  
+     $$\mathbf{w}\_{t+1} = \begin{bmatrix} 4.0 \\ 1.0 \end{bmatrix} - 0.1 \begin{bmatrix} 8.0 \\ 6.0 \end{bmatrix} = \begin{bmatrix} 4.0 - 0.8 \\ 1.0 - 0.6 \end{bmatrix} = \begin{bmatrix} 3.2 \\ 0.4 \end{bmatrix}$$
+  
+  Our loss decreases from $f(4.0, 1.0) = 19.0$ to $f(3.2, 0.4) = (3.2)^2 + 3(0.4)^2 = 10.24 + 0.48 = 10.72$.
+* **Visual Demonstration**: Refer to the top-left panel of `plots/glossary_gradient_bias_lazy.png` to see how the gradient vector guides a point down a 3D loss valley.
 
 ---
 
-### 12. Causal Mask
-* **Definition**: A lower-triangular binary matrix used in Decoder Self-Attention layers that forces the model to attend only to current and past tokens, zeroing out attention scores for future positions.
-* **Example**: When predicting the 3rd word in a sentence, the causal mask ensures the attention mechanism has mathematically zero access to the 4th, 5th, or subsequent tokens.
+### 11. Token
+* **Conceptual Definition**: The basic atomic unit of text that a language model processes. Tokenizers translate strings of text into a sequence of integer token IDs mapping to a fixed vocabulary.
+  * **Word-level**: Every distinct word gets its own ID.
+  * **Character-level**: Every unique character (e.g., 'a', 'b', '!') is an ID.
+  * **Subword-level (e.g. Byte Pair Encoding)**: Text is broken into frequent subwords (e.g. "pre", "ing"), allowing the model to handle unseen words by breaking them down.
+* **Step-by-Step Example**:
+  Suppose a BPE tokenizer has the vocabulary: `{"h": 0, "e": 1, "l": 2, "o": 3, "lo": 4, "hel": 5}`.
+  We want to tokenize the word `"hello"`.
+  1. The string is split into individual characters: `['h', 'e', 'l', 'l', 'o']`
+  2. BPE merges the most frequent pairs in the vocabulary:
+     * Merge `"h"`, `"e"`, `"l"` to form `"hel"` $\to$ `["hel", "l", "o"]`
+     * Merge `"l"` and `"o"` to form `"lo"` $\to$ `["hel", "lo"]`
+  3. Lookup IDs: `"hel"` maps to ID `5`, `"lo"` maps to ID `4`.
+  
+  The token output sequence is `[5, 4]`.
+* **Visual Demonstration**: Refer to the top panel of `plots/glossary_llm_concepts.png` showing subword splits and vocabulary index matching.
+
+  ![LLM Glossary Concepts](plots/glossary_llm_concepts.png)
 
 ---
 
-### 13. Autoregressive Decoding
-* **Definition**: A text generation strategy where the model generates output sequences word-by-word (or token-by-token). The token output from the previous step is appended to the input sequence and fed back into the model to predict the next token.
-* **Example**: Generating "the", then feeding "the" to get "machine", then feeding "the machine" to get "learning".
+### 12. Self-Attention
+* **Mathematical Definition**: An attention mechanism relating different positions of a single sequence to compute a representation of the sequence. Given input embeddings $\mathbf{X}$, we project them into Query ($\mathbf{Q}$), Key ($\mathbf{K}$), and Value ($\mathbf{V}$) matrices using learned weights:
+  
+  $$\mathbf{Q} = \mathbf{X}\mathbf{W}\_Q, \quad \mathbf{K} = \mathbf{X}\mathbf{W}\_K, \quad \mathbf{V} = \mathbf{X}\mathbf{W}\_V$$
+  
+  The output representation is calculated using the scaled dot-product:
+  
+  $$\text{Attention}(\mathbf{Q}, \mathbf{K}, \mathbf{V}) = \text{Softmax}\left(\frac{\mathbf{Q}\mathbf{K}^T}{\sqrt{d\_k}}\right)\mathbf{V}$$
+  
+  where $d\_k$ is the dimensionality of the keys, serving as a scaling factor to keep softmax gradients stable.
+* **Step-by-Step Example**:
+  Consider self-attention for 2 tokens with queries, keys, and values:
+  
+  $$\mathbf{Q} = \begin{bmatrix} 1.0 & 0.0 \\ 0.0 & 1.0 \end{bmatrix}, \quad \mathbf{K} = \begin{bmatrix} 1.0 & 1.0 \\ 0.0 & 1.0 \end{bmatrix}, \quad \mathbf{V} = \begin{bmatrix} 10.0 & 20.0 \\ 30.0 & 40.0 \end{bmatrix}$$
+  
+  Let $d\_k = 2 \implies \sqrt{d\_k} \approx 1.414$.
+  1. Compute similarity matrix $\mathbf{Q}\mathbf{K}^T$:
+  
+     $$\mathbf{A}_{\text{raw}} = \begin{bmatrix} 1.0 & 0.0 \\ 0.0 & 1.0 \end{bmatrix} \begin{bmatrix} 1.0 & 0.0 \\ 1.0 & 1.0 \end{bmatrix} = \begin{bmatrix} 1.0 & 0.0 \\ 1.0 & 1.0 \end{bmatrix}$$
+  
+  2. Scale by $\sqrt{d\_k}$:
+  
+     $$\mathbf{A}_{\text{scaled}} = \begin{bmatrix} 0.707 & 0.0 \\ 0.707 & 0.707 \end{bmatrix}$$
+  
+  3. Apply Softmax row-wise:
+     * **Row 1**: $\text{Softmax}([0.707, 0.0]) = [0.67, 0.33]$
+     * **Row 2**: $\text{Softmax}([0.707, 0.707]) = [0.5, 0.5]$
+  4. Compute weighted value sum $\mathbf{A}_{\text{softmax}} \mathbf{V}$:
+  
+     $$\text{Output} = \begin{bmatrix} 0.67 & 0.33 \\ 0.5 & 0.5 \end{bmatrix} \begin{bmatrix} 10.0 & 20.0 \\ 30.0 & 40.0 \end{bmatrix} = \begin{bmatrix} 16.6 & 26.6 \\ 20.0 & 30.0 \end{bmatrix}$$
+
+* **Visual Demonstration**: Refer to the middle-left panel of `plots/glossary_llm_concepts.png` showing how queries map to key alignments to aggregate values.
 
 ---
 
-### 14. Temperature
-* **Definition**: A scaling hyperparameter applied to the model's output logit values before the softmax function to control the randomness of the predictions.
-* **Effect**: A lower temperature (< 0.5) makes predictions more deterministic and repetitive (concentrates probability on the argmax token), whereas a higher temperature (> 1.0) makes predictions more creative, random, and diverse (spreads out probability).
+### 13. Causal Mask
+* **Mathematical Definition**: A lower-triangular matrix $\mathbf{M}$ applied in decoder self-attention layers to prevent the model from attending to future tokens during training. It is added to similarity scores before softmax:
+  
+  $$\text{Attention}(\mathbf{Q}, \mathbf{K}, \mathbf{V}) = \text{Softmax}\left(\frac{\mathbf{Q}\mathbf{K}^T}{\sqrt{d\_k}} + \mathbf{M}\right)\mathbf{V}$$
+  
+  The mask elements are defined as:
+  
+  $$M\_{i,j} = \begin{cases} 0 & \text{if } j \le i \\ -\infty & \text{if } j > i \end{cases}$$
+  
+  Since $e^{-\infty} = 0$, this mathematically zeros out the attention weight assigned to future positions.
+* **Step-by-Step Example**:
+  Suppose a sequence has 3 tokens. The scaled similarity scores are:
+  
+  $$\mathbf{S} = \begin{bmatrix} 2.0 & 1.0 & 0.5 \\ 1.5 & 3.0 & 2.0 \\ 0.8 & 1.2 & 2.5 \end{bmatrix}$$
+  
+  1. Add causal mask $\mathbf{M} = \begin{bmatrix} 0.0 & -\infty & -\infty \\ 0.0 & 0.0 & -\infty \\ 0.0 & 0.0 & 0.0 \end{bmatrix}$ to $\mathbf{S}$:
+  
+     $$\mathbf{S} + \mathbf{M} = \begin{bmatrix} 2.0 & -\infty & -\infty \\ 1.5 & 3.0 & -\infty \\ 0.8 & 1.2 & 2.5 \end{bmatrix}$$
+  
+  2. Compute Softmax row-wise:
+     * **Row 1**: $\text{Softmax}([2.0, -\infty, -\infty]) = [1.0, 0.0, 0.0]$
+     * **Row 2**: $\text{Softmax}([1.5, 3.0, -\infty]) = [0.18, 0.82, 0.0]$
+     * **Row 3**: $\text{Softmax}([0.8, 1.2, 2.5]) = [0.12, 0.18, 0.70]$
+     
+     The model attending to position 1 has zero knowledge of positions 2 and 3.
+* **Visual Demonstration**: Refer to the middle-right panel of `plots/glossary_llm_concepts.png` showing the diagonal heatmap separating allowed and masked attention zones.
+
+---
+
+### 14. Autoregressive Decoding
+* **Conceptual Definition**: A generation loop where a model produces sequence tokens one-by-step. The output token generated at step $t$ is appended to the input sequence $\mathbf{x}\_{<t+1}$ and fed back into the model to predict the next token at step $t+1$.
+* **Mathematical Concept**:
+  The joint probability of a sequence is factorized conditionally:
+  
+  $$P(x\_1, x\_2, \dots, x\_T) = \prod_{t=1}^T P(x\_t \mid x\_{<t})$$
+
+* **Step-by-Step Example**:
+  Suppose we are generating text starting with the prompt `"Artificial"`:
+  * **Iteration 1**:
+    * Input: `["Artificial"]`
+    * Model outputs logits $\to$ Softmax gives highest probability to `"intelligence"`.
+  * **Iteration 2**:
+    * Input: `["Artificial", "intelligence"]` (the previous output is appended)
+    * Model outputs logits $\to$ highest probability is `"is"`.
+  * **Iteration 3**:
+    * Input: `["Artificial", "intelligence", "is"]`
+    * Model outputs logits $\to$ highest probability is `"transforming"`.
+  
+  This cycle continues until a special stop token (e.g. `"<EOS>"`) is predicted.
+* **Visual Demonstration**: Refer to the bottom-left panel of `plots/glossary_llm_concepts.png` to follow the loop trajectory of feedback tokens.
+
+---
+
+### 15. Temperature
+* **Mathematical Definition**: A positive scaling hyperparameter $T$ applied to raw model logit outputs $z\_i$ before the softmax function to control prediction randomness:
+  
+  $$P(x\_i) = \frac{e^{z\_i / T}}{\sum_{j} e^{z\_j / T}}$$
+  
+  * **Low Temperature ($T \to 0$)**: Amplifies differences between logits, making the distribution highly peaky and deterministic (approaching greedy argmax selection).
+  * **High Temperature ($T \to \infty$)**: Smooths out differences, making the output probability distribution approach a flat uniform distribution (maximizing entropy and variety).
+* **Step-by-Step Example**:
+  Suppose our model predicts logits for three candidate tokens: $\mathbf{z} = [4.0, 2.0, 1.0]$.
+  * **Default ($T = 1.0$)**:
+  
+    $$P = \text{Softmax}([4.0, 2.0, 1.0]) = \left[ \frac{e^4}{e^4+e^2+e^1}, \frac{e^2}{e^4+e^2+e^1}, \frac{e^1}{e^4+e^2+e^1} \right] \approx [0.84, 0.11, 0.05]$$
+  
+  * **Low Temperature ($T = 0.5$)**: Scale logits by $\frac{1}{0.5} = 2 \implies \mathbf{z}\_{\text{scaled}} = [8.0, 4.0, 2.0]$
+  
+    $$P = \text{Softmax}([8.0, 4.0, 2.0]) \approx [0.98, 0.02, 0.00]$$
+  
+    The highest-scoring token is almost guaranteed to be chosen.
+  * **High Temperature ($T = 2.0$)**: Scale logits by $\frac{1}{2.0} = 0.5 \implies \mathbf{z}\_{\text{scaled}} = [2.0, 1.0, 0.5]$
+  
+    $$P = \text{Softmax}([2.0, 1.0, 0.5]) \approx [0.62, 0.23, 0.15]$$
+  
+    The probability is distributed more evenly, giving lower-scoring words a higher chance of selection.
+* **Visual Demonstration**: Refer to the bottom-right panel of `plots/glossary_llm_concepts.png` showing probability curves flattening as $T$ increases.
 
 
 
