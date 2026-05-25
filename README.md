@@ -144,6 +144,17 @@ Where:
 The model is optimized by minimizing the **Mean Squared Error (MSE)** cost function:
 $$J(\theta) = \frac{1}{2m} \sum_{i=1}^{m} \left( h_\theta(x^{(i)}) - y^{(i)} \right)^2$$
 
+##### Parameter Breakdown:
+* **$J(\theta)$**: The **Cost (or Loss) Function** value. It measures how much the model's predictions deviate from the actual targets. The goal of training is to find the parameters $\theta$ that minimize this value.
+* **$\theta$ (Theta)**: The vector of model parameters (coefficients/weights and bias).
+* **$m$**: The total number of **training examples** (data samples) in the dataset.
+* **$\frac{1}{2m}$**: A scaling factor. The $m$ in the denominator averages the errors across all samples. The $2$ in the denominator is a mathematical convenience: during derivative calculation in gradient descent, it cancels out the exponent $2$ from the squared term, leaving a simpler derivative.
+* **$\sum_{i=1}^{m}$**: The summation symbol, instructing to compute the squared error for each training sample from $1$ to $m$ and sum them all together.
+* **$h_\theta(x^{(i)})$**: The **Hypothesis function** (predicted value $\hat{y}^{(i)}$) for the $i$-th training sample, computed using the current parameters $\theta$ and inputs $x^{(i)}$.
+* **$x^{(i)}$**: The input feature vector for the **$i$-th training example** (the superscript $(i)$ is an index, not an exponent).
+* **$y^{(i)}$**: The actual target value (ground truth label) for the **$i$-th training example**.
+* **$(h_\theta(x^{(i)}) - y^{(i)})^2$**: The **squared prediction error** for the $i$-th sample. Squaring the error ensures that negative and positive errors don't cancel each other out, and heavily penalizes larger errors.
+
 Using **Gradient Descent**, parameters are updated iteratively:
 $$\theta_j := \theta_j - \alpha \frac{\partial}{\partial \theta_j} J(\theta)$$
 
