@@ -904,7 +904,9 @@ Suppose we train BPE on a simple corpus containing only four words with their re
 * `"widest"` (freq: 3)
 
 1. **Vocabulary Initialization**:
+
    $$V = \{\text{'l'}, \text{'o'}, \text{'w'}, \text{'e'}, \text{'r'}, \text{'n'}, \text{'s'}, \text{'t'}, \text{'i'}, \text{'d'}, \text{'</w>'}\}$$
+
 
 2. **Corpus Segmentation**:
    * `"l o w </w>"` (5 times)
@@ -1029,19 +1031,21 @@ The Transformer Decoder generates target tokens autoregressively. It features tw
 #### Concrete Example of Causal Masking:
 Suppose we are training a decoder on a 3-token target sequence: `["I", "love", "AI"]`.
 
-1. **Compute raw attention scores**:
-   Calculating the dot product scores $\frac{QK^T}{\sqrt{d_k}}$ yields a $3 \times 3$ logit matrix representing matching strengths between all tokens:
-   $$\text{Logits} = \begin{pmatrix} S_{1,1} & S_{1,2} & S_{1,3} \\ S_{2,1} & S_{2,2} & S_{2,3} \\ S_{3,1} & S_{3,2} & S_{3,3} \end{pmatrix}$$
+**1. Compute raw attention scores**
+Calculating the dot product scores $\frac{QK^T}{\sqrt{d_k}}$ yields a $3 \times 3$ logit matrix representing matching strengths between all tokens:
 
-2. **Apply the causal mask**:
-   We add the causal mask matrix $M$ to the logit matrix:
-   $$\text{Logits} + M = \begin{pmatrix} S_{1,1} & S_{1,2} & S_{1,3} \\ S_{2,1} & S_{2,2} & S_{2,3} \\ S_{3,1} & S_{3,2} & S_{3,3} \end{pmatrix} + \begin{pmatrix} 0 & -\infty & -\infty \\ 0 & 0 & -\infty \\ 0 & 0 & 0 \end{pmatrix} = \begin{pmatrix} S_{1,1} & -\infty & -\infty \\ S_{2,1} & S_{2,2} & -\infty \\ S_{3,1} & S_{3,2} & S_{3,3} \end{pmatrix}$$
+$$\text{Logits} = \begin{pmatrix} S_{1,1} & S_{1,2} & S_{1,3} \\ S_{2,1} & S_{2,2} & S_{2,3} \\ S_{3,1} & S_{3,2} & S_{3,3} \end{pmatrix}$$
 
-3. **Softmax Output**:
-   When softmax is applied row-wise:
-   * **Row 1 ("I")**: The values at column 2 and 3 become exactly $0$. The token `"I"` can *only* attend to itself.
-   * **Row 2 ("love")**: The value at column 3 becomes $0$. The token `"love"` can attend to `"I"` and `"love"`.
-   * **Row 3 ("AI")**: No masking is applied. `"AI"` can attend to all three tokens.
+**2. Apply the causal mask**
+We add the causal mask matrix $M$ to the logit matrix:
+
+$$\text{Logits} + M = \begin{pmatrix} S_{1,1} & S_{1,2} & S_{1,3} \\ S_{2,1} & S_{2,2} & S_{2,3} \\ S_{3,1} & S_{3,2} & S_{3,3} \end{pmatrix} + \begin{pmatrix} 0 & -\infty & -\infty \\ 0 & 0 & -\infty \\ 0 & 0 & 0 \end{pmatrix} = \begin{pmatrix} S_{1,1} & -\infty & -\infty \\ S_{2,1} & S_{2,2} & -\infty \\ S_{3,1} & S_{3,2} & S_{3,3} \end{pmatrix}$$
+
+**3. Softmax Output**
+When softmax is applied row-wise:
+* **Row 1 ("I")**: The values at column 2 and 3 become exactly $0$. The token `"I"` can *only* attend to itself.
+* **Row 2 ("love")**: The value at column 3 becomes $0$. The token `"love"` can attend to `"I"` and `"love"`.
+* **Row 3 ("AI")**: No masking is applied. `"AI"` can attend to all three tokens.
 
 This mathematically restricts the model from looking ahead during training, forcing it to learn to predict the next token based only on past context.
 
