@@ -337,15 +337,23 @@ print(f"Lasso MSE: {mean_squared_error(y_test, lasso.predict(X_test)):.4f}")
 
 ## Module 4: Supervised Learning - Classification
 
-Classification models predict discrete class labels (e.g., Spam vs. Not Spam, Cat vs. Dog vs. Bird).
+Classification models predict discrete class labels (e.g., Spam vs. Not Spam, Cat vs. Dog vs. Bird). While regression estimates continuous target values, classification divides the feature space into distinct regions separated by **decision boundaries**.
+
+![Classification Decision Boundaries Comparison](file:///Users/donthireddy/code/ai-course/plots/classification_decision_boundaries.png)
+
+---
 
 ### 4.1 Logistic Regression
-Despite its name, Logistic Regression is used for binary classification. It maps real-valued outputs to probabilities between $0$ and $1$ using the **Sigmoid function**.
+
+Despite its name, Logistic Regression is the baseline algorithm for binary classification. It calculates a linear combination of inputs (similar to linear regression) but projects the result through a squashing function—the **Sigmoid function**—to produce a probability value between $0$ and $1$.
 
 ```mermaid
 graph LR
     A["Linear Combination: z = θᵀX"] --> B["Sigmoid Function: σ(z)"]
     B --> C["Probability Output: P(y=1|X) ∈ [0,1]"]
+    C --> D{"Threshold (e.g., 0.5)"}
+    D -- ">= 0.5" --> E["Class 1 (Pass / Spam)"]
+    D -- "< 0.5" --> F["Class 0 (Fail / Ham)"]
 ```
 
 #### Mathematical Formulation
@@ -353,16 +361,37 @@ The Sigmoid function $\sigma(z)$ is defined as:
 
 $$\sigma(z) = \frac{1}{1 + e^{-z}}$$
 
-The objective is to minimize the **Binary Cross-Entropy Loss (Log Loss)**:
+Where $z = \theta^T X = \theta_0 + \theta_1 x_1 + \dots + \theta_n x_n$.
+The probability that a sample belongs to the positive class ($y=1$) is given by:
+
+$$P(y=1 \mid X) = \hat{y} = \sigma(\theta^T X)$$
+
+To find the optimal parameter weights $\theta$, the model is trained by minimizing the **Binary Cross-Entropy Loss (Log Loss)**:
 
 $$J(\theta) = -\frac{1}{m} \sum_{i=1}^{m} \left[ y^{(i)} \log(\hat{y}^{(i)}) + (1 - y^{(i)}) \log(1 - \hat{y}^{(i)}) \right]$$
 
+#### Concrete Example: Student Pass/Fail Prediction
+Suppose we want to classify whether a student passes an exam ($y=1$) or fails ($y=0$) based on a single feature: **Hours Studied ($x_1$)**.
+* **Model Learning**: Through training, the model learns the parameters $\theta_0 = -4.0$ (intercept) and $\theta_1 = 1.0$ (coefficient for hours studied).
+* **Case A: Studied 2 Hours**:
+  * Compute linear combination: $z = -4.0 + 1.0(2) = -2.0$.
+  * Apply Sigmoid: $P(y=1) = \sigma(-2.0) = \frac{1}{1 + e^{2.0}} \approx 0.119$ (11.9% pass probability).
+  * Prediction: Since $0.119 < 0.5$, the student is predicted to **Fail**.
+* **Case B: Studied 6 Hours**:
+  * Compute linear combination: $z = -4.0 + 1.0(6) = 2.0$.
+  * Apply Sigmoid: $P(y=1) = \sigma(2.0) = \frac{1}{1 + e^{-2.0}} \approx 0.881$ (88.1% pass probability).
+  * Prediction: Since $0.881 \ge 0.5$, the student is predicted to **Pass**.
+* **Decision Boundary**: The boundary lies where $z = 0 \implies -4.0 + 1.0(x_1) = 0 \implies x_1 = 4.0$ hours. Any student studying $> 4$ hours passes, and $< 4$ hours fails.
+
+---
+
 ### 4.2 K-Nearest Neighbors (KNN)
-KNN is a **lazy learning** algorithm. It does not learn an explicit model; instead, it stores the dataset and classifies new samples by voting among the $K$ closest instances.
+
+KNN is a non-parametric, **lazy learning** algorithm. It does not train a model or find coefficients. Instead, it memorizes the entire training dataset. When predicting the class of a new query point, it locates the $K$ closest training points in the feature space and assigns the class label that has the majority vote.
 
 ```mermaid
 graph TD
-    A[New Data Point] --> B[Calculate Distance to all training points]
+    A[New Query Point] --> B[Calculate Distance to all training points]
     B --> C[Find the 'K' nearest points]
     C --> D{Classification or Regression?}
     D -- Classification --> E[Majority Vote of labels]
@@ -380,41 +409,111 @@ graph TD
 
 ![Distance Metrics Comparison](file:///Users/donthireddy/code/ai-course/plots/distance_metrics.png)
 
+#### Concrete Example: Fruit Classification (Apple vs. Orange)
+Suppose we classify fruits based on two features: **Sweetness ($x_1$)** and **Roundness ($x_2$)**. We set $K = 3$.
+* **Training Data**:
+  * $P_1(8, 9)$ &rarr; Orange
+  * $P_2(7, 8)$ &rarr; Orange
+  * $P_3(2, 3)$ &rarr; Apple
+* **Query Point**: A new fruit $Q(6, 7)$ has unknown label.
+* **Calculate Euclidean Distances**:
+  * Distance to $P_1$: $\sqrt{(8-6)^2 + (9-7)^2} = \sqrt{4+4} = \sqrt{8} \approx 2.83$
+  * Distance to $P_2$: $\sqrt{(7-6)^2 + (8-7)^2} = \sqrt{1+1} = \sqrt{2} \approx 1.41$
+  * Distance to $P_3$: $\sqrt{(2-6)^2 + (3-7)^2} = \sqrt{16+16} = \sqrt{32} \approx 5.66$
+* **Identify K=3 Nearest Neighbors**: The three closest points are $P_2$ (dist: 1.41), $P_1$ (dist: 2.83), and $P_3$ (dist: 5.66).
+* **Majority Vote**:
+  * Labels of the neighbors: $P_2$ (Orange), $P_1$ (Orange), $P_3$ (Apple).
+  * Votes: Orange = 2, Apple = 1.
+  * Prediction: The query fruit $Q$ is classified as an **Orange**.
+
+---
+
 ### 4.3 Support Vector Machines (SVM)
-SVM finds the optimal hyperplane that separates classes with the maximum **margin**.
+
+SVM finds a decision boundary (hyperplane) that separates classes with the maximum possible margin. The boundary is positioned to maximize the distance between the hyperplane and the closest training points from either class, which are called **support vectors**.
 
 ```mermaid
 graph TD
-    A[Data Space] --> B[Find Margin boundaries]
-    B --> C[Maximize margin between Support Vectors]
+    A[Data Space] --> B[Identify Support Vectors closest to boundary]
+    B --> C[Maximize margin width around separating hyperplane]
     C --> D[Kernel Trick: Project to higher dimensions if linearly inseparable]
 ```
 
-* **Support Vectors**: The data points closest to the hyperplane.
-* **Kernel Trick**: Projects non-linearly separable data into a higher-dimensional space where it becomes linearly separable (e.g., Radial Basis Function `RBF` kernel).
+#### The Kernel Trick
+When data is not linearly separable in its original space, SVM projects the data points into a higher-dimensional space where a linear boundary can separate them. The **Kernel Function** computes the relationship between vectors in this higher-dimensional space without requiring the explicit, computationally expensive transformation coordinates:
+* **Linear Kernel**: $K(x, x') = x^T x'$
+* **Radial Basis Function (RBF) Kernel**: $K(x, x') = \exp(-\gamma ||x - x'||^2)$
+
+#### Concrete Example: Credit Card Fraud Detection
+Suppose we want to flag transactions as Fraudulent or Legitimate based on **Transaction Amount ($x_1$)** and **Distance from Home ($x_2$)**.
+* **Linear Case**: Most transactions fit a clean profile. SVM positions the separating line such that the gap (margin) between the nearest legitimate transaction (Support Vector A) and the nearest fraudulent transaction (Support Vector B) is maximized.
+* **Non-Linear Case (Kernel Trick)**: Imagine regular transactions occur in a tight medium-sized circle around the home location, while fraud occurs both very close (stolen physical cards) and very far (online overseas hacks). In 2D, the classes look like concentric rings and cannot be split by a straight line. 
+  * SVM uses the **RBF kernel** to bend the feature space upwards (forming a dome/3D shape).
+  * A flat 3D cutting plane (hyperplane) now easily slices through the dome, separating the concentric rings in 3D. When mapped back to the 2D plane, this decision boundary forms a neat circle around the home location.
+
+---
 
 ### 4.4 Naive Bayes
-Naive Bayes is a probabilistic classifier based on **Bayes' Theorem**, applying the "naive" assumption of conditional independence between features.
+
+Naive Bayes is a probabilistic classifier based on **Bayes' Theorem**. It is called **"naive"** because it assumes that all features are conditionally independent of each other given the class label. Despite this unrealistic simplification, it is extremely fast and works remarkably well for text classification.
 
 #### Mathematical Formulation
 
 $$P(C_k \mid x) = \frac{P(x \mid C_k) P(C_k)}{P(x)}$$
 
-With the naive conditional independence assumption:
+Applying the conditional independence assumption, we multiply individual feature probabilities:
 
 $$P(C_k \mid x_1, \dots, x_n) \propto P(C_k) \prod_{i=1}^{n} P(x_i \mid C_k)$$
 
+During prediction, we select the class $C_k$ that yields the highest probability value (argmax).
+
+#### Concrete Example: Spam Email Filtering
+Suppose we want to classify an incoming email as **Spam** ($S$) or **Ham** (legitimate, $H$) based on the occurrence of two words: **"win"** ($x_1$) and **"free"** ($x_2$).
+* **Known Training Probabilities**:
+  * Prior probability: $P(S) = 0.4$, $P(H) = 0.6$
+  * Word probabilities given class:
+    * $P(\text{"win"} \mid S) = 0.8$, $P(\text{"win"} \mid H) = 0.1$
+    * $P(\text{"free"} \mid S) = 0.9$, $P(\text{"free"} \mid H) = 0.2$
+* **Query Email**: Contains the words "win" and "free".
+* **Calculate Posterior Probabilities**:
+  * **For Spam ($S$)**:
+    $$P(S \mid \text{"win", "free"}) \propto P(S) \cdot P(\text{"win"} \mid S) \cdot P(\text{"free"} \mid S) = 0.4 \cdot 0.8 \cdot 0.9 = 0.288$$
+  * **For Ham ($H$)**:
+    $$P(H \mid \text{"win", "free"}) \propto P(H) \cdot P(\text{"win"} \mid H) \cdot P(\text{"free"} \mid H) = 0.6 \cdot 0.1 \cdot 0.2 = 0.012$$
+* **Comparison**: Since $0.288 \gg 0.012$, the email is classified as **Spam**.
+
+---
+
 ### 4.5 Decision Trees & Random Forests
+
 * **Decision Trees**: Split data recursively based on feature thresholds that maximize homogeneity in resulting child nodes.
   * **Splitting Criteria**:
-    * **Entropy (Information Gain)**:
+    * **Entropy (Information Gain)**: Measures the degree of disorder/impurity in a node. A split that maximizes the reduction in entropy is chosen.
 
       $$H(S) = -\sum_{i=1}^{C} p_i \log_2(p_i)$$
 
-    * **Gini Impurity**:
+    * **Gini Impurity**: Measures how often a randomly chosen element from the set would be incorrectly labeled if it were randomly labeled according to the distribution of labels in the subset.
 
       $$I_G(p) = 1 - \sum_{i=1}^{C} p_i^2$$
-* **Random Forests**: An ensemble of independent Decision Trees trained on random subsets of features and bootstrap data samples (a method called **Bagging**).
+
+* **Random Forests**: An ensemble of independent Decision Trees. It reduces overfitting by training each tree on a random bootstrap sample of the dataset (**Bagging**) and selecting a random subset of features at each split point (**Feature Subspacing**). The final prediction is a majority vote of all trees.
+
+#### Concrete Example: Customer Churn Prediction
+Suppose a telecom company wants to predict if a customer will cancel their service (**Churn**) based on: **Contract Type** (Month-to-Month vs. One-Year) and **Customer Service Calls**.
+* **Decision Tree Split Logic**:
+  * **Root Node**: The tree checks the feature that splits the data cleanest. It chooses "Contract Type".
+    * *If contract is One-Year*: Node becomes homogeneous &rarr; Predicts **No Churn**.
+    * *If contract is Month-to-Month*: The data is still mixed, so it creates a child node.
+  * **Child Node (Month-to-Month)**: The tree splits on the next best feature: "Customer Service Calls > 3".
+    * *If Yes (> 3 calls)*: Predicts **Churn**.
+    * *If No (<= 3 calls)*: Predicts **No Churn**.
+* **Ensemble (Random Forest) Enhancement**:
+  Instead of relying on this single tree (which might be overly simple or fit the training noise), a Random Forest builds 100 different trees:
+  * Tree 1 might split on Contract Type and Customer Service Calls.
+  * Tree 2 might split on Monthly Charges and Data Usage.
+  * If a customer is evaluated, 85 trees vote "Churn" and 15 vote "No Churn". The forest outputs a robust prediction of **Churn**.
+
+---
 
 ### 4.6 Python Implementation
 ```python
