@@ -7,6 +7,7 @@ Welcome to the **Fundamentals of Machine Learning** course materials. This docum
 - [Runnable Code Examples](#runnable-code-examples)
   - [1. Framework Examples](#1-framework-examples-using-scikit-learn--xgboost)
   - [2. From-Scratch Examples](#2-from-scratch-examples-pure-python-no-frameworks)
+- [Supplementary Deep Dives & Guides](#supplementary-deep-dives--guides)
 - [Module 1: Introduction to Machine Learning](#module-1-introduction-to-machine-learning)
   - [1.1 What is Machine Learning?](#11-what-is-machine-learning)
   - [1.2 The Machine Learning Pipeline](#12-the-machine-learning-pipeline)
@@ -134,6 +135,16 @@ python3 llm/<script_name>.py
 | **Module 9.3: Encoder** | Multi-Head Self-Attention & Positional Encoding | [3_encoder.py](llm/3_encoder.py) | [llm_3_positional_encoding.png](plots/llm_3_positional_encoding.png) |
 | **Module 9.4: Decoder** | Causal Masked Self-Attention & Cross-Attention | [4_decoder.py](llm/4_decoder.py) | [llm_4_causal_mask.png](plots/llm_4_causal_mask.png) |
 | **Module 9.5: Transformer** | End-to-End Translator (Seq2Seq Model) | [5_transformer_llm.py](llm/5_transformer_llm.py) | [llm_5_attention_alignment.png](plots/llm_5_attention_alignment.png) |
+
+---
+
+## Supplementary Deep Dives & Guides
+
+For advanced study, mathematical visualizations, and implementation architecture, check out these specialized guides:
+
+*   **[Visualizing Derivatives & The Chain Rule](derivatives_explain.md)**: A complete, step-by-step visual and mathematical explanation of derivatives, fundamental differentiation rules, and intuitive models (function machines and gear trains) for the Chain Rule.
+*   **[Deep Learning Foundations: ANN, CNN, Backpropagation, and Transformers](deep_learning_guide.md)**: A deep dive into modern neural network concepts, covering Perceptrons, Multi-Layer Perceptrons (MLPs), Backpropagation, Convolutional Neural Networks (CNNs), and Transformer architectures.
+*   **[Developer Guide: Agentic AI Systems, Tools, Skills, and MCP](agentic_ai_developer_guide.md)**: An architectural guide explaining agentic workflows in modern AI, detailing Agents, Skills, Model Context Protocol (MCP) servers, Tools, Function Calls, Tool Schemas, and the main execution loops.
 
 ---
 
