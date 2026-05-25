@@ -81,17 +81,18 @@ Machine learning is broadly categorized into four paradigms based on the presenc
 | **Reinforcement** | Environment & Rewards | Learn optimal policy via trial-and-error | Q-Learning, Deep Q-Networks (DQN) | Autonomous driving, AlphaGo |
 
 ```mermaid
-grid-layout
-cols: 2
----
-card: Supervised Learning
-Labeled instances guide the model.
-card: Unsupervised Learning
-Discovers structure without feedback.
-card: Semi-Supervised Learning
-Blends labeled and unlabeled data.
-card: Reinforcement Learning
-Policy optimization via agent rewards.
+flowchart TD
+    subgraph Paradigms [Learning Paradigms]
+        direction LR
+        A["Supervised Learning<br/>(Labeled instances guide model)"]
+        B["Unsupervised Learning<br/>(Discovers structure automatically)"]
+        C["Semi-Supervised Learning<br/>(Blends labeled & unlabeled data)"]
+        D["Reinforcement Learning<br/>(Policy optimization via rewards)"]
+    end
+    style A fill:#4F46E5,stroke:#312E81,stroke-width:1px,color:#FFF
+    style B fill:#0EA5E9,stroke:#0369A1,stroke-width:1px,color:#FFF
+    style C fill:#10B981,stroke:#047857,stroke-width:1px,color:#FFF
+    style D fill:#F59E0B,stroke:#B45309,stroke-width:1px,color:#FFF
 ```
 
 ---
