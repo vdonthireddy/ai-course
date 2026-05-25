@@ -454,3 +454,23 @@ Actual Negative   FP (Type I Error)           TN
 * **Recall (Sensitivity)**: $\frac{TP}{TP + FN}$ (Model's coverage of actual positives)
 * **F1-Score**: $2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}$ (Harmonic mean)
 * **ROC-AUC**: Graphing True Positive Rate vs. False Positive Rate; Area Under the Curve (AUC) measures class separation capability.
+
+---
+
+## Appendix: Glossary of Key Terminologies
+
+To help students quickly grasp machine learning jargon, here is a consolidated list of key terms:
+
+* **Centroid**: The geometric center of a cluster, calculated as the arithmetic mean of all coordinate vectors of the data points in that cluster. Used heavily in K-Means.
+* **Hyperplane**: A decision boundary that splits space into regions representing different classes (e.g., a line in 2D space, a flat plane in 3D, and a high-dimensional surface in 4D or higher).
+* **Margin**: The distance between the decision boundary (hyperplane) and the closest training points from either class. Maximizing this margin is the core objective of Support Vector Machines (SVM).
+* **Support Vectors**: The critical data points that lie closest to the SVM decision boundary. Changing or removing these points would alter the position of the boundary.
+* **Regularization ($L_1$ / $L_2$)**: A technique that prevents overfitting by adding a mathematical penalty to the cost function to constrain the size of model parameters ($\theta$).
+* **Weak Learner**: A simple classifier or regressor that performs only slightly better than random guessing (e.g., a very shallow decision tree). Used sequentially in Boosting algorithms.
+* **Inductive Bias**: The underlying assumptions an algorithm makes about the target function to generalize from training data to unseen data (e.g., Linear Regression assumes a linear relationship).
+* **Lazy Learning**: Algorithms that do not construct a generalized model during the training phase (which is fast), but instead defer computations until a query is made (which is slow). Examples: KNN.
+* **Bootstrapping**: A statistical sampling technique that generates new subsets of data by drawing samples from the original dataset with replacement. Used in Bagging (e.g., Random Forests).
+* **Feature Subspacing**: A technique where only a random subset of features is considered at each split in a decision tree. This helps decorrelate the trees in an ensemble like Random Forest.
+* **Residual**: The difference between the actual observed value and the value predicted by the model ($y - \hat{y}$). Boosting models focus on training subsequent trees to predict these residuals.
+* **Gradient**: The vector of partial derivatives representing the direction of steepest ascent of a function. In optimization, we move in the opposite direction (gradient descent) to minimize the loss.
+
