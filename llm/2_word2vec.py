@@ -85,6 +85,10 @@ W_in = [[random.uniform(-0.5, 0.5) for _ in range(embedding_dim)] for _ in range
 # Output context embeddings matrix W' (vocab_size x embedding_dim)
 W_out = [[random.uniform(-0.5, 0.5) for _ in range(embedding_dim)] for _ in range(vocab_size)]
 
+# Save initial state for before/after comparison plotting
+import copy
+W_in_initial = copy.deepcopy(W_in)
+
 # Hyperparameters
 learning_rate = 0.2
 epochs = 500
@@ -172,41 +176,55 @@ for i in range(vocab_size):
     coords = W_in[i]
     print(f" - '{word}': ({coords[0]:.4f}, {coords[1]:.4f})")
 
-# 5. Generate and save visualization plots (Subplots: Left = Loss Curve, Right = Embeddings Map)
+# 5. Generate and save visualization plots (Subplots: Left = Before, Middle = After, Right = Loss Curve)
 os.makedirs("plots", exist_ok=True)
-fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6))
+fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(18, 6))
 
-# Subplot 1: Word2Vec Loss curve
-ax1.plot(range(1, epochs + 1), loss_history, color="#EF4444", linewidth=2.5, label="Skip-gram Loss")
-ax1.set_xlabel("Epochs", fontsize=11, labelpad=10)
-ax1.set_ylabel("Binary Cross-Entropy Loss", fontsize=11, labelpad=10)
-ax1.set_title("Word2Vec Negative Sampling Convergence", fontsize=12, fontweight="bold")
-ax1.grid(True, linestyle="--", alpha=0.5)
-ax1.legend(loc="upper right")
+# Helper to determine annotation colors
+def get_annotation_color(word):
+    if word in ["machine", "learning", "neural", "networks", "deep", "transformer", "models"]:
+        return "#10B981" # Green for models/ml jargon
+    elif word in ["inputs", "words", "language"]:
+        return "#EC4899" # Pink for outputs/data
+    return "#374151" # Slate for utilities
 
-# Subplot 2: 2D Word Embedding Scatter Map
-x_coords = [W_in[i][0] for i in range(vocab_size)]
-y_coords = [W_in[i][1] for i in range(vocab_size)]
-
-ax2.scatter(x_coords, y_coords, color="#4F46E5", s=120, edgecolor="black", zorder=3)
-# Annotate each word in coordinate map
+# Subplot 1: Before Training (Random Initialization)
+x_init = [W_in_initial[i][0] for i in range(vocab_size)]
+y_init = [W_in_initial[i][1] for i in range(vocab_size)]
+ax1.scatter(x_init, y_init, color="#6B7280", s=120, edgecolor="black", zorder=3)
 for i in range(vocab_size):
     word = idx_to_word[i]
-    # Highlight specific groups of words
-    if word in ["machine", "learning", "neural", "networks", "deep", "transformer", "models"]:
-        color = "#10B981" # Green for models/ml jargon
-    elif word in ["inputs", "words", "language"]:
-        color = "#EC4899" # Pink for outputs/data
-    else:
-        color = "#374151" # Slate for utilities
-    ax2.text(W_in[i][0] + 0.03, W_in[i][1] + 0.03, word, fontsize=10, color=color, fontweight="bold")
+    ax1.text(W_in_initial[i][0] + 0.02, W_in_initial[i][1] + 0.02, word, fontsize=10, 
+             color=get_annotation_color(word), fontweight="bold")
+ax1.set_xlabel("Dimension 1", fontsize=11, labelpad=8)
+ax1.set_ylabel("Dimension 2", fontsize=11, labelpad=8)
+ax1.set_title("Before Training (Random Initial)", fontsize=12, fontweight="bold")
+ax1.grid(True, linestyle="--", alpha=0.3)
+ax1.set_xlim(-0.6, 0.6)
+ax1.set_ylim(-0.6, 0.6)
 
-ax2.set_xlabel("Dimension 1", fontsize=11, labelpad=10)
-ax2.set_ylabel("Dimension 2", fontsize=11, labelpad=10)
-ax2.set_title("Learned 2D Semantic Feature Map", fontsize=12, fontweight="bold")
+# Subplot 2: After Training (Learned Embeddings Map)
+x_trained = [W_in[i][0] for i in range(vocab_size)]
+y_trained = [W_in[i][1] for i in range(vocab_size)]
+ax2.scatter(x_trained, y_trained, color="#4F46E5", s=120, edgecolor="black", zorder=3)
+for i in range(vocab_size):
+    word = idx_to_word[i]
+    ax2.text(W_in[i][0] + 0.02, W_in[i][1] + 0.02, word, fontsize=10, 
+             color=get_annotation_color(word), fontweight="bold")
+ax2.set_xlabel("Dimension 1", fontsize=11, labelpad=8)
+ax2.set_ylabel("Dimension 2", fontsize=11, labelpad=8)
+ax2.set_title("After Training (Learned Clusters)", fontsize=12, fontweight="bold")
 ax2.grid(True, linestyle="--", alpha=0.3)
 
-plt.suptitle("Word2Vec Skip-gram Embeddings from Scratch", fontsize=14, fontweight="bold", y=0.98)
+# Subplot 3: Word2Vec Loss curve
+ax3.plot(range(1, epochs + 1), loss_history, color="#EF4444", linewidth=2.5, label="Skip-gram Loss")
+ax3.set_xlabel("Epochs", fontsize=11, labelpad=8)
+ax3.set_ylabel("Binary Cross-Entropy Loss", fontsize=11, labelpad=8)
+ax3.set_title("Training Loss Convergence", fontsize=12, fontweight="bold")
+ax3.grid(True, linestyle="--", alpha=0.5)
+ax3.legend(loc="upper right")
+
+plt.suptitle("Word2Vec Skip-gram Embeddings: Before vs. After Training from Scratch", fontsize=14, fontweight="bold", y=0.98)
 plt.tight_layout()
 
 # Save the plot
