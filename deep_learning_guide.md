@@ -24,16 +24,7 @@ Where:
 - $y$ is the final output activation.
 
 ### Visual Diagram
-```
-Inputs      Weights
- x_1 --------> w_1 -----\
-                        \
- x_2 --------> w_2 ------> [ Summation block ] ---> Pre-activation (z) ---> [ Activation Function (phi) ] ---> Output (y)
-                        /       (w^T * x + b)
- x_N --------> w_N -----/
-                        |
- Bias (b) ------------->/
-```
+![Artificial Neuron (Perceptron) Diagram](plots/perceptron_diagram.png)
 
 ### Step-by-Step Example: An AND Logic Gate
 A single perceptron can learn linear decision boundaries, such as the `AND` logic gate.
@@ -114,40 +105,7 @@ Without activation functions, any neural network—no matter how many layers it 
 
 An **Artificial Neural Network (ANN)** or **Deep Neural Network (DNN)** is constructed by stacking multiple layers of neurons together. Signals flow sequentially from the input layer, through one or more hidden layers, to the output layer.
 
-```mermaid
-graph LR
-    subgraph Input ["Input Layer"]
-        X1((x1))
-        X2((x2))
-    end
-    subgraph Hidden1 ["Hidden Layer 1"]
-        H1_1((h1_1))
-        H1_2((h1_2))
-        H1_3((h1_3))
-    end
-    subgraph Hidden2 ["Hidden Layer 2"]
-        H2_1((h2_1))
-        H2_2((h2_2))
-    end
-    subgraph Output ["Output Layer"]
-        Y((y_hat))
-    end
-    
-    X1 --> H1_1 & H1_2 & H1_3
-    X2 --> H1_1 & H1_2 & H1_3
-    
-    H1_1 --> H2_1 & H2_2
-    H1_2 --> H2_1 & H2_2
-    H1_3 --> H2_1 & H2_2
-    
-    H2_1 --> Y
-    H2_2 --> Y
-    
-    style Input fill:#1E1E24,stroke:#6366F1,stroke-width:2px;
-    style Hidden1 fill:#1E1E24,stroke:#14B8A6,stroke-width:2px;
-    style Hidden2 fill:#1E1E24,stroke:#14B8A6,stroke-width:2px;
-    style Output fill:#1E1E24,stroke:#F59E0B,stroke-width:2px;
-```
+![Deep Neural Network (DNN / MLP) Architecture Diagram](plots/dnn_architecture.png)
 
 ### Forward Propagation
 For a layer $l$ in a network:
@@ -168,13 +126,7 @@ Where:
 
 Training a neural network consists of finding weights and biases that minimize a loss function $\mathcal{L}(y, \hat{y})$. **Backpropagation** is the algorithm used to calculate the gradient of the loss function with respect to every weight and bias in the network, flowing backward from the output layer to the input.
 
-```
-FORWARD PASS (Activations flow right, compute Loss)
------------------------------------------------------------->
-Input (x) ---> Layer 1 (a1) ---> Layer 2 (a2) ---> Loss (L)
-<------------------------------------------------------------
-BACKWARD PASS (Gradients flow left, compute dL/dw)
-```
+![Neural Network: Forward Pass & Backpropagation](plots/backpropagation_diagram.png)
 
 ### The Chain Rule
 To compute how the loss $\mathcal{L}$ changes when a specific weight $w_{ij}^{[l]}$ changes, we apply the chain rule of calculus:
@@ -200,10 +152,7 @@ Let's define the error term $\delta_i^{[l]} = \frac{\partial \mathcal{L}}{\parti
 
 Consider a simple 3-layer neural network (1 input node, 1 hidden node, 1 output node):
 
-```
-x (0.5) ---> [ w1 ] ---> z1 ---> [ Sigmoid ] ---> a1 ---> [ w2 ] ---> z2 ---> [ Sigmoid ] ---> a2 (y_hat) ---> Loss
-               b1                                           b2
-```
+**Network Flow**: $x = 0.5 \xrightarrow{w_1, b_1} z_1 \xrightarrow{\text{Sigmoid}} a_1 \xrightarrow{w_2, b_2} z_2 \xrightarrow{\text{Sigmoid}} a_2 \xrightarrow{\text{Loss}} L$
 
 * **Initial Parameters**:
   - Input: $x = 0.5$, Target: $y = 1.0$
@@ -296,20 +245,7 @@ Standard Feed-Forward networks do not scale well to images. For example, a $1000
 1. **Local Connectivity**: Neurons only connect to a small local patch of the input (spatial locality).
 2. **Shared Weights**: Filters are slid across the entire input, sharing the same weights (translation invariance: an object is detected regardless of its image location).
 
-```mermaid
-graph TD
-    Input[Input Image: H x W x C] --> Conv[Convolutional Layer: learns spatial kernels]
-    Conv --> Act[Activation: ReLU]
-    Act --> Pool[Pooling Layer: reduces spatial dimension]
-    Pool --> Flatten[Flatten Layer: converts 2D features to 1D vector]
-    Flatten --> FC[Fully Connected Layer]
-    FC --> Out[Softmax Output: Class Probabilities]
-    
-    style Input fill:#1E1E24,stroke:#6366F1,stroke-width:2px;
-    style Conv fill:#1E1E24,stroke:#14B8A6,stroke-width:2px;
-    style Pool fill:#1E1E24,stroke:#14B8A6,stroke-width:2px;
-    style FC fill:#1E1E24,stroke:#F59E0B,stroke-width:2px;
-```
+![Convolutional Neural Network (CNN) Architecture Diagram](plots/cnn_architecture.png)
 
 ### Core Layers
 
@@ -378,17 +314,7 @@ $$O = \frac{3 - 2 + 0}{1} + 1 = 2 \times 2$$
 
 Traditional sequence networks (RNNs/LSTMs) process tokens sequentially. To compute representation $h_t$, the model must wait for $h_{t-1}$, creating a parallelization bottleneck. **Transformers** resolve this by processing all tokens in parallel, relying entirely on the **Attention** mechanism to capture context.
 
-```
-RNN (Sequential bottleneck, slow parallelization)
-Token 1 ---> Token 2 ---> Token 3 ---> Token 4
-
-Transformer Self-Attention (All positions attend to all others simultaneously)
-Token 1 <=========> Token 2
-   ^                 ^
-   |                 |
-   v                 v
-Token 3 <=========> Token 4
-```
+![The Transformer Network Architecture Diagram](plots/transformer_architecture.png)
 
 ### The Attention Mechanism
 
