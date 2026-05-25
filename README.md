@@ -24,9 +24,10 @@ Welcome to the **Fundamentals of Machine Learning** course materials. This docum
   - [4.5 Decision Trees & Random Forests](#45-decision-trees--random-forests)
   - [4.6 Python Implementation](#46-python-implementation)
 - [Module 5: Ensemble Learning & XGBoost](#module-5-ensemble-learning--xgboost)
-  - [5.1 Bagging vs. Boosting](#51-bagging-vs-boosting)
-  - [5.2 XGBoost (Extreme Gradient Boosting)](#52-xgboost-extreme-gradient-boosting)
-  - [5.3 Python Implementation](#53-python-implementation)
+  - [5.1 Bagging (Bootstrap Aggregating)](#51-bagging-bootstrap-aggregating)
+  - [5.2 Boosting](#52-boosting)
+  - [5.3 XGBoost (Extreme Gradient Boosting)](#53-xgboost-extreme-gradient-boosting)
+  - [5.4 Python Implementation](#54-python-implementation)
 - [Module 6: Unsupervised Learning - Clustering](#module-6-unsupervised-learning---clustering)
   - [6.1 K-Means Clustering](#61-k-means-clustering)
   - [6.2 Hierarchical Clustering](#62-hierarchical-clustering)
@@ -517,6 +518,7 @@ Suppose a telecom company wants to predict if a customer will cancel their servi
 ### 4.6 Python Implementation
 ```python
 from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.svm import SVC
@@ -650,10 +652,12 @@ $$\mathcal{L}^{(t)} = \sum_{i=1}^{m} l\left(y_i, \hat{y}_i^{(t-1)} + f_t(x_i)\ri
   * **$T$**: The number of terminal nodes (leaves) in the tree. $\gamma$ (gamma) penalizes adding more leaves.
   * **$w_j$**: The leaf weights (output values). $\lambda$ (lambda) penalizes large leaf weights, shrinking them toward zero (similar to Ridge L2 regularization).
 
-### 5.3 Python Implementation
+### 5.4 Python Implementation
 ```python
 import xgboost as xgb
 from sklearn.datasets import make_classification
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
 
 # Generate binary dataset
 X, y = make_classification(n_samples=1000, n_features=20, random_state=42)
@@ -1131,8 +1135,6 @@ When softmax is applied row-wise:
 
 This mathematically restricts the model from looking ahead during training, forcing it to learn to predict the next token based only on past context.
 
-2. **Encoder-Decoder Cross-Attention**: The Queries ($Q$) come from the decoder's masked self-attention representation, whereas the Keys ($K$) and Values ($V$) come from the encoder's final output representations. This maps target words directly back to the source words.
-
 ---
 
 ### 9.5 End-to-End LLM Python Implementation
@@ -1173,7 +1175,7 @@ To help students quickly grasp machine learning jargon, here is a consolidated l
   
   $$\mathbf{\mu} = [3.0, 5.0, 7.0]$$
 
-* **Visual Demonstration**: Refer to the top-left panel of `plots/glossary_math_concepts.png` to see how the centroid acts as the geometric gravity center of clustered coordinates.
+* **Visual Demonstration**: Refer to the left panel of `plots/glossary_math_concepts.png` to see how the centroid acts as the geometric gravity center of clustered coordinates.
 
   ![Centroid, SVM Hyperplane & Residuals](plots/glossary_math_concepts.png)
 
@@ -1210,7 +1212,7 @@ To help students quickly grasp machine learning jargon, here is a consolidated l
   
   $$\text{Margin} = \frac{2}{\sqrt{1^2 + (-1)^2}} = \frac{2}{\sqrt{2}} = \sqrt{2} \approx 1.414$$
 
-* **Visual Demonstration**: Refer to the top-right panel of `plots/glossary_math_concepts.png` to inspect the hyperplane, parallel margins, and highlighted support vectors.
+* **Visual Demonstration**: Refer to the center panel of `plots/glossary_math_concepts.png` to inspect the hyperplane, parallel margins, and highlighted support vectors.
 
 ---
 
@@ -1257,7 +1259,7 @@ To help students quickly grasp machine learning jargon, here is a consolidated l
   * **Sample 3**: Actual bill $y\_3 = \$210$, predicted $\hat{y}\_3 = \$200 \implies e\_3 = 210 - 200 = \$10$ (Under-prediction)
   
   The residual vector is $[15, -15, 10]^T$. The next weak learner in the boosting chain is trained specifically to predict these residuals, refining the master model's sum-of-predictions.
-* **Visual Demonstration**: Refer to the bottom panel of `plots/glossary_math_concepts.png` showing the residual distances between actual points and the regression line.
+* **Visual Demonstration**: Refer to the right panel of `plots/glossary_math_concepts.png` showing the residual distances between actual points and the regression line.
 
 ---
 
@@ -1325,7 +1327,7 @@ To help students quickly grasp machine learning jargon, here is a consolidated l
       $$\frac{\partial J}{\partial w\_2} = (w\_2 - 0.05) + 1.5w\_2 = 2.5w\_2 - 0.05 = 0 \implies w\_2^* = \frac{0.05}{2.5} = 0.02$$
 
     The resulting optimal Ridge weight vector is $\mathbf{w}^* = [4.0, 0.02]^T$. Note that both weights are shrunk toward zero, but $w\_2$ remains active (non-zero), illustrating how $L\_2$ preserves all features.
-* **Visual Demonstration**: Refer to the right panel of `plots/glossary_normalization_regularization.png` to examine the geometry of L1 (diamond) and L2 (circle) constraint boundaries.
+* **Visual Demonstration**: Refer to the bottom panels of `plots/glossary_normalization_regularization.png` to examine the geometry of L1 (diamond) and L2 (circle) constraint boundaries.
 
   ![Normalization and Regularization](plots/glossary_normalization_regularization.png)
 
@@ -1358,7 +1360,7 @@ To help students quickly grasp machine learning jargon, here is a consolidated l
     * For $x = 2500$: $x\_{\text{std}} = \frac{2500 - 1750}{559.02} = 1.34$
     
     The standardized feature values are $[-1.34, -0.45, 0.45, 1.34]$.
-* **Visual Demonstration**: Refer to the left panel of `plots/glossary_normalization_regularization.png` to view the original raw distribution vs. the scaled Min-Max and Standardized outputs.
+* **Visual Demonstration**: Refer to the top panels of `plots/glossary_normalization_regularization.png` to view the original raw distribution vs. the scaled Min-Max and Standardized outputs.
 
 ---
 
@@ -1551,7 +1553,7 @@ $$
   2. Compute Softmax row-wise:
      * **Row 1**: $\text{Softmax}([2.0, -\infty, -\infty]) = [1.0, 0.0, 0.0]$
      * **Row 2**: $\text{Softmax}([1.5, 3.0, -\infty]) = [0.18, 0.82, 0.0]$
-     * **Row 3**: $\text{Softmax}([0.8, 1.2, 2.5]) = [0.12, 0.18, 0.70]$
+     * **Row 3**: $\text{Softmax}([0.8, 1.2, 2.5]) = [0.13, 0.19, 0.69]$
      
      The model attending to position 1 has zero knowledge of positions 2 and 3.
 * **Visual Demonstration**: Refer to the middle-right panel of `plots/glossary_llm_concepts.png` showing the diagonal heatmap separating allowed and masked attention zones.
@@ -1593,7 +1595,7 @@ $$
   Suppose our model predicts logits for three candidate tokens: $\mathbf{z} = [4.0, 2.0, 1.0]$.
   * **Default ($T = 1.0$)**:
   
-    $$P = \text{Softmax}([4.0, 2.0, 1.0]) = \left[ \frac{e^4}{e^4+e^2+e^1}, \frac{e^2}{e^4+e^2+e^1}, \frac{e^1}{e^4+e^2+e^1} \right] \approx [0.84, 0.11, 0.05]$$
+    $$P = \text{Softmax}([4.0, 2.0, 1.0]) = \left[ \frac{e^4}{e^4+e^2+e^1}, \frac{e^2}{e^4+e^2+e^1}, \frac{e^1}{e^4+e^2+e^1} \right] \approx [0.84, 0.11, 0.04]$$
   
   * **Low Temperature ($T = 0.5$)**: Scale logits by $\frac{1}{0.5} = 2 \implies \mathbf{z}\_{\text{scaled}} = [8.0, 4.0, 2.0]$
   
