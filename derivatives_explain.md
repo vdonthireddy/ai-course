@@ -101,11 +101,9 @@ $$y = \left(\sin \frac{e^{x^{\pi x}}}{\log \sqrt{x}}\right)^n$$
 
 For such composite functions, we cannot use simple sum or product rules. We must use the **Chain Rule**.
 
-```carousel
 ![Complicated function introduction](plots/derivatives/IMG_3127.PNG)
-<!-- slide -->
+
 ![Introducing the Chain Rule](plots/derivatives/IMG_3128.PNG)
-```
 
 ---
 
@@ -115,11 +113,9 @@ Our goal is to compute the rate of change of a nested composite function:
 
 $$\frac{d}{dx}f(g(x)) = ?$$
 
-```carousel
 ![Chain rule question](plots/derivatives/IMG_3129.PNG)
-<!-- slide -->
+
 ![Chain rule question detail](plots/derivatives/IMG_3130.PNG)
-```
 
 ### 4.1 Chained Computer Screens (Function Machines)
 Let's represent the functions $g(x)$ and $f(x)$ as computer screens/machines:
@@ -141,60 +137,50 @@ From an external perspective, this entire chained setup acts as a single, combin
 
 ---
 
-### 4.2 The "Nudge" Derivation Animation
+### 4.2 The "Nudge" Derivation Step-by-Step
 To find the derivative of this combined machine, we introduce a tiny change (a "nudge") $\Delta$ to the input variable $x$, updating it to $x + \Delta$. We track how this nudge propagates through the chained system.
 
-````carousel
-```markdown
-### Step 1: Initial Setup
+#### Step 1: Initial Setup
 We have the two chained machines. The first has value $g(x)$ and derivative $g'(x)$. The second has value $f(g(x))$ and derivative $f'(g(x))$.
-```
+
 ![Step 1 - Chained Setup](plots/derivatives/IMG_3135.PNG)
-<!-- slide -->
-```markdown
-### Step 2: Nudge the Input
+
+#### Step 2: Nudge the Input
 We nudge the initial input $x$ by a tiny amount $\Delta$ to $x + \Delta$.
-```
+
 ![Step 2 - Nudging x by delta](plots/derivatives/IMG_3136.PNG)
-<!-- slide -->
-```markdown
-### Step 3: Nudge Amplification by the First Machine
+
+#### Step 3: Nudge Amplification by the First Machine
 As the nudge passes through the first machine, it is amplified by the local derivative (rate of change) $g'(x)$.
-```
+
 ![Step 3 - First machine amplification](plots/derivatives/IMG_3137.PNG)
-<!-- slide -->
-```markdown
-### Step 4: First Machine Output Change
+
+#### Step 4: First Machine Output Change
 The resulting change in the output of the first machine is $g'(x) \cdot \Delta$.
-```
+
 ![Step 4 - First machine output nudge](plots/derivatives/IMG_3138.PNG)
-<!-- slide -->
-```markdown
-### Step 5: Input to the Second Machine
+
+#### Step 5: Input to the Second Machine
 The output nudge $g'(x)\Delta$ from the first machine acts as the input nudge to the second machine.
-```
+
 ![Step 5 - Input nudge to second machine](plots/derivatives/IMG_3139.PNG)
-<!-- slide -->
-```markdown
-### Step 6: Second Machine Amplification
+
+#### Step 6: Second Machine Amplification
 This input nudge $g'(x)\Delta$ is further amplified by the second machine's local derivative, $f'(g(x))$.
-```
+
 ![Step 6 - Second machine amplification](plots/derivatives/IMG_3140.PNG)
-<!-- slide -->
-```markdown
-### Step 7: Final Output Nudge
+
+#### Step 7: Final Output Nudge
 The final change in the output of the system is the product of the input nudge and the second amplification factor:
 $$\text{Output Change} \approx f'(g(x)) \cdot g'(x) \cdot \Delta$$
-```
+
 ![Step 7 - Final output nudge calculation](plots/derivatives/IMG_3142.PNG)
-<!-- slide -->
-```markdown
-### Step 8: Deducing the Chain Rule
+
+#### Step 8: Deducing the Chain Rule
 Dividing the total change in the output by the initial input nudge $\Delta$ yields the derivative:
 $$\frac{d}{dx}f(g(x)) = f'(g(x)) \cdot g'(x)$$
-```
+
 ![Step 8 - Chain Rule Formula](plots/derivatives/IMG_3143.PNG)
-````
 
 ---
 
@@ -208,13 +194,11 @@ Another powerful way to visualize the Chain Rule is through a **gear train** con
 *   **Gear $f$** is driven by gear $g$. The ratio of rotation (local speed multiplier) is $f'(g(x))$.
     *   Thus, when gear $g$ turns by $g'(x)\Delta$, gear $f$ turns by $f'(g(x)) \cdot g'(x)\Delta$.
 
-```carousel
 ![Three gears interlinked](plots/derivatives/IMG_3144.PNG)
-<!-- slide -->
+
 ![Nudge propagation through gears](plots/derivatives/IMG_3145.PNG)
-<!-- slide -->
+
 ![Gear train total derivative breakdown](plots/derivatives/IMG_3146.PNG)
-```
 
 The overall gear ratio (the derivative of the final gear $f$ relative to the input gear $x$) is simply the product of the individual gear ratios:
 
