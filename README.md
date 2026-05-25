@@ -240,6 +240,7 @@ Linear Regression assumes a linear relationship between the input features $X$ a
 
 #### Mathematical Formulation
 The prediction equation is:
+
 $$\hat{y} = \theta_0 + \theta_1 x_1 + \theta_2 x_2 + \dots + \theta_n x_n = \theta^T X$$
 
 Where:
@@ -249,6 +250,7 @@ Where:
 * $x_j$ are the feature values.
 
 The model is optimized by minimizing the **Mean Squared Error (MSE)** cost function:
+
 $$J(\theta) = \frac{1}{2m} \sum_{i=1}^{m} \left( h_\theta(x^{(i)}) - y^{(i)} \right)^2$$
 
 ##### Parameter Breakdown:
@@ -263,6 +265,7 @@ $$J(\theta) = \frac{1}{2m} \sum_{i=1}^{m} \left( h_\theta(x^{(i)}) - y^{(i)} \ri
 * **$(h_\theta(x^{(i)}) - y^{(i)})^2$**: The **squared prediction error** for the $i$-th sample. Squaring the error ensures that negative and positive errors don't cancel each other out, and heavily penalizes larger errors.
 
 Using **Gradient Descent**, parameters are updated iteratively:
+
 $$\theta_j := \theta_j - \alpha \frac{\partial}{\partial \theta_j} J(\theta)$$
 
 ### 3.2 Regularization: Ridge & Lasso
@@ -279,12 +282,16 @@ graph LR
 
 #### Ridge Regression ($L_2$ Regularization)
 Adds the sum of squared weights as a penalty:
+
 $$J_{\text{Ridge}}(\theta) = J(\theta) + \lambda \sum_{j=1}^{n} \theta_j^2$$
+
 * **Effect**: Shrinks coefficients toward zero, reducing variance, but never makes them exactly zero.
 
 #### Lasso Regression ($L_1$ Regularization)
 Adds the sum of absolute weights as a penalty:
+
 $$J_{\text{Lasso}}(\theta) = J(\theta) + \lambda \sum_{j=1}^{n} |\theta_j|$$
+
 * **Effect**: Drives less important feature weights to exactly zero. Useful for **feature selection**.
 
 #### Conceptual Example: The "Biased Word" in Spam Detection
@@ -343,9 +350,11 @@ graph LR
 
 #### Mathematical Formulation
 The Sigmoid function $\sigma(z)$ is defined as:
+
 $$\sigma(z) = \frac{1}{1 + e^{-z}}$$
 
 The objective is to minimize the **Binary Cross-Entropy Loss (Log Loss)**:
+
 $$J(\theta) = -\frac{1}{m} \sum_{i=1}^{m} \left[ y^{(i)} \log(\hat{y}^{(i)}) + (1 - y^{(i)}) \log(1 - \hat{y}^{(i)}) \right]$$
 
 ### 4.2 K-Nearest Neighbors (KNN)
@@ -362,8 +371,11 @@ graph TD
 
 #### Distance Metrics
 * **Euclidean Distance**:
+
   $$d(p, q) = \sqrt{\sum_{i=1}^{n} (p_i - q_i)^2}$$
+
 * **Manhattan Distance**:
+
   $$d(p, q) = \sum_{i=1}^{n} |p_i - q_i|$$
 
 ### 4.3 Support Vector Machines (SVM)
@@ -383,17 +395,22 @@ graph TD
 Naive Bayes is a probabilistic classifier based on **Bayes' Theorem**, applying the "naive" assumption of conditional independence between features.
 
 #### Mathematical Formulation
+
 $$P(C_k \mid x) = \frac{P(x \mid C_k) P(C_k)}{P(x)}$$
 
 With the naive conditional independence assumption:
+
 $$P(C_k \mid x_1, \dots, x_n) \propto P(C_k) \prod_{i=1}^{n} P(x_i \mid C_k)$$
 
 ### 4.5 Decision Trees & Random Forests
 * **Decision Trees**: Split data recursively based on feature thresholds that maximize homogeneity in resulting child nodes.
   * **Splitting Criteria**:
     * **Entropy (Information Gain)**:
+
       $$H(S) = -\sum_{i=1}^{C} p_i \log_2(p_i)$$
+
     * **Gini Impurity**:
+
       $$I_G(p) = 1 - \sum_{i=1}^{C} p_i^2$$
 * **Random Forests**: An ensemble of independent Decision Trees trained on random subsets of features and bootstrap data samples (a method called **Bagging**).
 
@@ -454,6 +471,7 @@ XGBoost is an optimized, highly efficient implementation of gradient boosted dec
 
 #### Mathematical Formulation
 The objective function at step $t$:
+
 $$\mathcal{L}^{(t)} = \sum_{i=1}^{m} l\left(y_i, \hat{y}_i^{(t-1)} + f_t(x_i)\right) + \Omega(f_t)$$
 
 Where $\Omega(f_t) = \gamma T + \frac{1}{2}\lambda \sum_{j=1}^{T} w_j^2$ is the tree complexity regularization.
@@ -591,10 +609,15 @@ Iteration 4: [ Train ] [ Train ] [ Train ] [ Test ]
 
 #### Regression Metrics
 * **Mean Absolute Error (MAE)**:
+
   $$\text{MAE} = \frac{1}{m} \sum_{i=1}^{m} |y^{(i)} - \hat{y}^{(i)}|$$
+
 * **Mean Squared Error (MSE)**:
+
   $$\text{MSE} = \frac{1}{m} \sum_{i=1}^{m} (y^{(i)} - \hat{y}^{(i)})^2$$
+
 * **R-squared ($R^2$)**:
+
   $$R^2 = 1 - \frac{\sum (y^{(i)} - \hat{y}^{(i)})^2}{\sum (y^{(i)} - \bar{y})^2}$$
 
 #### Classification Metrics (Confusion Matrix)
@@ -779,7 +802,9 @@ When tokenizing new text, the learned merge rules are applied in the exact order
 Computers cannot process raw strings; words must be represented as continuous, dense numerical vectors where semantic similarity translates to geometric closeness (e.g. cosine similarity).
 
 The **Word2Vec Skip-gram** model learns these embeddings by training a simple neural network to predict surrounding context words given a target input word:
+
 $$\mathcal{L} = -\log \sigma({v'_{c_{pos}}}^T v_w) - \sum_{i=1}^k \log \sigma(-{v'_{c_{neg_i}}}^T v_w)$$
+
 Where:
 - $v_w \in \mathbb{R}^d$ is the input representation vector of the target word $w$.
 - $v'_c \in \mathbb{R}^d$ is the output context representation vector of a candidate word $c$.
@@ -792,23 +817,33 @@ During training, gradient updates adjust the word vectors directly, causing sema
 
 ### 9.3 The Encoder: Self-Attention & Positional Encoding
 The Transformer Encoder processes all token embeddings in parallel. To preserve sequence order, we add a wave-like **Positional Encoding (PE)** vector to each token embedding before the self-attention layer:
+
 $$PE_{(pos, 2i)} = \sin\left(\frac{pos}{10000^{2i/d_{model}}}\right), \quad PE_{(pos, 2i+1)} = \cos\left(\frac{pos}{10000^{2i/d_{model}}}\right)$$
+
 Where $pos$ is the token position in the sequence, and $i$ represents the dimension index.
 
 #### Scaled Dot-Product Self-Attention
 For a sequence of input vectors $X \in \mathbb{R}^{T \times d_{model}}$, we project it into Queries ($Q$), Keys ($K$), and Values ($V$) using weight matrices $W^Q, W^K, W^V$:
+
 $$Q = X W^Q, \quad K = X W^K, \quad V = X W^V$$
+
 We compute attention alignment weights by taking the dot product of queries and keys, scaling by the dimension size $\sqrt{d_k}$ to prevent gradient vanishing, and applying softmax:
+
 $$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V$$
+
 Where $d_k$ is the dimension of keys per attention head.
 
 #### Multi-Head Attention (MHA)
 Rather than computing attention once, we split $Q, K, V$ into $H$ heads, compute attention on each head in parallel, concatenate the outputs, and project back using an output matrix $W^O$. This allows the model to attend to information from different representation subspaces simultaneously.
 
 The encoder layer output is finalized using residual connections and Layer Normalization:
+
 $$X_{attn} = \text{LayerNorm}(X + \text{MultiHeadAttention}(X))$$
+
 $$X_{output} = \text{LayerNorm}(X_{attn} + \text{FeedForward}(X_{attn}))$$
+
 Where the Feed-Forward Network is a simple two-layer MLP with ReLU activation:
+
 $$\text{FeedForward}(x) = \max(0, x W_1 + b_1) W_2 + b_2$$
 
 ---
@@ -817,8 +852,11 @@ $$\text{FeedForward}(x) = \max(0, x W_1 + b_1) W_2 + b_2$$
 The Transformer Decoder generates target tokens autoregressively. It features two special attention layers:
 
 1. **Causal Masked Self-Attention**: To prevent the model from looking at future target tokens during training, we add a causal mask matrix $M$ to the dot-product attention scores before softmax:
+
    $$M_{i, j} = \begin{cases} 0 & \text{if } j \le i \\ -\infty & \text{if } j > i \end{cases}$$
+
    $$\text{Attention}_{masked}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}} + M\right)V$$
+
    When softmax is applied, the $-\infty$ values become exactly 0, preventing attention to future positions.
 2. **Encoder-Decoder Cross-Attention**: The Queries ($Q$) come from the decoder's masked self-attention representation, whereas the Keys ($K$) and Values ($V$) come from the encoder's final output representations. This maps target words directly back to the source words.
 
@@ -842,7 +880,9 @@ To help students quickly grasp machine learning jargon, here is a consolidated l
 ### 1. Centroid
 * **Definition**: The geometric center of a cluster, calculated as the arithmetic mean (average) of all coordinate vectors of the data points in that cluster. Used heavily in K-Means.
 * **Example**: For three 2D points in a cluster: $P_1(1, 5)$, $P_2(2, 4)$, and $P_3(3, 1)$.
+
   $$\text{Centroid } C = \left( \frac{1+2+3}{3}, \frac{5+4+1}{3} \right) = (2, 3.33)$$
+
 * **Diagram**:
 ```
      y-axis
@@ -890,7 +930,9 @@ flowchart TD
 ### 4. Residual
 * **Definition**: The difference between the actual observed value and the value predicted by the model ($y - \hat{y}$). Boosting models focus on training subsequent trees to predict these residuals.
 * **Example**: If a house sells for $400k ($y = 400$) and a linear model predicts it will sell for $380k ($\hat{y} = 380$):
+
   $$\text{Residual} = y - \hat{y} = 400 - 380 = 20$$
+
 * **Diagram**:
 ```
       y-axis (Price)
