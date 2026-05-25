@@ -547,6 +547,151 @@ Actual Negative   FP (Type I Error)           TN
 
 ---
 
+## Module 8: Code Walkthroughs & Implementation Steps
+
+This module breaks down the code structure, execution steps, and logic for both the **Framework (Scikit-Learn/XGBoost)** and **From-Scratch (Pure Python)** scripts.
+
+---
+
+### 8.1 Regression (Housing Prices Example)
+* **Target Concept**: Predict continuous house prices based on square footage.
+* **Runnable Files**:
+  * **Framework**: [examples/1_regression_housing.py](file:///Users/donthireddy/code/ai-course/examples/1_regression_housing.py)
+  * **From-Scratch**: [scratch/1_linear_regression.py](file:///Users/donthireddy/code/ai-course/scratch/1_linear_regression.py)
+
+#### Step-by-Step Logic Breakdown:
+1. **Data Prep**: Define size array ($X$) and price array ($y$).
+   * *From-Scratch Difference*: To prevent gradient descent number overflow, size features are normalized by dividing by 1000 ($1.5$ instead of $1500$).
+2. **Train/Test Splitting**: The framework uses `train_test_split(X, y, test_size=0.2)` to set aside 2 samples for validation.
+3. **Model Initialization & Fitting**:
+   * *Framework*: Calls `.fit(X_train, y_train)` on `LinearRegression()`, `Ridge()`, and `Lasso()`.
+   * *From-Scratch*: Manually initializes `weight = 0.0` and `bias = 0.0`. Runs a loop for `1000` epochs. Inside the loop, it calculates the prediction error ($h_\theta(x^{(i)}) - y^{(i)}$) for each sample, aggregates the gradients (sum of error $\times$ input size, and sum of errors), updates parameters, and prints MSE loss.
+4. **Predicting**:
+   * *Framework*: Calls `.predict([[2200]])` on all models.
+   * *From-Scratch*: Computes prediction directly: `price = weight * (2200/1000) + bias`.
+
+---
+
+### 8.2 Classification (Student Exam Pass/Fail)
+* **Target Concept**: Predict binary pass (1) or fail (0) status based on study hours.
+* **Runnable Files**:
+  * **Framework**: [examples/2_classification_exam.py](file:///Users/donthireddy/code/ai-course/examples/2_classification_exam.py)
+  * **From-Scratch**: [scratch/2_logistic_regression.py](file:///Users/donthireddy/code/ai-course/scratch/2_logistic_regression.py)
+
+#### Step-by-Step Logic Breakdown:
+1. **Data Prep**: Inputs hours studied $1$ to $10$; targets are $0$ for hours $\le 5$, and $1$ for hours $\ge 6$.
+2. **Probability Mapping (Sigmoid)**:
+   * *Framework*: Handled internally by `LogisticRegression()`.
+   * *From-Scratch*: Implements `sigmoid(z) = 1 / (1 + exp(-z))` with bounds checks to prevent mathematical float overflow.
+3. **Training Updates**:
+   * *Framework*: Fits coefficients using coordinate descent solver.
+   * *From-Scratch*: Runs a `2000` epoch loop. Computes $z = weight \times hours + bias$, passes it to `sigmoid()`, calculates prediction error, updates parameters via negative gradients, and computes Log Loss to monitor convergence.
+4. **Decision Boundaries**:
+   * *Both*: Classify as Pass (1) if probability $\ge 0.5$ ($z \ge 0$), otherwise Fail (0).
+
+---
+
+### 8.3 K-Nearest Neighbors (Offer Acceptance)
+* **Target Concept**: Classify card offer acceptance based on [Age, Income].
+* **Runnable Files**:
+  * **Framework**: [examples/3_knn_classification.py](file:///Users/donthireddy/code/ai-course/examples/3_knn_classification.py)
+  * **From-Scratch**: [scratch/3_knn_classification.py](file:///Users/donthireddy/code/ai-course/scratch/3_knn_classification.py)
+
+#### Step-by-Step Logic Breakdown:
+1. **Feature Scaling (Standardization)**:
+   * *Framework*: Uses `StandardScaler().fit_transform(X)`.
+   * *From-Scratch*: Computes the exact mean and standard deviation of Age and Income across the dataset. Standardizes points using: `scaled = (val - mean) / std`.
+2. **Distance Matrix Calculation**:
+   * *Framework*: Handled internally by `KNeighborsClassifier()`.
+   * *From-Scratch*: For the query point, calculates the Euclidean distance to every training point: $d = \sqrt{(x_1 - x_2)^2 + (y_1 - y_2)^2}$.
+3. **Sorting & Voting**:
+   * *Both*: Select the $K$ points with the smallest distances.
+   * *From-Scratch*: Sorts a list of `(distance, index)` tuples using `.sort()`, retrieves the top $K$ items, tallies classification votes, and outputs the majority class.
+
+---
+
+### 8.4 Decision Trees & Random Forests (Churn)
+* **Target Concept**: Predict customer churn based on Age, Support Calls, and Tenure.
+* **Runnable Files**:
+  * **Framework**: [examples/4_decision_tree_rf.py](file:///Users/donthireddy/code/ai-course/examples/4_decision_tree_rf.py)
+  * **From-Scratch**: [scratch/4_decision_tree.py](file:///Users/donthireddy/code/ai-course/scratch/4_decision_tree.py)
+
+#### Step-by-Step Logic Breakdown:
+1. **Splitting Metric (Gini Impurity)**:
+   * *Framework*: Evaluates splits using internal C libraries.
+   * *From-Scratch*: Implements `calculate_gini(labels)`: counts zeros and ones, calculates probability proportions ($p_0, p_1$), and computes $1 - (p_0^2 + p_1^2)$.
+2. **Exhaustive Threshold Search**:
+   * *Framework*: Automatically tests splits to build a full multi-level tree.
+   * *From-Scratch*: Loops through each feature column. For each feature, sorts the values, identifies unique midpoints, splits the dataset, calculates the weighted Gini impurity of the left and right child nodes, and selects the feature and threshold that minimize Gini impurity.
+3. **Ensemble Aggregation**:
+   * *Framework*: Fits `RandomForestClassifier` which trains multiple independent trees on bootstrapped samples and random features, returning averaged votes.
+
+---
+
+### 8.5 Ensemble Boosting (XGBoost Loan Defaults)
+* **Target Concept**: Predict default probability using gradient boosted trees.
+* **Runnable Files**:
+  * **Framework**: [examples/5_xgboost_ensemble.py](file:///Users/donthireddy/code/ai-course/examples/5_xgboost_ensemble.py)
+
+#### Step-by-Step Logic Breakdown:
+1. **Dataset Scaling**: Replicates sample indices to produce a robust $100$-sample training set.
+2. **Sequential Fitting**: `XGBClassifier` fits trees sequentially. The first tree makes baseline predictions, calculates residuals, and subsequent trees are trained to fit these residuals.
+3. **Regularized Complexity**: XGBoost checks leaves count ($T$) and weights ($w$) to penalize model complexity directly during node splits.
+
+---
+
+### 8.6 K-Means Clustering (Customer Segments)
+* **Target Concept**: Group customers based on Income and Spending Score.
+* **Runnable Files**:
+  * **Framework**: [examples/6_kmeans_clustering.py](file:///Users/donthireddy/code/ai-course/examples/6_kmeans_clustering.py)
+  * **From-Scratch**: [scratch/5_kmeans_clustering.py](file:///Users/donthireddy/code/ai-course/scratch/5_kmeans_clustering.py)
+
+#### Step-by-Step Logic Breakdown:
+1. **Centroid Initialization**: Set initial coordinates for $K=3$ cluster centers.
+2. **Iterative Updates**:
+   * **Distance & Assignment**: Compute distance from each coordinate point to all 3 centroids. Assign the point to the cluster index of the closest centroid.
+   * **Centroid Moving**: Group points by cluster index. Recalculate the centroid coordinate as the average (mean) of all points in that cluster.
+   * **Convergence Check**:
+     * *Framework*: Continues until coordinate shifts fall below tolerance.
+     * *From-Scratch*: Compares new centroid coordinates with previous coordinates. If they are identical, it breaks the loop early.
+
+---
+
+### 8.7 DBSCAN Density Clustering (Outlier Detection)
+* **Target Concept**: Density-based clustering that automatically flags outlier points as noise.
+* **Runnable Files**:
+  * **Framework**: [examples/7_dbscan_clustering.py](file:///Users/donthireddy/code/ai-course/examples/7_dbscan_clustering.py)
+  * **From-Scratch**: [scratch/6_dbscan_clustering.py](file:///Users/donthireddy/code/ai-course/scratch/6_dbscan_clustering.py)
+
+#### Step-by-Step Logic Breakdown:
+1. **Neighborhood Discovery**:
+   * *From-Scratch*: Calculates Euclidean distance between all coordinate pairs. Builds a list of indices representing neighbors within distance `eps = 0.5`.
+2. **Core Point Identification**:
+   * *Both*: If a point has at least `min_samples = 3` neighbors, it is classified as a **Core Point**.
+3. **Queue Expansion (BFS)**:
+   * *From-Scratch*: Loops through the points. When an unvisited core point is found, it initializes a new cluster and uses a list-based queue to traverse its neighbors. If any neighbor in the queue is also a core point, its own neighbors are appended to the search queue.
+4. **Outlier Labeling**:
+   * *Both*: Any point not reachable from a core point remains labeled as `-1` (Noise/Outlier).
+
+---
+
+### 8.8 Model Evaluation & Performance Metrics
+* **Target Concept**: Compute metrics for classification and regression models.
+* **Runnable Files**:
+  * **Framework**: [examples/8_model_evaluation.py](file:///Users/donthireddy/code/ai-course/examples/8_model_evaluation.py)
+  * **From-Scratch**: [scratch/7_model_evaluation.py](file:///Users/donthireddy/code/ai-course/scratch/7_model_evaluation.py)
+
+#### Step-by-Step Logic Breakdown:
+1. **Classification Metrics (Confusion Matrix)**:
+   * *From-Scratch*: Sets counters `tp, fp, tn, fn = 0`. Loops through actual and predicted pairs, updating counters.
+   * *Ratios*: Compute Accuracy: `(tp+tn)/total`, Precision: `tp/(tp+fp)`, Recall: `tp/(tp+fn)`, and F1-Score: `2 * p * r / (p + r)`.
+2. **Regression Metrics**:
+   * *From-Scratch*: Loops through actual and predicted prices. Aggregates absolute differences (`abs(act - pred)`) and squared differences (`(act - pred)**2`).
+   * *Ratios*: Compute MAE: `sum_abs/n`, MSE: `sum_sq/n`, RMSE: `sqrt(MSE)`.
+   * *R-squared ($R^2$)*: Computes the mean price, calculates total variance sum (`(act - mean)**2`), and returns `1.0 - (sum_squared_error / sum_total_variance)`.
+
+---
+
 ## Appendix: Glossary of Key Terminologies
 
 To help students quickly grasp machine learning jargon, here is a consolidated list of key terms with examples and illustrative diagrams:
