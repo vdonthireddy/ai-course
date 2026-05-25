@@ -1442,7 +1442,7 @@ To help students quickly grasp machine learning jargon, here is a consolidated l
   
   4. Perform the update:
   
-     $$\mathbf{w}\_{t+1} = \begin{bmatrix} 4.0 \\ 1.0 \end{bmatrix} - 0.1 \begin{bmatrix} 8.0 \\ 6.0 \end{bmatrix} = \begin{bmatrix} 4.0 - 0.8 \\ 1.0 - 0.6 \end{bmatrix} = \begin{bmatrix} 3.2 \\ 0.4 \end{bmatrix}$$
+     $$\mathbf{w}\_{t+1} = \begin{bmatrix} 4.0 \\\\ 1.0 \end{bmatrix} - 0.1 \begin{bmatrix} 8.0 \\\\ 6.0 \end{bmatrix} = \begin{bmatrix} 4.0 - 0.8 \\\\ 1.0 - 0.6 \end{bmatrix} = \begin{bmatrix} 3.2 \\\\ 0.4 \end{bmatrix}$$
   
   Our loss decreases from $f(4.0, 1.0) = 19.0$ to $f(3.2, 0.4) = (3.2)^2 + 3(0.4)^2 = 10.24 + 0.48 = 10.72$.
 * **Visual Demonstration**: Refer to the top-left panel of `plots/glossary_gradient_bias_lazy.png` to see how the gradient vector guides a point down a 3D loss valley.
@@ -1483,23 +1483,23 @@ To help students quickly grasp machine learning jargon, here is a consolidated l
 * **Step-by-Step Example**:
   Consider self-attention for 2 tokens with queries, keys, and values:
   
-  $$\mathbf{Q} = \begin{bmatrix} 1.0 & 0.0 \\ 0.0 & 1.0 \end{bmatrix}, \quad \mathbf{K} = \begin{bmatrix} 1.0 & 1.0 \\ 0.0 & 1.0 \end{bmatrix}, \quad \mathbf{V} = \begin{bmatrix} 10.0 & 20.0 \\ 30.0 & 40.0 \end{bmatrix}$$
+  $$\mathbf{Q} = \begin{bmatrix} 1.0 & 0.0 \\\\ 0.0 & 1.0 \end{bmatrix}, \quad \mathbf{K} = \begin{bmatrix} 1.0 & 1.0 \\\\ 0.0 & 1.0 \end{bmatrix}, \quad \mathbf{V} = \begin{bmatrix} 10.0 & 20.0 \\\\ 30.0 & 40.0 \end{bmatrix}$$
   
   Let $d\_k = 2 \implies \sqrt{d\_k} \approx 1.414$.
   1. Compute similarity matrix $\mathbf{Q}\mathbf{K}^T$:
   
-     $$\mathbf{A}_{\text{raw}} = \begin{bmatrix} 1.0 & 0.0 \\ 0.0 & 1.0 \end{bmatrix} \begin{bmatrix} 1.0 & 0.0 \\ 1.0 & 1.0 \end{bmatrix} = \begin{bmatrix} 1.0 & 0.0 \\ 1.0 & 1.0 \end{bmatrix}$$
+     $$\mathbf{A}_{\text{raw}} = \begin{bmatrix} 1.0 & 0.0 \\\\ 0.0 & 1.0 \end{bmatrix} \begin{bmatrix} 1.0 & 0.0 \\\\ 1.0 & 1.0 \end{bmatrix} = \begin{bmatrix} 1.0 & 0.0 \\\\ 1.0 & 1.0 \end{bmatrix}$$
   
   2. Scale by $\sqrt{d\_k}$:
   
-     $$\mathbf{A}_{\text{scaled}} = \begin{bmatrix} 0.707 & 0.0 \\ 0.707 & 0.707 \end{bmatrix}$$
+     $$\mathbf{A}_{\text{scaled}} = \begin{bmatrix} 0.707 & 0.0 \\\\ 0.707 & 0.707 \end{bmatrix}$$
   
   3. Apply Softmax row-wise:
      * **Row 1**: $\text{Softmax}([0.707, 0.0]) = [0.67, 0.33]$
      * **Row 2**: $\text{Softmax}([0.707, 0.707]) = [0.5, 0.5]$
   4. Compute weighted value sum $\mathbf{A}_{\text{softmax}} \mathbf{V}$:
   
-     $$\text{Output} = \begin{bmatrix} 0.67 & 0.33 \\ 0.5 & 0.5 \end{bmatrix} \begin{bmatrix} 10.0 & 20.0 \\ 30.0 & 40.0 \end{bmatrix} = \begin{bmatrix} 16.6 & 26.6 \\ 20.0 & 30.0 \end{bmatrix}$$
+     $$\text{Output} = \begin{bmatrix} 0.67 & 0.33 \\\\ 0.5 & 0.5 \end{bmatrix} \begin{bmatrix} 10.0 & 20.0 \\\\ 30.0 & 40.0 \end{bmatrix} = \begin{bmatrix} 16.6 & 26.6 \\\\ 20.0 & 30.0 \end{bmatrix}$$
 
 * **Visual Demonstration**: Refer to the middle-left panel of `plots/glossary_llm_concepts.png` showing how queries map to key alignments to aggregate values.
 
@@ -1512,17 +1512,17 @@ To help students quickly grasp machine learning jargon, here is a consolidated l
   
   The mask elements are defined as:
   
-  $$M\_{i,j} = \begin{cases} 0 & \text{if } j \le i \\ -\infty & \text{if } j > i \end{cases}$$
+  $$M\_{i,j} = \begin{cases} 0 & \text{if } j \le i \\\\ -\infty & \text{if } j > i \end{cases}$$
   
   Since $e^{-\infty} = 0$, this mathematically zeros out the attention weight assigned to future positions.
 * **Step-by-Step Example**:
   Suppose a sequence has 3 tokens. The scaled similarity scores are:
   
-  $$\mathbf{S} = \begin{bmatrix} 2.0 & 1.0 & 0.5 \\ 1.5 & 3.0 & 2.0 \\ 0.8 & 1.2 & 2.5 \end{bmatrix}$$
+  $$\mathbf{S} = \begin{bmatrix} 2.0 & 1.0 & 0.5 \\\\ 1.5 & 3.0 & 2.0 \\\\ 0.8 & 1.2 & 2.5 \end{bmatrix}$$
   
-  1. Add causal mask $\mathbf{M} = \begin{bmatrix} 0.0 & -\infty & -\infty \\ 0.0 & 0.0 & -\infty \\ 0.0 & 0.0 & 0.0 \end{bmatrix}$ to $\mathbf{S}$:
+  1. Add causal mask $\mathbf{M} = \begin{bmatrix} 0.0 & -\infty & -\infty \\\\ 0.0 & 0.0 & -\infty \\\\ 0.0 & 0.0 & 0.0 \end{bmatrix}$ to $\mathbf{S}$:
   
-     $$\mathbf{S} + \mathbf{M} = \begin{bmatrix} 2.0 & -\infty & -\infty \\ 1.5 & 3.0 & -\infty \\ 0.8 & 1.2 & 2.5 \end{bmatrix}$$
+     $$\mathbf{S} + \mathbf{M} = \begin{bmatrix} 2.0 & -\infty & -\infty \\\\ 1.5 & 3.0 & -\infty \\\\ 0.8 & 1.2 & 2.5 \end{bmatrix}$$
   
   2. Compute Softmax row-wise:
      * **Row 1**: $\text{Softmax}([2.0, -\infty, -\infty]) = [1.0, 0.0, 0.0]$
