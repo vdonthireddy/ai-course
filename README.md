@@ -95,14 +95,14 @@ python3 examples/<script_name>.py
 
 | Lesson / Topic | Concept | Python Example Link | Output Plot Link |
 | :--- | :--- | :--- | :--- |
-| **Module 3: Regression** | House Value per Sq Ft | [1_regression_housing.py](file:///Users/donthireddy/code/ai-course/examples/1_regression_housing.py) | [examples_1_regression.png](file:///Users/donthireddy/code/ai-course/plots/examples_1_regression.png) |
-| **Module 4: Classification** | Student Exam Pass/Fail | [2_classification_exam.py](file:///Users/donthireddy/code/ai-course/examples/2_classification_exam.py) | [examples_2_classification.png](file:///Users/donthireddy/code/ai-course/plots/examples_2_classification.png) |
-| **Module 4: KNN** | Credit Card Offer Acceptance | [3_knn_classification.py](file:///Users/donthireddy/code/ai-course/examples/3_knn_classification.py) | [examples_3_knn.png](file:///Users/donthireddy/code/ai-course/plots/examples_3_knn.png) |
-| **Module 4: Decision Trees** | Customer Churn tree rules & Random Forest | [4_decision_tree_rf.py](file:///Users/donthireddy/code/ai-course/examples/4_decision_tree_rf.py) | [examples_4_decision_tree.png](file:///Users/donthireddy/code/ai-course/plots/examples_4_decision_tree.png) |
-| **Module 5: Ensemble** | Loan Default risk forecasting with XGBoost | [5_xgboost_ensemble.py](file:///Users/donthireddy/code/ai-course/examples/5_xgboost_ensemble.py) | [examples_5_xgboost.png](file:///Users/donthireddy/code/ai-course/plots/examples_5_xgboost.png) |
-| **Module 6: K-Means** | Customer Income & Spend Segmentation | [6_kmeans_clustering.py](file:///Users/donthireddy/code/ai-course/examples/6_kmeans_clustering.py) | [examples_6_kmeans.png](file:///Users/donthireddy/code/ai-course/plots/examples_6_kmeans.png) |
-| **Module 6: DBSCAN** | Density Coordinate Point Classification | [7_dbscan_clustering.py](file:///Users/donthireddy/code/ai-course/examples/7_dbscan_clustering.py) | [examples_7_dbscan.png](file:///Users/donthireddy/code/ai-course/plots/examples_7_dbscan.png) |
-| **Module 7: Evaluation** | MAE/MSE/RMSE, Confusion Matrix, Precision/Recall | [8_model_evaluation.py](file:///Users/donthireddy/code/ai-course/examples/8_model_evaluation.py) | [examples_8_evaluation.png](file:///Users/donthireddy/code/ai-course/plots/examples_8_evaluation.png) |
+| **Module 3: Regression** | House Value per Sq Ft | [1_regression_housing.py](examples/1_regression_housing.py) | [examples_1_regression.png](plots/examples_1_regression.png) |
+| **Module 4: Classification** | Student Exam Pass/Fail | [2_classification_exam.py](examples/2_classification_exam.py) | [examples_2_classification.png](plots/examples_2_classification.png) |
+| **Module 4: KNN** | Credit Card Offer Acceptance | [3_knn_classification.py](examples/3_knn_classification.py) | [examples_3_knn.png](plots/examples_3_knn.png) |
+| **Module 4: Decision Trees** | Customer Churn tree rules & Random Forest | [4_decision_tree_rf.py](examples/4_decision_tree_rf.py) | [examples_4_decision_tree.png](plots/examples_4_decision_tree.png) |
+| **Module 5: Ensemble** | Loan Default risk forecasting with XGBoost | [5_xgboost_ensemble.py](examples/5_xgboost_ensemble.py) | [examples_5_xgboost.png](plots/examples_5_xgboost.png) |
+| **Module 6: K-Means** | Customer Income & Spend Segmentation | [6_kmeans_clustering.py](examples/6_kmeans_clustering.py) | [examples_6_kmeans.png](plots/examples_6_kmeans.png) |
+| **Module 6: DBSCAN** | Density Coordinate Point Classification | [7_dbscan_clustering.py](examples/7_dbscan_clustering.py) | [examples_7_dbscan.png](plots/examples_7_dbscan.png) |
+| **Module 7: Evaluation** | MAE/MSE/RMSE, Confusion Matrix, Precision/Recall | [8_model_evaluation.py](examples/8_model_evaluation.py) | [examples_8_evaluation.png](plots/examples_8_evaluation.png) |
 
 ### 2. From-Scratch Examples (Pure Python, No Frameworks)
 You can run them in your terminal using:
@@ -112,13 +112,13 @@ python3 scratch/<script_name>.py
 
 | Lesson / Topic | Concept | From-Scratch Python Link | Output Plot Link |
 | :--- | :--- | :--- | :--- |
-| **Module 3: Regression** | Gradient Descent Line Fitting | [1_linear_regression.py](file:///Users/donthireddy/code/ai-course/scratch/1_linear_regression.py) | [scratch_1_regression.png](file:///Users/donthireddy/code/ai-course/plots/scratch_1_regression.png) |
-| **Module 4: Classification** | Sigmoid & Log Loss updates | [2_logistic_regression.py](file:///Users/donthireddy/code/ai-course/scratch/2_logistic_regression.py) | [scratch_2_logistic.png](file:///Users/donthireddy/code/ai-course/plots/scratch_2_logistic.png) |
-| **Module 4: KNN** | Standard Scaling & Euclidean distances | [3_knn_classification.py](file:///Users/donthireddy/code/ai-course/scratch/3_knn_classification.py) | [scratch_3_knn.png](file:///Users/donthireddy/code/ai-course/plots/scratch_3_knn.png) |
-| **Module 4: Decision Trees** | Gini Impurity split searches | [4_decision_tree.py](file:///Users/donthireddy/code/ai-course/scratch/4_decision_tree.py) | [scratch_4_decision_tree.png](file:///Users/donthireddy/code/ai-course/plots/scratch_4_decision_tree.png) |
-| **Module 6: K-Means** | Distance centroid updates | [5_kmeans_clustering.py](file:///Users/donthireddy/code/ai-course/scratch/5_kmeans_clustering.py) | [scratch_5_kmeans.png](file:///Users/donthireddy/code/ai-course/plots/scratch_5_kmeans.png) |
-| **Module 6: DBSCAN** | Density point neighborhood & BFS | [6_dbscan_clustering.py](file:///Users/donthireddy/code/ai-course/scratch/6_dbscan_clustering.py) | [scratch_6_dbscan.png](file:///Users/donthireddy/code/ai-course/plots/scratch_6_dbscan.png) |
-| **Module 7: Evaluation** | Metrics loop logic (F1, MSE, $R^2$) | [7_model_evaluation.py](file:///Users/donthireddy/code/ai-course/scratch/7_model_evaluation.py) | [scratch_7_evaluation.png](file:///Users/donthireddy/code/ai-course/plots/scratch_7_evaluation.png) |
+| **Module 3: Regression** | Gradient Descent Line Fitting | [1_linear_regression.py](scratch/1_linear_regression.py) | [scratch_1_regression.png](plots/scratch_1_regression.png) |
+| **Module 4: Classification** | Sigmoid & Log Loss updates | [2_logistic_regression.py](scratch/2_logistic_regression.py) | [scratch_2_logistic.png](plots/scratch_2_logistic.png) |
+| **Module 4: KNN** | Standard Scaling & Euclidean distances | [3_knn_classification.py](scratch/3_knn_classification.py) | [scratch_3_knn.png](plots/scratch_3_knn.png) |
+| **Module 4: Decision Trees** | Gini Impurity split searches | [4_decision_tree.py](scratch/4_decision_tree.py) | [scratch_4_decision_tree.png](plots/scratch_4_decision_tree.png) |
+| **Module 6: K-Means** | Distance centroid updates | [5_kmeans_clustering.py](scratch/5_kmeans_clustering.py) | [scratch_5_kmeans.png](plots/scratch_5_kmeans.png) |
+| **Module 6: DBSCAN** | Density point neighborhood & BFS | [6_dbscan_clustering.py](scratch/6_dbscan_clustering.py) | [scratch_6_dbscan.png](plots/scratch_6_dbscan.png) |
+| **Module 7: Evaluation** | Metrics loop logic (F1, MSE, $R^2$) | [7_model_evaluation.py](scratch/7_model_evaluation.py) | [scratch_7_evaluation.png](plots/scratch_7_evaluation.png) |
 
 ### 3. Large Language Model (LLM) Examples
 You can run them in your terminal using:
@@ -128,11 +128,11 @@ python3 llm/<script_name>.py
 
 | Lesson / Topic | Concept | Python Script Link | Output Plot Link |
 | :--- | :--- | :--- | :--- |
-| **Module 9.1: Tokenizer** | Byte Pair Encoding (BPE) from scratch | [1_bpe_tokenizer.py](file:///Users/donthireddy/code/ai-course/llm/1_bpe_tokenizer.py) | [llm_1_bpe_vocab.png](file:///Users/donthireddy/code/ai-course/plots/llm_1_bpe_vocab.png) |
-| **Module 9.2: Embeddings** | Skip-gram Word2Vec with Negative Sampling | [2_word2vec.py](file:///Users/donthireddy/code/ai-course/llm/2_word2vec.py) | [llm_2_word2vec.png](file:///Users/donthireddy/code/ai-course/plots/llm_2_word2vec.png) |
-| **Module 9.3: Encoder** | Multi-Head Self-Attention & Positional Encoding | [3_encoder.py](file:///Users/donthireddy/code/ai-course/llm/3_encoder.py) | [llm_3_positional_encoding.png](file:///Users/donthireddy/code/ai-course/plots/llm_3_positional_encoding.png) |
-| **Module 9.4: Decoder** | Causal Masked Self-Attention & Cross-Attention | [4_decoder.py](file:///Users/donthireddy/code/ai-course/llm/4_decoder.py) | [llm_4_causal_mask.png](file:///Users/donthireddy/code/ai-course/plots/llm_4_causal_mask.png) |
-| **Module 9.5: Transformer** | End-to-End Translator (Seq2Seq Model) | [5_transformer_llm.py](file:///Users/donthireddy/code/ai-course/llm/5_transformer_llm.py) | [llm_5_attention_alignment.png](file:///Users/donthireddy/code/ai-course/plots/llm_5_attention_alignment.png) |
+| **Module 9.1: Tokenizer** | Byte Pair Encoding (BPE) from scratch | [1_bpe_tokenizer.py](llm/1_bpe_tokenizer.py) | [llm_1_bpe_vocab.png](plots/llm_1_bpe_vocab.png) |
+| **Module 9.2: Embeddings** | Skip-gram Word2Vec with Negative Sampling | [2_word2vec.py](llm/2_word2vec.py) | [llm_2_word2vec.png](plots/llm_2_word2vec.png) |
+| **Module 9.3: Encoder** | Multi-Head Self-Attention & Positional Encoding | [3_encoder.py](llm/3_encoder.py) | [llm_3_positional_encoding.png](plots/llm_3_positional_encoding.png) |
+| **Module 9.4: Decoder** | Causal Masked Self-Attention & Cross-Attention | [4_decoder.py](llm/4_decoder.py) | [llm_4_causal_mask.png](plots/llm_4_causal_mask.png) |
+| **Module 9.5: Transformer** | End-to-End Translator (Seq2Seq Model) | [5_transformer_llm.py](llm/5_transformer_llm.py) | [llm_5_attention_alignment.png](plots/llm_5_attention_alignment.png) |
 
 ---
 
@@ -339,7 +339,7 @@ print(f"Lasso MSE: {mean_squared_error(y_test, lasso.predict(X_test)):.4f}")
 
 Classification models predict discrete class labels (e.g., Spam vs. Not Spam, Cat vs. Dog vs. Bird). While regression estimates continuous target values, classification divides the feature space into distinct regions separated by **decision boundaries**.
 
-![Classification Decision Boundaries Comparison](file:///Users/donthireddy/code/ai-course/plots/classification_decision_boundaries.png)
+![Classification Decision Boundaries Comparison](plots/classification_decision_boundaries.png)
 
 ---
 
@@ -407,7 +407,7 @@ graph TD
 
   $$d(p, q) = \sum_{i=1}^{n} |p_i - q_i|$$
 
-![Distance Metrics Comparison](file:///Users/donthireddy/code/ai-course/plots/distance_metrics.png)
+![Distance Metrics Comparison](plots/distance_metrics.png)
 
 #### Concrete Example: Fruit Classification (Apple vs. Orange)
 Suppose we classify fruits based on two features: **Sweetness ($x_1$)** and **Roundness ($x_2$)**. We set $K = 3$.
@@ -745,8 +745,8 @@ This module breaks down the code structure, execution steps, and logic for both 
 ### 8.1 Regression (Housing Prices Example)
 * **Target Concept**: Predict continuous house prices based on square footage.
 * **Runnable Files & Output Plots**:
-  * **Framework**: [examples/1_regression_housing.py](file:///Users/donthireddy/code/ai-course/examples/1_regression_housing.py) &rarr; Output Plot: [examples_1_regression.png](file:///Users/donthireddy/code/ai-course/plots/examples_1_regression.png)
-  * **From-Scratch**: [scratch/1_linear_regression.py](file:///Users/donthireddy/code/ai-course/scratch/1_linear_regression.py) &rarr; Output Plot: [scratch_1_regression.png](file:///Users/donthireddy/code/ai-course/plots/scratch_1_regression.png)
+  * **Framework**: [examples/1_regression_housing.py](examples/1_regression_housing.py) &rarr; Output Plot: [examples_1_regression.png](plots/examples_1_regression.png)
+  * **From-Scratch**: [scratch/1_linear_regression.py](scratch/1_linear_regression.py) &rarr; Output Plot: [scratch_1_regression.png](plots/scratch_1_regression.png)
 
 #### Step-by-Step Logic Breakdown:
 1. **Data Prep**: Define size array ($X$) and price array ($y$).
@@ -764,8 +764,8 @@ This module breaks down the code structure, execution steps, and logic for both 
 ### 8.2 Classification (Student Exam Pass/Fail)
 * **Target Concept**: Predict binary pass (1) or fail (0) status based on study hours.
 * **Runnable Files & Output Plots**:
-  * **Framework**: [examples/2_classification_exam.py](file:///Users/donthireddy/code/ai-course/examples/2_classification_exam.py) &rarr; Output Plot: [examples_2_classification.png](file:///Users/donthireddy/code/ai-course/plots/examples_2_classification.png)
-  * **From-Scratch**: [scratch/2_logistic_regression.py](file:///Users/donthireddy/code/ai-course/scratch/2_logistic_regression.py) &rarr; Output Plot: [scratch_2_logistic.png](file:///Users/donthireddy/code/ai-course/plots/scratch_2_logistic.png)
+  * **Framework**: [examples/2_classification_exam.py](examples/2_classification_exam.py) &rarr; Output Plot: [examples_2_classification.png](plots/examples_2_classification.png)
+  * **From-Scratch**: [scratch/2_logistic_regression.py](scratch/2_logistic_regression.py) &rarr; Output Plot: [scratch_2_logistic.png](plots/scratch_2_logistic.png)
 
 #### Step-by-Step Logic Breakdown:
 1. **Data Prep**: Inputs hours studied $1$ to $10$; targets are $0$ for hours $\le 5$, and $1$ for hours $\ge 6$.
@@ -783,8 +783,8 @@ This module breaks down the code structure, execution steps, and logic for both 
 ### 8.3 K-Nearest Neighbors (Offer Acceptance)
 * **Target Concept**: Classify card offer acceptance based on [Age, Income].
 * **Runnable Files & Output Plots**:
-  * **Framework**: [examples/3_knn_classification.py](file:///Users/donthireddy/code/ai-course/examples/3_knn_classification.py) &rarr; Output Plot: [examples_3_knn.png](file:///Users/donthireddy/code/ai-course/plots/examples_3_knn.png)
-  * **From-Scratch**: [scratch/3_knn_classification.py](file:///Users/donthireddy/code/ai-course/scratch/3_knn_classification.py) &rarr; Output Plot: [scratch_3_knn.png](file:///Users/donthireddy/code/ai-course/plots/scratch_3_knn.png)
+  * **Framework**: [examples/3_knn_classification.py](examples/3_knn_classification.py) &rarr; Output Plot: [examples_3_knn.png](plots/examples_3_knn.png)
+  * **From-Scratch**: [scratch/3_knn_classification.py](scratch/3_knn_classification.py) &rarr; Output Plot: [scratch_3_knn.png](plots/scratch_3_knn.png)
 
 #### Step-by-Step Logic Breakdown:
 1. **Feature Scaling (Standardization)**:
@@ -802,8 +802,8 @@ This module breaks down the code structure, execution steps, and logic for both 
 ### 8.4 Decision Trees & Random Forests (Churn)
 * **Target Concept**: Predict customer churn based on Age, Support Calls, and Tenure.
 * **Runnable Files & Output Plots**:
-  * **Framework**: [examples/4_decision_tree_rf.py](file:///Users/donthireddy/code/ai-course/examples/4_decision_tree_rf.py) &rarr; Output Plot: [examples_4_decision_tree.png](file:///Users/donthireddy/code/ai-course/plots/examples_4_decision_tree.png)
-  * **From-Scratch**: [scratch/4_decision_tree.py](file:///Users/donthireddy/code/ai-course/scratch/4_decision_tree.py) &rarr; Output Plot: [scratch_4_decision_tree.png](file:///Users/donthireddy/code/ai-course/plots/scratch_4_decision_tree.png)
+  * **Framework**: [examples/4_decision_tree_rf.py](examples/4_decision_tree_rf.py) &rarr; Output Plot: [examples_4_decision_tree.png](plots/examples_4_decision_tree.png)
+  * **From-Scratch**: [scratch/4_decision_tree.py](scratch/4_decision_tree.py) &rarr; Output Plot: [scratch_4_decision_tree.png](plots/scratch_4_decision_tree.png)
 
 #### Step-by-Step Logic Breakdown:
 1. **Splitting Metric (Gini Impurity)**:
@@ -820,7 +820,7 @@ This module breaks down the code structure, execution steps, and logic for both 
 ### 8.5 Ensemble Boosting (XGBoost Loan Defaults)
 * **Target Concept**: Predict default probability using gradient boosted trees.
 * **Runnable Files & Output Plots**:
-  * **Framework**: [examples/5_xgboost_ensemble.py](file:///Users/donthireddy/code/ai-course/examples/5_xgboost_ensemble.py) &rarr; Output Plot: [examples_5_xgboost.png](file:///Users/donthireddy/code/ai-course/plots/examples_5_xgboost.png)
+  * **Framework**: [examples/5_xgboost_ensemble.py](examples/5_xgboost_ensemble.py) &rarr; Output Plot: [examples_5_xgboost.png](plots/examples_5_xgboost.png)
 
 #### Step-by-Step Logic Breakdown:
 1. **Dataset Scaling**: Replicates sample indices to produce a robust $100$-sample training set.
@@ -832,8 +832,8 @@ This module breaks down the code structure, execution steps, and logic for both 
 ### 8.6 K-Means Clustering (Customer Segments)
 * **Target Concept**: Group customers based on Income and Spending Score.
 * **Runnable Files & Output Plots**:
-  * **Framework**: [examples/6_kmeans_clustering.py](file:///Users/donthireddy/code/ai-course/examples/6_kmeans_clustering.py) &rarr; Output Plot: [examples_6_kmeans.png](file:///Users/donthireddy/code/ai-course/plots/examples_6_kmeans.png)
-  * **From-Scratch**: [scratch/5_kmeans_clustering.py](file:///Users/donthireddy/code/ai-course/scratch/5_kmeans_clustering.py) &rarr; Output Plot: [scratch_5_kmeans.png](file:///Users/donthireddy/code/ai-course/plots/scratch_5_kmeans.png)
+  * **Framework**: [examples/6_kmeans_clustering.py](examples/6_kmeans_clustering.py) &rarr; Output Plot: [examples_6_kmeans.png](plots/examples_6_kmeans.png)
+  * **From-Scratch**: [scratch/5_kmeans_clustering.py](scratch/5_kmeans_clustering.py) &rarr; Output Plot: [scratch_5_kmeans.png](plots/scratch_5_kmeans.png)
 
 #### Step-by-Step Logic Breakdown:
 1. **Centroid Initialization**: Set initial coordinates for $K=3$ cluster centers.
@@ -849,8 +849,8 @@ This module breaks down the code structure, execution steps, and logic for both 
 ### 8.7 DBSCAN Density Clustering (Outlier Detection)
 * **Target Concept**: Density-based clustering that automatically flags outlier points as noise.
 * **Runnable Files & Output Plots**:
-  * **Framework**: [examples/7_dbscan_clustering.py](file:///Users/donthireddy/code/ai-course/examples/7_dbscan_clustering.py) &rarr; Output Plot: [examples_7_dbscan.png](file:///Users/donthireddy/code/ai-course/plots/examples_7_dbscan.png)
-  * **From-Scratch**: [scratch/6_dbscan_clustering.py](file:///Users/donthireddy/code/ai-course/scratch/6_dbscan_clustering.py) &rarr; Output Plot: [scratch_6_dbscan.png](file:///Users/donthireddy/code/ai-course/plots/scratch_6_dbscan.png)
+  * **Framework**: [examples/7_dbscan_clustering.py](examples/7_dbscan_clustering.py) &rarr; Output Plot: [examples_7_dbscan.png](plots/examples_7_dbscan.png)
+  * **From-Scratch**: [scratch/6_dbscan_clustering.py](scratch/6_dbscan_clustering.py) &rarr; Output Plot: [scratch_6_dbscan.png](plots/scratch_6_dbscan.png)
 
 #### Step-by-Step Logic Breakdown:
 1. **Neighborhood Discovery**:
@@ -867,8 +867,8 @@ This module breaks down the code structure, execution steps, and logic for both 
 ### 8.8 Model Evaluation & Performance Metrics
 * **Target Concept**: Compute metrics for classification and regression models.
 * **Runnable Files & Output Plots**:
-  * **Framework**: [examples/8_model_evaluation.py](file:///Users/donthireddy/code/ai-course/examples/8_model_evaluation.py) &rarr; Output Plot: [examples_8_evaluation.png](file:///Users/donthireddy/code/ai-course/plots/examples_8_evaluation.png)
-  * **From-Scratch**: [scratch/7_model_evaluation.py](file:///Users/donthireddy/code/ai-course/scratch/7_model_evaluation.py) &rarr; Output Plot: [scratch_7_evaluation.png](file:///Users/donthireddy/code/ai-course/plots/scratch_7_evaluation.png)
+  * **Framework**: [examples/8_model_evaluation.py](examples/8_model_evaluation.py) &rarr; Output Plot: [examples_8_evaluation.png](plots/examples_8_evaluation.png)
+  * **From-Scratch**: [scratch/7_model_evaluation.py](scratch/7_model_evaluation.py) &rarr; Output Plot: [scratch_7_evaluation.png](plots/scratch_7_evaluation.png)
 
 #### Step-by-Step Logic Breakdown:
 1. **Classification Metrics (Confusion Matrix)**:
@@ -1053,11 +1053,11 @@ This mathematically restricts the model from looking ahead during training, forc
 ### 9.5 End-to-End LLM Python Implementation
 We have created five pure Python scripts inside the `llm/` directory showing how these pieces operate together step-by-step:
 
-1. **[llm/1_bpe_tokenizer.py](file:///Users/donthireddy/code/ai-course/llm/1_bpe_tokenizer.py)**: Trains BPE merge rules on a corpus, segments out-of-vocabulary words, and saves [llm_1_bpe_vocab.png](file:///Users/donthireddy/code/ai-course/plots/llm_1_bpe_vocab.png).
-2. **[llm/2_word2vec.py](file:///Users/donthireddy/code/ai-course/llm/2_word2vec.py)**: Performs gradient descent on context pairs, trains semantic 2D embeddings, and saves [llm_2_word2vec.png](file:///Users/donthireddy/code/ai-course/plots/llm_2_word2vec.png) (showing semantic word clusters).
-3. **[llm/3_encoder.py](file:///Users/donthireddy/code/ai-course/llm/3_encoder.py)**: Implements positional encoding math, Q/K/V projections, Multi-Head self-attention, LayerNorm, and FFN, saving the wave positional encoding heatmap to [llm_3_positional_encoding.png](file:///Users/donthireddy/code/ai-course/plots/llm_3_positional_encoding.png).
-4. **[llm/4_decoder.py](file:///Users/donthireddy/code/ai-course/llm/4_decoder.py)**: Implements causal masking, cross-attention alignment, and saves the causal mask visual boundary heatmap to [llm_4_causal_mask.png](file:///Users/donthireddy/code/ai-course/plots/llm_4_causal_mask.png).
-5. **[llm/5_transformer_llm.py](file:///Users/donthireddy/code/ai-course/llm/5_transformer_llm.py)**: Assembles the tokenizer, embeddings, encoder, and decoder layers. Translates English inputs to Spanish step-by-step using greedy autoregressive decoding, saving the cross-attention alignment map to [llm_5_attention_alignment.png](file:///Users/donthireddy/code/ai-course/plots/llm_5_attention_alignment.png).
+1. **[llm/1_bpe_tokenizer.py](llm/1_bpe_tokenizer.py)**: Trains BPE merge rules on a corpus, segments out-of-vocabulary words, and saves [llm_1_bpe_vocab.png](plots/llm_1_bpe_vocab.png).
+2. **[llm/2_word2vec.py](llm/2_word2vec.py)**: Performs gradient descent on context pairs, trains semantic 2D embeddings, and saves [llm_2_word2vec.png](plots/llm_2_word2vec.png) (showing semantic word clusters).
+3. **[llm/3_encoder.py](llm/3_encoder.py)**: Implements positional encoding math, Q/K/V projections, Multi-Head self-attention, LayerNorm, and FFN, saving the wave positional encoding heatmap to [llm_3_positional_encoding.png](plots/llm_3_positional_encoding.png).
+4. **[llm/4_decoder.py](llm/4_decoder.py)**: Implements causal masking, cross-attention alignment, and saves the causal mask visual boundary heatmap to [llm_4_causal_mask.png](plots/llm_4_causal_mask.png).
+5. **[llm/5_transformer_llm.py](llm/5_transformer_llm.py)**: Assembles the tokenizer, embeddings, encoder, and decoder layers. Translates English inputs to Spanish step-by-step using greedy autoregressive decoding, saving the cross-attention alignment map to [llm_5_attention_alignment.png](plots/llm_5_attention_alignment.png).
 
 ---
 
