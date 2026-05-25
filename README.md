@@ -459,18 +459,104 @@ Actual Negative   FP (Type I Error)           TN
 
 ## Appendix: Glossary of Key Terminologies
 
-To help students quickly grasp machine learning jargon, here is a consolidated list of key terms:
+To help students quickly grasp machine learning jargon, here is a consolidated list of key terms with examples and illustrative diagrams:
 
-* **Centroid**: The geometric center of a cluster, calculated as the arithmetic mean of all coordinate vectors of the data points in that cluster. Used heavily in K-Means.
-* **Hyperplane**: A decision boundary that splits space into regions representing different classes (e.g., a line in 2D space, a flat plane in 3D, and a high-dimensional surface in 4D or higher).
-* **Margin**: The distance between the decision boundary (hyperplane) and the closest training points from either class. Maximizing this margin is the core objective of Support Vector Machines (SVM).
-* **Support Vectors**: The critical data points that lie closest to the SVM decision boundary. Changing or removing these points would alter the position of the boundary.
-* **Regularization ($L_1$ / $L_2$)**: A technique that prevents overfitting by adding a mathematical penalty to the cost function to constrain the size of model parameters ($\theta$).
-* **Weak Learner**: A simple classifier or regressor that performs only slightly better than random guessing (e.g., a very shallow decision tree). Used sequentially in Boosting algorithms.
-* **Inductive Bias**: The underlying assumptions an algorithm makes about the target function to generalize from training data to unseen data (e.g., Linear Regression assumes a linear relationship).
-* **Lazy Learning**: Algorithms that do not construct a generalized model during the training phase (which is fast), but instead defer computations until a query is made (which is slow). Examples: KNN.
-* **Bootstrapping**: A statistical sampling technique that generates new subsets of data by drawing samples from the original dataset with replacement. Used in Bagging (e.g., Random Forests).
-* **Feature Subspacing**: A technique where only a random subset of features is considered at each split in a decision tree. This helps decorrelate the trees in an ensemble like Random Forest.
-* **Residual**: The difference between the actual observed value and the value predicted by the model ($y - \hat{y}$). Boosting models focus on training subsequent trees to predict these residuals.
-* **Gradient**: The vector of partial derivatives representing the direction of steepest ascent of a function. In optimization, we move in the opposite direction (gradient descent) to minimize the loss.
+### 1. Centroid
+* **Definition**: The geometric center of a cluster, calculated as the arithmetic mean (average) of all coordinate vectors of the data points in that cluster. Used heavily in K-Means.
+* **Example**: For three 2D points in a cluster: $P_1(1, 5)$, $P_2(2, 4)$, and $P_3(3, 1)$.
+  $$\text{Centroid } C = \left( \frac{1+2+3}{3}, \frac{5+4+1}{3} \right) = (2, 3.33)$$
+* **Diagram**:
+```
+     y-axis
+     ^   * P1(1, 5)
+     |          * P2(2, 4)
+     |       C (2, 3.33)  <-- Centroid (mean coordinate)
+     |   * P3(3, 1)
+     +---------------------------> x-axis
+```
+
+---
+
+### 2. Hyperplane, Margin, & Support Vectors (SVM Concepts)
+* **Definitions**:
+  * **Hyperplane**: A decision boundary that splits space into regions representing different classes (e.g., a line in 2D space, a flat plane in 3D, and a high-dimensional surface in 4D or higher).
+  * **Margin**: The distance between the decision boundary (hyperplane) and the closest training points from either class. Maximizing this margin is the core objective of SVMs.
+  * **Support Vectors**: The critical data points that lie closest to the decision boundary. Changing or removing these points would alter the position of the boundary.
+* **Diagram**:
+```
+      Class A (Stars)                   Class B (Crosses)
+        *      *           |         |       x      x
+            *   [SV *] --->|         |<--- [SV x]     x
+                           |         |
+      - - - - - - - - - - -+---------+ - - - - - - - - - - - <-- Margin Boundary
+                           | Hyperplane (Optimal separating line)
+               <---------->|         |<---------->
+                  Margin                 Margin
+```
+
+---
+
+### 3. Weak Learner
+* **Definition**: A simple classifier or regressor that performs only slightly better than random guessing. Boosting algorithms sequentially combine weak learners to construct a strong model.
+* **Example**: A **Decision Stump** is a decision tree with a depth of exactly 1 (it makes a decision based on only a single feature threshold split).
+* **Diagram**:
+```mermaid
+flowchart TD
+    Start[New Lead] --> Split{"Salary > $80k?"}
+    Split -- Yes --> High[Predict: Buy Product]
+    Split -- No --> Low[Predict: Do Not Buy]
+```
+
+---
+
+### 4. Residual
+* **Definition**: The difference between the actual observed value and the value predicted by the model ($y - \hat{y}$). Boosting models focus on training subsequent trees to predict these residuals.
+* **Example**: If a house sells for $400k ($y = 400$) and a linear model predicts it will sell for $380k ($\hat{y} = 380$):
+  $$\text{Residual} = y - \hat{y} = 400 - 380 = 20$$
+* **Diagram**:
+```
+      y-axis (Price)
+      ^            * Actual Value (y = 400)
+      |           /|
+      |          / |  <-- Residual (Error = +20)
+      |         /  |
+      |--------/---v--- <-- Predicted Line (y_hat = 380)
+      |       /
+      |      /
+      +------------------------------> x-axis (Size)
+```
+
+---
+
+### 5. Regularization ($L_1$ / $L_2$)
+* **Definition**: A technique that prevents overfitting by adding a mathematical penalty to the cost function to constrain the size of model parameters ($\theta$).
+* **Comparison**:
+  * **$L_1$ (Lasso)**: Adds $\lambda \sum |\theta_j|$ penalty. Drives coefficients to exactly zero, eliminating features (performs feature selection).
+  * **$L_2$ (Ridge)**: Adds $\lambda \sum \theta_j^2$ penalty. Shrinks coefficients close to zero but keeps them active.
+
+---
+
+### 6. Inductive Bias
+* **Definition**: The underlying assumptions an algorithm makes about the target function to generalize from training data to unseen data.
+* **Example**: Linear Regression's inductive bias is that the relationship between features and target is strictly linear ($y = \theta X$). KNN's inductive bias is that nearby points are highly likely to share the same label.
+
+---
+
+### 7. Lazy Learning
+* **Definition**: Algorithms that do not construct a generalized model during the training phase (which is fast), but instead defer computations until a query is made (which is slow).
+* **Example**: **K-Nearest Neighbors (KNN)** is a lazy learner. Training simply stores the raw points. Prediction computes distances to all stored points, making prediction computationally expensive for large datasets.
+
+---
+
+### 8. Bootstrapping & Feature Subspacing (Ensemble Concepts)
+* **Definitions**:
+  * **Bootstrapping**: A statistical sampling technique that generates new datasets by drawing samples from the original dataset with replacement. Used in Bagging (e.g., Random Forests).
+  * **Feature Subspacing**: A technique where only a random subset of features is considered at each split in a decision tree. This helps decorrelate individual trees in a Random Forest.
+
+---
+
+### 9. Gradient
+* **Definition**: The vector of partial derivatives representing the direction of steepest ascent of a function. In optimization, we move in the opposite direction (gradient descent) to minimize the loss.
+* **Analogy**: Imagine being blindfolded on a foggy hill. To find the valley (minimum loss), you feel the slope of the ground with your foot and take a step in the direction that slopes downward (negative gradient).
+
 
