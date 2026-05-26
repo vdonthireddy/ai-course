@@ -143,6 +143,7 @@ python3 llm/<script_name>.py
 For advanced study, mathematical visualizations, and implementation architecture, check out these specialized guides:
 
 *   **[Visualizing Derivatives & The Chain Rule](derivatives_explain.md)**: A complete, step-by-step visual and mathematical explanation of derivatives, fundamental differentiation rules, and intuitive models (function machines and gear trains) for the Chain Rule.
+*   **[Visualizing Backpropagation & Gradient Descent](backpropagation_explain.md)**: A detailed, step-by-step illustrated guide to the backpropagation algorithm in neural networks, showing how errors flow backward through layers using the Chain Rule to calculate parameter gradients.
 *   **[Deep Learning Foundations: ANN, CNN, Backpropagation, and Transformers](deep_learning_guide.md)**: A deep dive into modern neural network concepts, covering Perceptrons, Multi-Layer Perceptrons (MLPs), Backpropagation, Convolutional Neural Networks (CNNs), and Transformer architectures.
 *   **[Developer Guide: Agentic AI Systems, Tools, Skills, and MCP](agentic_ai_developer_guide.md)**: An architectural guide explaining agentic workflows in modern AI, detailing Agents, Skills, Model Context Protocol (MCP) servers, Tools, Function Calls, Tool Schemas, and the main execution loops.
 
