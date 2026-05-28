@@ -142,6 +142,8 @@ python3 llm/<script_name>.py
 
 For advanced study, mathematical visualizations, and implementation architecture, check out these specialized guides:
 
+*   **[Machine Learning Mathematics: An Illustrated Guide](basic_maths_guide.md)**: A foundational math guide covering descriptive statistics, vectors and dot products, matrix algebra, calculus gradients, regularization principles, and normalization techniques (Batch vs. Layer Norm) with illustrated examples.
+*   **[Machine Learning Basics: An Illustrated Guide](ml_basics_guide.md)**: A comprehensive foundational guide covering classical ML paradigms (supervised vs. unsupervised), vectors/matrices/tensors, linear and logistic regression, optimization via gradient descent and the chain rule, KNN classification, and K-Means clustering with step-by-step illustrated guides.
 *   **[Visualizing Derivatives & The Chain Rule](derivatives_explain.md)**: A complete, step-by-step visual and mathematical explanation of derivatives, fundamental differentiation rules, and intuitive models (function machines and gear trains) for the Chain Rule.
 *   **[Visualizing Backpropagation & Gradient Descent](backpropagation_explain.md)**: A detailed, step-by-step illustrated guide to the backpropagation algorithm in neural networks, showing how errors flow backward through layers using the Chain Rule to calculate parameter gradients.
 *   **[Deep Learning Foundations: ANN, CNN, Backpropagation, and Transformers](deep_learning_guide.md)**: A deep dive into modern neural network concepts, covering Perceptrons, Multi-Layer Perceptrons (MLPs), Backpropagation, Convolutional Neural Networks (CNNs), and Transformer architectures.
