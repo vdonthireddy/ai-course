@@ -1,0 +1,156 @@
+### Section 1: Understanding Large Language Models
+
+Contains 8 diagrams:
+
+*   `image_0`: `plots/llm_from_scratch/image_3_Im4.jpg` (Pos: 1062.3, 7733.4)
+*   `image_1`: `plots/llm_from_scratch/image_5_Im6.jpg` (Pos: 1449.7, 7732.8)
+*   `image_2`: `plots/llm_from_scratch/image_7_Im8.jpg` (Pos: 1783.1, 7729.8)
+*   `image_3`: `plots/llm_from_scratch/image_9_Im10.jpg` (Pos: 2127.4, 7693.2)
+*   `image_4`: `plots/llm_from_scratch/image_11_Im12.jpg` (Pos: 2449.9, 7706.4)
+*   `image_5`: `plots/llm_from_scratch/image_13_Im14.jpg` (Pos: 1060.2, 7511.9)
+*   `image_6`: `plots/llm_from_scratch/image_15_Im16.jpg` (Pos: 1449.7, 7511.9)
+*   `image_7`: `plots/llm_from_scratch/image_17_Im18.jpg` (Pos: 1783.1, 7474.2)
+
+### Section 2: Working with Text Data
+
+Contains 17 diagrams:
+
+*   `image_8`: `plots/llm_from_scratch/image_19_Im20.jpg` (Pos: 1089.1, 7214.2)
+*   `image_9`: `plots/llm_from_scratch/image_21_Im22.jpg` (Pos: 1422.5, 7238.7)
+*   `image_10`: `plots/llm_from_scratch/image_23_Im24.jpg` (Pos: 1761.5, 7228.1)
+*   `image_11`: `plots/llm_from_scratch/image_25_Im26.jpg` (Pos: 2100.4, 7193.3)
+*   `image_12`: `plots/llm_from_scratch/image_27_Im28.jpg` (Pos: 2439.3, 7183.7)
+*   `image_13`: `plots/llm_from_scratch/image_29_Im30.jpg` (Pos: 1089.1, 6954.4)
+*   `image_14`: `plots/llm_from_scratch/image_31_Im32.jpg` (Pos: 1413.4, 6971.5)
+*   `image_15`: `plots/llm_from_scratch/image_33_Im34.jpg` (Pos: 1752.3, 6967.1)
+*   `image_16`: `plots/llm_from_scratch/image_35_Im36.jpg` (Pos: 2091.2, 6966.4)
+*   `image_17`: `plots/llm_from_scratch/image_37_Im38.jpg` (Pos: 2430.2, 6962.7)
+*   `image_18`: `plots/llm_from_scratch/image_39_Im40.jpg` (Pos: 1089.1, 6716.4)
+*   `image_19`: `plots/llm_from_scratch/image_41_Im42.jpg` (Pos: 1415.6, 6708.9)
+*   `image_20`: `plots/llm_from_scratch/image_43_Im44.jpg` (Pos: 1742.0, 6678.8)
+*   `image_21`: `plots/llm_from_scratch/image_45_Im46.jpg` (Pos: 2081.0, 6688.7)
+*   `image_22`: `plots/llm_from_scratch/image_47_Im48.jpg` (Pos: 2419.9, 6685.8)
+*   `image_23`: `plots/llm_from_scratch/image_49_Im50.jpg` (Pos: 1078.6, 6472.3)
+*   `image_24`: `plots/llm_from_scratch/image_51_Im52.jpg` (Pos: 1422.5, 6414.4)
+
+### Section 3: Coding Attention Mechanisms
+
+Contains 26 diagrams:
+
+*   `image_25`: `plots/llm_from_scratch/image_55_Im56.jpg` (Pos: 1071.8, 6020.8)
+*   `image_26`: `plots/llm_from_scratch/image_57_Im58.jpg` (Pos: 1406.0, 6037.6)
+*   `image_27`: `plots/llm_from_scratch/image_59_Im60.jpg` (Pos: 1739.0, 6021.0)
+*   `image_28`: `plots/llm_from_scratch/image_61_Im62.jpg` (Pos: 2072.0, 6002.0)
+*   `image_29`: `plots/llm_from_scratch/image_53_Im54.jpg` (Pos: 2497.4, 5977.7)
+*   `image_30`: `plots/llm_from_scratch/image_63_Im64.jpg` (Pos: 1073.6, 5775.9)
+*   `image_31`: `plots/llm_from_scratch/image_65_Im66.jpg` (Pos: 1406.0, 5804.4)
+*   `image_32`: `plots/llm_from_scratch/image_67_Im68.jpg` (Pos: 1751.6, 5801.5)
+*   `image_33`: `plots/llm_from_scratch/image_69_Im70.jpg` (Pos: 2079.6, 5799.6)
+*   `image_34`: `plots/llm_from_scratch/image_71_Im72.jpg` (Pos: 2474.4, 5783.2)
+*   `image_35`: `plots/llm_from_scratch/image_73_Im74.jpg` (Pos: 1076.8, 5604.5)
+*   `image_36`: `plots/llm_from_scratch/image_75_Im76.jpg` (Pos: 1410.2, 5564.0)
+*   `image_37`: `plots/llm_from_scratch/image_77_Im78.jpg` (Pos: 1743.6, 5587.1)
+*   `image_38`: `plots/llm_from_scratch/image_79_Im80.jpg` (Pos: 2077.0, 5590.8)
+*   `image_39`: `plots/llm_from_scratch/image_81_Im82.jpg` (Pos: 2474.4, 5592.4)
+*   `image_40`: `plots/llm_from_scratch/image_89_Im90.jpg` (Pos: 2069.0, 5399.0)
+*   `image_41`: `plots/llm_from_scratch/image_91_Im92.jpg` (Pos: 2474.4, 5421.4)
+*   `image_42`: `plots/llm_from_scratch/image_83_Im84.jpg` (Pos: 1068.8, 5327.6)
+*   `image_43`: `plots/llm_from_scratch/image_243_Im244.png` (Pos: 1098.9, 5254.2)
+*   `image_44`: `plots/llm_from_scratch/image_85_Im86.jpg` (Pos: 1402.2, 5296.8)
+*   `image_45`: `plots/llm_from_scratch/image_87_Im88.jpg` (Pos: 1735.6, 5336.7)
+*   `image_46`: `plots/llm_from_scratch/image_95_Im96.jpg` (Pos: 1401.2, 5104.9)
+*   `image_47`: `plots/llm_from_scratch/image_99_Im100.jpg` (Pos: 2068.0, 5074.9)
+*   `image_48`: `plots/llm_from_scratch/image_101_Im102.jpg` (Pos: 2474.4, 5071.0)
+*   `image_49`: `plots/llm_from_scratch/image_93_Im94.jpg` (Pos: 1067.8, 5045.6)
+*   `image_50`: `plots/llm_from_scratch/image_97_Im98.jpg` (Pos: 1734.6, 5047.9)
+
+### Section 4: Implementing a GPT Model from Scratch
+
+Contains 20 diagrams:
+
+*   `image_51`: `plots/llm_from_scratch/image_113_Im114.jpg` (Pos: 1051.6, 4632.3)
+*   `image_52`: `plots/llm_from_scratch/image_115_Im116.jpg` (Pos: 1406.4, 4601.5)
+*   `image_53`: `plots/llm_from_scratch/image_117_Im118.jpg` (Pos: 1798.3, 4649.7)
+*   `image_54`: `plots/llm_from_scratch/image_119_Im120.jpg` (Pos: 2139.8, 4572.7)
+*   `image_55`: `plots/llm_from_scratch/image_1_Im2.png` (Pos: 104.4, 4475.4)
+*   `image_56`: `plots/llm_from_scratch/image_109_Im110.jpg` (Pos: 2132.5, 4460.7)
+*   `image_57`: `plots/llm_from_scratch/image_103_Im104.jpg` (Pos: 1044.3, 4411.5)
+*   `image_58`: `plots/llm_from_scratch/image_105_Im106.jpg` (Pos: 1399.1, 4401.7)
+*   `image_59`: `plots/llm_from_scratch/image_107_Im108.jpg` (Pos: 1791.0, 4433.4)
+*   `image_60`: `plots/llm_from_scratch/image_111_Im112.jpg` (Pos: 2475.9, 4442.5)
+*   `image_61`: `plots/llm_from_scratch/image_121_Im122.jpg` (Pos: 1044.3, 4090.5)
+*   `image_62`: `plots/llm_from_scratch/image_123_Im124.jpg` (Pos: 1402.4, 4112.2)
+*   `image_63`: `plots/llm_from_scratch/image_125_Im126.jpg` (Pos: 1797.8, 4145.3)
+*   `image_64`: `plots/llm_from_scratch/image_127_Im128.jpg` (Pos: 2142.6, 4071.7)
+*   `image_65`: `plots/llm_from_scratch/image_129_Im130.jpg` (Pos: 2502.9, 4087.8)
+*   `image_66`: `plots/llm_from_scratch/image_131_Im132.jpg` (Pos: 1044.3, 3805.9)
+*   `image_67`: `plots/llm_from_scratch/image_135_Im136.png` (Pos: 1791.2, 3755.5)
+*   `image_68`: `plots/llm_from_scratch/image_137_Im138.jpg` (Pos: 2132.5, 3762.5)
+*   `image_69`: `plots/llm_from_scratch/image_139_Im140.jpg` (Pos: 2475.9, 3770.4)
+*   `image_70`: `plots/llm_from_scratch/image_133_Im134.jpg` (Pos: 1426.0, 3739.1)
+
+### Section 5: Pretraining on Unlabeled Data
+
+Contains 16 diagrams:
+
+*   `image_71`: `plots/llm_from_scratch/image_141_Im142.jpg` (Pos: 1045.8, 3402.0)
+*   `image_72`: `plots/llm_from_scratch/image_143_Im144.jpg` (Pos: 1400.5, 3399.6)
+*   `image_73`: `plots/llm_from_scratch/image_145_Im146.jpg` (Pos: 1792.5, 3417.4)
+*   `image_74`: `plots/llm_from_scratch/image_147_Im148.png` (Pos: 2134.0, 3378.8)
+*   `image_75`: `plots/llm_from_scratch/image_149_Im150.png` (Pos: 1041.3, 3170.0)
+*   `image_76`: `plots/llm_from_scratch/image_151_Im152.jpg` (Pos: 1399.1, 3178.0)
+*   `image_77`: `plots/llm_from_scratch/image_153_Im154.jpg` (Pos: 1791.0, 3201.8)
+*   `image_78`: `plots/llm_from_scratch/image_157_Im158.jpg` (Pos: 2475.9, 3198.7)
+*   `image_79`: `plots/llm_from_scratch/image_155_Im156.jpg` (Pos: 2132.5, 3139.4)
+*   `image_80`: `plots/llm_from_scratch/image_159_Im160.jpg` (Pos: 1044.3, 2857.8)
+*   `image_81`: `plots/llm_from_scratch/image_161_Im162.jpg` (Pos: 1386.3, 2897.0)
+*   `image_82`: `plots/llm_from_scratch/image_163_Im164.jpg` (Pos: 1782.5, 2940.2)
+*   `image_83`: `plots/llm_from_scratch/image_165_Im166.jpg` (Pos: 2128.2, 2878.9)
+*   `image_84`: `plots/llm_from_scratch/image_167_Im168.jpg` (Pos: 2475.9, 2885.8)
+*   `image_85`: `plots/llm_from_scratch/image_169_Im170.png` (Pos: 1043.0, 2663.6)
+*   `image_86`: `plots/llm_from_scratch/image_171_Im172.png` (Pos: 1397.7, 2597.1)
+
+### Section 6: Fine-Tuning for Classification
+
+Contains 16 diagrams:
+
+*   `image_87`: `plots/llm_from_scratch/image_193_Im194.jpg` (Pos: 1097.4, 2186.9)
+*   `image_88`: `plots/llm_from_scratch/image_195_Im196.jpg` (Pos: 1430.8, 2195.8)
+*   `image_89`: `plots/llm_from_scratch/image_197_Im198.png` (Pos: 1764.2, 2181.8)
+*   `image_90`: `plots/llm_from_scratch/image_173_Im174.jpg` (Pos: 2097.6, 2181.1)
+*   `image_91`: `plots/llm_from_scratch/image_175_Im176.jpg` (Pos: 2432.8, 2135.5)
+*   `image_92`: `plots/llm_from_scratch/image_185_Im186.png` (Pos: 2441.0, 1961.3)
+*   `image_93`: `plots/llm_from_scratch/image_177_Im178.png` (Pos: 1094.5, 1934.8)
+*   `image_94`: `plots/llm_from_scratch/image_179_Im180.png` (Pos: 1456.3, 1894.9)
+*   `image_95`: `plots/llm_from_scratch/image_181_Im182.jpg` (Pos: 1771.9, 1894.9)
+*   `image_96`: `plots/llm_from_scratch/image_183_Im184.jpg` (Pos: 2126.7, 1888.1)
+*   `image_97`: `plots/llm_from_scratch/image_189_Im190.jpg` (Pos: 1435.1, 1657.2)
+*   `image_98`: `plots/llm_from_scratch/image_199_Im200.png` (Pos: 2126.7, 1692.3)
+*   `image_99`: `plots/llm_from_scratch/image_187_Im188.jpg` (Pos: 1089.4, 1621.5)
+*   `image_100`: `plots/llm_from_scratch/image_191_Im192.jpg` (Pos: 1799.0, 1604.0)
+*   `image_101`: `plots/llm_from_scratch/image_201_Im202.png` (Pos: 2460.0, 1642.4)
+*   `image_102`: `plots/llm_from_scratch/image_203_Im204.png` (Pos: 1081.2, 1358.1)
+
+### Section 7: Fine-Tuning to Follow Instructions
+
+Contains 19 diagrams:
+
+*   `image_103`: `plots/llm_from_scratch/image_205_Im206.png` (Pos: 1085.5, 995.6)
+*   `image_104`: `plots/llm_from_scratch/image_207_Im208.png` (Pos: 1418.9, 993.8)
+*   `image_105`: `plots/llm_from_scratch/image_209_Im210.png` (Pos: 1752.0, 968.0)
+*   `image_106`: `plots/llm_from_scratch/image_211_Im212.png` (Pos: 2085.4, 972.0)
+*   `image_107`: `plots/llm_from_scratch/image_213_Im214.jpg` (Pos: 2418.7, 944.9)
+*   `image_108`: `plots/llm_from_scratch/image_215_Im216.jpg` (Pos: 1078.6, 729.3)
+*   `image_109`: `plots/llm_from_scratch/image_217_Im218.jpg` (Pos: 1412.0, 732.1)
+*   `image_110`: `plots/llm_from_scratch/image_219_Im220.png` (Pos: 1752.0, 678.8)
+*   `image_111`: `plots/llm_from_scratch/image_221_Im222.png` (Pos: 2109.2, 671.8)
+*   `image_112`: `plots/llm_from_scratch/image_223_Im224.jpg` (Pos: 2418.8, 678.9)
+*   `image_113`: `plots/llm_from_scratch/image_225_Im226.jpg` (Pos: 1083.8, 471.4)
+*   `image_114`: `plots/llm_from_scratch/image_227_Im228.png` (Pos: 1417.2, 456.9)
+*   `image_115`: `plots/llm_from_scratch/image_229_Im230.png` (Pos: 2080.6, 395.2)
+*   `image_116`: `plots/llm_from_scratch/image_231_Im232.png` (Pos: 2414.0, 436.8)
+*   `image_117`: `plots/llm_from_scratch/image_241_Im242.png` (Pos: 2396.7, 153.2)
+*   `image_118`: `plots/llm_from_scratch/image_233_Im234.png` (Pos: 1083.8, 126.0)
+*   `image_119`: `plots/llm_from_scratch/image_235_Im236.png` (Pos: 1417.2, 111.6)
+*   `image_120`: `plots/llm_from_scratch/image_237_Im238.png` (Pos: 1750.6, 116.6)
+*   `image_121`: `plots/llm_from_scratch/image_239_Im240.png` (Pos: 2073.7, 137.8)

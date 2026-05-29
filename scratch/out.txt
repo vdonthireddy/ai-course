@@ -1,0 +1,2 @@
+Ignoring wrong pointing object 380 0 (offset 0)
+Ignoring wrong pointing object 381 0 (offset 0)
