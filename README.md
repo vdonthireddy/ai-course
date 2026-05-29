@@ -7,7 +7,7 @@ Welcome to the **Fundamentals of Machine Learning** course materials. This docum
 - [Runnable Code Examples](#runnable-code-examples)
   - [1. Framework Examples](#1-framework-examples-using-scikit-learn--xgboost)
   - [2. From-Scratch Examples](#2-from-scratch-examples-pure-python-no-frameworks)
-- [Supplementary Deep Dives & Guides](#supplementary-deep-dives--guides)
+- [Primary Course Textbook & Supplementary Guides](#primary-course-textbook--supplementary-guides)
 - [Module 1: Introduction to Machine Learning](#module-1-introduction-to-machine-learning)
   - [1.1 What is Machine Learning?](#11-what-is-machine-learning)
   - [1.2 The Machine Learning Pipeline](#12-the-machine-learning-pipeline)
@@ -138,18 +138,17 @@ python3 llm/<script_name>.py
 
 ---
 
-## Supplementary Deep Dives & Guides
+## Primary Course Textbook & Supplementary Guides
 
-For advanced study, mathematical visualizations, and implementation architecture, check out these specialized guides:
+The main, consolidated study textbook for this course is:
+*   **[Complete Illustrated Machine Learning & AI Coursebook](complete_illustrated_coursebook.md)**: A unified, 5-module comprehensive textbook that logically integrates all mathematical foundations, optimization algorithms, classical ML models, deep neural networks, building large language models from scratch, and agentic AI architectures into a single learning pathway.
 
-*   **[Machine Learning Mathematics: An Illustrated Guide](basic_maths_guide.md)**: A foundational math guide covering descriptive statistics, vectors and dot products, matrix algebra, calculus gradients, regularization principles, and normalization techniques (Batch vs. Layer Norm) with illustrated examples.
-*   **[Machine Learning Basics: An Illustrated Guide](ml_basics_guide.md)**: A comprehensive foundational guide covering classical ML paradigms (supervised vs. unsupervised), vectors/matrices/tensors, linear and logistic regression, optimization via gradient descent and the chain rule, KNN classification, and K-Means clustering with step-by-step illustrated guides.
-*   **[Building an LLM from Scratch: An Illustrated Guide](llm_scratch_guide.md)**: A step-by-step developer and mathematical guide to building Large Language Models from scratch, detailing subword tokenization, embedding matrices, Query-Key-Value projection, self-attention mechanisms, causal decoders, and classification/instruction fine-tuning pipelines.
-
-*   **[Visualizing Derivatives & The Chain Rule](derivatives_explain.md)**: A complete, step-by-step visual and mathematical explanation of derivatives, fundamental differentiation rules, and intuitive models (function machines and gear trains) for the Chain Rule.
-*   **[Visualizing Backpropagation & Gradient Descent](backpropagation_explain.md)**: A detailed, step-by-step illustrated guide to the backpropagation algorithm in neural networks, showing how errors flow backward through layers using the Chain Rule to calculate parameter gradients.
-*   **[Deep Learning Foundations: ANN, CNN, Backpropagation, and Transformers](deep_learning_guide.md)**: A deep dive into modern neural network concepts, covering Perceptrons, Multi-Layer Perceptrons (MLPs), Backpropagation, Convolutional Neural Networks (CNNs), and Transformer architectures.
-*   **[Developer Guide: Agentic AI Systems, Tools, Skills, and MCP](agentic_ai_developer_guide.md)**: An architectural guide explaining agentic workflows in modern AI, detailing Agents, Skills, Model Context Protocol (MCP) servers, Tools, Function Calls, Tool Schemas, and the main execution loops.
+For individual sub-topic deep dives and reference, you can also access the standalone guides:
+*   **Module 1 (Math & Calculus)**: [Machine Learning Mathematics Guide](basic_maths_guide.md) & [Visualizing Derivatives & The Chain Rule](derivatives_explain.md)
+*   **Module 2 (Classical ML)**: [Machine Learning Basics Guide](ml_basics_guide.md)
+*   **Module 3 (Deep Learning & Backpropagation)**: [Visualizing Backpropagation & Gradient Descent](backpropagation_explain.md) & [Deep Learning Foundations](deep_learning_guide.md)
+*   **Module 4 (LLMs from Scratch)**: [Building an LLM from Scratch Guide](llm_scratch_guide.md)
+*   **Module 5 (Agentic AI)**: [Developer Guide: Agentic AI Systems, Tools, Skills, and MCP](agentic_ai_developer_guide.md)
 
 ---
 

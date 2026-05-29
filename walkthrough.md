@@ -1,48 +1,52 @@
-# Walkthrough: Developer Guides & Presentation Slides Expansion
+# Walkthrough: Illustrated Coursebook Consolidation
 
-This walkthrough documents the creation of two comprehensive developer guides and the expansion of the PowerPoint presentation (`machine_learning_fundamentals.pptx`) with new content covering Deep Learning and Agentic AI.
-
----
-
-## 1. Developer Guides & Diagram Integrations
-
-Two comprehensive Markdown guides were created in the workspace, integrating 8 high-resolution, dark-themed technical diagrams:
-
-### Deep Learning Foundations Guide
-Created **[deep_learning_guide.md](file:///Users/donthireddy/code/ai-course/deep_learning_guide.md)** detailing the math, parameters, and layout steps of neural network architectures, with five custom-generated dark-themed diagrams:
-- **Artificial Neuron**: [plots/perceptron_diagram.png](file:///Users/donthireddy/code/ai-course/plots/perceptron_diagram.png)
-- **Deep Neural Network**: [plots/dnn_architecture.png](file:///Users/donthireddy/code/ai-course/plots/dnn_architecture.png)
-- **Backpropagation Flow**: [plots/backpropagation_diagram.png](file:///Users/donthireddy/code/ai-course/plots/backpropagation_diagram.png)
-- **CNN Architecture**: [plots/cnn_architecture.png](file:///Users/donthireddy/code/ai-course/plots/cnn_architecture.png)
-- **Transformer Network**: [plots/transformer_architecture.png](file:///Users/donthireddy/code/ai-course/plots/transformer_architecture.png)
-
-### Agentic AI Developer Guide
-Created **[agentic_ai_developer_guide.md](file:///Users/donthireddy/code/ai-course/agentic_ai_developer_guide.md)** based on the Python sandbox codebase in `/Users/donthireddy/code/agentic/`. It explains agents, skills, tools, function calling handshakes, schemas, and the Model Context Protocol (MCP), with three custom-generated dark-themed diagrams:
-- **Core Architecture Concepts**: [plots/agentic_concepts_diagram.png](file:///Users/donthireddy/code/ai-course/plots/agentic_concepts_diagram.png)
-- **Function Calling Reasoning Loop**: [plots/agentic_loop_sequence.png](file:///Users/donthireddy/code/ai-course/plots/agentic_loop_sequence.png)
-- **Model Context Protocol (MCP)**: [plots/mcp_architecture_diagram.png](file:///Users/donthireddy/code/ai-course/plots/mcp_architecture_diagram.png)
+This walkthrough documents the consolidation of all standalone developer guides into a single, unified, master textbook: **`complete_illustrated_coursebook.md`**, and the integration of this textbook as the primary learning pathway in the repository.
 
 ---
 
-## 2. PPTX Slides Expansion (Slides 12 to 26)
+## 1. Merging & Restructuring Content
 
-We modified `generate_pptx.py` to insert 10 new slides, expanding the presentation from 21 slides to 31 slides. The layout utilizes the premium Modern Developer Dark Mode theme (Charcoal `#121214` background, Panel `#1E1E24` background, white title text, gray body text, and themed borders/accents).
+We created **[complete_illustrated_coursebook.md](complete_illustrated_coursebook.md)** (129KB) by merging the content from all seven individual developer guides. The textbook is logically ordered into 5 sequential modules:
 
-### Newly Added Slides & Visuals:
-- **Slide 12: The Artificial Neuron (Perceptron)**: Explains summation $z = \mathbf{w}^T \mathbf{x} + b$, step function activation, and AND gate weights, embedding `plots/perceptron_diagram.png`.
-- **Slide 13: Activation Functions & Non-Linearity**: Multi-panel comparative grid showing equations, ranges, derivatives, pros, and cons of Sigmoid, Tanh, ReLU, Leaky ReLU, and Softmax.
-- **Slide 14: Deep Neural Networks (ANN / DNN)**: Details forward propagation layer matrix calculations, embedding `plots/dnn_architecture.png`.
-- **Slide 15: Backpropagation (Chain Rule)**: Details backward error propagation formulas and parameter optimization, embedding `plots/backpropagation_diagram.png`.
-- **Slide 16: Convolutional Neural Networks (CNN)**: Covers spatial locality, shared weights, pooling, and the stride/padding size formula, embedding `plots/cnn_architecture.png`.
-- **Slide 19: The Transformer Network Architecture**: Introduces the complete encoder-decoder attention-based architecture, embedding `plots/transformer_architecture.png`.
-- **Slide 23: Agentic AI Core Architecture & Concepts**: Explains autonomous reasoning loops (Thought ➔ Action ➔ Observation) and function calling, embedding `plots/agentic_concepts_diagram.png`.
-- **Slide 24: Runtime Introspection & Tool Schemas**: Dual-panel showing how Python function signatures and docstrings map to structured JSON declarations.
-- **Slide 25: Composite Skills & Dynamic Code Execution**: Explains local packaging (`SKILL.md`/`script.py`) and execution via `exec()`, embedding `plots/agentic_loop_sequence.png`.
-- **Slide 26: Model Context Protocol (MCP)**: Details clients, hosts, servers, and transport protocols, embedding `plots/mcp_architecture_diagram.png`.
+1. **Module 1: Mathematics & Calculus Foundations**
+   - Merges [basic_maths_guide.md](basic_maths_guide.md) and [derivatives_explain.md](derivatives_explain.md).
+   - Covers: descriptive statistics, vectors, dot products, projection, cosine similarity, matrix algebra, transpose, multi-dimensional gradients, dropout, L2 weight decay, Layer vs. Batch normalization, derivative tangent slopes, power rules, exponentials, logs, product/quotient rules, and Chain Rule nudges (gear trains & function machine models).
+
+2. **Module 2: Classical Machine Learning & Optimization**
+   - Incorporates [ml_basics_guide.md](ml_basics_guide.md).
+   - Covers: supervised/unsupervised/self-supervised paradigms, tensor rank dimensions, linear regression, Sum of Squared Errors (SSE), gradient descent bowl trajectories, linear backprop derivations, evaluation metrics ($R^2$, p-value), logistic regression, sigmoid probability threshold mappings, KNN classification, Euclidean distance circles, and K-Means clustering centroid optimization loops.
+
+3. **Module 3: Deep Learning, CNNs & Backpropagation Mechanics**
+   - Merges [backpropagation_explain.md](backpropagation_explain.md) and [deep_learning_guide.md](deep_learning_guide.md).
+   - Covers: simplest neural network passes, cost derivatives, general neuron anatomy, common activations (linear, ReLU, Leaky ReLU, sigmoid, softmax), multi-layer perceptron (MLP) architectures, deep backpropagation error propagation derivations ($\delta_j^{[l]}$), parameter updates, convolutional layers (stride/padding formulas), and the self-attention dot product scaling formulas.
+
+4. **Module 5: Building Large Language Models from Scratch** (Omitted / Updated to Module 4 in the coursebook structure)
+   - Incorporates [llm_scratch_guide.md](llm_scratch_guide.md).
+   - Covers: LLM pretraining vs fine-tuning roadmaps, BERT/GPT submodules, subword tokenizers, Byte Pair Encoding (BPE), sliding text sampling bins, positional embedding vectors, parameterized query-key-value self-attention matrices, causal masking, Multi-Head Attention blocks, stacked GPT models, decoding strategies (greedy, temperature, top-k), next-token perplexity, custom classifiers, and instruction fine-tuning loss masking prompts.
+
+5. **Module 5: Agentic AI & Modern LLM Applications**
+   - Incorporates [agentic_ai_developer_guide.md](agentic_ai_developer_guide.md).
+   - Covers: autonomous reasoning loops (Thought ➔ Action ➔ Observation), dynamic python decorator tool introspection registries, tool schema JSON formats, custom composite skill packaging (`SKILL.md` + `script.py`), exec-based local execution environments, sequence workflows, and Model Context Protocol (MCP) clients/hosts/servers.
+
+Heading levels in the sub-guides were systematically demoted by one level (e.g., `#` became `##`, `##` became `###`) to establish a clean nested document tree structure under each parent Module.
 
 ---
 
-## 3. Compilation Verification
+## 2. README Update
 
-We ran `python3 generate_pptx.py` in the workspace directory. The execution completed successfully with zero warnings/errors, outputting the updated compiled presentation file:
-- **Presentation Deck**: [machine_learning_fundamentals.pptx](file:///Users/donthireddy/code/ai-course/machine_learning_fundamentals.pptx)
+We modified **[README.md](README.md)**:
+1. Renamed the **"Supplementary Deep Dives & Guides"** section to **"Primary Course Textbook & Supplementary Guides"** in both the document body and the Table of Contents.
+2. Promoted the new `complete_illustrated_coursebook.md` as the main, consolidated study textbook at the top of the section.
+3. Maintained clear links to all standalone sub-guides for modular study reference.
+
+---
+
+## 3. Link & Image Verification
+
+We ran **[verify_coursebook.py](scratch/verify_coursebook.py)**, confirming:
+- **Total visual assets**: 266 image links.
+- **Valid links**: 266.
+- **Broken links**: 0.
+- **Local links**: 0 broken.
+
+All LaTeX mathematical equations, equations blocks, code snippets, and table schemas have been preserved completely.
