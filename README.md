@@ -149,6 +149,7 @@ For individual sub-topic deep dives and reference, you can also access the stand
 *   **Module 3 (Deep Learning & Backpropagation)**: [Visualizing Backpropagation & Gradient Descent](backpropagation_explain.md) & [Deep Learning Foundations](deep_learning_guide.md)
 *   **Module 4 (LLMs from Scratch)**: [Building an LLM from Scratch Guide](llm_scratch_guide.md)
 *   **Module 5 (Agentic AI)**: [Developer Guide: Agentic AI Systems, Tools, Skills, and MCP](agentic_ai_developer_guide.md)
+*   **vLLM Inference Mechanics**: [Illustrated Guide to vLLM Inference Mechanics](vllm_inference_guide.md)
 
 ---
 
