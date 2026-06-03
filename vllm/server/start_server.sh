@@ -58,4 +58,5 @@ exec vllm serve "$MODEL_DIR" \
     --host 0.0.0.0 \
     --port 8000 \
     --max-model-len 2048 \
+    --enable-prefix-caching \
     --trust-remote-code

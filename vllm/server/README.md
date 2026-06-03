@@ -161,6 +161,7 @@ curl http://127.0.0.1:8000/v1/chat/completions \
 
 ## Advanced Configurations
 
+*   **`--enable-prefix-caching`**: Enabled by default in our startup script. This caches the Key-Value (KV) cache of prompt prefixes (such as shared system prompts or multi-turn chat history). If another request shares the same prefix, the prefill phase is skipped, reducing latencies to near-zero.
 *   **`--kv-cache-dtype`**: To further optimize memory consumption, you can specify FP8 format for the key-value cache (e.g. `vllm serve google/gemma-4-e2b-it --kv-cache-dtype fp8`).
 *   **Swapping and Preemption**: If the system's available memory becomes constrained during massive concurrent requests, vLLM's Block Manager will automatically preempt sequences and swap block cache pages to CPU/system swap space to maintain system stability.
 *   **LAN Exposure**: The server binds to `--host 0.0.0.0` by default, meaning any device on your local network can access the model endpoint at `http://<your-macbook-ip>:8000/v1`.
