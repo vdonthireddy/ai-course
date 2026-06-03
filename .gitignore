@@ -1,0 +1,33 @@
+# Model weights (large files)
+vllm/models/
+
+# vLLM source downloads / build folders
+vllm-0.22.0/
+vllm-*/
+*.tar.gz
+*.tgz
+*.zip
+
+# Python virtual environments
+.venv*/
+venv/
+env/
+
+# Python compiled files and caches
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# macOS system files
+.DS_Store
+
+# IDE configurations
+.vscode/
+.idea/
+
+# Local logs
+*.log

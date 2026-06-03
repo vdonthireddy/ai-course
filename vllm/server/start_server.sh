@@ -37,7 +37,7 @@ MODEL_DIR="$SCRIPT_DIR/../models/gemma-4-e2b-it"
 if [ ! -d "$MODEL_DIR" ]; then
     echo "ERROR: Local model directory not found at: $MODEL_DIR"
     echo "To download the model weights to the local directory (minimizing runtime HF dependency), run:"
-    echo "  huggingface-cli download google/gemma-4-e2b-it --local-dir $MODEL_DIR"
+    echo "  hf download google/gemma-4-e2b-it --local-dir ./vllm/models/gemma-4-e2b-it"
     exit 1
 fi
 
@@ -48,8 +48,8 @@ echo "Enforcing offline mode (HF_HUB_OFFLINE=1, TRANSFORMERS_OFFLINE=1)"
 
 # Set vLLM Apple Silicon specific environment variables
 # VLLM_METAL_MEMORY_FRACTION controls the fraction of unified memory allocated to the vLLM engine.
-export VLLM_METAL_MEMORY_FRACTION=0.80
-echo "Setting VLLM_METAL_MEMORY_FRACTION=0.80"
+export VLLM_METAL_MEMORY_FRACTION=0.95
+echo "Setting VLLM_METAL_MEMORY_FRACTION=0.95"
 
 # Serve the model from the local directory
 echo "Launching vLLM service from local folder..."
@@ -57,4 +57,5 @@ exec vllm serve "$MODEL_DIR" \
     --served-model-name google/gemma-4-e2b-it \
     --host 0.0.0.0 \
     --port 8000 \
+    --max-model-len 2048 \
     --trust-remote-code

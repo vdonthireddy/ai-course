@@ -15,11 +15,11 @@ def main():
     # 2. Configure the local client
     # vLLM exposes an OpenAI-compatible API on the served port (default: 8000)
     client = OpenAI(
-        base_url="http://localhost:8000/v1",
+        base_url="http://127.0.0.1:8000/v1",
         api_key="token-not-needed"  # Authentication is open by default for local dev
     )
 
-    prompt = "Explain the difference between prefill and decode stages in LLM inference."
+    prompt = "Say hi in 3 words"
     model_name = "google/gemma-4-e2b-it"
 
     print(f"\nSending streaming request to model: '{model_name}'")
@@ -31,7 +31,7 @@ def main():
         response = client.chat.completions.create(
             model=model_name,
             messages=[
-                {"role": "system", "content": "You are a helpful, concise AI instructor."},
+                {"role": "system", "content": "You are a friend."},
                 {"role": "user", "content": prompt}
             ],
             temperature=0.7,

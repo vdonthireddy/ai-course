@@ -85,18 +85,17 @@ pip install vllm-metal
 
 ## Step 3: One-Time Model Download (Minimizing Runtime HF Dependency)
 
-To run vLLM completely offline and avoid checking or connecting to Hugging Face during server execution, perform a one-time download of the model weights to a local directory:
+To run vLLM completely offline and avoid checking or connecting to Hugging Face during server execution, perform a one-time download of the model weights to a local directory. Run these commands from the project root (`/Users/donthireddy/code/ai-course`):
 
 1. Visit [Hugging Face](https://huggingface.co/google/gemma-4-e2b-it) and accept the Gemma 4 license terms.
 2. Generate a **User Access Token** (Read permission) under **Settings -> Access Tokens** on Hugging Face.
-3. Authenticate your terminal using `huggingface-cli`:
+3. Authenticate your terminal using `hf` (since `huggingface-cli` is deprecated on your system):
    ```bash
-   pip install huggingface_hub
-   huggingface-cli login
+   hf auth login
    ```
-4. Download the model weights directly to the local project directory:
+4. Download the model weights directly to the local directory in the repository:
    ```bash
-   huggingface-cli download google/gemma-4-e2b-it --local-dir ../models/gemma-4-e2b-it
+   hf download google/gemma-4-e2b-it --local-dir ./vllm/models/gemma-4-e2b-it
    ```
 
 ---
@@ -108,7 +107,7 @@ We provide a launcher script that handles system path activation, sets Apple-Sil
 ### Memory Allocation on Apple Silicon
 > [!IMPORTANT]
 > The standard vLLM flag `--gpu-memory-utilization` is **ignored** by the Metal plugin. To control memory allocation, you must set the environment variable `VLLM_METAL_MEMORY_FRACTION`.
-> Our launcher script automatically sets `VLLM_METAL_MEMORY_FRACTION=0.80`, allocating 80% of your unified memory to the model and key-value cache.
+> Our launcher script sets `VLLM_METAL_MEMORY_FRACTION=0.95` (allocating 95% of your unified memory limit to the engine) and adds `--max-model-len 2048`. These settings are required to fit the model's footprint and leaves sufficient budget for the Key-Value (KV) cache on 16 GB systems.
 
 ### Starting the Server in Offline Mode
 Ensure you have downloaded the weights to `../models/gemma-4-e2b-it` as shown in Step 3.
@@ -146,7 +145,7 @@ This script queries your local server and streams the response for the prompt *"
 Alternatively, you can test the OpenAI-compatible endpoint directly via `curl`:
 
 ```bash
-curl http://localhost:8000/v1/chat/completions \
+curl http://127.0.0.1:8000/v1/chat/completions \
   -H "Content-Type: application/json" \
   -d '{
     "model": "google/gemma-4-e2b-it",
