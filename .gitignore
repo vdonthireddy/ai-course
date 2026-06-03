@@ -1,6 +1,9 @@
 # Model weights (large files)
 vllm/models/
 
+# Local documents
+vllm/linkedin.md
+
 # vLLM source downloads / build folders
 vllm-0.22.0/
 vllm-*/
