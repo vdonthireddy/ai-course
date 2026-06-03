@@ -8,7 +8,7 @@ This developer and educational guide provides a deep, illustrated, and mathemati
 
 In generative language modeling, text generation is an **autoregressive process**. To generate each new token, the model must read all previous tokens in the sequence. While simple in concept, this process exhibits severe computational and memory access imbalances.
 
-![Prefill vs Decode](plots/vllm/prefill_vs_decode.png)
+![Prefill vs Decode](../plots/vllm/prefill_vs_decode.png)
 *Figure 1.1: Prefill (Compute-bound, parallel) vs. Decode (Memory-bound, step-by-step) phases.*
 
 During inference, a request progresses through two distinct phases:
@@ -64,7 +64,7 @@ These inefficiencies cause traditional frameworks to waste **60% to 80%** of GPU
 - Physical GPU memory is divided into **Physical Blocks** of the same size.
 - Physical blocks do not need to be contiguous.
 
-![PagedAttention Mapping](plots/vllm/paged_attention_mapping.png)
+![PagedAttention Mapping](../plots/vllm/paged_attention_mapping.png)
 *Figure 3.1: Page table mapping virtual logical blocks to scattered physical blocks in GPU DRAM.*
 
 A centralized **Block Manager** maintains a **Page Table** for each request. The page table maps logical blocks to physical blocks.
@@ -87,7 +87,7 @@ In standard batching (Static Batching), requests are grouped together. The model
 
 **Continuous Batching** (or iteration-level scheduling) schedules requests at the level of individual iterations. 
 
-![Continuous Batching](plots/vllm/continuous_batching_timeline.png)
+![Continuous Batching](../plots/vllm/continuous_batching_timeline.png)
 *Figure 4.1: Timeline comparison: Static Batching wastes GPU time while Continuous Batching maximizes throughput.*
 
 At the start of each iteration:
@@ -133,7 +133,7 @@ Let's represent the logical blocks needed for each request:
 
 Below is the chronological sequence of engine iterations.
 
-![Step by Step Inference Trace](plots/vllm/step_by_step_inference.png)
+![Step by Step Inference Trace](../plots/vllm/step_by_step_inference.png)
 *Figure 5.1: Execution workflow of the 4 prompts showing Prefill, Decode, and Completion states.*
 
 ---

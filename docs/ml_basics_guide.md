@@ -2,7 +2,7 @@
 
 This document provides a comprehensive, step-by-step mathematical and visual explanation of the foundational concepts of Machine Learning (ML). It is based on `/Users/donthireddy/code/ai-course/002-ML Basics.pdf` and integrates the extracted high-resolution diagrams to explain algorithms, mathematical structures, and optimization techniques used in typical AI/ML models.
 
-All illustration assets are referenced from the local directory: [plots/ml_basics/](plots/ml_basics/).
+All illustration assets are referenced from the local directory: [plots/ml_basics/](../plots/ml_basics/).
 
 ---
 
@@ -10,7 +10,7 @@ All illustration assets are referenced from the local directory: [plots/ml_basic
 
 Machine Learning is a branch of Artificial Intelligence (AI) that focuses on developing models and algorithms that allow computers to learn from data and improve their performance without being explicitly programmed for every single task.
 
-![Classical Machine Learning Paradigms](plots/ml_basics/image_89_Im90.png)
+![Classical Machine Learning Paradigms](../plots/ml_basics/image_89_Im90.png)
 
 Classical machine learning is primarily divided into two main paradigms:
 
@@ -22,7 +22,7 @@ $$\text{Dataset: } \mathcal{D} = \{(\mathbf{x}_i, y_i)\}_{i=1}^N$$
 *   **Regression:** Predicting a continuous numeric value (e.g., predicting house prices based on features like area and bedrooms).
 *   **Classification:** Predicting a discrete class label or category (e.g., classifying whether an email is spam or not spam, or identifying animals).
 
-![Supervised Learning Workflow](plots/ml_basics/image_85_Im86.png)
+![Supervised Learning Workflow](../plots/ml_basics/image_85_Im86.png)
 
 ### 1.2 Unsupervised Learning
 In **Unsupervised Learning**, the model is trained on **unlabeled data**. The dataset only contains input features without corresponding target labels. The model learns to find hidden structures, groups, or patterns directly from the input distribution.
@@ -32,7 +32,7 @@ $$\text{Dataset: } \mathcal{D} = \{\mathbf{x}_i\}_{i=1}^N$$
 *   **Clustering:** Grouping similar data points together based on distance or density (e.g., customer segmentation).
 *   **Dimensionality Reduction:** Compressing high-dimensional feature spaces into lower-dimensional representations while preserving key features or variance (e.g., Principal Component Analysis).
 
-![Unsupervised Learning Workflow](plots/ml_basics/image_87_Im88.png)
+![Unsupervised Learning Workflow](../plots/ml_basics/image_87_Im88.png)
 
 ### 1.3 Other Learning Paradigms
 *   **Semi-Supervised Learning:** Combines a small amount of labeled data with a large amount of unlabeled data. This is highly useful when labeling data is expensive or time-consuming.
@@ -45,7 +45,7 @@ $$\text{Dataset: } \mathcal{D} = \{\mathbf{x}_i\}_{i=1}^N$$
 
 In machine learning, data and parameters are represented using multi-dimensional numerical arrays called **Tensors**. Tensors are classified by their **rank** (the number of dimensions/axes).
 
-![Scalars, Vectors, Matrices, and Tensors Rank](plots/ml_basics/image_91_Im92.jpg)
+![Scalars, Vectors, Matrices, and Tensors Rank](../plots/ml_basics/image_91_Im92.jpg)
 
 ### 2.1 Tensor Classifications
 1.  **Scalar (Rank-0 Tensor):** A single number representing magnitude.
@@ -62,12 +62,12 @@ In machine learning, data and parameters are represented using multi-dimensional
     
 4.  **Tensor (Rank-3 Tensor & Higher):** Array structures with 3 or more dimensions (e.g., RGB images with shape `[Height, Width, Channels]`, or mini-batches of video sequences with shape `[Batch, Frames, Height, Width, Channels]`).
 
-![Vector, Matrix, Tensor Visual Representation](plots/ml_basics/image_93_Im94.png)
+![Vector, Matrix, Tensor Visual Representation](../plots/ml_basics/image_93_Im94.png)
 
 ### 2.2 Application Example: Image Data as Matrices
 Digital images are stored as matrices (or 3D tensors for color images). For a grayscale image, each pixel intensity is stored as a numerical value inside a matrix grid.
 
-![Image Grid to Binary Matrix Representation](plots/ml_basics/image_95_Im96.png)
+![Image Grid to Binary Matrix Representation](../plots/ml_basics/image_95_Im96.png)
 
 ---
 
@@ -84,11 +84,11 @@ where:
 *   $m$ is the **slope** (weight parameter), determining the direction and steepness of the line.
 *   $b$ is the **y-intercept** (bias parameter), determining the point where the line crosses the vertical axis.
 
-![Raw Scatter Plot](plots/ml_basics/image_3_Im4.png)
+![Raw Scatter Plot](../plots/ml_basics/image_3_Im4.png)
 
-![Regression Line of Best Fit](plots/ml_basics/image_5_Im6.png)
+![Regression Line of Best Fit](../plots/ml_basics/image_5_Im6.png)
 
-![Linear Regression Equation Plot](plots/ml_basics/image_7_Im8.png)
+![Linear Regression Equation Plot](../plots/ml_basics/image_7_Im8.png)
 
 ### 3.2 Multiple Linear Regression
 When there are multiple predictor features ($x_1, x_2, \dots, x_p$), the model generalizes to a hyper-plane equation:
@@ -103,9 +103,9 @@ For a model with two independent variables ($x_1$ and $x_2$), the regression bou
 
 $$y = \beta_2 x_2 + \beta_1 x_1 + \beta_0$$
 
-![Multiple Regression Plane Equation](plots/ml_basics/image_9_Im10.png)
+![Multiple Regression Plane Equation](../plots/ml_basics/image_9_Im10.png)
 
-![3D Regression Plane Visualization](plots/ml_basics/image_11_Im12.png)
+![3D Regression Plane Visualization](../plots/ml_basics/image_11_Im12.png)
 
 ### 3.3 Sum of Squared Errors (SSE) Loss
 To find the optimal weight and bias parameters, we must define a loss function that measures how far the model's predictions are from the actual values.
@@ -114,13 +114,13 @@ The vertical distance from an observed data point $y_i$ to the predicted regress
 
 $$e_i = y_i - \hat{y}_i$$
 
-![Regression Residual Error Lines](plots/ml_basics/image_13_Im14.png)
+![Regression Residual Error Lines](../plots/ml_basics/image_13_Im14.png)
 
 The **Sum of Squared Errors (SSE)** squares each residual and sums them up. Squaring ensures that positive and negative errors do not cancel each other out, and heavily penalizes larger errors:
 
 $$\text{SSE} = \sum_{i=1}^n (y_i - \hat{y}_i)^2 = \sum_{i=1}^n e_i^2$$
 
-![Sum of Squared Errors Visualization](plots/ml_basics/image_21_Im22.png)
+![Sum of Squared Errors Visualization](../plots/ml_basics/image_21_Im22.png)
 
 #### Visualizing Least Squares Optimization
 Fitting a regression line is the process of finding parameters that minimize the total area of the error squares.
@@ -131,14 +131,14 @@ Fitting a regression line is the process of finding parameters that minimize the
 
 | Best Fit (Optimal) | Poor Fit (High Loss) | Worst Fit (Very High Loss) |
 |:---:|:---:|:---:|
-| ![Best Fit Squares](plots/ml_basics/image_15_Im16.png) | ![Poor Fit Squares](plots/ml_basics/image_17_Im18.png) | ![Worst Fit Squares](plots/ml_basics/image_19_Im20.png) |
+| ![Best Fit Squares](../plots/ml_basics/image_15_Im16.png) | ![Poor Fit Squares](../plots/ml_basics/image_17_Im18.png) | ![Worst Fit Squares](../plots/ml_basics/image_19_Im20.png) |
 
 ### 3.4 Mean Squared Error (MSE)
 Dividing the SSE by the number of data points $n$ gives the **Mean Squared Error (MSE)**, which represents the average squared distance of predictions from the target labels:
 
 $$\text{MSE} = \frac{1}{n} \sum_{i=1}^n (Y_i - \hat{Y}_i)^2$$
 
-![Mean Squared Error Formula](plots/ml_basics/image_97_Im98.png)
+![Mean Squared Error Formula](../plots/ml_basics/image_97_Im98.png)
 
 ---
 
@@ -153,7 +153,7 @@ At each step, we calculate the partial derivatives of the loss with respect to e
 
 $$\theta_j := \theta_j - \alpha \frac{\partial L}{\partial \theta_j}$$
 
-![3D Parabolic Loss Surface Gradient Descent Path](plots/ml_basics/image_23_Im24.png)
+![3D Parabolic Loss Surface Gradient Descent Path](../plots/ml_basics/image_23_Im24.png)
 
 ### 4.2 Linear Regression Backpropagation via the Chain Rule
 For a single input data point with feature $\text{area}$, target $y$, prediction $\hat{y}$, and weights $w_1, w_2, b$:
@@ -179,7 +179,7 @@ $$\frac{\partial L}{\partial w_1} = 2e \cdot (-1) \cdot \text{area} = -2e \cdot 
 
 $$\frac{\partial L}{\partial w_1} = -2(y - \hat{y}) \cdot \text{area}$$
 
-![Chain Rule Graph Representation](plots/ml_basics/image_1_Im2.jpg)
+![Chain Rule Graph Representation](../plots/ml_basics/image_1_Im2.jpg)
 
 ---
 
@@ -187,7 +187,7 @@ $$\frac{\partial L}{\partial w_1} = -2(y - \hat{y}) \cdot \text{area}$$
 
 To evaluate how well a regression model fits the data, several metrics are used:
 
-![Performance Metrics Table](plots/ml_basics/image_25_Im26.png)
+![Performance Metrics Table](../plots/ml_basics/image_25_Im26.png)
 
 *   **Coefficient of Determination ($R^2$):** Measures the proportion of variance in the dependent variable that is predictable from the independent variables. Scores range from $0$ to $1$:
     
@@ -216,18 +216,18 @@ Thus, the probability model is:
 
 $$f(x) = \frac{1}{1 + e^{-(\beta_1 x + \beta_0)}}$$
 
-![Raw Classification Points](plots/ml_basics/image_27_Im28.png)
+![Raw Classification Points](../plots/ml_basics/image_27_Im28.png)
 
-![Sigmoid Curve Fit](plots/ml_basics/image_29_Im30.png)
+![Sigmoid Curve Fit](../plots/ml_basics/image_29_Im30.png)
 
-![Sigmoid Mathematical Formula Graph](plots/ml_basics/image_35_Im36.png)
+![Sigmoid Mathematical Formula Graph](../plots/ml_basics/image_35_Im36.png)
 
 ### 6.2 Multiple Logistic Regression
 When there are multiple predictor features, the log-odds linear boundary generalizes in 3D space to form a sigmoid probability surface:
 
 $$p(x_1, x_2) = \frac{1}{1 + e^{-(\beta_0 + \beta_1 x_1 + \beta_2 x_2)}}$$
 
-![3D Sigmoid Probability Surface](plots/ml_basics/image_37_Im38.png)
+![3D Sigmoid Probability Surface](../plots/ml_basics/image_37_Im38.png)
 
 ### 6.3 Decision Boundary and Shaded Regions
 To perform binary classification, the predicted probability $p$ is compared against a decision threshold (typically $0.5$ or $0.75$).
@@ -238,7 +238,7 @@ For instance, using a threshold of $0.75$ at input $x = 6.2$:
 
 | Sigmoid Curve with Query Point | Classified Shaded Regions |
 |:---:|:---:|
-| ![Sigmoid Threshold Mapping](plots/ml_basics/image_31_Im32.png) | ![TRUE/FALSE Classification Thresholds](plots/ml_basics/image_33_Im34.png) |
+| ![Sigmoid Threshold Mapping](../plots/ml_basics/image_31_Im32.png) | ![TRUE/FALSE Classification Thresholds](../plots/ml_basics/image_33_Im34.png) |
 
 ---
 
@@ -246,7 +246,7 @@ For instance, using a threshold of $0.75$ at input $x = 6.2$:
 
 **K-Nearest Neighbors (KNN)** is a simple, non-parametric, instance-based supervised learning algorithm used for classification and regression. It makes predictions for a query point based on the labels of its closest neighboring data points.
 
-![KNN Classification Concept](plots/ml_basics/image_73_Im74.png)
+![KNN Classification Concept](../plots/ml_basics/image_73_Im74.png)
 
 ### 7.1 Euclidean Distance Metric
 To find the "nearest" neighbors, KNN calculates the geometric distance between points. The most common metric is **Euclidean Distance**:
@@ -257,7 +257,7 @@ In 2D space:
 
 $$d = \sqrt{(x_1 - x_2)^2 + (y_1 - y_2)^2}$$
 
-![Euclidean Distance Diagram](plots/ml_basics/image_71_Im72.png)
+![Euclidean Distance Diagram](../plots/ml_basics/image_71_Im72.png)
 
 ### 7.2 Step-by-Step KNN Classification ($k=5$)
 Here is a visual step-by-step example showing how KNN classifies a new unlabelled data point:
@@ -273,11 +273,11 @@ Here is a visual step-by-step example showing how KNN classifies a new unlabelle
 
 | Step 1: Query Input | Step 2: Set K | Step 3: Search Circle |
 |:---:|:---:|:---:|
-| ![KNN Query](plots/ml_basics/image_53_Im54.png) | ![KNN K=5 Header](plots/ml_basics/image_61_Im62.png) | ![KNN Search Boundary](plots/ml_basics/image_57_Im58.png) |
+| ![KNN Query](../plots/ml_basics/image_53_Im54.png) | ![KNN K=5 Header](../plots/ml_basics/image_61_Im62.png) | ![KNN Search Boundary](../plots/ml_basics/image_57_Im58.png) |
 
 | Step 4: Measure Distances | Step 5: Majority Vote |
 |:---:|:---:|
-| ![KNN Distance Lines](plots/ml_basics/image_65_Im66.png) | ![KNN Voting Result](plots/ml_basics/image_69_Im70.png) |
+| ![KNN Distance Lines](../plots/ml_basics/image_65_Im66.png) | ![KNN Voting Result](../plots/ml_basics/image_69_Im70.png) |
 
 ---
 
@@ -285,7 +285,7 @@ Here is a visual step-by-step example showing how KNN classifies a new unlabelle
 
 **K-Means Clustering** is an unsupervised learning algorithm used to partition a dataset into $K$ distinct, non-overlapping subgroups (clusters). It groups data points so that points in the same cluster are as similar as possible, while points in different clusters are distinct.
 
-![Before and After K-Means](plots/ml_basics/image_75_Im76.png)
+![Before and After K-Means](../plots/ml_basics/image_75_Im76.png)
 
 ### 8.1 The K-Means Objective Function
 K-Means minimizes the **Within-Cluster Sum of Squares (WCSS)**, also known as inertia:
@@ -305,23 +305,23 @@ Randomly select $K$ data points from the dataset to act as the initial cluster c
 
 $$\text{Initial Centroids: } \{\boldsymbol{\mu}_1, \boldsymbol{\mu}_2, \dots, \boldsymbol{\mu}_K\}$$
 
-![K-Means Step 1: Initial Centroids](plots/ml_basics/image_77_Im78.png)
+![K-Means Step 1: Initial Centroids](../plots/ml_basics/image_77_Im78.png)
 
 #### Step 2: Assign Points to Nearest Centroid
 Calculate the distance from each data point $\mathbf{x}_i$ to all $K$ centroids, and assign the point to the cluster of the closest centroid.
 
 $$S_k^{(t)} = \left\{ \mathbf{x}_i : \|\mathbf{x}_i - \boldsymbol{\mu}_k^{(t)}\|^2 \le \|\mathbf{x}_i - \boldsymbol{\mu}_j^{(t)}\|^2 \quad \forall j, 1 \le j \le K \right\}$$
 
-![K-Means Step 2: Assign Points](plots/ml_basics/image_79_Im80.png)
+![K-Means Step 2: Assign Points](../plots/ml_basics/image_79_Im80.png)
 
 #### Step 3: Update Centroids
 Recalculate the position of each centroid as the arithmetic mean of all data points currently assigned to that cluster.
 
 $$\boldsymbol{\mu}_k^{(t+1)} = \frac{1}{|S_k^{(t)}|} \sum_{\mathbf{x}_i \in S_k^{(t)}} \mathbf{x}_i$$
 
-![K-Means Step 3: Update Centroids](plots/ml_basics/image_81_Im82.png)
+![K-Means Step 3: Update Centroids](../plots/ml_basics/image_81_Im82.png)
 
 #### Step 4: Repeat Until Convergence
 Repeat Steps 2 and 3 iteratively. The algorithm converges when the centroids stabilize and do not move further, or when cluster assignments stop changing.
 
-![K-Means Step 4: Convergence](plots/ml_basics/image_83_Im84.png)
+![K-Means Step 4: Convergence](../plots/ml_basics/image_83_Im84.png)

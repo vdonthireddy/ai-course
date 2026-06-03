@@ -141,15 +141,15 @@ python3 llm/<script_name>.py
 ## Primary Course Textbook & Supplementary Guides
 
 The main, consolidated study textbook for this course is:
-*   **[Complete Illustrated Machine Learning & AI Coursebook](complete_illustrated_coursebook.md)**: A unified, 5-module comprehensive textbook that logically integrates all mathematical foundations, optimization algorithms, classical ML models, deep neural networks, building large language models from scratch, and agentic AI architectures into a single learning pathway.
+*   **[Complete Illustrated Machine Learning & AI Coursebook](docs/complete_illustrated_coursebook.md)**: A unified, 5-module comprehensive textbook that logically integrates all mathematical foundations, optimization algorithms, classical ML models, deep neural networks, building large language models from scratch, and agentic AI architectures into a single learning pathway.
 
 For individual sub-topic deep dives and reference, you can also access the standalone guides:
-*   **Module 1 (Math & Calculus)**: [Machine Learning Mathematics Guide](basic_maths_guide.md) & [Visualizing Derivatives & The Chain Rule](derivatives_explain.md)
-*   **Module 2 (Classical ML)**: [Machine Learning Basics Guide](ml_basics_guide.md)
-*   **Module 3 (Deep Learning & Backpropagation)**: [Visualizing Backpropagation & Gradient Descent](backpropagation_explain.md) & [Deep Learning Foundations](deep_learning_guide.md)
-*   **Module 4 (LLMs from Scratch)**: [Building an LLM from Scratch Guide](llm_scratch_guide.md)
-*   **Module 5 (Agentic AI)**: [Developer Guide: Agentic AI Systems, Tools, Skills, and MCP](agentic_ai_developer_guide.md)
-*   **vLLM Inference Mechanics**: [Illustrated Guide to vLLM Inference Mechanics](vllm_inference_guide.md)
+*   **Module 1 (Math & Calculus)**: [Machine Learning Mathematics Guide](docs/basic_maths_guide.md) & [Visualizing Derivatives & The Chain Rule](docs/derivatives_explain.md)
+*   **Module 2 (Classical ML)**: [Machine Learning Basics Guide](docs/ml_basics_guide.md)
+*   **Module 3 (Deep Learning & Backpropagation)**: [Visualizing Backpropagation & Gradient Descent](docs/backpropagation_explain.md) & [Deep Learning Foundations](docs/deep_learning_guide.md)
+*   **Module 4 (LLMs from Scratch)**: [Building an LLM from Scratch Guide](docs/llm_scratch_guide.md)
+*   **Module 5 (Agentic AI)**: [Developer Guide: Agentic AI Systems, Tools, Skills, and MCP](docs/agentic_ai_developer_guide.md)
+*   **vLLM Inference Mechanics**: [Illustrated Guide to vLLM Inference Mechanics](docs/vllm_inference_guide.md)
 
 ---
 

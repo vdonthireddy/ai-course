@@ -2,7 +2,7 @@
 
 This document provides a detailed, step-by-step mathematical and visual guide to the foundational mathematics used in typical Machine Learning (ML) and Artificial Intelligence (AI) models. It covers basic statistics, vector operations, matrix algebra, calculus gradients, regularization principles, and normalization techniques.
 
-All illustrations are referenced from the local directory: [plots/basic_maths/](plots/basic_maths/).
+All illustrations are referenced from the local directory: [plots/basic_maths/](../plots/basic_maths/).
 
 ---
 
@@ -29,7 +29,7 @@ Descriptive statistics summarize and describe the features of a dataset. They fo
     
     $$\sigma = \sqrt{\frac{\sum_{i=1}^N (x_i - \mu)^2}{N}}$$
 
-![Mean, Variance, and Standard Deviation Formulas](plots/basic_maths/image_1_Im2.png)
+![Mean, Variance, and Standard Deviation Formulas](../plots/basic_maths/image_1_Im2.png)
 
 *   **Variance Interpretation:**
     *   **Small Variance:** Data points are clustered tightly around the mean (low variability).
@@ -42,23 +42,23 @@ Understanding the distribution of features is essential for choosing the right M
 
 *   **Normal (Gaussian) Distribution:** A symmetric, bell-shaped distribution where the mean, median, and mode are all equal and located at the exact center of the distribution.
 
-![Normal Distribution Centered Mean](plots/basic_maths/image_47_Im48.png)
+![Normal Distribution Centered Mean](../plots/basic_maths/image_47_Im48.png)
 
 *   **Symmetric Distribution:** A distribution where the left side of the distribution is a mirror image of the right side.
 
-![Symmetric Distribution Graph](plots/basic_maths/image_53_Im54.png)
+![Symmetric Distribution Graph](../plots/basic_maths/image_53_Im54.png)
 
 *   **Left-Skewed (Negatively Skewed) Distribution:** The tail of the distribution extends to the left, meaning there is a concentration of data points on the right side with a few exceptionally small values pulling the mean down.
     
     $$\text{Mean} < \text{Median} < \text{Mode}$$
 
-![Left Skewed Distribution Graph](plots/basic_maths/image_49_Im50.png)
+![Left Skewed Distribution Graph](../plots/basic_maths/image_49_Im50.png)
 
 *   **Right-Skewed (Positively Skewed) Distribution:** The tail of the distribution extends to the right, meaning there is a concentration of data points on the left side with a few exceptionally large values pulling the mean up.
     
     $$\text{Mode} < \text{Median} < \text{Mean}$$
 
-![Right Skewed Distribution Graph](plots/basic_maths/image_51_Im52.png)
+![Right Skewed Distribution Graph](../plots/basic_maths/image_51_Im52.png)
 
 ---
 
@@ -68,9 +68,9 @@ For normally distributed data, the spread of data points around the mean is gove
 2.  Approximately **95%** of the data falls within two standard deviations of the mean ($\mu \pm 2\sigma$).
 3.  Approximately **99.7%** of the data falls within three standard deviations of the mean ($\mu \pm 3\sigma$).
 
-![Empirical Rule Regions](plots/basic_maths/image_3_Im4.png)
+![Empirical Rule Regions](../plots/basic_maths/image_3_Im4.png)
 
-![Empirical Rule Percentages](plots/basic_maths/image_55_Im56.png)
+![Empirical Rule Percentages](../plots/basic_maths/image_55_Im56.png)
 
 ---
 
@@ -91,7 +91,7 @@ $$\vec{v} = \begin{bmatrix} 1 \\ 2 \end{bmatrix}, \quad \vec{w} = \begin{bmatrix
 
 $$\vec{v} \cdot \vec{w} = 1 \cdot 3 + 2 \cdot 4 = 3 + 8 = 11$$
 
-![Dot Product Algebraic Calculation](plots/basic_maths/image_7_Im8.png)
+![Dot Product Algebraic Calculation](../plots/basic_maths/image_7_Im8.png)
 
 ---
 
@@ -112,13 +112,13 @@ Where $\theta$ is the angle between the two vectors.
 
 *   **Positive Projection Case:** If the angle $\theta$ between the vectors is acute ($< 90^\circ$), the projection lies in the same direction as $\vec{v}$, resulting in a positive dot product.
 
-![Geometric Projection Concept](plots/basic_maths/image_9_Im10.png)
+![Geometric Projection Concept](../plots/basic_maths/image_9_Im10.png)
 
-![Positive Projection Formula](plots/basic_maths/image_11_Im12.png)
+![Positive Projection Formula](../plots/basic_maths/image_11_Im12.png)
 
 *   **Negative Projection Case:** If the angle $\theta$ is obtuse ($> 90^\circ$), the projection lies in the opposite direction of $\vec{v}$, making the dot product negative.
 
-![Negative Projection Formula](plots/basic_maths/image_13_Im14.png)
+![Negative Projection Formula](../plots/basic_maths/image_13_Im14.png)
 
 ---
 
@@ -127,15 +127,15 @@ The sign of the dot product reveals the relative direction of two vectors:
 
 *   **Similar Directions ($\vec{v} \cdot \vec{w} > 0$):** The vectors point generally in the same half-space (angle $\theta < 90^\circ$).
 
-![Dot Product Greater Than Zero](plots/basic_maths/image_15_Im16.png)
+![Dot Product Greater Than Zero](../plots/basic_maths/image_15_Im16.png)
 
 *   **Perpendicular / Orthogonal ($\vec{v} \cdot \vec{w} = 0$):** The vectors are at a right angle ($\theta = 90^\circ$). One vector has zero projection onto the other.
 
-![Dot Product Equal To Zero](plots/basic_maths/image_17_Im18.png)
+![Dot Product Equal To Zero](../plots/basic_maths/image_17_Im18.png)
 
 *   **Opposing Directions ($\vec{v} \cdot \vec{w} < 0$):** The vectors point generally in opposite directions (angle $\theta > 90^\circ$).
 
-![Dot Product Less Than Zero](plots/basic_maths/image_19_Im20.png)
+![Dot Product Less Than Zero](../plots/basic_maths/image_19_Im20.png)
 
 ---
 
@@ -156,9 +156,9 @@ Where:
     *   **$0$:** Vectors are perpendicular ($\theta = 90^\circ$), meaning no similarity.
     *   **$-1$:** Vectors point in opposite directions ($\theta = 180^\circ$).
 
-![Cosine Similarity Definition](plots/basic_maths/image_5_Im6.png)
+![Cosine Similarity Definition](../plots/basic_maths/image_5_Im6.png)
 
-![Cosine Similarity Angle Diagram](plots/basic_maths/image_45_Im46.png)
+![Cosine Similarity Angle Diagram](../plots/basic_maths/image_45_Im46.png)
 
 ---
 
@@ -177,13 +177,13 @@ $$c_{ij} = \sum_{k=1}^n a_{ik} b_{kj}$$
     
     $$\begin{bmatrix} a_1 & b_1 \\ c_1 & d_1 \end{bmatrix} \begin{bmatrix} a_2 & b_2 \\ c_2 & d_2 \end{bmatrix} = \begin{bmatrix} a_1 a_2 + b_1 c_2 & a_1 b_2 + b_1 d_2 \\ c_1 a_2 + d_1 c_2 & c_1 b_2 + d_1 d_2 \end{bmatrix}$$
 
-![2x2 Matrix Multiplication Formula](plots/basic_maths/image_23_Im24.png)
+![2x2 Matrix Multiplication Formula](../plots/basic_maths/image_23_Im24.png)
 
 *   **3x3 Matrix Multiplication Example:**
     
     $$\begin{bmatrix} a & b & c \\ d & e & f \\ g & h & i \end{bmatrix} \begin{bmatrix} j & k & l \\ m & n & o \\ p & q & r \end{bmatrix} = \begin{bmatrix} (aj+bm+cp) & (ak+bn+cq) & (al+bo+cr) \\ (dj+em+fp) & (dk+en+fq) & (dl+eo+fr) \\ (gj+hm+ip) & (gk+hn+iq) & (gl+ho+ir) \end{bmatrix}$$
 
-![3x3 Matrix Multiplication Formula](plots/basic_maths/image_25_Im26.png)
+![3x3 Matrix Multiplication Formula](../plots/basic_maths/image_25_Im26.png)
 
 ---
 
@@ -206,7 +206,7 @@ $$A = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}, \quad B = \begin{bmatrix} 2 
 
 Because the results are different, we confirm that $AB \neq BA$.
 
-![Matrix Multiplication Non-Commutative Proof](plots/basic_maths/image_21_Im22.png)
+![Matrix Multiplication Non-Commutative Proof](../plots/basic_maths/image_21_Im22.png)
 
 ---
 
@@ -219,7 +219,7 @@ Identity matrices serve as the matrix equivalent of the number $1$. Here are the
 
 $$I_2 = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}, \quad I_3 = \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix}, \quad I_4 = \begin{bmatrix} 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix}$$
 
-![Identity Matrices](plots/basic_maths/image_27_Im28.png)
+![Identity Matrices](../plots/basic_maths/image_27_Im28.png)
 
 ---
 
@@ -230,13 +230,13 @@ $$\left(A^T\right)_{ij} = A_{ji}$$
 
 If $A$ is of size $m \times n$, then $A^T$ is of size $n \times m$.
 
-![Matrix Transpose Notation](plots/basic_maths/image_33_Im34.png)
+![Matrix Transpose Notation](../plots/basic_maths/image_33_Im34.png)
 
 *   **Transpose Example:**
     
     $$A = \begin{bmatrix} a & b & c \\ d & e & f \end{bmatrix}_{2 \times 3} \implies A^T = \begin{bmatrix} a & d \\ b & e \\ c & f \end{bmatrix}_{3 \times 2}$$
 
-![Matrix Transpose Calculation](plots/basic_maths/image_31_Im32.png)
+![Matrix Transpose Calculation](../plots/basic_maths/image_31_Im32.png)
 
 ---
 
@@ -251,7 +251,7 @@ $$\nabla f = \left( \frac{\partial f}{\partial x_1}, \frac{\partial f}{\partial 
 
 Each component $\frac{\partial f}{\partial x_i}$ measures the rate of change of the function $f$ when we nudge variable $x_i$, keeping all other variables constant.
 
-![Gradient Mathematical Definition](plots/basic_maths/image_35_Im36.png)
+![Gradient Mathematical Definition](../plots/basic_maths/image_35_Im36.png)
 
 *   **2D and 3D Gradients:**
     *   For a function $f(x, y)$ of two variables, the gradient is a 2D vector:
@@ -262,7 +262,7 @@ Each component $\frac{\partial f}{\partial x_i}$ measures the rate of change of 
         
         $$\nabla f = \left( \frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z} \right)$$
 
-![Gradient in 2D and 3D](plots/basic_maths/image_37_Im38.png)
+![Gradient in 2D and 3D](../plots/basic_maths/image_37_Im38.png)
 
 *   **Steepest Ascent:**
     The gradient vector points in the direction of **steepest ascent**—the direction in which the function value increases most rapidly. Conversely, the negative gradient ($-\nabla f$) points in the direction of steepest descent, which we follow in Gradient Descent to minimize model loss.
@@ -272,7 +272,7 @@ Each component $\frac{\partial f}{\partial x_i}$ measures the rate of change of 
 ### 4.2 Gradient Field Visualization
 We can plot the gradient vectors at various coordinate locations to visualize a **Gradient Field**. For example, the gradient field of the function $f(x, y) = x^2 + 3y^2$ consists of vectors that point away from the origin (where the function value is at its minimum, $0$), growing longer as the steepness increases.
 
-![Gradient Field Plot](plots/basic_maths/image_41_Im42.png)
+![Gradient Field Plot](../plots/basic_maths/image_41_Im42.png)
 
 ---
 
@@ -300,7 +300,7 @@ $$f(x, y) = x^2 + 3y^2$$
 
 This tells us that at coordinates $(1, 2)$, the function $f(x, y)$ increases most rapidly if we move in the direction of the vector $(2, 12)$.
 
-![Numerical Gradient Example](plots/basic_maths/image_39_Im40.png)
+![Numerical Gradient Example](../plots/basic_maths/image_39_Im40.png)
 
 ---
 

@@ -38,7 +38,7 @@ Descriptive statistics summarize and describe the features of a dataset. They fo
     
     $$\sigma = \sqrt{\frac{\sum_{i=1}^N (x_i - \mu)^2}{N}}$$
 
-![Mean, Variance, and Standard Deviation Formulas](plots/basic_maths/image_1_Im2.png)
+![Mean, Variance, and Standard Deviation Formulas](../plots/basic_maths/image_1_Im2.png)
 
 *   **Variance Interpretation:**
     *   **Small Variance:** Data points are clustered tightly around the mean (low variability).
@@ -51,23 +51,23 @@ Understanding the distribution of features is essential for choosing the right M
 
 *   **Normal (Gaussian) Distribution:** A symmetric, bell-shaped distribution where the mean, median, and mode are all equal and located at the exact center of the distribution.
 
-![Normal Distribution Centered Mean](plots/basic_maths/image_47_Im48.png)
+![Normal Distribution Centered Mean](../plots/basic_maths/image_47_Im48.png)
 
 *   **Symmetric Distribution:** A distribution where the left side of the distribution is a mirror image of the right side.
 
-![Symmetric Distribution Graph](plots/basic_maths/image_53_Im54.png)
+![Symmetric Distribution Graph](../plots/basic_maths/image_53_Im54.png)
 
 *   **Left-Skewed (Negatively Skewed) Distribution:** The tail of the distribution extends to the left, meaning there is a concentration of data points on the right side with a few exceptionally small values pulling the mean down.
     
     $$\text{Mean} < \text{Median} < \text{Mode}$$
 
-![Left Skewed Distribution Graph](plots/basic_maths/image_49_Im50.png)
+![Left Skewed Distribution Graph](../plots/basic_maths/image_49_Im50.png)
 
 *   **Right-Skewed (Positively Skewed) Distribution:** The tail of the distribution extends to the right, meaning there is a concentration of data points on the left side with a few exceptionally large values pulling the mean up.
     
     $$\text{Mode} < \text{Median} < \text{Mean}$$
 
-![Right Skewed Distribution Graph](plots/basic_maths/image_51_Im52.png)
+![Right Skewed Distribution Graph](../plots/basic_maths/image_51_Im52.png)
 
 ---
 
@@ -77,9 +77,9 @@ For normally distributed data, the spread of data points around the mean is gove
 2.  Approximately **95%** of the data falls within two standard deviations of the mean ($\mu \pm 2\sigma$).
 3.  Approximately **99.7%** of the data falls within three standard deviations of the mean ($\mu \pm 3\sigma$).
 
-![Empirical Rule Regions](plots/basic_maths/image_3_Im4.png)
+![Empirical Rule Regions](../plots/basic_maths/image_3_Im4.png)
 
-![Empirical Rule Percentages](plots/basic_maths/image_55_Im56.png)
+![Empirical Rule Percentages](../plots/basic_maths/image_55_Im56.png)
 
 ---
 
@@ -100,7 +100,7 @@ $$\vec{v} = \begin{bmatrix} 1 \\ 2 \end{bmatrix}, \quad \vec{w} = \begin{bmatrix
 
 $$\vec{v} \cdot \vec{w} = 1 \cdot 3 + 2 \cdot 4 = 3 + 8 = 11$$
 
-![Dot Product Algebraic Calculation](plots/basic_maths/image_7_Im8.png)
+![Dot Product Algebraic Calculation](../plots/basic_maths/image_7_Im8.png)
 
 ---
 
@@ -121,13 +121,13 @@ Where $\theta$ is the angle between the two vectors.
 
 *   **Positive Projection Case:** If the angle $\theta$ between the vectors is acute ($< 90^\circ$), the projection lies in the same direction as $\vec{v}$, resulting in a positive dot product.
 
-![Geometric Projection Concept](plots/basic_maths/image_9_Im10.png)
+![Geometric Projection Concept](../plots/basic_maths/image_9_Im10.png)
 
-![Positive Projection Formula](plots/basic_maths/image_11_Im12.png)
+![Positive Projection Formula](../plots/basic_maths/image_11_Im12.png)
 
 *   **Negative Projection Case:** If the angle $\theta$ is obtuse ($> 90^\circ$), the projection lies in the opposite direction of $\vec{v}$, making the dot product negative.
 
-![Negative Projection Formula](plots/basic_maths/image_13_Im14.png)
+![Negative Projection Formula](../plots/basic_maths/image_13_Im14.png)
 
 ---
 
@@ -136,15 +136,15 @@ The sign of the dot product reveals the relative direction of two vectors:
 
 *   **Similar Directions ($\vec{v} \cdot \vec{w} > 0$):** The vectors point generally in the same half-space (angle $\theta < 90^\circ$).
 
-![Dot Product Greater Than Zero](plots/basic_maths/image_15_Im16.png)
+![Dot Product Greater Than Zero](../plots/basic_maths/image_15_Im16.png)
 
 *   **Perpendicular / Orthogonal ($\vec{v} \cdot \vec{w} = 0$):** The vectors are at a right angle ($\theta = 90^\circ$). One vector has zero projection onto the other.
 
-![Dot Product Equal To Zero](plots/basic_maths/image_17_Im18.png)
+![Dot Product Equal To Zero](../plots/basic_maths/image_17_Im18.png)
 
 *   **Opposing Directions ($\vec{v} \cdot \vec{w} < 0$):** The vectors point generally in opposite directions (angle $\theta > 90^\circ$).
 
-![Dot Product Less Than Zero](plots/basic_maths/image_19_Im20.png)
+![Dot Product Less Than Zero](../plots/basic_maths/image_19_Im20.png)
 
 ---
 
@@ -165,9 +165,9 @@ Where:
     *   **$0$:** Vectors are perpendicular ($\theta = 90^\circ$), meaning no similarity.
     *   **$-1$:** Vectors point in opposite directions ($\theta = 180^\circ$).
 
-![Cosine Similarity Definition](plots/basic_maths/image_5_Im6.png)
+![Cosine Similarity Definition](../plots/basic_maths/image_5_Im6.png)
 
-![Cosine Similarity Angle Diagram](plots/basic_maths/image_45_Im46.png)
+![Cosine Similarity Angle Diagram](../plots/basic_maths/image_45_Im46.png)
 
 ---
 
@@ -186,13 +186,13 @@ $$c_{ij} = \sum_{k=1}^n a_{ik} b_{kj}$$
     
     $$\begin{bmatrix} a_1 & b_1 \\ c_1 & d_1 \end{bmatrix} \begin{bmatrix} a_2 & b_2 \\ c_2 & d_2 \end{bmatrix} = \begin{bmatrix} a_1 a_2 + b_1 c_2 & a_1 b_2 + b_1 d_2 \\ c_1 a_2 + d_1 c_2 & c_1 b_2 + d_1 d_2 \end{bmatrix}$$
 
-![2x2 Matrix Multiplication Formula](plots/basic_maths/image_23_Im24.png)
+![2x2 Matrix Multiplication Formula](../plots/basic_maths/image_23_Im24.png)
 
 *   **3x3 Matrix Multiplication Example:**
     
     $$\begin{bmatrix} a & b & c \\ d & e & f \\ g & h & i \end{bmatrix} \begin{bmatrix} j & k & l \\ m & n & o \\ p & q & r \end{bmatrix} = \begin{bmatrix} (aj+bm+cp) & (ak+bn+cq) & (al+bo+cr) \\ (dj+em+fp) & (dk+en+fq) & (dl+eo+fr) \\ (gj+hm+ip) & (gk+hn+iq) & (gl+ho+ir) \end{bmatrix}$$
 
-![3x3 Matrix Multiplication Formula](plots/basic_maths/image_25_Im26.png)
+![3x3 Matrix Multiplication Formula](../plots/basic_maths/image_25_Im26.png)
 
 ---
 
@@ -215,7 +215,7 @@ $$A = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}, \quad B = \begin{bmatrix} 2 
 
 Because the results are different, we confirm that $AB \neq BA$.
 
-![Matrix Multiplication Non-Commutative Proof](plots/basic_maths/image_21_Im22.png)
+![Matrix Multiplication Non-Commutative Proof](../plots/basic_maths/image_21_Im22.png)
 
 ---
 
@@ -228,7 +228,7 @@ Identity matrices serve as the matrix equivalent of the number $1$. Here are the
 
 $$I_2 = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}, \quad I_3 = \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix}, \quad I_4 = \begin{bmatrix} 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix}$$
 
-![Identity Matrices](plots/basic_maths/image_27_Im28.png)
+![Identity Matrices](../plots/basic_maths/image_27_Im28.png)
 
 ---
 
@@ -239,13 +239,13 @@ $$\left(A^T\right)_{ij} = A_{ji}$$
 
 If $A$ is of size $m \times n$, then $A^T$ is of size $n \times m$.
 
-![Matrix Transpose Notation](plots/basic_maths/image_33_Im34.png)
+![Matrix Transpose Notation](../plots/basic_maths/image_33_Im34.png)
 
 *   **Transpose Example:**
     
     $$A = \begin{bmatrix} a & b & c \\ d & e & f \end{bmatrix}_{2 \times 3} \implies A^T = \begin{bmatrix} a & d \\ b & e \\ c & f \end{bmatrix}_{3 \times 2}$$
 
-![Matrix Transpose Calculation](plots/basic_maths/image_31_Im32.png)
+![Matrix Transpose Calculation](../plots/basic_maths/image_31_Im32.png)
 
 ---
 
@@ -260,7 +260,7 @@ $$\nabla f = \left( \frac{\partial f}{\partial x_1}, \frac{\partial f}{\partial 
 
 Each component $\frac{\partial f}{\partial x_i}$ measures the rate of change of the function $f$ when we nudge variable $x_i$, keeping all other variables constant.
 
-![Gradient Mathematical Definition](plots/basic_maths/image_35_Im36.png)
+![Gradient Mathematical Definition](../plots/basic_maths/image_35_Im36.png)
 
 *   **2D and 3D Gradients:**
     *   For a function $f(x, y)$ of two variables, the gradient is a 2D vector:
@@ -271,7 +271,7 @@ Each component $\frac{\partial f}{\partial x_i}$ measures the rate of change of 
         
         $$\nabla f = \left( \frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z} \right)$$
 
-![Gradient in 2D and 3D](plots/basic_maths/image_37_Im38.png)
+![Gradient in 2D and 3D](../plots/basic_maths/image_37_Im38.png)
 
 *   **Steepest Ascent:**
     The gradient vector points in the direction of **steepest ascent**—the direction in which the function value increases most rapidly. Conversely, the negative gradient ($-\nabla f$) points in the direction of steepest descent, which we follow in Gradient Descent to minimize model loss.
@@ -281,7 +281,7 @@ Each component $\frac{\partial f}{\partial x_i}$ measures the rate of change of 
 #### 4.2 Gradient Field Visualization
 We can plot the gradient vectors at various coordinate locations to visualize a **Gradient Field**. For example, the gradient field of the function $f(x, y) = x^2 + 3y^2$ consists of vectors that point away from the origin (where the function value is at its minimum, $0$), growing longer as the steepness increases.
 
-![Gradient Field Plot](plots/basic_maths/image_41_Im42.png)
+![Gradient Field Plot](../plots/basic_maths/image_41_Im42.png)
 
 ---
 
@@ -309,7 +309,7 @@ $$f(x, y) = x^2 + 3y^2$$
 
 This tells us that at coordinates $(1, 2)$, the function $f(x, y)$ increases most rapidly if we move in the direction of the vector $(2, 12)$.
 
-![Numerical Gradient Example](plots/basic_maths/image_39_Im40.png)
+![Numerical Gradient Example](../plots/basic_maths/image_39_Im40.png)
 
 ---
 
@@ -414,7 +414,7 @@ Mathematically, we define it as the limit of the secant slope as the interval $\
 
 $$\frac{dy}{dx} = \lim_{\Delta x \to 0} \frac{\Delta y}{\Delta x}$$
 
-![Derivative of y(x) as the slope of the tangent line](plots/derivatives/IMG_3119.PNG)
+![Derivative of y(x) as the slope of the tangent line](../plots/derivatives/IMG_3119.PNG)
 
 #### 1.2 Mapping Functions to their Derivative Alter-Egos
 Every continuous function has a corresponding "derivative alter-ego" that maps the slope of the original function at every point:
@@ -423,7 +423,7 @@ Every continuous function has a corresponding "derivative alter-ego" that maps t
 *   **Sub-linear Growth (Red):** Starts extremely steep and slowly bends over, with its slope continuously decreasing toward zero. Its derivative is a **monotonically decaying curve** ($1/x$-like).
 *   **Oscillating Wave (Blue):** Alternates between positive slopes, peaks/troughs (slope $= 0$), and negative slopes. Its derivative is a **phase-shifted wave** (cosine wave for a sine wave).
 
-![Mapping source functions to their derivative alter-egos](plots/derivatives/IMG_3120.PNG)
+![Mapping source functions to their derivative alter-egos](../plots/derivatives/IMG_3120.PNG)
 
 #### 1.3 Derivatives as Optimization Signals
 In machine learning and statistics, we define a **Loss Function** (e.g., $Loss(k_1)$) to measure how well our model fits the data. We want to find the parameter values that minimize this loss. 
@@ -435,7 +435,7 @@ Because the derivative represents slope:
 
 Thus, the derivative serves as a compass (or signal) telling us which way to adjust our parameters to reach the minimum (gradient descent).
 
-![Underlying loss function and its derivative](plots/derivatives/IMG_3121.PNG)
+![Underlying loss function and its derivative](../plots/derivatives/IMG_3121.PNG)
 
 ---
 
@@ -443,7 +443,7 @@ Thus, the derivative serves as a compass (or signal) telling us which way to adj
 
 To differentiate complex functions, we break them down into fundamental "building blocks" whose derivatives are already known.
 
-![Derivative building blocks concept](plots/derivatives/IMG_3122.PNG)
+![Derivative building blocks concept](../plots/derivatives/IMG_3122.PNG)
 
 Below is the complete list of the **19 standard building block derivative rules** (using the chain rule helper variable $u$ where applicable):
 
@@ -464,13 +464,13 @@ Below is the complete list of the **19 standard building block derivative rules*
 *   **Quadratic ($y = x^2$):** The derivative is $\frac{dy}{dx} = 2x$, which is a straight line through the origin.
 *   **General Power Rule ($y = x^n$):** Differentiating a power function yields $\frac{dy}{dx} = n x^{n-1}$.
 
-![Power rule graphs](plots/derivatives/IMG_3123.PNG)
+![Power rule graphs](../plots/derivatives/IMG_3123.PNG)
 
 #### 2.2 Exponential and Logarithmic Rules Visualized
 *   **Exponential ($y = e^x$):** The derivative is $\frac{dy}{dx} = e^x$. The exponential function is unique because its slope at any point is exactly equal to its current value.
 *   **Logarithmic ($y = \log x$):** The derivative is $\frac{dy}{dx} = \frac{1}{x}$, showing how the rate of increase rapidly drops as $x$ grows large.
 
-![Exponential and log graphs](plots/derivatives/IMG_3124.PNG)
+![Exponential and log graphs](../plots/derivatives/IMG_3124.PNG)
 
 ---
 
@@ -484,14 +484,14 @@ We can combine these basic building blocks using standard arithmetic combination
 *   **Product Rule:** The derivative of a product requires taking the derivative of one block at a time:
     $$\frac{d}{dx}\left( \text{Red} \cdot \text{Blue} \right) = \text{Blue} \cdot \frac{d}{dx}(\text{Red}) + \text{Red} \cdot \frac{d}{dx}(\text{Blue})$$
 
-![Sum and product block rules](plots/derivatives/IMG_3125.PNG)
+![Sum and product block rules](../plots/derivatives/IMG_3125.PNG)
 
 #### 3.2 Linearity Combination Example
 Combining the sum rule and constant multiple rule gives us **linearity**:
 
 $$\frac{d}{dx}\left(3x^2 - e^x\right) = 3\frac{d}{dx}(x^2) - \frac{d}{dx}(e^x) = 6x - e^x$$
 
-![Linearity example combination](plots/derivatives/IMG_3126.PNG)
+![Linearity example combination](../plots/derivatives/IMG_3126.PNG)
 
 #### 3.3 The Need for a Chain Rule
 What happens when functions are nested inside one another rather than added or multiplied? For example, how do we differentiate:
@@ -500,9 +500,9 @@ $$y = \left(\sin \frac{e^{x^{\pi x}}}{\log \sqrt{x}}\right)^n$$
 
 For such composite functions, we cannot use simple sum or product rules. We must use the **Chain Rule**.
 
-![Complicated function introduction](plots/derivatives/IMG_3127.PNG)
+![Complicated function introduction](../plots/derivatives/IMG_3127.PNG)
 
-![Introducing the Chain Rule](plots/derivatives/IMG_3128.PNG)
+![Introducing the Chain Rule](../plots/derivatives/IMG_3128.PNG)
 
 ---
 
@@ -512,25 +512,25 @@ Our goal is to compute the rate of change of a nested composite function:
 
 $$\frac{d}{dx}f(g(x)) = ?$$
 
-![Chain rule question detail](plots/derivatives/IMG_3130.PNG)
+![Chain rule question detail](../plots/derivatives/IMG_3130.PNG)
 
 #### 4.1 Chained Computer Screens (Function Machines)
 Let's represent the functions $g(x)$ and $f(x)$ as computer screens/machines:
 *   **Machine $g$** takes an input $x$ and outputs a value $g(x)$.
 *   **Machine $f$** takes an input $u$ and outputs a value $f(u)$.
 
-![Two separate function screens](plots/derivatives/IMG_3131.PNG)
+![Two separate function screens](../plots/derivatives/IMG_3131.PNG)
 
 When we chain these machines together:
 1.  We feed $x$ into the first machine $g$.
 2.  The output $g(x)$ is fed directly as the input to the second machine $f$.
 3.  The second machine outputs $f(g(x))$.
 
-![Chaining screens together](plots/derivatives/IMG_3132.PNG)
+![Chaining screens together](../plots/derivatives/IMG_3132.PNG)
 
 From an external perspective, this entire chained setup acts as a single, combined machine that maps $x$ directly to $f(g(x))$.
 
-![The combined single screen view](plots/derivatives/IMG_3133.PNG)
+![The combined single screen view](../plots/derivatives/IMG_3133.PNG)
 
 ---
 
@@ -540,44 +540,44 @@ To find the derivative of this combined machine, we introduce a tiny change (a "
 ##### Step 1: Initial Setup
 We have the two chained machines. The first has value $g(x)$ and derivative $g'(x)$. The second has value $f(g(x))$ and derivative $f'(g(x))$.
 
-![Step 1 - Chained Setup](plots/derivatives/IMG_3135.PNG)
+![Step 1 - Chained Setup](../plots/derivatives/IMG_3135.PNG)
 
 ##### Step 2: Nudge the Input
 We nudge the initial input $x$ by a tiny amount $\Delta$ to $x + \Delta$.
 
-![Step 2 - Nudging x by delta](plots/derivatives/IMG_3136.PNG)
+![Step 2 - Nudging x by delta](../plots/derivatives/IMG_3136.PNG)
 
 ##### Step 3: Nudge Amplification by the First Machine
 As the nudge passes through the first machine, it is amplified by the local derivative (rate of change) $g'(x)$.
 
-![Step 3 - First machine amplification](plots/derivatives/IMG_3137.PNG)
+![Step 3 - First machine amplification](../plots/derivatives/IMG_3137.PNG)
 
 ##### Step 4: First Machine Output Change
 The resulting change in the output of the first machine is $g'(x) \cdot \Delta$.
 
-![Step 4 - First machine output nudge](plots/derivatives/IMG_3138.PNG)
+![Step 4 - First machine output nudge](../plots/derivatives/IMG_3138.PNG)
 
 ##### Step 5: Input to the Second Machine
 The output nudge $g'(x)\Delta$ from the first machine acts as the input nudge to the second machine.
 
-![Step 5 - Input nudge to second machine](plots/derivatives/IMG_3139.PNG)
+![Step 5 - Input nudge to second machine](../plots/derivatives/IMG_3139.PNG)
 
 ##### Step 6: Second Machine Amplification
 This input nudge $g'(x)\Delta$ is further amplified by the second machine's local derivative, $f'(g(x))$.
 
-![Step 6 - Second machine amplification](plots/derivatives/IMG_3140.PNG)
+![Step 6 - Second machine amplification](../plots/derivatives/IMG_3140.PNG)
 
 ##### Step 7: Final Output Nudge
 The final change in the output of the system is the product of the input nudge and the second amplification factor:
 $$\text{Output Change} \approx f'(g(x)) \cdot g'(x) \cdot \Delta$$
 
-![Step 7 - Final output nudge calculation](plots/derivatives/IMG_3142.PNG)
+![Step 7 - Final output nudge calculation](../plots/derivatives/IMG_3142.PNG)
 
 ##### Step 8: Deducing the Chain Rule
 Dividing the total change in the output by the initial input nudge $\Delta$ yields the derivative:
 $$\frac{d}{dx}f(g(x)) = f'(g(x)) \cdot g'(x)$$
 
-![Step 8 - Chain Rule Formula](plots/derivatives/IMG_3143.PNG)
+![Step 8 - Chain Rule Formula](../plots/derivatives/IMG_3143.PNG)
 
 ---
 
@@ -591,11 +591,11 @@ Another powerful way to visualize the Chain Rule is through a **gear train** con
 *   **Gear $f$** is driven by gear $g$. The ratio of rotation (local speed multiplier) is $f'(g(x))$.
     *   Thus, when gear $g$ turns by $g'(x)\Delta$, gear $f$ turns by $f'(g(x)) \cdot g'(x)\Delta$.
 
-![Three gears interlinked](plots/derivatives/IMG_3144.PNG)
+![Three gears interlinked](../plots/derivatives/IMG_3144.PNG)
 
-![Nudge propagation through gears](plots/derivatives/IMG_3145.PNG)
+![Nudge propagation through gears](../plots/derivatives/IMG_3145.PNG)
 
-![Gear train total derivative breakdown](plots/derivatives/IMG_3146.PNG)
+![Gear train total derivative breakdown](../plots/derivatives/IMG_3146.PNG)
 
 The overall gear ratio (the derivative of the final gear $f$ relative to the input gear $x$) is simply the product of the individual gear ratios:
 
@@ -612,7 +612,7 @@ By studying the relationships of fundamental functions and their derivatives, we
 *   **Exponential ($y = e^x$):** Slope grows exponentially ($\frac{dy}{dx} = e^x$).
 *   **Logarithmic ($y = \log x$):** Slope decays hyperbolically ($\frac{dy}{dx} = 1/x$).
 
-![Visual summary of basic function slopes](plots/derivatives/IMG_3147.PNG)
+![Visual summary of basic function slopes](../plots/derivatives/IMG_3147.PNG)
 
 #### 6.1 Finding the Best-Fitting Curve (Machine Learning Context)
 How do we use this calculus to find the best-fitting curve for data?
@@ -627,7 +627,7 @@ To optimize the weights of this network to fit data (minimize the loss function)
 
 This process is called **Backpropagation**, and it is the mathematical backbone of modern Artificial Intelligence.
 
-![How do we use this to find the best-fitting curve?](plots/derivatives/IMG_3148.PNG)
+![How do we use this to find the best-fitting curve?](../plots/derivatives/IMG_3148.PNG)
 
 
 ---
@@ -646,7 +646,7 @@ This document provides a comprehensive, step-by-step mathematical and visual exp
 
 Machine Learning is a branch of Artificial Intelligence (AI) that focuses on developing models and algorithms that allow computers to learn from data and improve their performance without being explicitly programmed for every single task.
 
-![Classical Machine Learning Paradigms](plots/ml_basics/image_89_Im90.png)
+![Classical Machine Learning Paradigms](../plots/ml_basics/image_89_Im90.png)
 
 Classical machine learning is primarily divided into two main paradigms:
 
@@ -658,7 +658,7 @@ $$\text{Dataset: } \mathcal{D} = \{(\mathbf{x}_i, y_i)\}_{i=1}^N$$
 *   **Regression:** Predicting a continuous numeric value (e.g., predicting house prices based on features like area and bedrooms).
 *   **Classification:** Predicting a discrete class label or category (e.g., classifying whether an email is spam or not spam, or identifying animals).
 
-![Supervised Learning Workflow](plots/ml_basics/image_85_Im86.png)
+![Supervised Learning Workflow](../plots/ml_basics/image_85_Im86.png)
 
 #### 1.2 Unsupervised Learning
 In **Unsupervised Learning**, the model is trained on **unlabeled data**. The dataset only contains input features without corresponding target labels. The model learns to find hidden structures, groups, or patterns directly from the input distribution.
@@ -668,7 +668,7 @@ $$\text{Dataset: } \mathcal{D} = \{\mathbf{x}_i\}_{i=1}^N$$
 *   **Clustering:** Grouping similar data points together based on distance or density (e.g., customer segmentation).
 *   **Dimensionality Reduction:** Compressing high-dimensional feature spaces into lower-dimensional representations while preserving key features or variance (e.g., Principal Component Analysis).
 
-![Unsupervised Learning Workflow](plots/ml_basics/image_87_Im88.png)
+![Unsupervised Learning Workflow](../plots/ml_basics/image_87_Im88.png)
 
 #### 1.3 Other Learning Paradigms
 *   **Semi-Supervised Learning:** Combines a small amount of labeled data with a large amount of unlabeled data. This is highly useful when labeling data is expensive or time-consuming.
@@ -681,7 +681,7 @@ $$\text{Dataset: } \mathcal{D} = \{\mathbf{x}_i\}_{i=1}^N$$
 
 In machine learning, data and parameters are represented using multi-dimensional numerical arrays called **Tensors**. Tensors are classified by their **rank** (the number of dimensions/axes).
 
-![Scalars, Vectors, Matrices, and Tensors Rank](plots/ml_basics/image_91_Im92.jpg)
+![Scalars, Vectors, Matrices, and Tensors Rank](../plots/ml_basics/image_91_Im92.jpg)
 
 #### 2.1 Tensor Classifications
 1.  **Scalar (Rank-0 Tensor):** A single number representing magnitude.
@@ -698,12 +698,12 @@ In machine learning, data and parameters are represented using multi-dimensional
     
 4.  **Tensor (Rank-3 Tensor & Higher):** Array structures with 3 or more dimensions (e.g., RGB images with shape `[Height, Width, Channels]`, or mini-batches of video sequences with shape `[Batch, Frames, Height, Width, Channels]`).
 
-![Vector, Matrix, Tensor Visual Representation](plots/ml_basics/image_93_Im94.png)
+![Vector, Matrix, Tensor Visual Representation](../plots/ml_basics/image_93_Im94.png)
 
 #### 2.2 Application Example: Image Data as Matrices
 Digital images are stored as matrices (or 3D tensors for color images). For a grayscale image, each pixel intensity is stored as a numerical value inside a matrix grid.
 
-![Image Grid to Binary Matrix Representation](plots/ml_basics/image_95_Im96.png)
+![Image Grid to Binary Matrix Representation](../plots/ml_basics/image_95_Im96.png)
 
 ---
 
@@ -720,11 +720,11 @@ where:
 *   $m$ is the **slope** (weight parameter), determining the direction and steepness of the line.
 *   $b$ is the **y-intercept** (bias parameter), determining the point where the line crosses the vertical axis.
 
-![Raw Scatter Plot](plots/ml_basics/image_3_Im4.png)
+![Raw Scatter Plot](../plots/ml_basics/image_3_Im4.png)
 
-![Regression Line of Best Fit](plots/ml_basics/image_5_Im6.png)
+![Regression Line of Best Fit](../plots/ml_basics/image_5_Im6.png)
 
-![Linear Regression Equation Plot](plots/ml_basics/image_7_Im8.png)
+![Linear Regression Equation Plot](../plots/ml_basics/image_7_Im8.png)
 
 #### 3.2 Multiple Linear Regression
 When there are multiple predictor features ($x_1, x_2, \dots, x_p$), the model generalizes to a hyper-plane equation:
@@ -739,9 +739,9 @@ For a model with two independent variables ($x_1$ and $x_2$), the regression bou
 
 $$y = \beta_2 x_2 + \beta_1 x_1 + \beta_0$$
 
-![Multiple Regression Plane Equation](plots/ml_basics/image_9_Im10.png)
+![Multiple Regression Plane Equation](../plots/ml_basics/image_9_Im10.png)
 
-![3D Regression Plane Visualization](plots/ml_basics/image_11_Im12.png)
+![3D Regression Plane Visualization](../plots/ml_basics/image_11_Im12.png)
 
 #### 3.3 Sum of Squared Errors (SSE) Loss
 To find the optimal weight and bias parameters, we must define a loss function that measures how far the model's predictions are from the actual values.
@@ -750,13 +750,13 @@ The vertical distance from an observed data point $y_i$ to the predicted regress
 
 $$e_i = y_i - \hat{y}_i$$
 
-![Regression Residual Error Lines](plots/ml_basics/image_13_Im14.png)
+![Regression Residual Error Lines](../plots/ml_basics/image_13_Im14.png)
 
 The **Sum of Squared Errors (SSE)** squares each residual and sums them up. Squaring ensures that positive and negative errors do not cancel each other out, and heavily penalizes larger errors:
 
 $$\text{SSE} = \sum_{i=1}^n (y_i - \hat{y}_i)^2 = \sum_{i=1}^n e_i^2$$
 
-![Sum of Squared Errors Visualization](plots/ml_basics/image_21_Im22.png)
+![Sum of Squared Errors Visualization](../plots/ml_basics/image_21_Im22.png)
 
 ##### Visualizing Least Squares Optimization
 Fitting a regression line is the process of finding parameters that minimize the total area of the error squares.
@@ -767,14 +767,14 @@ Fitting a regression line is the process of finding parameters that minimize the
 
 | Best Fit (Optimal) | Poor Fit (High Loss) | Worst Fit (Very High Loss) |
 |:---:|:---:|:---:|
-| ![Best Fit Squares](plots/ml_basics/image_15_Im16.png) | ![Poor Fit Squares](plots/ml_basics/image_17_Im18.png) | ![Worst Fit Squares](plots/ml_basics/image_19_Im20.png) |
+| ![Best Fit Squares](../plots/ml_basics/image_15_Im16.png) | ![Poor Fit Squares](../plots/ml_basics/image_17_Im18.png) | ![Worst Fit Squares](../plots/ml_basics/image_19_Im20.png) |
 
 #### 3.4 Mean Squared Error (MSE)
 Dividing the SSE by the number of data points $n$ gives the **Mean Squared Error (MSE)**, which represents the average squared distance of predictions from the target labels:
 
 $$\text{MSE} = \frac{1}{n} \sum_{i=1}^n (Y_i - \hat{Y}_i)^2$$
 
-![Mean Squared Error Formula](plots/ml_basics/image_97_Im98.png)
+![Mean Squared Error Formula](../plots/ml_basics/image_97_Im98.png)
 
 ---
 
@@ -789,7 +789,7 @@ At each step, we calculate the partial derivatives of the loss with respect to e
 
 $$\theta_j := \theta_j - \alpha \frac{\partial L}{\partial \theta_j}$$
 
-![3D Parabolic Loss Surface Gradient Descent Path](plots/ml_basics/image_23_Im24.png)
+![3D Parabolic Loss Surface Gradient Descent Path](../plots/ml_basics/image_23_Im24.png)
 
 #### 4.2 Linear Regression Backpropagation via the Chain Rule
 For a single input data point with feature $\text{area}$, target $y$, prediction $\hat{y}$, and weights $w_1, w_2, b$:
@@ -815,7 +815,7 @@ $$\frac{\partial L}{\partial w_1} = 2e \cdot (-1) \cdot \text{area} = -2e \cdot 
 
 $$\frac{\partial L}{\partial w_1} = -2(y - \hat{y}) \cdot \text{area}$$
 
-![Chain Rule Graph Representation](plots/ml_basics/image_1_Im2.jpg)
+![Chain Rule Graph Representation](../plots/ml_basics/image_1_Im2.jpg)
 
 ---
 
@@ -823,7 +823,7 @@ $$\frac{\partial L}{\partial w_1} = -2(y - \hat{y}) \cdot \text{area}$$
 
 To evaluate how well a regression model fits the data, several metrics are used:
 
-![Performance Metrics Table](plots/ml_basics/image_25_Im26.png)
+![Performance Metrics Table](../plots/ml_basics/image_25_Im26.png)
 
 *   **Coefficient of Determination ($R^2$):** Measures the proportion of variance in the dependent variable that is predictable from the independent variables. Scores range from $0$ to $1$:
     
@@ -852,18 +852,18 @@ Thus, the probability model is:
 
 $$f(x) = \frac{1}{1 + e^{-(\beta_1 x + \beta_0)}}$$
 
-![Raw Classification Points](plots/ml_basics/image_27_Im28.png)
+![Raw Classification Points](../plots/ml_basics/image_27_Im28.png)
 
-![Sigmoid Curve Fit](plots/ml_basics/image_29_Im30.png)
+![Sigmoid Curve Fit](../plots/ml_basics/image_29_Im30.png)
 
-![Sigmoid Mathematical Formula Graph](plots/ml_basics/image_35_Im36.png)
+![Sigmoid Mathematical Formula Graph](../plots/ml_basics/image_35_Im36.png)
 
 #### 6.2 Multiple Logistic Regression
 When there are multiple predictor features, the log-odds linear boundary generalizes in 3D space to form a sigmoid probability surface:
 
 $$p(x_1, x_2) = \frac{1}{1 + e^{-(\beta_0 + \beta_1 x_1 + \beta_2 x_2)}}$$
 
-![3D Sigmoid Probability Surface](plots/ml_basics/image_37_Im38.png)
+![3D Sigmoid Probability Surface](../plots/ml_basics/image_37_Im38.png)
 
 #### 6.3 Decision Boundary and Shaded Regions
 To perform binary classification, the predicted probability $p$ is compared against a decision threshold (typically $0.5$ or $0.75$).
@@ -874,7 +874,7 @@ For instance, using a threshold of $0.75$ at input $x = 6.2$:
 
 | Sigmoid Curve with Query Point | Classified Shaded Regions |
 |:---:|:---:|
-| ![Sigmoid Threshold Mapping](plots/ml_basics/image_31_Im32.png) | ![TRUE/FALSE Classification Thresholds](plots/ml_basics/image_33_Im34.png) |
+| ![Sigmoid Threshold Mapping](../plots/ml_basics/image_31_Im32.png) | ![TRUE/FALSE Classification Thresholds](../plots/ml_basics/image_33_Im34.png) |
 
 ---
 
@@ -882,7 +882,7 @@ For instance, using a threshold of $0.75$ at input $x = 6.2$:
 
 **K-Nearest Neighbors (KNN)** is a simple, non-parametric, instance-based supervised learning algorithm used for classification and regression. It makes predictions for a query point based on the labels of its closest neighboring data points.
 
-![KNN Classification Concept](plots/ml_basics/image_73_Im74.png)
+![KNN Classification Concept](../plots/ml_basics/image_73_Im74.png)
 
 #### 7.1 Euclidean Distance Metric
 To find the "nearest" neighbors, KNN calculates the geometric distance between points. The most common metric is **Euclidean Distance**:
@@ -893,7 +893,7 @@ In 2D space:
 
 $$d = \sqrt{(x_1 - x_2)^2 + (y_1 - y_2)^2}$$
 
-![Euclidean Distance Diagram](plots/ml_basics/image_71_Im72.png)
+![Euclidean Distance Diagram](../plots/ml_basics/image_71_Im72.png)
 
 #### 7.2 Step-by-Step KNN Classification ($k=5$)
 Here is a visual step-by-step example showing how KNN classifies a new unlabelled data point:
@@ -909,11 +909,11 @@ Here is a visual step-by-step example showing how KNN classifies a new unlabelle
 
 | Step 1: Query Input | Step 2: Set K | Step 3: Search Circle |
 |:---:|:---:|:---:|
-| ![KNN Query](plots/ml_basics/image_53_Im54.png) | ![KNN K=5 Header](plots/ml_basics/image_61_Im62.png) | ![KNN Search Boundary](plots/ml_basics/image_57_Im58.png) |
+| ![KNN Query](../plots/ml_basics/image_53_Im54.png) | ![KNN K=5 Header](../plots/ml_basics/image_61_Im62.png) | ![KNN Search Boundary](../plots/ml_basics/image_57_Im58.png) |
 
 | Step 4: Measure Distances | Step 5: Majority Vote |
 |:---:|:---:|
-| ![KNN Distance Lines](plots/ml_basics/image_65_Im66.png) | ![KNN Voting Result](plots/ml_basics/image_69_Im70.png) |
+| ![KNN Distance Lines](../plots/ml_basics/image_65_Im66.png) | ![KNN Voting Result](../plots/ml_basics/image_69_Im70.png) |
 
 ---
 
@@ -921,7 +921,7 @@ Here is a visual step-by-step example showing how KNN classifies a new unlabelle
 
 **K-Means Clustering** is an unsupervised learning algorithm used to partition a dataset into $K$ distinct, non-overlapping subgroups (clusters). It groups data points so that points in the same cluster are as similar as possible, while points in different clusters are distinct.
 
-![Before and After K-Means](plots/ml_basics/image_75_Im76.png)
+![Before and After K-Means](../plots/ml_basics/image_75_Im76.png)
 
 #### 8.1 The K-Means Objective Function
 K-Means minimizes the **Within-Cluster Sum of Squares (WCSS)**, also known as inertia:
@@ -941,26 +941,26 @@ Randomly select $K$ data points from the dataset to act as the initial cluster c
 
 $$\text{Initial Centroids: } \{\boldsymbol{\mu}_1, \boldsymbol{\mu}_2, \dots, \boldsymbol{\mu}_K\}$$
 
-![K-Means Step 1: Initial Centroids](plots/ml_basics/image_77_Im78.png)
+![K-Means Step 1: Initial Centroids](../plots/ml_basics/image_77_Im78.png)
 
 ##### Step 2: Assign Points to Nearest Centroid
 Calculate the distance from each data point $\mathbf{x}_i$ to all $K$ centroids, and assign the point to the cluster of the closest centroid.
 
 $$S_k^{(t)} = \left\{ \mathbf{x}_i : \|\mathbf{x}_i - \boldsymbol{\mu}_k^{(t)}\|^2 \le \|\mathbf{x}_i - \boldsymbol{\mu}_j^{(t)}\|^2 \quad \forall j, 1 \le j \le K \right\}$$
 
-![K-Means Step 2: Assign Points](plots/ml_basics/image_79_Im80.png)
+![K-Means Step 2: Assign Points](../plots/ml_basics/image_79_Im80.png)
 
 ##### Step 3: Update Centroids
 Recalculate the position of each centroid as the arithmetic mean of all data points currently assigned to that cluster.
 
 $$\boldsymbol{\mu}_k^{(t+1)} = \frac{1}{|S_k^{(t)}|} \sum_{\mathbf{x}_i \in S_k^{(t)}} \mathbf{x}_i$$
 
-![K-Means Step 3: Update Centroids](plots/ml_basics/image_81_Im82.png)
+![K-Means Step 3: Update Centroids](../plots/ml_basics/image_81_Im82.png)
 
 ##### Step 4: Repeat Until Convergence
 Repeat Steps 2 and 3 iteratively. The algorithm converges when the centroids stabilize and do not move further, or when cluster assignments stop changing.
 
-![K-Means Step 4: Convergence](plots/ml_basics/image_83_Im84.png)
+![K-Means Step 4: Convergence](../plots/ml_basics/image_83_Im84.png)
 
 
 ---
@@ -980,7 +980,7 @@ This document provides a detailed, step-by-step mathematical and visual explanat
 
 To understand backpropagation, we begin with the simplest possible neural network: a single input, a single weight, a single output neuron, and no bias.
 
-![Simplest Neural Network Intro](plots/backprop/IMG_3194.PNG)
+![Simplest Neural Network Intro](../plots/backprop/IMG_3194.PNG)
 
 #### 1.1 The Forward Pass
 In our toy model, we feed an input ($i$) through a connection with weight ($w$) to produce a predicted output activation ($a$):
@@ -995,7 +995,7 @@ Using these values, we perform a **forward pass** to calculate the prediction:
 
 $$a = 1.5 \cdot 0.8 = 1.2$$
 
-![Toy Model Forward Pass](plots/backprop/IMG_3195.PNG)
+![Toy Model Forward Pass](../plots/backprop/IMG_3195.PNG)
 
 #### 1.2 Defining the Cost (Loss)
 To measure how accurate our prediction is, we compare the prediction ($a$) to a desired target value ($y$). Suppose the target value is:
@@ -1004,7 +1004,7 @@ $$y = 0.5$$
 
 Because our prediction $a = 1.2$ is larger than the target $y = 0.5$, the model has made an error.
 
-![Introducing Target y](plots/backprop/IMG_3196.PNG)
+![Introducing Target y](../plots/backprop/IMG_3196.PNG)
 
 We quantify this error using a **Cost Function** ($C$). In this case, we use the **Squared Error** cost function:
 
@@ -1016,7 +1016,7 @@ $$C = (1.2 - 0.5)^2 = 0.7^2 = 0.49$$
 
 The goal of learning is to find a weight ($w$) that makes this cost as close to $0$ as possible.
 
-![Defining Cost C](plots/backprop/IMG_3197.PNG)
+![Defining Cost C](../plots/backprop/IMG_3197.PNG)
 
 #### 1.3 Nudging the Weight
 To see how we can minimize the cost, let's explore what happens when we modify ("nudge") the weight $w$:
@@ -1029,7 +1029,7 @@ To see how we can minimize the cost, let's explore what happens when we modify (
     
     This tells us that increasing the weight moves us further away from our goal.
 
-![Increasing Weight raises Cost](plots/backprop/IMG_3198.PNG)
+![Increasing Weight raises Cost](../plots/backprop/IMG_3198.PNG)
 
 *   **Case B: Decreasing $w$**
     If we decrease $w$ from $0.8$ to $0.7$:
@@ -1039,14 +1039,14 @@ To see how we can minimize the cost, let's explore what happens when we modify (
     
     This shows that decreasing the weight successfully reduces the cost.
 
-![Decreasing Weight lowers Cost](plots/backprop/IMG_3199.PNG)
+![Decreasing Weight lowers Cost](../plots/backprop/IMG_3199.PNG)
 
 #### 1.4 The Optimization Challenge
 While manually trying weight values works for a single parameter, complex networks contain millions of parameters. We need a mathematical way to calculate exactly how a nudge to any given weight affects the final cost.
 
 This is the core problem of optimization: how do we calculate the derivative of the cost with respect to the weight ($\frac{\partial C}{\partial w}$)?
 
-![The Optimization Question](plots/backprop/IMG_3200.PNG)
+![The Optimization Question](../plots/backprop/IMG_3200.PNG)
 
 ---
 
@@ -1060,7 +1060,7 @@ This nested relationship can be written as a composite function: $C(a(w))$. We c
 *   The cost curve $C(a)$ is a parabola centered at the target value $y$.
 *   The activation curve $a(w)$ is a straight line with a slope equal to the input $i$.
 
-![Cost and Activation Curves](plots/backprop/IMG_3202.PNG)
+![Cost and Activation Curves](../plots/backprop/IMG_3202.PNG)
 
 To find the rate of change of the cost with respect to the weight, we use the **Chain Rule** of calculus. The chain rule states that to find the derivative of a nested composite function, we multiply the local derivatives along the dependency chain:
 
@@ -1071,7 +1071,7 @@ $$\frac{\partial C}{\partial w} = \frac{\partial C}{\partial a} \cdot \frac{\par
 
 By multiplying these two factors, we determine how a nudge to $w$ propagates through the intermediate variable $a$ to ultimately affect the cost $C$.
 
-![Chain Rule Formulation](plots/backprop/IMG_3203.PNG)
+![Chain Rule Formulation](../plots/backprop/IMG_3203.PNG)
 
 ---
 
@@ -1082,7 +1082,7 @@ To move from our toy model to deep neural networks, we must build a generalized 
 #### 3.1 Anatomy of a Neuron
 A single neuron in a neural network layer receives outputs from multiple neurons in the preceding layer.
 
-![Neuron Inputs and Weights](plots/backprop/IMG_3206.PNG)
+![Neuron Inputs and Weights](../plots/backprop/IMG_3206.PNG)
 
 Let's break down the mathematical assembly of a neuron step-by-step:
 
@@ -1091,21 +1091,21 @@ Let's break down the mathematical assembly of a neuron step-by-step:
     
     $$\hat{x} = b + \sum_{i} x_i \omega_i$$
 
-![Adding Bias and Summing](plots/backprop/IMG_3207.PNG)
+![Adding Bias and Summing](../plots/backprop/IMG_3207.PNG)
 
 2.  **Activation Function:**
     To introduce non-linearity into the network, the pre-activation input $\hat{x}$ is passed through an **activation function** (denoted $\phi$):
 
 $$\phi(\hat{x})$$
 
-![Applying Activation Function](plots/backprop/IMG_3208.PNG)
+![Applying Activation Function](../plots/backprop/IMG_3208.PNG)
 
 3.  **Final Neuron Output:**
     The final output activation ($y$) of the neuron is:
     
     $$y = \phi(\hat{x}) = \phi\left(b + \sum_{i} x_i \omega_i\right)$$
 
-![Generalized Neuron Formula](plots/backprop/IMG_3210.PNG)
+![Generalized Neuron Formula](../plots/backprop/IMG_3210.PNG)
 
 #### 3.2 Common Activation Functions
 Activation functions determine the behavior and capabilities of the neural network. Here are the three most common activation functions and their derivatives:
@@ -1119,7 +1119,7 @@ Its derivative is constant:
 
 $$\phi'(x) = 1$$
 
-![Linear Activation Function](plots/backprop/IMG_3211.PNG)
+![Linear Activation Function](../plots/backprop/IMG_3211.PNG)
 
 ##### 2. Rectified Linear Unit (ReLU)
 The output is $0$ for negative inputs and equals the input for positive inputs:
@@ -1132,7 +1132,7 @@ $$\phi'(x) = \begin{cases} 1 & \text{if } x > 0 \\ 0 & \text{if } x < 0 \end{cas
 
 *(Note: The derivative is technically undefined at $x=0$, but in practice, it is set to $0$.)*
 
-![ReLU Activation Function](plots/backprop/IMG_3212.PNG)
+![ReLU Activation Function](../plots/backprop/IMG_3212.PNG)
 
 ##### 3. Sigmoid (Logistic) Function
 The output is squashed to a smooth S-curve between $0$ and $1$:
@@ -1143,7 +1143,7 @@ Its derivative can be expressed elegantly in terms of its output:
 
 $$\phi'(x) = \phi(x)(1 - \phi(x))$$
 
-![Sigmoid Activation Function](plots/backprop/IMG_3213.PNG)
+![Sigmoid Activation Function](../plots/backprop/IMG_3213.PNG)
 
 ---
 
@@ -1152,15 +1152,15 @@ Let's see how a neuron behaves under each of these activation functions:
 
 *   **Linear Neuron:** Passing a linear combination through a linear activation simply returns the weighted sum plus bias. It cannot learn non-linear relationships.
 
-![Neuron with Linear Activation](plots/backprop/IMG_3214.PNG)
+![Neuron with Linear Activation](../plots/backprop/IMG_3214.PNG)
 
 *   **ReLU Neuron:** If the pre-activation sum is negative, the neuron output is completely deactivated ($0$). If positive, the output scales linearly.
 
-![Neuron with ReLU Activation](plots/backprop/IMG_3215.PNG)
+![Neuron with ReLU Activation](../plots/backprop/IMG_3215.PNG)
 
 *   **Sigmoid Neuron:** Regardless of how large or small the pre-activation input is, the output is smoothly mapped to the range $(0, 1)$.
 
-![Neuron with Sigmoid Activation](plots/backprop/IMG_3216.PNG)
+![Neuron with Sigmoid Activation](../plots/backprop/IMG_3216.PNG)
 
 Below is the summary table of these three core activation functions:
 
@@ -1170,7 +1170,7 @@ Below is the summary table of these three core activation functions:
 | **ReLU** | $\phi(x) = \max(0, x)$ | $\phi'(x) = \begin{cases} 1 & \text{if } x > 0 \\ 0 & \text{if } x \le 0 \end{cases}$ |
 | **Sigmoid** | $\phi(x) = \frac{1}{1 + e^{-x}}$ | $\phi'(x) = \phi(x)(1 - \phi(x))$ |
 
-![Activation Functions Table](plots/backprop/IMG_3217.PNG)
+![Activation Functions Table](../plots/backprop/IMG_3217.PNG)
 
 #### 3.4 Standard Layer Notation
 To write mathematical derivations for multi-layer networks, we establish standard indexing notation:
@@ -1180,7 +1180,7 @@ To write mathematical derivations for multi-layer networks, we establish standar
 *   Neuron $j$ has bias $b_j$ and pre-activation net input $\hat{x}_j = b_j + \sum_k y_k \omega_{kj}$.
 *   The final output of neuron $j$ is $y_j = \phi(\hat{x}_j)$.
 
-![Standard Layer Notation](plots/backprop/IMG_3218.PNG)
+![Standard Layer Notation](../plots/backprop/IMG_3218.PNG)
 
 ---
 
@@ -1188,7 +1188,7 @@ To write mathematical derivations for multi-layer networks, we establish standar
 
 When we stack multiple layers of these neurons together, we build a **Multi-Layer Perceptron (MLP)** or deep feedforward neural network.
 
-![Multi-Layer Network Architecture](plots/backprop/IMG_3219.PNG)
+![Multi-Layer Network Architecture](../plots/backprop/IMG_3219.PNG)
 
 #### 4.1 The Global Loss Function
 For a network with $n$ layers, the inputs pass forward through the layers to produce a final network output vector $\mathbf{y}_n$. We evaluate the accuracy of the entire network using a global **Loss Function** ($L$):
@@ -1197,7 +1197,7 @@ $$Loss = L(\mathbf{y}_n)$$
 
 The loss function compares the network's predictions $\mathbf{y}_n$ against the true training labels.
 
-![Global Loss Function](plots/backprop/IMG_3220.PNG)
+![Global Loss Function](../plots/backprop/IMG_3220.PNG)
 
 #### 4.2 Gradient Descent
 To minimize the global loss $L$, we update all network weights iteratively in the opposite direction of the gradient of the loss. This optimization algorithm is called **Gradient Descent**:
@@ -1210,22 +1210,22 @@ Where:
 *   $\eta$ (eta) is the **learning rate**, controlling the step size of each update.
 *   $\frac{\partial L}{\partial \mathbf{w}}$ is the gradient vector containing the partial derivatives of the loss with respect to all weights.
 
-![Gradient Descent Update](plots/backprop/IMG_3221.PNG)
+![Gradient Descent Update](../plots/backprop/IMG_3221.PNG)
 
 *   **The Role of the Learning Rate ($\eta$):**
     *   If $\eta$ is **too small**, weight updates are minuscule, causing training to take an extremely long time.
     *   If $\eta$ is **too large**, the updates can overshoot the minimum, causing the optimization path to oscillate wildly or even diverge entirely.
 
-![Learning Rate Effects](plots/backprop/IMG_3222.PNG)
+![Learning Rate Effects](../plots/backprop/IMG_3222.PNG)
 
 *   **Navigating Loss Landscapes:**
     In real-world networks, the loss landscape is complex, high-dimensional, and non-convex. It contains multiple peaks, valleys, **local minima** (suboptimal low points), and a **global minimum** (the absolute lowest point of the loss function). Our goal is to guide the weights toward the global minimum, though gradient descent is susceptible to getting trapped in local minima or saddle points.
 
-![Local vs. Global Minima](plots/backprop/IMG_3223.PNG)
+![Local vs. Global Minima](../plots/backprop/IMG_3223.PNG)
 
 By taking small, sequential steps proportional to the negative gradient, the parameters slide down the loss curve toward a minimum.
 
-![Descending the Loss Curve](plots/backprop/IMG_3225.PNG)
+![Descending the Loss Curve](../plots/backprop/IMG_3225.PNG)
 
 ---
 
@@ -1238,7 +1238,7 @@ We want to find how a change in the weight $\omega_{ij}$ (connecting neuron $i$ 
 
 $$\frac{\partial L}{\partial \omega_{ij}} = ?$$
 
-![Weight Derivative Goal](plots/backprop/IMG_3226.PNG)
+![Weight Derivative Goal](../plots/backprop/IMG_3226.PNG)
 
 Because $\omega_{ij}$ only affects the loss by contributing to the pre-activation net input $\hat{x}_j$ of neuron $j$, we split the derivative using the Chain Rule:
 
@@ -1247,7 +1247,7 @@ $$\frac{\partial L}{\partial \omega_{ij}} = \frac{\partial L}{\partial \hat{x}_j
 *   $\frac{\partial L}{\partial \hat{x}_j}$ is the rate of change of the loss with respect to the pre-activation input of neuron $j$. This term is often called the **error term** of neuron $j$ (denoted $\delta_j$).
 *   $\frac{\partial \hat{x}_j}{\partial \omega_{ij}}$ is the rate of change of the pre-activation input with respect to the weight.
 
-![Splitting Weight Derivative](plots/backprop/IMG_3228.PNG)
+![Splitting Weight Derivative](../plots/backprop/IMG_3228.PNG)
 
 #### 5.2 Evaluating the Second Term: $\frac{\partial \hat{x}_j}{\partial \omega_{ij}}$
 Recall that the pre-activation net input of neuron $j$ is:
@@ -1262,7 +1262,7 @@ This shows that the rate of change of the pre-activation input with respect to t
 
 $$\frac{\partial \hat{x}_j}{\partial \omega_{ij}} = y_i$$
 
-![Calculating dx_hat / d_omega](plots/backprop/IMG_3230.PNG)
+![Calculating dx_hat / d_omega](../plots/backprop/IMG_3230.PNG)
 
 #### 5.3 Evaluating the First Term: $\frac{\partial L}{\partial \hat{x}_j}$
 Now we evaluate the error term $\frac{\partial L}{\partial \hat{x}_j}$. The pre-activation input $\hat{x}_j$ only affects the network output by first passing through the activation function to become $y_j$. Therefore, we apply the Chain Rule again:
@@ -1272,7 +1272,7 @@ $$\frac{\partial L}{\partial \hat{x}_j} = \frac{\partial L}{\partial y_j} \cdot 
 *   $\frac{\partial L}{\partial y_j}$ is the rate of change of the loss with respect to the post-activation output of neuron $j$.
 *   $\frac{\partial y_j}{\partial \hat{x}_j}$ is the derivative of the activation function evaluated at $\hat{x}_j$.
 
-![Splitting dx_hat Derivative](plots/backprop/IMG_3232.PNG)
+![Splitting dx_hat Derivative](../plots/backprop/IMG_3232.PNG)
 
 If we assume the activation function is the **Sigmoid function**:
 
@@ -1282,13 +1282,13 @@ Its derivative is:
 
 $$\frac{\partial y_j}{\partial \hat{x}_j} = y_j(1 - y_j)$$
 
-![Sigmoid Derivative Evaluation](plots/backprop/IMG_3233.PNG)
+![Sigmoid Derivative Evaluation](../plots/backprop/IMG_3233.PNG)
 
 Substituting this derivative back into our error term equation yields:
 
 $$\frac{\partial L}{\partial \hat{x}_j} = \frac{\partial L}{\partial y_j} y_j(1 - y_j)$$
 
-![Pre-activation Gradient Formula](plots/backprop/IMG_3234.PNG)
+![Pre-activation Gradient Formula](../plots/backprop/IMG_3234.PNG)
 
 #### 5.4 Combining the Terms
 Now, we substitute our results from **Section 5.2** and **Section 5.3** back into our primary weight derivative equation:
@@ -1301,14 +1301,14 @@ Rearranging the terms, we get the complete derivative of the loss with respect t
 
 $$\frac{\partial L}{\partial \omega_{ij}} = \frac{\partial L}{\partial y_j} y_j(1 - y_j) y_i$$
 
-![Combining the Terms](plots/backprop/IMG_3235.PNG)
+![Combining the Terms](../plots/backprop/IMG_3235.PNG)
 
 This elegant formula tells us that the gradient of a weight is the product of:
 1.  The downstream loss gradient ($\frac{\partial L}{\partial y_j}$).
 2.  The derivative of the activation function of the receiving neuron ($y_j(1-y_j)$).
 3.  The incoming activation from the sending neuron ($y_i$).
 
-![Weight Gradient Summary](plots/backprop/IMG_3236.PNG)
+![Weight Gradient Summary](../plots/backprop/IMG_3236.PNG)
 
 ---
 
@@ -1318,14 +1318,14 @@ The weight gradient derivation in Section 5 requires knowing $\frac{\partial L}{
 *   If neuron $j$ is in the **output layer**, computing $\frac{\partial L}{\partial y_j}$ is straightforward because the loss function is defined directly in terms of the output layer activations.
 *   If neuron $j$ is in a **hidden layer**, computing $\frac{\partial L}{\partial y_j}$ is more complex because hidden neurons do not directly participate in the loss function. We must propagate the errors backwards from the output layer.
 
-![Hidden Activation Gradients](plots/backprop/IMG_3237.PNG)
+![Hidden Activation Gradients](../plots/backprop/IMG_3237.PNG)
 
 #### 6.1 Branching Downstream Paths
 Let's find the derivative of the loss with respect to the activation output of a hidden neuron $i$, denoted $\frac{\partial L}{\partial y_i}$.
 
 In the forward pass, the activation output $y_i$ of neuron $i$ is distributed forward to feed the pre-activation inputs $\hat{x}_k$ of **multiple neurons $k$** in the next layer.
 
-![Branching Downstream Connections](plots/backprop/IMG_3238.PNG)
+![Branching Downstream Connections](../plots/backprop/IMG_3238.PNG)
 
 Because $y_i$ influences the loss through multiple parallel paths, we must apply the multi-variable Chain Rule. The total derivative of the loss with respect to $y_i$ is the **sum of the derivatives across all downstream branches**:
 
@@ -1333,7 +1333,7 @@ $$\frac{\partial L}{\partial y_i} = \sum_{k} \frac{\partial L}{\partial \hat{x}_
 
 Where the summation index $k$ runs over all neurons in the next layer that receive input from neuron $i$.
 
-![Summing Downstream Paths](plots/backprop/IMG_3239.PNG)
+![Summing Downstream Paths](../plots/backprop/IMG_3239.PNG)
 
 #### 6.2 Evaluating the Connection Term: $\frac{\partial \hat{x}_k}{\partial y_i}$
 Recall that the pre-activation input for any downstream neuron $k$ is:
@@ -1344,7 +1344,7 @@ Taking the partial derivative of this sum with respect to the specific input act
 
 $$\frac{\partial \hat{x}_k}{\partial y_i} = \omega_{ik}$$
 
-![Evaluating connection derivative](plots/backprop/IMG_3241.PNG)
+![Evaluating connection derivative](../plots/backprop/IMG_3241.PNG)
 
 Substituting $\frac{\partial \hat{x}_k}{\partial y_i} = \omega_{ik}$ back into the summation yields:
 
@@ -1352,7 +1352,7 @@ $$\frac{\partial L}{\partial y_i} = \sum_{k} \frac{\partial L}{\partial \hat{x}_
 
 This equation shows that the error gradient propagates backward from the next layer's pre-activation inputs ($\frac{\partial L}{\partial \hat{x}_k}$) back to the current layer's output ($y_i$), scaled by the connection weights ($\omega_{ik}$).
 
-![Substituting connection term](plots/backprop/IMG_3242.PNG)
+![Substituting connection term](../plots/backprop/IMG_3242.PNG)
 
 #### 6.3 Expanding the Propagation Equation
 We can expand the pre-activation gradient term $\frac{\partial L}{\partial \hat{x}_k}$ using the activation derivative of the downstream neurons:
@@ -1365,7 +1365,7 @@ $$\frac{\partial L}{\partial y_i} = \sum_{k} \frac{\partial L}{\partial y_k} \fr
 
 This is the central equation for propagating error gradients backward through the hidden layers of a neural network.
 
-![Expanding error propagation](plots/backprop/IMG_3243.PNG)
+![Expanding error propagation](../plots/backprop/IMG_3243.PNG)
 
 ---
 
@@ -1382,13 +1382,13 @@ Using the propagated activation gradient, we calculate the gradient of the loss 
 
 $$\frac{\partial L}{\partial \omega_{pq}} = \frac{\partial L}{\partial y_q} \frac{\partial y_q}{\partial \hat{x}_q} y_p$$
 
-![Two Core Equations Summarized](plots/backprop/IMG_3245.PNG)
+![Two Core Equations Summarized](../plots/backprop/IMG_3245.PNG)
 
 We can visualize how these two equations correspond to the physical connections of the network:
 *   **Equation 1** sums up the backward influence of a node across all its outgoing connections.
 *   **Equation 2** calculates the update gradient for the weight between two nodes by multiplying the activation of the sending node and the error of the receiving node.
 
-![Visualizing Equations in Network](plots/backprop/IMG_3246.PNG)
+![Visualizing Equations in Network](../plots/backprop/IMG_3246.PNG)
 
 ---
 
@@ -1407,7 +1407,7 @@ Activation Gradients (Propagated Backwards):
 (∂L/∂ω)_1                 (∂L/∂ω)_{n-2}      (∂L/∂ω)_{n-1}      (∂L/∂ω)_n
 ```
 
-![Gradient Flow Chart](plots/backprop/IMG_3247.PNG)
+![Gradient Flow Chart](../plots/backprop/IMG_3247.PNG)
 
 #### 6.6 The Weight Update
 Once the weight gradients $\frac{\partial L}{\partial \omega}$ have been calculated for all layers, we apply them to update the network weights using Stochastic Gradient Descent (SGD) or a similar optimizer:
@@ -1416,7 +1416,7 @@ $$\omega_{t+1} = \omega_t - \eta \frac{\partial L}{\partial \omega}$$
 
 By repeating this process of forward propagation, cost calculation, backward error propagation, and weight updates over many epochs, the neural network learns to fit the training data and solve complex predictive tasks.
 
-![Parameter Updates with SGD](plots/backprop/IMG_3248.PNG)
+![Parameter Updates with SGD](../plots/backprop/IMG_3248.PNG)
 
 
 ---
@@ -1447,7 +1447,7 @@ Where:
 - $y$ is the final output activation.
 
 #### Visual Diagram
-![Artificial Neuron (Perceptron) Diagram](plots/perceptron_diagram.png)
+![Artificial Neuron (Perceptron) Diagram](../plots/perceptron_diagram.png)
 
 #### Step-by-Step Example: An AND Logic Gate
 A single perceptron can learn linear decision boundaries, such as the `AND` logic gate.
@@ -1528,7 +1528,7 @@ Without activation functions, any neural network—no matter how many layers it 
 
 An **Artificial Neural Network (ANN)** or **Deep Neural Network (DNN)** is constructed by stacking multiple layers of neurons together. Signals flow sequentially from the input layer, through one or more hidden layers, to the output layer.
 
-![Deep Neural Network (DNN / MLP) Architecture Diagram](plots/dnn_architecture.png)
+![Deep Neural Network (DNN / MLP) Architecture Diagram](../plots/dnn_architecture.png)
 
 #### Forward Propagation
 For a layer $l$ in a network:
@@ -1549,7 +1549,7 @@ Where:
 
 Training a neural network consists of finding weights and biases that minimize a loss function $\mathcal{L}(y, \hat{y})$. **Backpropagation** is the algorithm used to calculate the gradient of the loss function with respect to every weight and bias in the network, flowing backward from the output layer to the input.
 
-![Neural Network: Forward Pass & Backpropagation](plots/backpropagation_diagram.png)
+![Neural Network: Forward Pass & Backpropagation](../plots/backpropagation_diagram.png)
 
 #### The Chain Rule
 To compute how the loss $\mathcal{L}$ changes when a specific weight $w_{ij}^{[l]}$ changes, we apply the chain rule of calculus:
@@ -1668,7 +1668,7 @@ Standard Feed-Forward networks do not scale well to images. For example, a $1000
 1. **Local Connectivity**: Neurons only connect to a small local patch of the input (spatial locality).
 2. **Shared Weights**: Filters are slid across the entire input, sharing the same weights (translation invariance: an object is detected regardless of its image location).
 
-![Convolutional Neural Network (CNN) Architecture Diagram](plots/cnn_architecture.png)
+![Convolutional Neural Network (CNN) Architecture Diagram](../plots/cnn_architecture.png)
 
 #### Core Layers
 
@@ -1737,7 +1737,7 @@ $$O = \frac{3 - 2 + 0}{1} + 1 = 2 \times 2$$
 
 Traditional sequence networks (RNNs/LSTMs) process tokens sequentially. To compute representation $h_t$, the model must wait for $h_{t-1}$, creating a parallelization bottleneck. **Transformers** resolve this by processing all tokens in parallel, relying entirely on the **Attention** mechanism to capture context.
 
-![The Transformer Network Architecture Diagram](plots/transformer_architecture.png)
+![The Transformer Network Architecture Diagram](../plots/transformer_architecture.png)
 
 #### The Attention Mechanism
 
@@ -1788,36 +1788,36 @@ This section covers the high-level roadmap of building Large Language Models, th
 The pipeline of constructing an LLM contains three primary phases: data preparation/sampling, next-token pretraining, and task-specific or instruction-based fine-tuning.
 
 
-![Building Stages Pipeline](plots/llm_from_scratch/image_3_Im4.jpg)
+![Building Stages Pipeline](../plots/llm_from_scratch/image_3_Im4.jpg)
 *Figure 1.1: The building blocks of LLM development: Data Prep, Pretraining, and Fine-Tuning.*
 
-![AI ML DL LLM Hierarchy](plots/llm_from_scratch/image_5_Im6.jpg)
+![AI ML DL LLM Hierarchy](../plots/llm_from_scratch/image_5_Im6.jpg)
 *Figure 1.2: Bounding relationship between Artificial Intelligence, Machine Learning, Deep Learning, and GenAI/LLMs.*
 
-![Pretraining vs Fine-Tuning](plots/llm_from_scratch/image_7_Im8.jpg)
+![Pretraining vs Fine-Tuning](../plots/llm_from_scratch/image_7_Im8.jpg)
 *Figure 1.3: Contrast between Pretraining on unlabeled text and Fine-Tuning on task-specific labeled text.*
 
 #### 1.2 Transformer Architectures: Encoder vs. Decoder
 Modern Transformers are split into submodules: BERT-style Encoders process bidirectional text for mask-prediction, while GPT-style Decoders generate text autoregressively (left-to-right).
 
 
-![BERT vs GPT submodules](plots/llm_from_scratch/image_9_Im10.jpg)
+![BERT vs GPT submodules](../plots/llm_from_scratch/image_9_Im10.jpg)
 *Figure 1.4: Submodule comparison showing Bidirectional Encoder representations (BERT) and Left-to-Right Decoder representations (GPT).*
 
-![Original Transformer Architecture](plots/llm_from_scratch/image_11_Im12.jpg)
+![Original Transformer Architecture](../plots/llm_from_scratch/image_11_Im12.jpg)
 *Figure 1.5: The original Encoder-Decoder translation structure.*
 
 #### 1.3 Few-Shot Learning and Datasets
 Emergent abilities are demonstrated by Zero-shot, One-shot, and Few-shot prompting, allowing models to perform tasks without parameter updates by learning in-context.
 
 
-![In-Context Prompting](plots/llm_from_scratch/image_13_Im14.jpg)
+![In-Context Prompting](../plots/llm_from_scratch/image_13_Im14.jpg)
 *Figure 1.6: Visual demonstration of zero-shot, zero-shot with instructions, and few-shot in-context learning.*
 
-![GPT-3 Pretraining Dataset](plots/llm_from_scratch/image_15_Im16.jpg)
+![GPT-3 Pretraining Dataset](../plots/llm_from_scratch/image_15_Im16.jpg)
 *Figure 1.7: Overview table of the GPT-3 pretraining corpus tokens and proportions.*
 
-![Iterative Text Generation Loop](plots/llm_from_scratch/image_17_Im18.jpg)
+![Iterative Text Generation Loop](../plots/llm_from_scratch/image_17_Im18.jpg)
 *Figure 1.8: Loop showing how the model predicts the next word, appends it, and repeats.*
 
 ---
@@ -1830,67 +1830,67 @@ To feed text into deep learning architectures, we must convert raw characters in
 Deep learning models are natively numerical and cannot process raw strings. We map text to token arrays and embed them in low-dimensional continuous vector space.
 
 
-![Multimodal Embeddings](plots/llm_from_scratch/image_19_Im20.jpg)
+![Multimodal Embeddings](../plots/llm_from_scratch/image_19_Im20.jpg)
 *Figure 2.1: Converting video, audio, and text samples into dense numerical vectors.*
 
-![Word Embedding Scatterplot](plots/llm_from_scratch/image_21_Im22.jpg)
+![Word Embedding Scatterplot](../plots/llm_from_scratch/image_21_Im22.jpg)
 *Figure 2.2: 2D scatterplot demonstrating concept clustering: similar words reside close to each other.*
 
-![Data Sampling Pipeline Highlight](plots/llm_from_scratch/image_23_Im24.jpg)
+![Data Sampling Pipeline Highlight](../plots/llm_from_scratch/image_23_Im24.jpg)
 *Figure 2.3: Highlighting step 1 of Stage 1: The data preparation and sampling pipeline.*
 
 #### 2.2 Tokenization Algorithms and Vocabulary Mapping
 We convert raw strings to tokens using tokenizers. Vocabulary maps every token to a unique integer index (Token ID).
 
 
-![Word Level Tokenizer](plots/llm_from_scratch/image_25_Im26.jpg)
+![Word Level Tokenizer](../plots/llm_from_scratch/image_25_Im26.jpg)
 *Figure 2.4: Tokenizing input text into individual words and mapping them to vocabulary indices.*
 
-![Token ID array mapping](plots/llm_from_scratch/image_27_Im28.jpg)
+![Token ID array mapping](../plots/llm_from_scratch/image_27_Im28.jpg)
 *Figure 2.5: Mapping tokens to integer vocabulary indices.*
 
 #### 2.3 Handling Out-of-Vocabulary Tokens
 When encountering unknown words, simple tokenizers fail or insert `<|unk|>`. Advanced algorithms like Byte Pair Encoding (BPE) split unknown words into characters and subword tokens.
 
 
-![BPE Unknown Word Decomposition](plots/llm_from_scratch/image_29_Im30.jpg)
+![BPE Unknown Word Decomposition](../plots/llm_from_scratch/image_29_Im30.jpg)
 *Figure 2.6: BPE tokenizing an out-of-vocabulary word by splitting it into characters and known subwords.*
 
-![BPE Tiktoken Tiktokenization](plots/llm_from_scratch/image_31_Im32.jpg)
+![BPE Tiktoken Tiktokenization](../plots/llm_from_scratch/image_31_Im32.jpg)
 *Figure 2.7: BPE tiktoken tokenization mapping characters to a dense list of token IDs.*
 
-![Tiktoken Code Example](plots/llm_from_scratch/image_33_Im34.jpg)
+![Tiktoken Code Example](../plots/llm_from_scratch/image_33_Im34.jpg)
 *Figure 2.8: Code snippets demonstrating tiktoken vocabulary size and tokenization execution.*
 
-![Concatenation with EoT Markers](plots/llm_from_scratch/image_35_Im36.jpg)
+![Concatenation with EoT Markers](../plots/llm_from_scratch/image_35_Im36.jpg)
 *Figure 2.9: Prepend/append `<|endoftext|>` tokens between multiple independent documents.*
 
-![Tiktoken Special Tokens Code](plots/llm_from_scratch/image_37_Im38.jpg)
+![Tiktoken Special Tokens Code](../plots/llm_from_scratch/image_37_Im38.jpg)
 *Figure 2.10: Instantiating BPE tokenizers with special boundaries.*
 
 #### 2.4 Sliding Bins and Context Window Shifts
 To train on next-token prediction, we define a sliding context window of length $T$. For each step, the inputs are $x_{1:T}$ and the targets are $y_{1:T} = x_{2:T+1}$, representing the input sequence shifted by one token.
 
 
-![Sliding Window Input-Target Shifts](plots/llm_from_scratch/image_39_Im40.jpg)
+![Sliding Window Input-Target Shifts](../plots/llm_from_scratch/image_39_Im40.jpg)
 *Figure 2.11: Shifted target sequences for next-word training prediction.*
 
-![Context Window Shifts Frame 2](plots/llm_from_scratch/image_41_Im42.jpg)
+![Context Window Shifts Frame 2](../plots/llm_from_scratch/image_41_Im42.jpg)
 *Figure 2.12: Slide frame showing input token IDs and their corresponding target labels.*
 
-![PyTorch DataLoader Dataset Batching](plots/llm_from_scratch/image_43_Im44.jpg)
+![PyTorch DataLoader Dataset Batching](../plots/llm_from_scratch/image_43_Im44.jpg)
 *Figure 2.13: Packaging dataset into standard PyTorch tensor batches.*
 
-![Embedding Lookup Weight Matrix](plots/llm_from_scratch/image_45_Im46.jpg)
+![Embedding Lookup Weight Matrix](../plots/llm_from_scratch/image_45_Im46.jpg)
 *Figure 2.14: Retrieving rows corresponding to incoming token index values.*
 
-![Lookup Vectors Dimensions](plots/llm_from_scratch/image_47_Im48.jpg)
+![Lookup Vectors Dimensions](../plots/llm_from_scratch/image_47_Im48.jpg)
 *Figure 2.15: Mapping Token IDs to vectors of embedding dimension.*
 
-![Positional Embedding Addition](plots/llm_from_scratch/image_49_Im50.jpg)
+![Positional Embedding Addition](../plots/llm_from_scratch/image_49_Im50.jpg)
 *Figure 2.16: Adding positional coordinates (absolute positional embeddings) to token embeddings.*
 
-![Continuous Vector Assembly](plots/llm_from_scratch/image_51_Im52.jpg)
+![Continuous Vector Assembly](../plots/llm_from_scratch/image_51_Im52.jpg)
 *Figure 2.17: Complete visual summary of text processing from characters to final vector tokens.*
 
 ---
@@ -1903,19 +1903,19 @@ Attention mechanisms compute dynamic weights representing the pairwise relations
 A simple attention mechanism calculates attention weights based on vector similarity (dot products) without parameter weights.
 
 
-![Self-Attention Context Vector Calculation](plots/llm_from_scratch/image_55_Im56.jpg)
+![Self-Attention Context Vector Calculation](../plots/llm_from_scratch/image_55_Im56.jpg)
 *Figure 3.1: Visualizing how a token builds its context vector from other tokens.*
 
-![Attention Scores Similarity Dot Product](plots/llm_from_scratch/image_57_Im58.jpg)
+![Attention Scores Similarity Dot Product](../plots/llm_from_scratch/image_57_Im58.jpg)
 *Figure 3.2: Computing attention scores using vector dot products.*
 
-![Softmax Normalization of Weights](plots/llm_from_scratch/image_59_Im60.jpg)
+![Softmax Normalization of Weights](../plots/llm_from_scratch/image_59_Im60.jpg)
 *Figure 3.3: Softmax function scaling attention scores to sum to 1.0 (probabilities).*
 
-![Weighted Value Addition](plots/llm_from_scratch/image_61_Im62.jpg)
+![Weighted Value Addition](../plots/llm_from_scratch/image_61_Im62.jpg)
 *Figure 3.4: Multiplying value tokens by normalized attention weights.*
 
-![Weight Multiplication Matrix Visualization](plots/llm_from_scratch/image_53_Im54.jpg)
+![Weight Multiplication Matrix Visualization](../plots/llm_from_scratch/image_53_Im54.jpg)
 *Figure 3.5: Step-by-step matrix representation of context vector calculation.*
 
 #### 3.2 Parameterized Self-Attention: Queries, Keys, and Values
@@ -1924,19 +1924,19 @@ We parameterize self-attention by projecting input tokens $X$ into Query ($Q$), 
 $$Q = X W_q \quad K = X W_k \quad V = X W_v$$
 
 
-![Query Key Value Projections](plots/llm_from_scratch/image_63_Im64.jpg)
+![Query Key Value Projections](../plots/llm_from_scratch/image_63_Im64.jpg)
 *Figure 3.6: Projecting inputs into Query, Key, and Value vector representations.*
 
-![Query Key Dot Product Scores](plots/llm_from_scratch/image_65_Im66.jpg)
+![Query Key Dot Product Scores](../plots/llm_from_scratch/image_65_Im66.jpg)
 *Figure 3.7: Query-Key similarity dot products.*
 
-![Query Vector Row Matrix Multiplication](plots/llm_from_scratch/image_67_Im68.jpg)
+![Query Vector Row Matrix Multiplication](../plots/llm_from_scratch/image_67_Im68.jpg)
 *Figure 3.8: Matrix multiplication layout of Queries and Keys.*
 
-![Attention Score Matrix Mapping](plots/llm_from_scratch/image_69_Im70.jpg)
+![Attention Score Matrix Mapping](../plots/llm_from_scratch/image_69_Im70.jpg)
 *Figure 3.9: Softmax attention map showing pairwise scores.*
 
-![Query Key Value Matrix Product](plots/llm_from_scratch/image_71_Im72.jpg)
+![Query Key Value Matrix Product](../plots/llm_from_scratch/image_71_Im72.jpg)
 *Figure 3.10: The complete query, key, value matrix pipeline.*
 
 #### 3.3 Scaled Dot-Product Attention
@@ -1945,56 +1945,56 @@ We divide dot product scores by the scaling factor $\sqrt{d_k}$ (square root of 
 $$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{Q K^T}{\sqrt{d_k}}\right) V$$
 
 
-![Scaled Similarity Multiplier](plots/llm_from_scratch/image_73_Im74.jpg)
+![Scaled Similarity Multiplier](../plots/llm_from_scratch/image_73_Im74.jpg)
 *Figure 3.11: Scaling scores to stabilize training variance.*
 
-![Self-Attention Class Code](plots/llm_from_scratch/image_75_Im76.jpg)
+![Self-Attention Class Code](../plots/llm_from_scratch/image_75_Im76.jpg)
 *Figure 3.12: Code implementing query, key, value projections and context vector assembly.*
 
-![Scaled Dot-Product Formula Illustration](plots/llm_from_scratch/image_77_Im78.jpg)
+![Scaled Dot-Product Formula Illustration](../plots/llm_from_scratch/image_77_Im78.jpg)
 *Figure 3.13: Step-by-step visual of the scaled dot product equation.*
 
-![Causal Mask Multiplier](plots/llm_from_scratch/image_79_Im80.jpg)
+![Causal Mask Multiplier](../plots/llm_from_scratch/image_79_Im80.jpg)
 *Figure 3.14: Causal masking to prevent model from looking at future words.*
 
-![Causal Mask Matrix Representation](plots/llm_from_scratch/image_81_Im82.jpg)
+![Causal Mask Matrix Representation](../plots/llm_from_scratch/image_81_Im82.jpg)
 *Figure 3.15: Setting upper triangle matrix values to -\infty.*
 
-![Softmax Mask Mapping](plots/llm_from_scratch/image_89_Im90.jpg)
+![Softmax Mask Mapping](../plots/llm_from_scratch/image_89_Im90.jpg)
 *Figure 3.16: Softmax converting masked values to 0.0 attention scores.*
 
-![Causal Self-Attention Code](plots/llm_from_scratch/image_91_Im92.jpg)
+![Causal Self-Attention Code](../plots/llm_from_scratch/image_91_Im92.jpg)
 *Figure 3.17: Code implementing causal masking in PyTorch.*
 
-![Dropout Normalization](plots/llm_from_scratch/image_83_Im84.jpg)
+![Dropout Normalization](../plots/llm_from_scratch/image_83_Im84.jpg)
 *Figure 3.18: Applying dropout to attention matrices to prevent co-adaptation.*
 
-![Dropout Visual Diagram](plots/llm_from_scratch/image_243_Im244.png)
+![Dropout Visual Diagram](../plots/llm_from_scratch/image_243_Im244.png)
 *Figure 3.19: Randomly zeroing out attention matrix values during training.*
 
-![Causal Mask Self-Attention Final Summary](plots/llm_from_scratch/image_85_Im86.jpg)
+![Causal Mask Self-Attention Final Summary](../plots/llm_from_scratch/image_85_Im86.jpg)
 *Figure 3.20: Complete causal self-attention workflow.*
 
 #### 3.4 Multi-Head Attention (MHA)
 Instead of computing attention once, Multi-Head Attention splits the Queries, Keys, and Values into $H$ heads, computes attention in parallel, and concatenates the outputs:
 
 
-![Multi-Head Splitting](plots/llm_from_scratch/image_87_Im88.jpg)
+![Multi-Head Splitting](../plots/llm_from_scratch/image_87_Im88.jpg)
 *Figure 3.21: Splitting token dimensions into multiple attention heads.*
 
-![Parallel Heads Computation](plots/llm_from_scratch/image_95_Im96.jpg)
+![Parallel Heads Computation](../plots/llm_from_scratch/image_95_Im96.jpg)
 *Figure 3.22: Processing parallel attention weights.*
 
-![Heads Concatenation](plots/llm_from_scratch/image_99_Im100.jpg)
+![Heads Concatenation](../plots/llm_from_scratch/image_99_Im100.jpg)
 *Figure 3.23: Concatenating head outputs back to original token dimension.*
 
-![Multi-Head Attention Code](plots/llm_from_scratch/image_101_Im102.jpg)
+![Multi-Head Attention Code](../plots/llm_from_scratch/image_101_Im102.jpg)
 *Figure 3.24: Code implementing Multi-Head Attention.*
 
-![Multi-Head Attention Diagram](plots/llm_from_scratch/image_93_Im94.jpg)
+![Multi-Head Attention Diagram](../plots/llm_from_scratch/image_93_Im94.jpg)
 *Figure 3.25: Layout of Multi-Head Attention layer.*
 
-![Multi-Head Attention Final Matrix Output](plots/llm_from_scratch/image_97_Im98.jpg)
+![Multi-Head Attention Final Matrix Output](../plots/llm_from_scratch/image_97_Im98.jpg)
 *Figure 3.26: Matrix pipeline of Multi-Head Attention.*
 
 ---
@@ -2007,13 +2007,13 @@ GPT models compose stacked Transformer blocks. This section details layer normal
 LayerNorm computes mean and variance across the feature dimension for each token independently, stabilizing scale distributions:
 
 
-![LayerNorm vs BatchNorm Dimensions](plots/llm_from_scratch/image_113_Im114.jpg)
+![LayerNorm vs BatchNorm Dimensions](../plots/llm_from_scratch/image_113_Im114.jpg)
 *Figure 4.1: Normalization dimensions: LayerNorm (across features) vs. BatchNorm (across batch).*
 
-![LayerNorm Execution Math](plots/llm_from_scratch/image_115_Im116.jpg)
+![LayerNorm Execution Math](../plots/llm_from_scratch/image_115_Im116.jpg)
 *Figure 4.2: Normalizing token features to zero mean and unit variance.*
 
-![LayerNorm PyTorch Code](plots/llm_from_scratch/image_117_Im118.jpg)
+![LayerNorm PyTorch Code](../plots/llm_from_scratch/image_117_Im118.jpg)
 *Figure 4.3: Custom LayerNorm implementation.*
 
 #### 4.2 GELU Activation Function
@@ -2022,48 +2022,48 @@ GPT blocks use Gaussian Error Linear Units (GELU) in the MLP block:
 $$\text{GELU}(x) = 0.5x \left(1 + \text{erf}\left(\frac{x}{\sqrt{2}}\right)\right)$$
 
 
-![GELU Activation Curve](plots/llm_from_scratch/image_119_Im120.jpg)
+![GELU Activation Curve](../plots/llm_from_scratch/image_119_Im120.jpg)
 *Figure 4.4: GELU activation function graph: smooth curve preventing dead neurons.*
 
-![GELU Code Snippet](plots/llm_from_scratch/image_1_Im2.png)
+![GELU Code Snippet](../plots/llm_from_scratch/image_1_Im2.png)
 *Figure 4.5: PyTorch GELU activation implementation.*
 
 #### 4.3 GPT Block Assembly
 Each GPT block contains LayerNorm, Multi-Head Attention, residual connections, and Feed-Forward Networks (MLP blocks).
 
 
-![MLP Block Code](plots/llm_from_scratch/image_109_Im110.jpg)
+![MLP Block Code](../plots/llm_from_scratch/image_109_Im110.jpg)
 *Figure 4.6: Feed-forward network (MLP) block construction.*
 
-![GPT Block Code Structure](plots/llm_from_scratch/image_103_Im104.jpg)
+![GPT Block Code Structure](../plots/llm_from_scratch/image_103_Im104.jpg)
 *Figure 4.7: GPT Block code putting together MHA and MLP.*
 
-![Residual Connection Mechanics](plots/llm_from_scratch/image_105_Im106.jpg)
+![Residual Connection Mechanics](../plots/llm_from_scratch/image_105_Im106.jpg)
 *Figure 4.8: Adding input shortcuts directly to layer outputs.*
 
-![Residual Skip Code](plots/llm_from_scratch/image_107_Im108.jpg)
+![Residual Skip Code](../plots/llm_from_scratch/image_107_Im108.jpg)
 *Figure 4.9: Code implementing residual connections.*
 
-![Transformer Block Bounding Connections](plots/llm_from_scratch/image_111_Im112.jpg)
+![Transformer Block Bounding Connections](../plots/llm_from_scratch/image_111_Im112.jpg)
 *Figure 4.10: Visual overview of a single GPT Transformer block.*
 
 #### 4.4 GPT Model Stack
 We stack multiple Transformer blocks to construct the complete GPT model:
 
 
-![GPT Model Code](plots/llm_from_scratch/image_121_Im122.jpg)
+![GPT Model Code](../plots/llm_from_scratch/image_121_Im122.jpg)
 *Figure 4.11: Custom GPTModel class implementing embedding, stacked blocks, and final linear head.*
 
-![GPT Model Bounding Layers](plots/llm_from_scratch/image_123_Im124.jpg)
+![GPT Model Bounding Layers](../plots/llm_from_scratch/image_123_Im124.jpg)
 *Figure 4.12: Dense layer diagram of the stacked GPT architecture.*
 
-![GPT Parameters Count Code](plots/llm_from_scratch/image_125_Im126.jpg)
+![GPT Parameters Count Code](../plots/llm_from_scratch/image_125_Im126.jpg)
 *Figure 4.13: Calculating the total trainable parameter counts.*
 
-![Logits Output Projection Head](plots/llm_from_scratch/image_127_Im128.jpg)
+![Logits Output Projection Head](../plots/llm_from_scratch/image_127_Im128.jpg)
 *Figure 4.14: Logits projection mapping final output dimension back to vocabulary size.*
 
-![Next Word Logits Indexing](plots/llm_from_scratch/image_129_Im130.jpg)
+![Next Word Logits Indexing](../plots/llm_from_scratch/image_129_Im130.jpg)
 *Figure 4.15: Selecting logits at the final token position to predict the next word.*
 
 #### 4.5 Decoding Strategies
@@ -2073,19 +2073,19 @@ To generate text, we sample from output probabilities. We configure decoding beh
 *   **Top-k Sampling**: Keep only the top $k$ highest probability tokens, redistribute softmax.
 
 
-![Text Generation Mechanics](plots/llm_from_scratch/image_131_Im132.jpg)
+![Text Generation Mechanics](../plots/llm_from_scratch/image_131_Im132.jpg)
 *Figure 4.16: Flow showing token IDs mapped to logits, scaled, mapped to probabilities, and sampled.*
 
-![Text Generation Execution Pipeline](plots/llm_from_scratch/image_135_Im136.png)
+![Text Generation Execution Pipeline](../plots/llm_from_scratch/image_135_Im136.png)
 *Figure 4.17: Sequence showing next-token predictions iteratively feeding back into the inputs.*
 
-![Temperature Scaling Graph](plots/llm_from_scratch/image_137_Im138.jpg)
+![Temperature Scaling Graph](../plots/llm_from_scratch/image_137_Im138.jpg)
 *Figure 4.18: Impact of temperature scaling on probability distribution shapes.*
 
-![Top-k Sampling Graph](plots/llm_from_scratch/image_139_Im140.jpg)
+![Top-k Sampling Graph](../plots/llm_from_scratch/image_139_Im140.jpg)
 *Figure 4.19: Filtering out low-probability tails via Top-k.*
 
-![Text Generation Python Code](plots/llm_from_scratch/image_133_Im134.jpg)
+![Text Generation Python Code](../plots/llm_from_scratch/image_133_Im134.jpg)
 *Figure 4.20: Complete text generation decoding function.*
 
 ---
@@ -2098,16 +2098,16 @@ This section details batching raw text, tracking loss, calculating perplexity, s
 We batch inputs $x$ and targets $y$, pass inputs through the model, and align logits to target tokens to calculate Cross-Entropy loss.
 
 
-![PyTorch DataLoader Inputs Targets](plots/llm_from_scratch/image_141_Im142.jpg)
+![PyTorch DataLoader Inputs Targets](../plots/llm_from_scratch/image_141_Im142.jpg)
 *Figure 5.1: DataLoader outputting batches of token inputs and target outputs.*
 
-![Aligned Logits Targets Loss](plots/llm_from_scratch/image_143_Im144.jpg)
+![Aligned Logits Targets Loss](../plots/llm_from_scratch/image_143_Im144.jpg)
 *Figure 5.2: Aligning outputs to target indices for loss calculation.*
 
-![Cross Entropy Loss Code](plots/llm_from_scratch/image_145_Im146.jpg)
+![Cross Entropy Loss Code](../plots/llm_from_scratch/image_145_Im146.jpg)
 *Figure 5.3: PyTorch cross-entropy evaluation code.*
 
-![Model Training Loop Code](plots/llm_from_scratch/image_147_Im148.png)
+![Model Training Loop Code](../plots/llm_from_scratch/image_147_Im148.png)
 *Figure 5.4: Custom training loop tracking batch loss.*
 
 #### 5.2 Validation Loss Curves and Perplexity
@@ -2116,48 +2116,48 @@ We calculate validation loss on held-out text. Perplexity (PPL) evaluates next-t
 $$\text{PPL} = e^{\mathcal{L}}$$
 
 
-![Loss Curves Plot](plots/llm_from_scratch/image_149_Im150.png)
+![Loss Curves Plot](../plots/llm_from_scratch/image_149_Im150.png)
 *Figure 5.5: Training vs. Validation loss curve plot showing convergence.*
 
-![Loss Values Printout](plots/llm_from_scratch/image_151_Im152.jpg)
+![Loss Values Printout](../plots/llm_from_scratch/image_151_Im152.jpg)
 *Figure 5.6: Logging outputs showing loss and perplexity.*
 
-![Perplexity Metric Printout](plots/llm_from_scratch/image_153_Im154.jpg)
+![Perplexity Metric Printout](../plots/llm_from_scratch/image_153_Im154.jpg)
 *Figure 5.7: Detailed validation log showing perplexity values.*
 
 #### 5.3 Learning Rate Scheduling and Warmup
 To optimize deep training convergence, we use Cosine Annealing learning rate schedules with a linear warmup phase.
 
 
-![Cosine Learning Rate Schedule Plot](plots/llm_from_scratch/image_157_Im158.jpg)
+![Cosine Learning Rate Schedule Plot](../plots/llm_from_scratch/image_157_Im158.jpg)
 *Figure 5.8: Learning rate decay schedule plot over steps.*
 
-![Cosine Schedule Code](plots/llm_from_scratch/image_155_Im156.jpg)
+![Cosine Schedule Code](../plots/llm_from_scratch/image_155_Im156.jpg)
 *Figure 5.9: Cosine annealing learning rate scheduling implementation.*
 
-![Training Iteration Code](plots/llm_from_scratch/image_159_Im160.jpg)
+![Training Iteration Code](../plots/llm_from_scratch/image_159_Im160.jpg)
 *Figure 5.10: Incorporating scheduler updates in training loops.*
 
 #### 5.4 Saving Checkpoints and Loading Weight Files
 We serialize model weights (parameters) to disk and load them back for evaluation or HuggingFace/OpenAI weight translation.
 
 
-![Saving Weights PyTorch Code](plots/llm_from_scratch/image_161_Im162.jpg)
+![Saving Weights PyTorch Code](../plots/llm_from_scratch/image_161_Im162.jpg)
 *Figure 5.11: Serialization saving weights file.*
 
-![Loading Weights PyTorch Code](plots/llm_from_scratch/image_163_Im164.jpg)
+![Loading Weights PyTorch Code](../plots/llm_from_scratch/image_163_Im164.jpg)
 *Figure 5.12: Loading weights file back to model.*
 
-![Weight Translation Code](plots/llm_from_scratch/image_165_Im166.jpg)
+![Weight Translation Code](../plots/llm_from_scratch/image_165_Im166.jpg)
 *Figure 5.13: Translating checkpoint parameters from OpenAI formats.*
 
-![Load OpenAI Weight Maps Code](plots/llm_from_scratch/image_167_Im168.jpg)
+![Load OpenAI Weight Maps Code](../plots/llm_from_scratch/image_167_Im168.jpg)
 *Figure 5.14: Code mapping keys from standard GPT-2 models.*
 
-![Checkpoint Evaluation Printout](plots/llm_from_scratch/image_169_Im170.png)
+![Checkpoint Evaluation Printout](../plots/llm_from_scratch/image_169_Im170.png)
 *Figure 5.15: Printout showing generation output from loaded checkpoints.*
 
-![HuggingFace GPT2 Model Integration](plots/llm_from_scratch/image_171_Im172.png)
+![HuggingFace GPT2 Model Integration](../plots/llm_from_scratch/image_171_Im172.png)
 *Figure 5.16: Model validation prints matching HuggingFace GPT-2 parameters.*
 
 ---
@@ -2170,60 +2170,60 @@ To convert a generative foundation model into a text classifier (e.g. classifyin
 Incoming messages have variable sequence lengths. We pad shorter sequences with padding tokens (e.g. `<|endoftext|>`) to a uniform length to allow parallel batch operations.
 
 
-![Padded Token ID Batches](plots/llm_from_scratch/image_193_Im194.jpg)
+![Padded Token ID Batches](../plots/llm_from_scratch/image_193_Im194.jpg)
 *Figure 6.1: Padded token IDs and corresponding class labels array.*
 
-![Variable Length Messages Padding](plots/llm_from_scratch/image_195_Im196.jpg)
+![Variable Length Messages Padding](../plots/llm_from_scratch/image_195_Im196.jpg)
 *Figure 6.2: Padding variable text inputs to uniform token length.*
 
-![PyTorch Classification DataLoader Code](plots/llm_from_scratch/image_197_Im198.png)
+![PyTorch Classification DataLoader Code](../plots/llm_from_scratch/image_197_Im198.png)
 *Figure 6.3: Custom DataLoader class executing sequence padding.*
 
-![DataLoader Batches Output Print](plots/llm_from_scratch/image_173_Im174.jpg)
+![DataLoader Batches Output Print](../plots/llm_from_scratch/image_173_Im174.jpg)
 *Figure 6.4: Log prints showing batched token ID tensor shape.*
 
-![Supervised Dataset Splits Table](plots/llm_from_scratch/image_175_Im176.jpg)
+![Supervised Dataset Splits Table](../plots/llm_from_scratch/image_175_Im176.jpg)
 *Figure 6.5: Splitting classification dataset into Train, Validation, and Test.*
 
 #### 6.2 Classification Head Replacement
 We replace the vocabulary-sized language model head (decoder output projection) with a classification head $W_c \in \mathbb{R}^{D \times C}$, where $C$ is the number of target classes.
 
 
-![Output Head Linear Projection](plots/llm_from_scratch/image_185_Im186.png)
+![Output Head Linear Projection](../plots/llm_from_scratch/image_185_Im186.png)
 *Figure 6.6: Swapping next-token head with linear classification projection.*
 
-![Final Token Index Extraction](plots/llm_from_scratch/image_177_Im178.png)
+![Final Token Index Extraction](../plots/llm_from_scratch/image_177_Im178.png)
 *Figure 6.7: Bounding output representation at the final token position.*
 
-![Linear Output Class Projection Head](plots/llm_from_scratch/image_179_Im180.png)
+![Linear Output Class Projection Head](../plots/llm_from_scratch/image_179_Im180.png)
 *Figure 6.8: Extracting final token representations for input to the classification head.*
 
-![Classification Model Code Class](plots/llm_from_scratch/image_181_Im182.jpg)
+![Classification Model Code Class](../plots/llm_from_scratch/image_181_Im182.jpg)
 *Figure 6.9: Custom GPTClassifier model class implementation.*
 
 #### 6.3 Classifier Training and Evaluation Metrics
 We optimize the model using classification cross-entropy loss, and evaluate accuracy, precision, recall, and F1-score.
 
 
-![Accuracy Evaluation Code](plots/llm_from_scratch/image_183_Im184.jpg)
+![Accuracy Evaluation Code](../plots/llm_from_scratch/image_183_Im184.jpg)
 *Figure 6.10: Code computing prediction accuracy.*
 
-![Batch Classification Loss Code](plots/llm_from_scratch/image_189_Im190.jpg)
+![Batch Classification Loss Code](../plots/llm_from_scratch/image_189_Im190.jpg)
 *Figure 6.11: Loss calculation over classification batches.*
 
-![Classification Loss Curves Plot](plots/llm_from_scratch/image_199_Im200.png)
+![Classification Loss Curves Plot](../plots/llm_from_scratch/image_199_Im200.png)
 *Figure 6.12: Classifier Train vs. Validation loss convergence curve.*
 
-![Classifier Accuracy Curve Plot](plots/llm_from_scratch/image_187_Im188.jpg)
+![Classifier Accuracy Curve Plot](../plots/llm_from_scratch/image_187_Im188.jpg)
 *Figure 6.13: Classifier Train vs. Validation accuracy growth curve.*
 
-![Spam Prediction Examples Print](plots/llm_from_scratch/image_191_Im192.jpg)
+![Spam Prediction Examples Print](../plots/llm_from_scratch/image_191_Im192.jpg)
 *Figure 6.14: Sample predictions output logs.*
 
-![Confusion Matrix Visual Chart](plots/llm_from_scratch/image_201_Im202.png)
+![Confusion Matrix Visual Chart](../plots/llm_from_scratch/image_201_Im202.png)
 *Figure 6.15: Confusion matrix showing True Positives, True Negatives, False Positives, False Negatives.*
 
-![Classification Metrics Summary](plots/llm_from_scratch/image_203_Im204.png)
+![Classification Metrics Summary](../plots/llm_from_scratch/image_203_Im204.png)
 *Figure 6.16: Final F1-score evaluation metrics log.*
 
 ---
@@ -2236,69 +2236,69 @@ Instruction fine-tuning trains a foundation model to behave as a helpful persona
 Instruction datasets structure samples into instructions, inputs, and responses. We format samples using prompts templates:
 
 
-![Prompt Template Layout](plots/llm_from_scratch/image_205_Im206.png)
+![Prompt Template Layout](../plots/llm_from_scratch/image_205_Im206.png)
 *Figure 7.1: Visualizing template structures wrapping instruction and response text.*
 
-![Formatted Prompt Text Sample](plots/llm_from_scratch/image_207_Im208.png)
+![Formatted Prompt Text Sample](../plots/llm_from_scratch/image_207_Im208.png)
 *Figure 7.2: Text prompt showing instruction, input context, and target response.*
 
-![Dataset Sample Representation Table](plots/llm_from_scratch/image_209_Im210.png)
+![Dataset Sample Representation Table](../plots/llm_from_scratch/image_209_Im210.png)
 *Figure 7.3: Table showing instruction, input, output values.*
 
-![Instruction Dataset Class Code](plots/llm_from_scratch/image_211_Im212.png)
+![Instruction Dataset Class Code](../plots/llm_from_scratch/image_211_Im212.png)
 *Figure 7.4: Custom Dataset class processing instruction strings.*
 
-![DataLoader Padded Instruction Batch](plots/llm_from_scratch/image_213_Im214.jpg)
+![DataLoader Padded Instruction Batch](../plots/llm_from_scratch/image_213_Im214.jpg)
 *Figure 7.5: Padding prompt-response token sequences to uniform length.*
 
 #### 7.2 Loss Masking on Prompts
 To prevent the model from learning to copy instructions, we apply a mask to the input prompt tokens during loss calculation. Cross-entropy loss is computed only on the target response tokens.
 
 
-![Instruction Loss Masking Concept](plots/llm_from_scratch/image_215_Im216.jpg)
+![Instruction Loss Masking Concept](../plots/llm_from_scratch/image_215_Im216.jpg)
 *Figure 7.6: Masking out prompt token logits (setting loss weight to zero) and computing loss on response tokens.*
 
-![Prompt Mask Targets Realignment](plots/llm_from_scratch/image_217_Im218.jpg)
+![Prompt Mask Targets Realignment](../plots/llm_from_scratch/image_217_Im218.jpg)
 *Figure 7.7: Aligning target tensor IDs: prompt tokens are replaced with -100.*
 
-![PyTorch Cross-Entropy Index Masking](plots/llm_from_scratch/image_219_Im220.png)
+![PyTorch Cross-Entropy Index Masking](../plots/llm_from_scratch/image_219_Im220.png)
 *Figure 7.8: Setting ignore_index=-100 in cross-entropy loss function.*
 
-![Loss Masking Code Implementation](plots/llm_from_scratch/image_221_Im222.png)
+![Loss Masking Code Implementation](../plots/llm_from_scratch/image_221_Im222.png)
 *Figure 7.9: Code implementing custom masking inside DataLoader collation.*
 
-![DataLoader Mask Batches Print](plots/llm_from_scratch/image_223_Im224.jpg)
+![DataLoader Mask Batches Print](../plots/llm_from_scratch/image_223_Im224.jpg)
 *Figure 7.10: Printout showing target ID arrays with -100 mask values.*
 
 #### 7.3 Instruction Training Loop and Evaluation
 We load pretrained foundation weights, compile masked loss functions, run the optimizer, and evaluate qualitatively and quantitatively.
 
 
-![Model Loading Pretrained Weights](plots/llm_from_scratch/image_225_Im226.jpg)
+![Model Loading Pretrained Weights](../plots/llm_from_scratch/image_225_Im226.jpg)
 *Figure 7.11: Initializing foundation GPT model and loading parameters.*
 
-![Instruction Training Loop Code](plots/llm_from_scratch/image_227_Im228.png)
+![Instruction Training Loop Code](../plots/llm_from_scratch/image_227_Im228.png)
 *Figure 7.12: Custom SFT training loop.*
 
-![SFT Training Loss Curve Plot](plots/llm_from_scratch/image_229_Im230.png)
+![SFT Training Loss Curve Plot](../plots/llm_from_scratch/image_229_Im230.png)
 *Figure 7.13: SFT training convergence plot.*
 
-![Qualitative Evaluation Code](plots/llm_from_scratch/image_231_Im232.png)
+![Qualitative Evaluation Code](../plots/llm_from_scratch/image_231_Im232.png)
 *Figure 7.14: Code generating conversational responses from prompts.*
 
-![Three Stage Pipeline Summary](plots/llm_from_scratch/image_241_Im242.png)
+![Three Stage Pipeline Summary](../plots/llm_from_scratch/image_241_Im242.png)
 *Figure 7.15: Visual summary: Preparing dataset, fine-tuning model, scoring responses.*
 
-![Qualitative Response Output Logs](plots/llm_from_scratch/image_233_Im234.png)
+![Qualitative Response Output Logs](../plots/llm_from_scratch/image_233_Im234.png)
 *Figure 7.16: Sample assistant answers logs.*
 
-![Assistant Model scoring criteria](plots/llm_from_scratch/image_235_Im236.png)
+![Assistant Model scoring criteria](../plots/llm_from_scratch/image_235_Im236.png)
 *Figure 7.17: Scoring assistant response quality.*
 
-![MMLU Benchmark scoring table](plots/llm_from_scratch/image_237_Im238.png)
+![MMLU Benchmark scoring table](../plots/llm_from_scratch/image_237_Im238.png)
 *Figure 7.18: Model performance scores across standard benchmarks.*
 
-![LLM as a Judge Scoring Interface](plots/llm_from_scratch/image_239_Im240.png)
+![LLM as a Judge Scoring Interface](../plots/llm_from_scratch/image_239_Im240.png)
 *Figure 7.19: Using another model (LLM-as-a-judge) to grade generated response quality.*
 
 ---
@@ -2326,7 +2326,7 @@ In a traditional AI interaction, a user sends a prompt, and the model returns a 
 
 #### Core Concepts Architecture Mapping
 
-![Agentic AI Core Architecture](plots/agentic_concepts_diagram.png)
+![Agentic AI Core Architecture](../plots/agentic_concepts_diagram.png)
 
 ---
 
@@ -2522,7 +2522,7 @@ Depending on the complexity of the query, the agent coordinates either sequentia
 #### Sequential Atomic Tool Execution
 The model receives the user prompt and registers schemas. It plans step-by-step, querying tools and feeding results back over multiple API turns.
 
-![AI Agent Function Calling Loop](plots/agentic_loop_sequence.png)
+![AI Agent Function Calling Loop](../plots/agentic_loop_sequence.png)
 
 ---
 
@@ -2535,7 +2535,7 @@ The **Model Context Protocol (MCP)** standardizes tool integration. Instead of a
 - **Stdio Transport**: Used when the MCP server runs on the same machine as a command-line process. Standard input (`stdin`) and standard output (`stdout`) are used to send JSON-RPC packages.
 - **SSE Transport**: Used for remote or network connections. The client registers to a Server-Sent Events stream to receive events, and sends POST requests back to request executions.
 
-![MCP Architecture Diagram](plots/mcp_architecture_diagram.png)
+![MCP Architecture Diagram](../plots/mcp_architecture_diagram.png)
 
 ---
 

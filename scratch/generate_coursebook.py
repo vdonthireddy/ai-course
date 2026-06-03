@@ -38,7 +38,7 @@ def clean_intro(text, title_to_remove):
     return '\n'.join(new_lines)
 
 def get_content(filename, title_to_remove):
-    filepath = os.path.join('/Users/donthireddy/code/ai-course', filename)
+    filepath = os.path.join('/Users/donthireddy/code/ai-course/docs', filename)
     with open(filepath, 'r', encoding='utf-8') as f:
         content = f.read()
     
@@ -133,7 +133,7 @@ This module explains the design patterns and execution sequence of Agentic AI sy
         agentic_content
     )
 
-    out_path = '/Users/donthireddy/code/ai-course/complete_illustrated_coursebook.md'
+    out_path = '/Users/donthireddy/code/ai-course/docs/complete_illustrated_coursebook.md'
     with open(out_path, 'w', encoding='utf-8') as f:
         f.write(full_coursebook)
         

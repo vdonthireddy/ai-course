@@ -2,7 +2,7 @@
 
 This document provides a detailed, step-by-step mathematical and visual explanation of the **Backpropagation** algorithm and **Gradient Descent** in deep neural networks. By examining the flow of information forward and errors backward, we show how networks calculate parameter gradients using the **Chain Rule** to learn from data.
 
-All illustrations are referenced from the local directory: [plots/backprop/](plots/backprop/).
+All illustrations are referenced from the local directory: [plots/backprop/](../plots/backprop/).
 
 ---
 
@@ -10,7 +10,7 @@ All illustrations are referenced from the local directory: [plots/backprop/](plo
 
 To understand backpropagation, we begin with the simplest possible neural network: a single input, a single weight, a single output neuron, and no bias.
 
-![Simplest Neural Network Intro](plots/backprop/IMG_3194.PNG)
+![Simplest Neural Network Intro](../plots/backprop/IMG_3194.PNG)
 
 ### 1.1 The Forward Pass
 In our toy model, we feed an input ($i$) through a connection with weight ($w$) to produce a predicted output activation ($a$):
@@ -25,7 +25,7 @@ Using these values, we perform a **forward pass** to calculate the prediction:
 
 $$a = 1.5 \cdot 0.8 = 1.2$$
 
-![Toy Model Forward Pass](plots/backprop/IMG_3195.PNG)
+![Toy Model Forward Pass](../plots/backprop/IMG_3195.PNG)
 
 ### 1.2 Defining the Cost (Loss)
 To measure how accurate our prediction is, we compare the prediction ($a$) to a desired target value ($y$). Suppose the target value is:
@@ -34,7 +34,7 @@ $$y = 0.5$$
 
 Because our prediction $a = 1.2$ is larger than the target $y = 0.5$, the model has made an error.
 
-![Introducing Target y](plots/backprop/IMG_3196.PNG)
+![Introducing Target y](../plots/backprop/IMG_3196.PNG)
 
 We quantify this error using a **Cost Function** ($C$). In this case, we use the **Squared Error** cost function:
 
@@ -46,7 +46,7 @@ $$C = (1.2 - 0.5)^2 = 0.7^2 = 0.49$$
 
 The goal of learning is to find a weight ($w$) that makes this cost as close to $0$ as possible.
 
-![Defining Cost C](plots/backprop/IMG_3197.PNG)
+![Defining Cost C](../plots/backprop/IMG_3197.PNG)
 
 ### 1.3 Nudging the Weight
 To see how we can minimize the cost, let's explore what happens when we modify ("nudge") the weight $w$:
@@ -59,7 +59,7 @@ To see how we can minimize the cost, let's explore what happens when we modify (
     
     This tells us that increasing the weight moves us further away from our goal.
 
-![Increasing Weight raises Cost](plots/backprop/IMG_3198.PNG)
+![Increasing Weight raises Cost](../plots/backprop/IMG_3198.PNG)
 
 *   **Case B: Decreasing $w$**
     If we decrease $w$ from $0.8$ to $0.7$:
@@ -69,14 +69,14 @@ To see how we can minimize the cost, let's explore what happens when we modify (
     
     This shows that decreasing the weight successfully reduces the cost.
 
-![Decreasing Weight lowers Cost](plots/backprop/IMG_3199.PNG)
+![Decreasing Weight lowers Cost](../plots/backprop/IMG_3199.PNG)
 
 ### 1.4 The Optimization Challenge
 While manually trying weight values works for a single parameter, complex networks contain millions of parameters. We need a mathematical way to calculate exactly how a nudge to any given weight affects the final cost.
 
 This is the core problem of optimization: how do we calculate the derivative of the cost with respect to the weight ($\frac{\partial C}{\partial w}$)?
 
-![The Optimization Question](plots/backprop/IMG_3200.PNG)
+![The Optimization Question](../plots/backprop/IMG_3200.PNG)
 
 ---
 
@@ -90,7 +90,7 @@ This nested relationship can be written as a composite function: $C(a(w))$. We c
 *   The cost curve $C(a)$ is a parabola centered at the target value $y$.
 *   The activation curve $a(w)$ is a straight line with a slope equal to the input $i$.
 
-![Cost and Activation Curves](plots/backprop/IMG_3202.PNG)
+![Cost and Activation Curves](../plots/backprop/IMG_3202.PNG)
 
 To find the rate of change of the cost with respect to the weight, we use the **Chain Rule** of calculus. The chain rule states that to find the derivative of a nested composite function, we multiply the local derivatives along the dependency chain:
 
@@ -101,7 +101,7 @@ $$\frac{\partial C}{\partial w} = \frac{\partial C}{\partial a} \cdot \frac{\par
 
 By multiplying these two factors, we determine how a nudge to $w$ propagates through the intermediate variable $a$ to ultimately affect the cost $C$.
 
-![Chain Rule Formulation](plots/backprop/IMG_3203.PNG)
+![Chain Rule Formulation](../plots/backprop/IMG_3203.PNG)
 
 ---
 
@@ -112,7 +112,7 @@ To move from our toy model to deep neural networks, we must build a generalized 
 ### 3.1 Anatomy of a Neuron
 A single neuron in a neural network layer receives outputs from multiple neurons in the preceding layer.
 
-![Neuron Inputs and Weights](plots/backprop/IMG_3206.PNG)
+![Neuron Inputs and Weights](../plots/backprop/IMG_3206.PNG)
 
 Let's break down the mathematical assembly of a neuron step-by-step:
 
@@ -121,21 +121,21 @@ Let's break down the mathematical assembly of a neuron step-by-step:
     
     $$\hat{x} = b + \sum_{i} x_i \omega_i$$
 
-![Adding Bias and Summing](plots/backprop/IMG_3207.PNG)
+![Adding Bias and Summing](../plots/backprop/IMG_3207.PNG)
 
 2.  **Activation Function:**
     To introduce non-linearity into the network, the pre-activation input $\hat{x}$ is passed through an **activation function** (denoted $\phi$):
 
 $$\phi(\hat{x})$$
 
-![Applying Activation Function](plots/backprop/IMG_3208.PNG)
+![Applying Activation Function](../plots/backprop/IMG_3208.PNG)
 
 3.  **Final Neuron Output:**
     The final output activation ($y$) of the neuron is:
     
     $$y = \phi(\hat{x}) = \phi\left(b + \sum_{i} x_i \omega_i\right)$$
 
-![Generalized Neuron Formula](plots/backprop/IMG_3210.PNG)
+![Generalized Neuron Formula](../plots/backprop/IMG_3210.PNG)
 
 ### 3.2 Common Activation Functions
 Activation functions determine the behavior and capabilities of the neural network. Here are the three most common activation functions and their derivatives:
@@ -149,7 +149,7 @@ Its derivative is constant:
 
 $$\phi'(x) = 1$$
 
-![Linear Activation Function](plots/backprop/IMG_3211.PNG)
+![Linear Activation Function](../plots/backprop/IMG_3211.PNG)
 
 #### 2. Rectified Linear Unit (ReLU)
 The output is $0$ for negative inputs and equals the input for positive inputs:
@@ -162,7 +162,7 @@ $$\phi'(x) = \begin{cases} 1 & \text{if } x > 0 \\ 0 & \text{if } x < 0 \end{cas
 
 *(Note: The derivative is technically undefined at $x=0$, but in practice, it is set to $0$.)*
 
-![ReLU Activation Function](plots/backprop/IMG_3212.PNG)
+![ReLU Activation Function](../plots/backprop/IMG_3212.PNG)
 
 #### 3. Sigmoid (Logistic) Function
 The output is squashed to a smooth S-curve between $0$ and $1$:
@@ -173,7 +173,7 @@ Its derivative can be expressed elegantly in terms of its output:
 
 $$\phi'(x) = \phi(x)(1 - \phi(x))$$
 
-![Sigmoid Activation Function](plots/backprop/IMG_3213.PNG)
+![Sigmoid Activation Function](../plots/backprop/IMG_3213.PNG)
 
 ---
 
@@ -182,15 +182,15 @@ Let's see how a neuron behaves under each of these activation functions:
 
 *   **Linear Neuron:** Passing a linear combination through a linear activation simply returns the weighted sum plus bias. It cannot learn non-linear relationships.
 
-![Neuron with Linear Activation](plots/backprop/IMG_3214.PNG)
+![Neuron with Linear Activation](../plots/backprop/IMG_3214.PNG)
 
 *   **ReLU Neuron:** If the pre-activation sum is negative, the neuron output is completely deactivated ($0$). If positive, the output scales linearly.
 
-![Neuron with ReLU Activation](plots/backprop/IMG_3215.PNG)
+![Neuron with ReLU Activation](../plots/backprop/IMG_3215.PNG)
 
 *   **Sigmoid Neuron:** Regardless of how large or small the pre-activation input is, the output is smoothly mapped to the range $(0, 1)$.
 
-![Neuron with Sigmoid Activation](plots/backprop/IMG_3216.PNG)
+![Neuron with Sigmoid Activation](../plots/backprop/IMG_3216.PNG)
 
 Below is the summary table of these three core activation functions:
 
@@ -200,7 +200,7 @@ Below is the summary table of these three core activation functions:
 | **ReLU** | $\phi(x) = \max(0, x)$ | $\phi'(x) = \begin{cases} 1 & \text{if } x > 0 \\ 0 & \text{if } x \le 0 \end{cases}$ |
 | **Sigmoid** | $\phi(x) = \frac{1}{1 + e^{-x}}$ | $\phi'(x) = \phi(x)(1 - \phi(x))$ |
 
-![Activation Functions Table](plots/backprop/IMG_3217.PNG)
+![Activation Functions Table](../plots/backprop/IMG_3217.PNG)
 
 ### 3.4 Standard Layer Notation
 To write mathematical derivations for multi-layer networks, we establish standard indexing notation:
@@ -210,7 +210,7 @@ To write mathematical derivations for multi-layer networks, we establish standar
 *   Neuron $j$ has bias $b_j$ and pre-activation net input $\hat{x}_j = b_j + \sum_k y_k \omega_{kj}$.
 *   The final output of neuron $j$ is $y_j = \phi(\hat{x}_j)$.
 
-![Standard Layer Notation](plots/backprop/IMG_3218.PNG)
+![Standard Layer Notation](../plots/backprop/IMG_3218.PNG)
 
 ---
 
@@ -218,7 +218,7 @@ To write mathematical derivations for multi-layer networks, we establish standar
 
 When we stack multiple layers of these neurons together, we build a **Multi-Layer Perceptron (MLP)** or deep feedforward neural network.
 
-![Multi-Layer Network Architecture](plots/backprop/IMG_3219.PNG)
+![Multi-Layer Network Architecture](../plots/backprop/IMG_3219.PNG)
 
 ### 4.1 The Global Loss Function
 For a network with $n$ layers, the inputs pass forward through the layers to produce a final network output vector $\mathbf{y}_n$. We evaluate the accuracy of the entire network using a global **Loss Function** ($L$):
@@ -227,7 +227,7 @@ $$Loss = L(\mathbf{y}_n)$$
 
 The loss function compares the network's predictions $\mathbf{y}_n$ against the true training labels.
 
-![Global Loss Function](plots/backprop/IMG_3220.PNG)
+![Global Loss Function](../plots/backprop/IMG_3220.PNG)
 
 ### 4.2 Gradient Descent
 To minimize the global loss $L$, we update all network weights iteratively in the opposite direction of the gradient of the loss. This optimization algorithm is called **Gradient Descent**:
@@ -240,22 +240,22 @@ Where:
 *   $\eta$ (eta) is the **learning rate**, controlling the step size of each update.
 *   $\frac{\partial L}{\partial \mathbf{w}}$ is the gradient vector containing the partial derivatives of the loss with respect to all weights.
 
-![Gradient Descent Update](plots/backprop/IMG_3221.PNG)
+![Gradient Descent Update](../plots/backprop/IMG_3221.PNG)
 
 *   **The Role of the Learning Rate ($\eta$):**
     *   If $\eta$ is **too small**, weight updates are minuscule, causing training to take an extremely long time.
     *   If $\eta$ is **too large**, the updates can overshoot the minimum, causing the optimization path to oscillate wildly or even diverge entirely.
 
-![Learning Rate Effects](plots/backprop/IMG_3222.PNG)
+![Learning Rate Effects](../plots/backprop/IMG_3222.PNG)
 
 *   **Navigating Loss Landscapes:**
     In real-world networks, the loss landscape is complex, high-dimensional, and non-convex. It contains multiple peaks, valleys, **local minima** (suboptimal low points), and a **global minimum** (the absolute lowest point of the loss function). Our goal is to guide the weights toward the global minimum, though gradient descent is susceptible to getting trapped in local minima or saddle points.
 
-![Local vs. Global Minima](plots/backprop/IMG_3223.PNG)
+![Local vs. Global Minima](../plots/backprop/IMG_3223.PNG)
 
 By taking small, sequential steps proportional to the negative gradient, the parameters slide down the loss curve toward a minimum.
 
-![Descending the Loss Curve](plots/backprop/IMG_3225.PNG)
+![Descending the Loss Curve](../plots/backprop/IMG_3225.PNG)
 
 ---
 
@@ -268,7 +268,7 @@ We want to find how a change in the weight $\omega_{ij}$ (connecting neuron $i$ 
 
 $$\frac{\partial L}{\partial \omega_{ij}} = ?$$
 
-![Weight Derivative Goal](plots/backprop/IMG_3226.PNG)
+![Weight Derivative Goal](../plots/backprop/IMG_3226.PNG)
 
 Because $\omega_{ij}$ only affects the loss by contributing to the pre-activation net input $\hat{x}_j$ of neuron $j$, we split the derivative using the Chain Rule:
 
@@ -277,7 +277,7 @@ $$\frac{\partial L}{\partial \omega_{ij}} = \frac{\partial L}{\partial \hat{x}_j
 *   $\frac{\partial L}{\partial \hat{x}_j}$ is the rate of change of the loss with respect to the pre-activation input of neuron $j$. This term is often called the **error term** of neuron $j$ (denoted $\delta_j$).
 *   $\frac{\partial \hat{x}_j}{\partial \omega_{ij}}$ is the rate of change of the pre-activation input with respect to the weight.
 
-![Splitting Weight Derivative](plots/backprop/IMG_3228.PNG)
+![Splitting Weight Derivative](../plots/backprop/IMG_3228.PNG)
 
 ### 5.2 Evaluating the Second Term: $\frac{\partial \hat{x}_j}{\partial \omega_{ij}}$
 Recall that the pre-activation net input of neuron $j$ is:
@@ -292,7 +292,7 @@ This shows that the rate of change of the pre-activation input with respect to t
 
 $$\frac{\partial \hat{x}_j}{\partial \omega_{ij}} = y_i$$
 
-![Calculating dx_hat / d_omega](plots/backprop/IMG_3230.PNG)
+![Calculating dx_hat / d_omega](../plots/backprop/IMG_3230.PNG)
 
 ### 5.3 Evaluating the First Term: $\frac{\partial L}{\partial \hat{x}_j}$
 Now we evaluate the error term $\frac{\partial L}{\partial \hat{x}_j}$. The pre-activation input $\hat{x}_j$ only affects the network output by first passing through the activation function to become $y_j$. Therefore, we apply the Chain Rule again:
@@ -302,7 +302,7 @@ $$\frac{\partial L}{\partial \hat{x}_j} = \frac{\partial L}{\partial y_j} \cdot 
 *   $\frac{\partial L}{\partial y_j}$ is the rate of change of the loss with respect to the post-activation output of neuron $j$.
 *   $\frac{\partial y_j}{\partial \hat{x}_j}$ is the derivative of the activation function evaluated at $\hat{x}_j$.
 
-![Splitting dx_hat Derivative](plots/backprop/IMG_3232.PNG)
+![Splitting dx_hat Derivative](../plots/backprop/IMG_3232.PNG)
 
 If we assume the activation function is the **Sigmoid function**:
 
@@ -312,13 +312,13 @@ Its derivative is:
 
 $$\frac{\partial y_j}{\partial \hat{x}_j} = y_j(1 - y_j)$$
 
-![Sigmoid Derivative Evaluation](plots/backprop/IMG_3233.PNG)
+![Sigmoid Derivative Evaluation](../plots/backprop/IMG_3233.PNG)
 
 Substituting this derivative back into our error term equation yields:
 
 $$\frac{\partial L}{\partial \hat{x}_j} = \frac{\partial L}{\partial y_j} y_j(1 - y_j)$$
 
-![Pre-activation Gradient Formula](plots/backprop/IMG_3234.PNG)
+![Pre-activation Gradient Formula](../plots/backprop/IMG_3234.PNG)
 
 ### 5.4 Combining the Terms
 Now, we substitute our results from **Section 5.2** and **Section 5.3** back into our primary weight derivative equation:
@@ -331,14 +331,14 @@ Rearranging the terms, we get the complete derivative of the loss with respect t
 
 $$\frac{\partial L}{\partial \omega_{ij}} = \frac{\partial L}{\partial y_j} y_j(1 - y_j) y_i$$
 
-![Combining the Terms](plots/backprop/IMG_3235.PNG)
+![Combining the Terms](../plots/backprop/IMG_3235.PNG)
 
 This elegant formula tells us that the gradient of a weight is the product of:
 1.  The downstream loss gradient ($\frac{\partial L}{\partial y_j}$).
 2.  The derivative of the activation function of the receiving neuron ($y_j(1-y_j)$).
 3.  The incoming activation from the sending neuron ($y_i$).
 
-![Weight Gradient Summary](plots/backprop/IMG_3236.PNG)
+![Weight Gradient Summary](../plots/backprop/IMG_3236.PNG)
 
 ---
 
@@ -348,14 +348,14 @@ The weight gradient derivation in Section 5 requires knowing $\frac{\partial L}{
 *   If neuron $j$ is in the **output layer**, computing $\frac{\partial L}{\partial y_j}$ is straightforward because the loss function is defined directly in terms of the output layer activations.
 *   If neuron $j$ is in a **hidden layer**, computing $\frac{\partial L}{\partial y_j}$ is more complex because hidden neurons do not directly participate in the loss function. We must propagate the errors backwards from the output layer.
 
-![Hidden Activation Gradients](plots/backprop/IMG_3237.PNG)
+![Hidden Activation Gradients](../plots/backprop/IMG_3237.PNG)
 
 ### 6.1 Branching Downstream Paths
 Let's find the derivative of the loss with respect to the activation output of a hidden neuron $i$, denoted $\frac{\partial L}{\partial y_i}$.
 
 In the forward pass, the activation output $y_i$ of neuron $i$ is distributed forward to feed the pre-activation inputs $\hat{x}_k$ of **multiple neurons $k$** in the next layer.
 
-![Branching Downstream Connections](plots/backprop/IMG_3238.PNG)
+![Branching Downstream Connections](../plots/backprop/IMG_3238.PNG)
 
 Because $y_i$ influences the loss through multiple parallel paths, we must apply the multi-variable Chain Rule. The total derivative of the loss with respect to $y_i$ is the **sum of the derivatives across all downstream branches**:
 
@@ -363,7 +363,7 @@ $$\frac{\partial L}{\partial y_i} = \sum_{k} \frac{\partial L}{\partial \hat{x}_
 
 Where the summation index $k$ runs over all neurons in the next layer that receive input from neuron $i$.
 
-![Summing Downstream Paths](plots/backprop/IMG_3239.PNG)
+![Summing Downstream Paths](../plots/backprop/IMG_3239.PNG)
 
 ### 6.2 Evaluating the Connection Term: $\frac{\partial \hat{x}_k}{\partial y_i}$
 Recall that the pre-activation input for any downstream neuron $k$ is:
@@ -374,7 +374,7 @@ Taking the partial derivative of this sum with respect to the specific input act
 
 $$\frac{\partial \hat{x}_k}{\partial y_i} = \omega_{ik}$$
 
-![Evaluating connection derivative](plots/backprop/IMG_3241.PNG)
+![Evaluating connection derivative](../plots/backprop/IMG_3241.PNG)
 
 Substituting $\frac{\partial \hat{x}_k}{\partial y_i} = \omega_{ik}$ back into the summation yields:
 
@@ -382,7 +382,7 @@ $$\frac{\partial L}{\partial y_i} = \sum_{k} \frac{\partial L}{\partial \hat{x}_
 
 This equation shows that the error gradient propagates backward from the next layer's pre-activation inputs ($\frac{\partial L}{\partial \hat{x}_k}$) back to the current layer's output ($y_i$), scaled by the connection weights ($\omega_{ik}$).
 
-![Substituting connection term](plots/backprop/IMG_3242.PNG)
+![Substituting connection term](../plots/backprop/IMG_3242.PNG)
 
 ### 6.3 Expanding the Propagation Equation
 We can expand the pre-activation gradient term $\frac{\partial L}{\partial \hat{x}_k}$ using the activation derivative of the downstream neurons:
@@ -395,7 +395,7 @@ $$\frac{\partial L}{\partial y_i} = \sum_{k} \frac{\partial L}{\partial y_k} \fr
 
 This is the central equation for propagating error gradients backward through the hidden layers of a neural network.
 
-![Expanding error propagation](plots/backprop/IMG_3243.PNG)
+![Expanding error propagation](../plots/backprop/IMG_3243.PNG)
 
 ---
 
@@ -412,13 +412,13 @@ Using the propagated activation gradient, we calculate the gradient of the loss 
 
 $$\frac{\partial L}{\partial \omega_{pq}} = \frac{\partial L}{\partial y_q} \frac{\partial y_q}{\partial \hat{x}_q} y_p$$
 
-![Two Core Equations Summarized](plots/backprop/IMG_3245.PNG)
+![Two Core Equations Summarized](../plots/backprop/IMG_3245.PNG)
 
 We can visualize how these two equations correspond to the physical connections of the network:
 *   **Equation 1** sums up the backward influence of a node across all its outgoing connections.
 *   **Equation 2** calculates the update gradient for the weight between two nodes by multiplying the activation of the sending node and the error of the receiving node.
 
-![Visualizing Equations in Network](plots/backprop/IMG_3246.PNG)
+![Visualizing Equations in Network](../plots/backprop/IMG_3246.PNG)
 
 ---
 
@@ -437,7 +437,7 @@ Activation Gradients (Propagated Backwards):
 (∂L/∂ω)_1                 (∂L/∂ω)_{n-2}      (∂L/∂ω)_{n-1}      (∂L/∂ω)_n
 ```
 
-![Gradient Flow Chart](plots/backprop/IMG_3247.PNG)
+![Gradient Flow Chart](../plots/backprop/IMG_3247.PNG)
 
 ### 6.6 The Weight Update
 Once the weight gradients $\frac{\partial L}{\partial \omega}$ have been calculated for all layers, we apply them to update the network weights using Stochastic Gradient Descent (SGD) or a similar optimizer:
@@ -446,4 +446,4 @@ $$\omega_{t+1} = \omega_t - \eta \frac{\partial L}{\partial \omega}$$
 
 By repeating this process of forward propagation, cost calculation, backward error propagation, and weight updates over many epochs, the neural network learns to fit the training data and solve complex predictive tasks.
 
-![Parameter Updates with SGD](plots/backprop/IMG_3248.PNG)
+![Parameter Updates with SGD](../plots/backprop/IMG_3248.PNG)

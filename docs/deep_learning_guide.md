@@ -24,7 +24,7 @@ Where:
 - $y$ is the final output activation.
 
 ### Visual Diagram
-![Artificial Neuron (Perceptron) Diagram](plots/perceptron_diagram.png)
+![Artificial Neuron (Perceptron) Diagram](../plots/perceptron_diagram.png)
 
 ### Step-by-Step Example: An AND Logic Gate
 A single perceptron can learn linear decision boundaries, such as the `AND` logic gate.
@@ -105,7 +105,7 @@ Without activation functions, any neural network—no matter how many layers it 
 
 An **Artificial Neural Network (ANN)** or **Deep Neural Network (DNN)** is constructed by stacking multiple layers of neurons together. Signals flow sequentially from the input layer, through one or more hidden layers, to the output layer.
 
-![Deep Neural Network (DNN / MLP) Architecture Diagram](plots/dnn_architecture.png)
+![Deep Neural Network (DNN / MLP) Architecture Diagram](../plots/dnn_architecture.png)
 
 ### Forward Propagation
 For a layer $l$ in a network:
@@ -126,7 +126,7 @@ Where:
 
 Training a neural network consists of finding weights and biases that minimize a loss function $\mathcal{L}(y, \hat{y})$. **Backpropagation** is the algorithm used to calculate the gradient of the loss function with respect to every weight and bias in the network, flowing backward from the output layer to the input.
 
-![Neural Network: Forward Pass & Backpropagation](plots/backpropagation_diagram.png)
+![Neural Network: Forward Pass & Backpropagation](../plots/backpropagation_diagram.png)
 
 ### The Chain Rule
 To compute how the loss $\mathcal{L}$ changes when a specific weight $w_{ij}^{[l]}$ changes, we apply the chain rule of calculus:
@@ -245,7 +245,7 @@ Standard Feed-Forward networks do not scale well to images. For example, a $1000
 1. **Local Connectivity**: Neurons only connect to a small local patch of the input (spatial locality).
 2. **Shared Weights**: Filters are slid across the entire input, sharing the same weights (translation invariance: an object is detected regardless of its image location).
 
-![Convolutional Neural Network (CNN) Architecture Diagram](plots/cnn_architecture.png)
+![Convolutional Neural Network (CNN) Architecture Diagram](../plots/cnn_architecture.png)
 
 ### Core Layers
 
@@ -314,7 +314,7 @@ $$O = \frac{3 - 2 + 0}{1} + 1 = 2 \times 2$$
 
 Traditional sequence networks (RNNs/LSTMs) process tokens sequentially. To compute representation $h_t$, the model must wait for $h_{t-1}$, creating a parallelization bottleneck. **Transformers** resolve this by processing all tokens in parallel, relying entirely on the **Attention** mechanism to capture context.
 
-![The Transformer Network Architecture Diagram](plots/transformer_architecture.png)
+![The Transformer Network Architecture Diagram](../plots/transformer_architecture.png)
 
 ### The Attention Mechanism
 

@@ -18,7 +18,7 @@ In a traditional AI interaction, a user sends a prompt, and the model returns a 
 
 ### Core Concepts Architecture Mapping
 
-![Agentic AI Core Architecture](plots/agentic_concepts_diagram.png)
+![Agentic AI Core Architecture](../plots/agentic_concepts_diagram.png)
 
 ---
 
@@ -214,7 +214,7 @@ Depending on the complexity of the query, the agent coordinates either sequentia
 ### Sequential Atomic Tool Execution
 The model receives the user prompt and registers schemas. It plans step-by-step, querying tools and feeding results back over multiple API turns.
 
-![AI Agent Function Calling Loop](plots/agentic_loop_sequence.png)
+![AI Agent Function Calling Loop](../plots/agentic_loop_sequence.png)
 
 ---
 
@@ -227,7 +227,7 @@ The **Model Context Protocol (MCP)** standardizes tool integration. Instead of a
 - **Stdio Transport**: Used when the MCP server runs on the same machine as a command-line process. Standard input (`stdin`) and standard output (`stdout`) are used to send JSON-RPC packages.
 - **SSE Transport**: Used for remote or network connections. The client registers to a Server-Sent Events stream to receive events, and sends POST requests back to request executions.
 
-![MCP Architecture Diagram](plots/mcp_architecture_diagram.png)
+![MCP Architecture Diagram](../plots/mcp_architecture_diagram.png)
 
 ---
 

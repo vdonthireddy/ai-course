@@ -966,7 +966,7 @@ def create_deck():
         p.space_after = Pt(12)
         
     # Save Presentation
-    output_filename = "machine_learning_fundamentals.pptx"
+    output_filename = os.path.join("docs", "machine_learning_fundamentals.pptx")
     prs.save(output_filename)
     print(f"Presentation successfully created and saved as: '{output_filename}'")
 

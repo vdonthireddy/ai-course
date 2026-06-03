@@ -34,7 +34,7 @@ Heading levels in the sub-guides were systematically demoted by one level (e.g.,
 
 ## 2. README Update
 
-We modified **[README.md](README.md)**:
+We modified **[README.md](../README.md)**:
 1. Renamed the **"Supplementary Deep Dives & Guides"** section to **"Primary Course Textbook & Supplementary Guides"** in both the document body and the Table of Contents.
 2. Promoted the new `complete_illustrated_coursebook.md` as the main, consolidated study textbook at the top of the section.
 3. Maintained clear links to all standalone sub-guides for modular study reference.
@@ -43,7 +43,7 @@ We modified **[README.md](README.md)**:
 
 ## 3. Link & Image Verification
 
-We ran **[verify_coursebook.py](scratch/verify_coursebook.py)**, confirming:
+We ran **[verify_coursebook.py](../scratch/verify_coursebook.py)**, confirming:
 - **Total visual assets**: 266 image links.
 - **Valid links**: 266.
 - **Broken links**: 0.

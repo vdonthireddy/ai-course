@@ -2,8 +2,9 @@ import os
 import re
 
 def main():
-    filepath = '/Users/donthireddy/code/ai-course/complete_illustrated_coursebook.md'
+    filepath = '/Users/donthireddy/code/ai-course/docs/complete_illustrated_coursebook.md'
     workspace_dir = '/Users/donthireddy/code/ai-course'
+    file_dir = os.path.dirname(filepath)
     
     if not os.path.exists(filepath):
         print(f"Error: {filepath} does not exist.")
@@ -32,7 +33,7 @@ def main():
         if img_path.startswith('/'):
             full_path = img_path
         else:
-            full_path = os.path.normpath(os.path.join(workspace_dir, img_path))
+            full_path = os.path.normpath(os.path.join(file_dir, img_path))
             
         if not os.path.exists(full_path):
             missing_images.append((img_path, full_path))
@@ -77,7 +78,7 @@ def main():
         if path_to_check.startswith('/'):
             full_path = path_to_check
         else:
-            full_path = os.path.normpath(os.path.join(workspace_dir, path_to_check))
+            full_path = os.path.normpath(os.path.join(file_dir, path_to_check))
 
         if not os.path.exists(full_path):
             missing_links.append((link_path, full_path))
